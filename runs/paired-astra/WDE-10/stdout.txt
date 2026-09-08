@@ -1,0 +1,23 @@
+Implemented the Loomwork signup page with responsive layouts, validation, password visibility, accessible states, and a clinic schedule preview.
+
+### Deliverables
+- `index.html`
+- `styles.css`
+- `app.js`
+- `ASSUMPTIONS.md`
+- `acceptance.js`
+
+### Browser acceptance
+Passed in Chromium at:
+- Mobile: 390 × 844
+- Tablet: 768 × 1024
+- Laptop: 1440 × 900
+
+No horizontal overflow or console errors. Signup validation and successful completion paths pass.
+
+### Evidence
+See `evidence/`:
+- `ACCEPTANCE.md`
+- Responsive screenshots
+- `mobile-success.png`
+- `acceptance-results.json`

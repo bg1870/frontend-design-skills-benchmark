@@ -1,0 +1,29 @@
+[
+  {
+    "viewport": "mobile 390×844",
+    "horizontalOverflow": false,
+    "primaryVisible": true,
+    "headingVisible": true,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "tablet 768×1024",
+    "horizontalOverflow": false,
+    "primaryVisible": true,
+    "headingVisible": true,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "laptop 1440×900",
+    "horizontalOverflow": false,
+    "primaryVisible": true,
+    "headingVisible": true,
+    "consoleErrors": []
+  },
+  {
+    "journey": "signup validation and completion",
+    "firstFocused": "name",
+    "validationShown": true,
+    "successShown": true
+  }
+]

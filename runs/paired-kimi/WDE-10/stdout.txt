@@ -1,0 +1,11 @@
+Implemented the responsive Loomwork signup page.
+
+### Delivered
+- `index.html` — complete responsive signup experience with validation, password visibility, accessibility states, reduced motion, and custom scheduling visualization.
+- `ACCEPTANCE.md` — assumptions, viewport results, repair log, checks, and screenshot hashes.
+- Browser evidence:
+  - `evidence/mobile.png` — 375 × 812
+  - `evidence/tablet.png` — 768 × 1024
+  - `evidence/laptop.png` — 1440 × 900
+
+All three Chromium acceptance viewports passed after repairs.

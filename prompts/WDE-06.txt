@@ -1,0 +1,1 @@
+Review fixtures/site and score it for me: what is wrong, how bad each thing is, and what I should fix first. I want the review, not a redesign — do not rewrite the page. Work autonomously: do not ask questions, request confirmation, or pause at checkpoints. Cite the file and the specific rule or measurement behind every finding, and deliver the finished review in one pass.

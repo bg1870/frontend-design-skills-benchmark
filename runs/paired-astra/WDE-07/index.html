@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Afield makes thoughtful circular walks from wherever you are. No scores, no feeds—just a good way out and back.">
+  <meta name="theme-color" content="#dbe9ee">
+  <title>Afield — A small reason to step outside</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Afield home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M8 19c5-1 5-8 10-8 3 0 4 2 6 3"/><circle cx="8" cy="19" r="2"/><circle cx="24" cy="14" r="2"/></svg>
+      <span>Afield</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#how">How it works</a>
+      <a href="#principles">Why Afield</a>
+    </nav>
+    <a class="header-cta" href="#early-access">Join early access</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="launch-note">Arriving October · iPhone</p>
+        <h1>A small reason<br>to step outside.</h1>
+        <p class="lede">Afield makes a thoughtful circular walk from wherever you are. Choose how long you have. Come back a little clearer.</p>
+        <form class="signup-form" id="hero-form" novalidate>
+          <label class="sr-only" for="hero-email">Email address</label>
+          <div class="form-row">
+            <input id="hero-email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com…" required>
+            <button type="submit">Save me a place</button>
+          </div>
+          <p class="form-note">One launch email. No weekly drip.</p>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="route-demo" aria-label="Interactive example of an Afield walking route">
+        <div class="demo-topline">
+          <div><span class="demo-place">From Hackney Downs</span><span class="demo-meta" id="route-meta">2.4 km · about 32 min</span></div>
+          <span class="weather">16° · dry</span>
+        </div>
+        <div class="map" aria-hidden="true">
+          <svg viewBox="0 0 700 560" preserveAspectRatio="xMidYMid slice">
+            <g class="streets">
+              <path d="M-20 92L722 365M40 580L176-20M-20 408L620 80M374-20L720 205M248 580L542-20M-20 253L725 530"/>
+              <path d="M-10 30L691 282M100 580L222-10M-30 487L517 206M462-20L703 132M367 580L640 30"/>
+            </g>
+            <g class="blocks">
+              <path d="M107 180h88v62h-88zM468 310h102v70H468zM273 64h72v86h-72zM257 421h95v63h-95z"/>
+            </g>
+            <path class="park" d="M392 112c56-20 125 6 132 59s-29 90-80 83-102-29-91-75 10-56 39-67z"/>
+            <path class="route route-short active" d="M188 397C144 357 143 292 192 255C228 228 275 253 309 218C346 180 372 142 430 148C489 153 511 204 484 247C456 292 393 280 365 319C329 370 321 423 264 438C231 447 209 424 188 397Z"/>
+            <path class="route route-long" d="M188 397C118 365 92 293 136 225C166 178 232 193 270 148C310 100 370 61 435 88C472 103 470 141 520 151C589 164 622 232 583 291C553 337 486 327 442 366C401 403 371 463 306 474C253 483 226 430 188 397Z"/>
+            <g class="pin"><circle cx="188" cy="397" r="11"/><circle cx="188" cy="397" r="4"/></g>
+            <text x="375" y="184">Downs</text><text x="466" y="405">market</text><text x="103" y="280">canal</text>
+          </svg>
+          <div class="map-note">Quiet streets preferred</div>
+        </div>
+        <div class="duration-picker" role="group" aria-label="Choose walk duration">
+          <button type="button" data-duration="20">20 min</button>
+          <button type="button" data-duration="30" class="selected" aria-pressed="true">30 min</button>
+          <button type="button" data-duration="45">45 min</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto" id="principles">
+      <p>Built for the walk itself, not a record of it.</p>
+      <div class="principles">
+        <article><h2>No performance</h2><p>No pace, streaks, calories or leaderboards. Nothing to prove.</p></article>
+        <article><h2>A little variety</h2><p>Routes gently change, favouring quieter streets, green edges and ways you may have missed.</p></article>
+        <article><h2>Works quietly</h2><p>One glance at each turn. Your route stays available without a signal.</p></article>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="how-heading">
+        <h2>Out and back,<br>without the planning.</h2>
+        <p>Afield draws a loop around the time you have—not the distance you ought to cover.</p>
+      </div>
+      <ol class="steps">
+        <li><span>1</span><div><h3>Pick a little time</h3><p>Twenty minutes before dinner or an unhurried hour on Sunday.</p></div></li>
+        <li><span>2</span><div><h3>Choose the mood</h3><p>Quieter, greener or somewhere new. Afield handles the turns.</p></div></li>
+        <li><span>3</span><div><h3>End where you began</h3><p>Every route brings you home. Save the good ones, forget the rest.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="early-access" id="early-access">
+      <div>
+        <p class="launch-note">First walks this October</p>
+        <h2>Take the long<br>way round.</h2>
+      </div>
+      <form class="signup-form footer-form" id="footer-form" novalidate>
+        <label for="footer-email">Email address</label>
+        <div class="form-row">
+          <input id="footer-email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com…" required>
+          <button type="submit">Join early access</button>
+        </div>
+        <p class="form-note">Free during early access. One launch email.</p>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M8 19c5-1 5-8 10-8 3 0 4 2 6 3"/><circle cx="8" cy="19" r="2"/><circle cx="24" cy="14" r="2"/></svg><span>Afield</span></a>
+    <p>Made independently in London.</p>
+    <p>© 2026 Afield</p>
+  </footer>
+</body>
+</html>

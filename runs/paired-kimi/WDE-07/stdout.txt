@@ -1,0 +1,8 @@
+Delivered a complete responsive landing page.
+
+### Files
+
+- `index.html` — Finished landing page with custom branding, responsive layout, animation, accessible signup interaction, reduced-motion support, and inline favicon.
+- `ASSUMPTIONS.md` — Product, launch, branding, content, privacy, and technical assumptions.
+
+Open `index.html` directly in a browser to preview. Before launch, connect the signup form to an email provider and replace the example contact address.

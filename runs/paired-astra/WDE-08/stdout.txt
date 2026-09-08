@@ -1,0 +1,15 @@
+Built the finished Nojom SDK quickstart page.
+
+### Files
+- `index.html` — responsive documentation page with copy controls, navigation, authentication guidance, first request, and cost estimate
+- `README.md` — material assumptions and implementation notes
+
+Included:
+- `@nojom/sdk` installation
+- `ANTHROPIC_API_KEY` authentication
+- Claude Sonnet 4 model ID: `claude-sonnet-4-20250514`
+- $3/M input and $15/M output token pricing
+- Example cost calculation
+- Responsive and accessibility-focused design
+
+Open `index.html` directly in a browser.

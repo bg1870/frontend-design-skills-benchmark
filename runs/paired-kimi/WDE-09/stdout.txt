@@ -1,0 +1,12 @@
+Built the complete investor pitch deck:
+
+**[tessellate-pitch.html](./tessellate-pitch.html)**
+
+Includes:
+- 8 full-screen 16:9 slides
+- Arrow keys, Page Up/Down, Home/End, spacebar, swipe, and button navigation
+- URL hash deep-linking
+- Responsive scaling and reduced-motion support
+- Self-contained CSS, JavaScript, diagrams, and favicon
+- Material assumptions disclosed on slide 8 and in source comments
+- Accessibility-focused navigation and focus states
