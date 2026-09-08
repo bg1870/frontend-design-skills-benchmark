@@ -1,0 +1,23 @@
+Write an agent skill that makes YOU produce genuinely beautiful, non-generic front-end work.
+
+You are the audience. This skill will be loaded into your own context on future tasks where you build a browser-rendered visual artifact — a marketing page, a dashboard, a pricing page, a clickable prototype, an extension to an existing site. Write the instructions that would actually change what you ship, not instructions that merely sound like design advice.
+
+Output exactly one file: SKILL.md. Nothing else. No reference files, no scripts, no directories.
+
+Format — the file must begin with YAML frontmatter, then markdown:
+
+---
+name: beautiful-frontend
+description: <one paragraph, third person, that states precisely when this skill should be loaded and when it should not; an agent decides from this text alone whether to read the body>
+---
+
+Hard constraints:
+
+- 150 lines maximum for the whole file, frontmatter included. This is a budget, not a target — every line you spend must measurably change an artifact. If a line would not change the output, cut it.
+- No reference files, no external links, no tool or script dependencies. Self-contained.
+- Nothing that requires asking the user anything. Assume no human is in the loop and the brief is all you get.
+- No generic exhortation. "Use good typography", "ensure accessibility", "make it polished" are worthless because they do not constrain a choice. Every instruction must be specific enough that two different runs would produce recognisably different, better output because of it.
+
+Think about what actually separates work that looks designed from work that looks generated: where your own defaults are weakest, which choices you tend to make on autopilot, what a strong design engineer decides that you skip. Encode those. Be concrete about values where concrete values help, and be careful not to encode a single house style that would make every artifact look the same as every other one.
+
+Write the file to SKILL.md in the current directory.

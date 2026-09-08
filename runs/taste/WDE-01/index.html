@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ridgeline brings restaurant scheduling, time tracking, and payroll into one clear weekly rhythm.">
+  <meta name="theme-color" content="#f3f5f7">
+  <title>Ridgeline | Payroll that follows the floor</title>
+  <link rel="preconnect" href="https://picsum.photos">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ridgeline home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>RIDGELINE</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <a href="#workflow">How it works</a>
+      <a href="#schedule">Scheduling</a>
+      <a href="#payroll">Payroll</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="button button-small header-cta" href="#get-started">Start free</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Built for independent restaurants</p>
+        <h1>Payroll that follows the floor.</h1>
+        <p class="hero-sub">Build the week, track every shift, and run payroll without rebuilding the story on Sunday night.</p>
+        <div class="hero-actions">
+          <a class="button" href="#get-started">Start free</a>
+          <a class="text-link" href="#schedule">See the workflow <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+      <div class="hero-visual reveal" style="--delay:120ms">
+        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1100&q=85" width="1100" height="1300" alt="Restaurant team preparing the dining room before service" fetchpriority="high">
+        <div class="shift-ticket" aria-label="Example completed shift">
+          <span class="ticket-label">TODAY</span>
+          <strong>DINNER</strong>
+          <span>14 people scheduled</span>
+          <span>Clock-in ready at 3:30 PM</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof" aria-label="Types of restaurants using Ridgeline">
+      <p>One steady system for every kind of service</p>
+      <div class="proof-grid" aria-hidden="true">
+        <span><b>H</b> HARBOR HOUSE</span><span><b>F</b> FIELD DAY</span><span><b>M</b> MESA CLUB</span><span><b>P</b> PINE & SALT</span>
+      </div>
+    </section>
+
+    <section class="problem-section">
+      <div class="problem-image reveal"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=85" width="1200" height="900" loading="lazy" alt="Restaurant owner reviewing the day after service"></div>
+      <div class="problem-copy reveal">
+        <h2>Your restaurant already has enough moving parts.</h2>
+        <p>Ridgeline connects the schedule, time clock, tips, and payroll. Changes made on the floor carry through to payday.</p>
+        <dl>
+          <div><dt>One weekly rhythm</dt><dd>Schedule to shift to pay run</dd></div>
+          <div><dt>One source of truth</dt><dd>Approved hours and tips stay connected</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="workflow" id="workflow">
+      <div class="section-heading reveal">
+        <h2>From prep list to payday.</h2>
+        <p>Ridgeline keeps the whole week moving in the same direction.</p>
+      </div>
+      <div class="workflow-track">
+        <article class="workflow-step reveal"><span>MON</span><h3>Build</h3><p>Start from last week, adjust covers, and assign the right crew.</p></article>
+        <article class="workflow-step reveal" style="--delay:80ms"><span>DAILY</span><h3>Work</h3><p>Your team clocks in. Managers resolve exceptions while the details are fresh.</p></article>
+        <article class="workflow-step reveal" style="--delay:160ms"><span>SUN</span><h3>Pay</h3><p>Review approved time and tips, then run payroll from the same record.</p></article>
+      </div>
+    </section>
+
+    <section class="schedule-section" id="schedule">
+      <div class="schedule-copy reveal">
+        <p class="eyebrow">Scheduling</p>
+        <h2>A schedule your team can actually use.</h2>
+        <p>Plan by role, spot coverage gaps, and send updates without a chain of group texts.</p>
+        <div class="tab-list" role="tablist" aria-label="Schedule view">
+          <button role="tab" aria-selected="true" data-day="fri">Friday</button>
+          <button role="tab" aria-selected="false" data-day="sat">Saturday</button>
+        </div>
+      </div>
+      <div class="schedule-live reveal" aria-live="polite">
+        <div class="schedule-top"><div><span id="schedule-day">Friday, May 17</span><strong>Dinner service</strong></div><button id="publish-button" type="button">Publish schedule</button></div>
+        <div id="schedule-content" class="shift-list"></div>
+        <p id="publish-status" class="status-message" hidden></p>
+      </div>
+    </section>
+
+    <section class="payroll-section" id="payroll">
+      <div class="payroll-panel reveal">
+        <h2>Close payroll while the week is still fresh.</h2>
+        <p>Approved shifts, overtime, and declared tips arrive together. You review the exceptions, not every line.</p>
+        <a class="text-link light-link" href="#pricing">Explore pricing <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="payroll-receipt reveal" style="--delay:100ms">
+        <div class="receipt-head"><span>PAY RUN</span><span>READY TO REVIEW</span></div>
+        <strong>May 13-19</strong>
+        <div class="receipt-summary"><div><span>Team members</span><b>24</b></div><div><span>Exceptions</span><b>2</b></div><div><span>Approved shifts</span><b>86</b></div></div>
+        <button type="button" id="review-button">Review exceptions</button>
+        <div id="review-state" class="review-state" hidden><p><strong>2 items need attention</strong></p><p>One missed clock-out and one unassigned tip pool.</p></div>
+      </div>
+    </section>
+
+    <section class="testimonial">
+      <blockquote class="reveal">“I used to spend Sunday nights matching three different reports. Now I fix two or three exceptions and payroll is ready.”</blockquote>
+      <div class="person reveal"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=85" width="240" height="240" loading="lazy" alt="Portrait of restaurant owner Marisol Vega"><p><strong>Marisol Vega</strong><span>Owner, Juniper Table</span></p></div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="pricing-intro reveal"><h2>Pricing that fits one restaurant.</h2><p>Start with the tools you need. Add payroll when you are ready.</p></div>
+      <div class="price-choice reveal">
+        <div><span>RIDGELINE SCHEDULE</span><strong>$49 <small>/ month</small></strong><p>Scheduling, time clock, availability, and team messaging.</p></div>
+        <div><span>ADD PAYROLL</span><strong>$8 <small>/ person</small></strong><p>Full-service payroll, tax filings, direct deposit, and year-end forms.</p></div>
+        <a class="button" href="#get-started">Start free</a>
+      </div>
+    </section>
+
+    <section class="final-cta" id="get-started">
+      <div class="final-image"><img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85" width="1600" height="1000" loading="lazy" alt="Restaurant team sharing a meal before service"></div>
+      <div class="final-copy reveal"><h2>Put the week on one page.</h2><p>Try Ridgeline free for 14 days. No credit card required.</p><a class="button button-inverse" href="mailto:hello@ridgelinepay.com?subject=Start%20Ridgeline">Start free</a></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>RIDGELINE</a>
+    <p>Scheduling and payroll for independent restaurants.</p>
+    <div><a href="mailto:hello@ridgelinepay.com">Contact</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+    <p>© 2026 Ridgeline Software</p>
+  </footer>
+</body>
+</html>

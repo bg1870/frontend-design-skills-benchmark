@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f4ef">
+  <title>Rivet Dispatch — Job queue</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%224%22 fill=%22%231d55d5%22/><path d=%22M9 8v6a7 7 0 0014 0V8M7 8h4m10 0h4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%223%22/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="topbar">
+    <a class="brand" href="#queue" aria-label="Rivet Dispatch home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4v5a7 7 0 0 0 14 0V4M3 4h4m10 0h4"/></svg></span>
+      <span>RIVET <b>DISPATCH</b></span>
+    </a>
+    <div class="shift">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span>Morning shift</span>
+      <time id="clock" datetime="2026-09-08T09:00:00-05:00">Tue, Sep 8</time>
+    </div>
+    <button class="icon-button" id="refresh" type="button" aria-label="Refresh jobs" title="Refresh jobs">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
+    </button>
+  </header>
+
+  <main id="main-content">
+    <section class="summary" aria-labelledby="summary-heading">
+      <div class="summary-title">
+        <p>Tuesday field board</p>
+        <h1 id="summary-heading">Keep the line moving.</h1>
+      </div>
+      <dl class="metrics" id="metrics" aria-live="polite">
+        <div><dt>In queue</dt><dd>—</dd></div>
+        <div><dt>Needs assignment</dt><dd>—</dd></div>
+        <div><dt>Assigned</dt><dd>—</dd></div>
+        <div><dt>Completed</dt><dd>—</dd></div>
+        <div class="next-stop"><dt>Next dispatch</dt><dd>—</dd><span>—</span></div>
+      </dl>
+    </section>
+
+    <section class="workspace" id="queue" aria-labelledby="queue-heading">
+      <div class="queue-head">
+        <div>
+          <p class="section-kicker">Live work order feed</p>
+          <h2 id="queue-heading">Job queue</h2>
+          <p id="result-count" class="result-count" aria-live="polite">Loading jobs…</p>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span class="sr-only">Search jobs</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="search" name="job-search" type="search" placeholder="Search work orders…" autocomplete="off">
+          </label>
+          <div class="filter" aria-label="Filter jobs">
+            <button class="filter-button is-active" type="button" data-filter="active" aria-pressed="true">Active</button>
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="false">All jobs</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-shell">
+        <table>
+          <thead><tr><th scope="col">Time</th><th scope="col">Work order</th><th scope="col">Location</th><th scope="col">Technician</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+          <tbody id="job-rows"><tr class="loading-row"><td colspan="6">Opening the field board…</td></tr></tbody>
+        </table>
+        <div id="empty" class="empty" hidden>
+          <strong>No work orders found</strong>
+          <span>Clear the search or show all jobs.</span>
+          <button id="clear-filters" type="button">Clear filters</button>
+        </div>
+        <div id="error" class="empty error" hidden>
+          <strong>The job feed did not load</strong>
+          <span>Run this folder through a local web server, then retry.</span>
+          <button id="retry" type="button">Retry loading</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

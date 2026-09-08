@@ -1,0 +1,24 @@
+Completed the Ridgeline single-page marketing site.
+
+### Files
+- `index.html`
+- `styles.css`
+- `script.js`
+- `README.md`
+
+### Included
+- Responsive light/dark design
+- Restaurant-focused photography
+- Product, benefits, testimonial, pricing, FAQ, and CTA sections
+- Mobile navigation
+- Accessible demo-request modal with validation, loading, error, and success states
+- Reduced-motion support
+- Material assumptions documented in `README.md`
+
+Run locally with:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then open `http://localhost:8080`.

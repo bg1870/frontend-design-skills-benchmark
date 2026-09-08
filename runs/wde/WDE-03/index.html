@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clear, scalable pricing for the Northstar analytics concept.">
+  <title>Pricing — Northstar Analytics</title>
+  <style>
+    :root {
+      --warehouse-ink:#0A0B10; --console-slate:#12131A; --panel-slate:#191A23;
+      --control-slate:#22232D; --rule-slate:#2C2D38; --muted-graphite:#77798A;
+      --metadata-silver:#A7A8B5; --signal-white:#F5F5F7; --query-violet:#8176E8;
+      --query-violet-lift:#9B92F1; --query-violet-wash:#25223E; --error-coral:#E77979;
+      --color-ground:var(--warehouse-ink); --color-surface:var(--console-slate);
+      --color-surface-hover:var(--panel-slate); --color-control:var(--control-slate);
+      --color-border:var(--rule-slate); --color-text:var(--signal-white);
+      --color-text-secondary:var(--metadata-silver); --color-text-muted:var(--muted-graphite);
+      --color-accent:var(--query-violet); --color-accent-hover:var(--query-violet-lift);
+      --color-accent-wash:var(--query-violet-wash); --color-error:var(--error-coral);
+      --font-display:Geist,"Avenir Next","Segoe UI",sans-serif;
+      --font-body:Geist,"Avenir Next","Segoe UI",sans-serif;
+      --font-mono:"Geist Mono","SFMono-Regular",Consolas,monospace;
+      --ease:cubic-bezier(.22,1,.36,1); --fast:150ms; --layout:400ms;
+      --shadow:0 1px 2px color-mix(in srgb,var(--warehouse-ink) 85%,transparent);
+    }
+    *{box-sizing:border-box}
+    html{color-scheme:dark;scroll-behavior:smooth}
+    body{margin:0;background:var(--color-ground);color:var(--color-text);font:400 16px/1.55 var(--font-body);text-rendering:optimizeLegibility}
+    a{color:inherit;text-decoration:none} button{font:inherit} button,a{ -webkit-tap-highlight-color:transparent }
+    .shell{width:min(1200px,calc(100% - 48px));margin-inline:auto}
+    .site-header{height:72px;border-bottom:1px solid var(--color-border);display:flex;align-items:center;position:relative;z-index:5}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:32px}
+    .brand{display:inline-flex;align-items:center;gap:11px;font-weight:650;letter-spacing:-.025em}
+    .brand-mark{width:22px;height:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:3px;transform:rotate(45deg)}
+    .brand-mark i{background:var(--color-text);border-radius:2px}.brand-mark i:last-child{background:var(--color-accent)}
+    .nav-links,.nav-actions{display:flex;align-items:center;gap:28px}.nav-links a{font-size:14px;color:var(--color-text-secondary);transition:color var(--fast)}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--color-text)}
+    .button{min-height:44px;border-radius:8px;border:1px solid var(--color-border);background:transparent;color:var(--color-text);display:inline-flex;align-items:center;justify-content:center;padding:0 18px;font-weight:600;font-size:14px;cursor:pointer;transition:background var(--fast),border-color var(--fast),transform var(--fast),color var(--fast)}
+    .button:hover{background:var(--color-surface-hover);border-color:var(--color-text-muted)}.button:active{transform:translateY(1px)}
+    .button:focus-visible,.billing-option:focus-visible,summary:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px}
+    .button[disabled]{opacity:.45;cursor:not-allowed}.button.primary{background:var(--color-accent);border-color:var(--color-accent);color:var(--color-ground)}
+    .button.primary:hover{background:var(--color-accent-hover);border-color:var(--color-accent-hover)}
+    .button.small{min-height:38px;padding-inline:14px}.arrow{margin-left:18px;font-size:17px}
+    .hero{position:relative;padding:112px 0 80px;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:620px;height:380px;right:-120px;top:-180px;background:radial-gradient(circle,var(--query-violet-wash),transparent 67%);opacity:.75;pointer-events:none}
+    .hero-grid{display:grid;grid-template-columns:7fr 4fr;gap:8.33%;align-items:end;position:relative}
+    .kicker{font:500 12px/1 var(--font-mono);letter-spacing:.08em;color:var(--color-accent);margin:0 0 25px;text-transform:uppercase}
+    h1{font:600 clamp(52px,7vw,84px)/.98 var(--font-display);letter-spacing:-.055em;margin:0;max-width:780px;text-wrap:balance}
+    .hero-copy{color:var(--color-text-secondary);font-size:18px;margin:0 0 7px;max-width:440px;text-wrap:pretty}
+    .decision-bar{border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);padding:22px 0}
+    .decision-inner{display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .billing{display:inline-flex;background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px;padding:4px;box-shadow:var(--shadow)}
+    .billing-option{min-height:40px;border:0;border-radius:6px;color:var(--color-text-secondary);background:transparent;padding:0 16px;cursor:pointer;transition:color var(--fast),background var(--fast)}
+    .billing-option[aria-pressed="true"]{background:var(--color-control);color:var(--color-text)}
+    .save-note{font:500 12px/1 var(--font-mono);color:var(--color-accent);margin-left:12px}
+    .sample-note{font:400 12px/1.4 var(--font-mono);color:var(--color-text-muted);text-align:right}
+    .pricing{padding:64px 0 112px}
+    .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--color-border);border-radius:12px;overflow:hidden;background:var(--color-surface)}
+    .plan{position:relative;padding:32px;min-width:0;display:flex;flex-direction:column}.plan+.plan{border-left:1px solid var(--color-border)}
+    .plan.featured{background:linear-gradient(180deg,var(--color-accent-wash),var(--color-surface) 34%);box-shadow:inset 0 2px var(--color-accent)}
+    .plan-top{min-height:238px}.plan-name{font:500 13px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary);margin:0 0 24px}
+    .plan h2{font:600 28px/1.15 var(--font-display);letter-spacing:-.03em;margin:0 0 12px}.plan-desc{color:var(--color-text-secondary);margin:0;max-width:31ch}
+    .price-line{display:flex;align-items:baseline;gap:8px;margin:30px 0 4px}.currency{font-size:18px;color:var(--color-text-secondary)}
+    .price{font:600 48px/1 var(--font-display);letter-spacing:-.045em;font-variant-numeric:tabular-nums;transition:opacity var(--fast),transform var(--layout)}
+    .price.changing{opacity:.2;transform:translateY(5px)}.period{font-size:14px;color:var(--color-text-muted)}
+    .annual-detail{height:20px;font:400 12px/1.5 var(--font-mono);color:var(--color-text-muted);margin-bottom:26px}
+    .plan .button{width:100%;margin-bottom:30px}.includes{border-top:1px solid var(--color-border);padding-top:26px;margin-top:auto}
+    .includes-title{font-size:13px;font-weight:600;margin:0 0 16px}.feature-list{list-style:none;padding:0;margin:0;display:grid;gap:12px;color:var(--color-text-secondary);font-size:14px}
+    .feature-list li{display:flex;gap:10px}.tick{color:var(--color-accent);font-family:var(--font-mono);flex:none}
+    .compare{padding:0 0 112px}.section-heading{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-bottom:40px}
+    .section-heading h2{font:600 clamp(34px,4vw,48px)/1.05 var(--font-display);letter-spacing:-.04em;margin:0}.section-heading p{color:var(--color-text-secondary);margin:7px 0 0;max-width:50ch}
+    .comparison{border-top:1px solid var(--color-border)}
+    .compare-row{display:grid;grid-template-columns:2fr repeat(3,1fr);border-bottom:1px solid var(--color-border);min-height:62px;align-items:center}
+    .compare-row>div{padding:15px 20px}.compare-row>div:not(:first-child){border-left:1px solid var(--color-border);text-align:center;color:var(--color-text-secondary);font-size:14px}
+    .compare-row.header{position:sticky;top:0;background:color-mix(in srgb,var(--color-ground) 92%,transparent);backdrop-filter:blur(14px);z-index:2;font:500 12px/1 var(--font-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted)}
+    .feature-name{font-size:14px}.yes{color:var(--color-accent)!important}.dash{color:var(--color-text-muted)!important}
+    .faq{padding:96px 0;border-top:1px solid var(--color-border)}.faq-grid{display:grid;grid-template-columns:1fr 2fr;gap:8.33%}
+    .faq h2{font:600 48px/1.05 var(--font-display);letter-spacing:-.04em;margin:0}.faq-intro{color:var(--color-text-secondary);max-width:28ch;margin-top:18px}
+    details{border-top:1px solid var(--color-border)}details:last-child{border-bottom:1px solid var(--color-border)}
+    summary{list-style:none;cursor:pointer;padding:24px 44px 24px 0;position:relative;font-weight:550}summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";position:absolute;right:4px;color:var(--color-accent);font:400 20px/1 var(--font-mono);transition:transform var(--fast)}details[open] summary:after{transform:rotate(45deg)}
+    details p{margin:-7px 40px 24px 0;color:var(--color-text-secondary);max-width:66ch}
+    .closing{padding:96px 0;border-top:1px solid var(--color-border)}.closing-box{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:end}
+    .closing h2{font:600 clamp(38px,5vw,64px)/1.02 var(--font-display);letter-spacing:-.045em;margin:0;max-width:760px}.closing-actions{display:flex;justify-content:flex-end;gap:12px}
+    footer{border-top:1px solid var(--color-border);padding:28px 0 40px;color:var(--color-text-muted);font-size:13px}.footer-inner{display:flex;justify-content:space-between;gap:24px}.footer-links{display:flex;gap:24px}
+    .toast{position:fixed;right:24px;bottom:24px;max-width:340px;padding:16px 18px;background:var(--color-control);border:1px solid var(--color-border);border-radius:8px;box-shadow:var(--shadow);color:var(--color-text-secondary);font-size:14px;transform:translateY(20px);opacity:0;pointer-events:none;transition:transform var(--layout),opacity var(--fast);z-index:10}.toast.show{transform:none;opacity:1}.toast strong{color:var(--color-text)}
+    @media (max-width:980px){.nav-links{display:none}.hero{padding-top:88px}.hero-grid{grid-template-columns:1fr;gap:36px}.hero-copy{max-width:620px}.plan-grid{grid-template-columns:1fr}.plan+.plan{border-left:0;border-top:1px solid var(--color-border)}.plan-top{min-height:auto}.plan{padding:30px}.section-heading{grid-template-columns:1fr}.compare-row{grid-template-columns:1.5fr repeat(3,1fr)}}
+    @media (max-width:760px){.shell{width:min(100% - 32px,1200px)}.site-header{height:64px}.nav-actions .login{display:none}.hero{padding:72px 0 56px}h1{font-size:clamp(46px,14vw,66px)}.decision-inner{align-items:flex-start;flex-direction:column}.sample-note{text-align:left}.billing{width:100%}.billing-option{flex:1}.save-note{display:none}.pricing{padding:40px 0 80px}.comparison{border-top:0}.compare-row,.compare-row.header{grid-template-columns:1fr 1fr}.compare-row.header>div:first-child{grid-column:1/-1}.compare-row>div{border-top:1px solid var(--color-border)}.compare-row>div:not(:first-child){border-left:0;text-align:left}.compare-row>div:nth-child(3),.compare-row>div:nth-child(4){border-left:1px solid var(--color-border)}.compare-row>div:nth-child(4){grid-column:2}.feature-name{grid-column:1/-1;background:var(--color-surface)}.faq-grid,.closing-box{grid-template-columns:1fr}.faq h2{font-size:40px}.closing-actions{justify-content:flex-start;flex-wrap:wrap}.footer-inner{flex-direction:column}.footer-links{flex-wrap:wrap}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Northstar home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>northstar</a>
+      <div class="nav-links"><a href="#plans">Product</a><a href="#compare">Solutions</a><a href="#faq">Resources</a><a href="#plans" aria-current="page">Pricing</a></div>
+      <div class="nav-actions"><a class="login" href="#" data-demo>Log in</a><button class="button small" data-demo>Book a demo</button></div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div><p class="kicker">Pricing that scales with signal</p><h1>Answers for every team. Not a tax on curiosity.</h1></div>
+        <p class="hero-copy">Start with trusted dashboards, then expand into governed self-serve analytics. Every plan includes unlimited viewers.</p>
+      </div>
+    </section>
+
+    <section class="decision-bar" aria-label="Billing options">
+      <div class="shell decision-inner">
+        <div><div class="billing" role="group" aria-label="Billing frequency"><button class="billing-option" data-cycle="monthly" aria-pressed="true">Monthly</button><button class="billing-option" data-cycle="annual" aria-pressed="false">Annual</button></div><span class="save-note" id="saving-note">2 months included</span></div>
+        <div class="sample-note">Illustrative pricing · USD · taxes excluded</div>
+      </div>
+    </section>
+
+    <section class="pricing shell" id="plans" aria-label="Pricing plans">
+      <div class="plan-grid">
+        <article class="plan">
+          <div class="plan-top"><p class="plan-name">Launch</p><h2>For teams building a reliable source of truth.</h2><p class="plan-desc">Model, explore, and share core business metrics without managing a fleet of tools.</p></div>
+          <div class="price-line"><span class="currency">$</span><span class="price" data-monthly="49">49</span><span class="period">/ editor / mo</span></div><div class="annual-detail" aria-live="polite"></div>
+          <button class="button" data-demo>Start with Launch <span class="arrow">→</span></button>
+          <div class="includes"><p class="includes-title">Core capabilities</p><ul class="feature-list"><li><span class="tick">+</span>Unlimited viewers</li><li><span class="tick">+</span>Dashboards and metric layers</li><li><span class="tick">+</span>10 data connections</li><li><span class="tick">+</span>Community support</li></ul></div>
+        </article>
+        <article class="plan featured">
+          <div class="plan-top"><p class="plan-name">Scale · Recommended</p><h2>For data teams bringing answers to everyone.</h2><p class="plan-desc">Add governance, workflows, and the controls needed to scale trusted self-serve analytics.</p></div>
+          <div class="price-line"><span class="currency">$</span><span class="price" data-monthly="89">89</span><span class="period">/ editor / mo</span></div><div class="annual-detail" aria-live="polite"></div>
+          <button class="button primary" data-demo>Start with Scale <span class="arrow">→</span></button>
+          <div class="includes"><p class="includes-title">Everything in Launch, plus</p><ul class="feature-list"><li><span class="tick">+</span>Unlimited data connections</li><li><span class="tick">+</span>Advanced permissions</li><li><span class="tick">+</span>Slack and email workflows</li><li><span class="tick">+</span>Priority support</li></ul></div>
+        </article>
+        <article class="plan">
+          <div class="plan-top"><p class="plan-name">Enterprise</p><h2>For organizations standardizing decision systems.</h2><p class="plan-desc">Design a governed analytics environment around your security, support, and deployment needs.</p></div>
+          <div class="price-line"><span class="price" style="font-size:28px;letter-spacing:-.03em">Custom</span></div><div class="annual-detail">Annual agreement</div>
+          <button class="button" data-demo>Talk to sales <span class="arrow">→</span></button>
+          <div class="includes"><p class="includes-title">Everything in Scale, plus</p><ul class="feature-list"><li><span class="tick">+</span>SAML SSO and SCIM</li><li><span class="tick">+</span>Audit logs and data residency</li><li><span class="tick">+</span>Private cloud deployment</li><li><span class="tick">+</span>Dedicated success plan</li></ul></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="compare shell" id="compare">
+      <div class="section-heading"><h2>Compare the details.</h2><p>Every tier keeps consumption open. You pay for the people building and governing analytics—not everyone who needs an answer.</p></div>
+      <div class="comparison" role="table" aria-label="Plan comparison">
+        <div class="compare-row header" role="row"><div role="columnheader">Capability</div><div role="columnheader">Launch</div><div role="columnheader">Scale</div><div role="columnheader">Enterprise</div></div>
+        <div class="compare-row" role="row"><div class="feature-name" role="rowheader">Viewers</div><div>Unlimited</div><div>Unlimited</div><div>Unlimited</div></div>
+        <div class="compare-row" role="row"><div class="feature-name" role="rowheader">Data connections</div><div>10</div><div>Unlimited</div><div>Unlimited</div></div>
+        <div class="compare-row" role="row"><div class="feature-name" role="rowheader">Version history</div><div>30 days</div><div>1 year</div><div>Custom</div></div>
+        <div class="compare-row" role="row"><div class="feature-name" role="rowheader">Metric governance</div><div class="yes">Included</div><div class="yes">Included</div><div class="yes">Included</div></div>
+        <div class="compare-row" role="row"><div class="feature-name" role="rowheader">Role-based permissions</div><div class="dash">—</div><div class="yes">Included</div><div class="yes">Included</div></div>
+        <div class="compare-row" role="row"><div class="feature-name" role="rowheader">SAML SSO and SCIM</div><div class="dash">—</div><div class="dash">—</div><div class="yes">Included</div></div>
+        <div class="compare-row" role="row"><div class="feature-name" role="rowheader">Support</div><div>Community</div><div>Priority</div><div>Dedicated</div></div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq"><div class="shell faq-grid"><div><h2>Questions, answered.</h2><p class="faq-intro">Clear terms before the contract. For deployment specifics, our team can map a plan to your environment.</p></div><div>
+      <details><summary>Who counts as an editor?</summary><p>An editor can create or change dashboards, models, and metrics. People who only view, filter, subscribe to, or export content are viewers and are unlimited on every plan.</p></details>
+      <details><summary>Can we change plans later?</summary><p>Yes. Self-serve plans can move between Launch and Scale. Enterprise changes follow the terms of your agreement.</p></details>
+      <details><summary>How does annual billing work?</summary><p>Annual billing charges for ten months of service for a twelve-month term. The interface computes the effective monthly rate from each plan’s monthly source price.</p></details>
+      <details><summary>Do you charge for query volume?</summary><p>No usage fee is shown in this illustrative packaging. Your connected warehouse or database may have its own compute costs.</p></details>
+      <details><summary>Is there a free trial?</summary><p>Trial policy requires product approval before launch. This concept intentionally does not promise one.</p></details>
+    </div></div></section>
+
+    <section class="closing"><div class="shell closing-box"><h2>Make every question easier to answer.</h2><div class="closing-actions"><button class="button" data-demo>Talk to sales</button><button class="button primary" data-demo>Start with Scale</button></div></div></section>
+  </main>
+  <footer><div class="shell footer-inner"><span>Northstar · Product concept</span><div class="footer-links"><a href="#" data-demo>Privacy</a><a href="#" data-demo>Terms</a><a href="#faq">Pricing FAQ</a></div></div></footer>
+  <div class="toast" role="status" aria-live="polite"><strong>Concept interaction</strong><br>Connect this control to the approved destination route before production.</div>
+  <script>
+    (() => {
+      const cycleButtons = [...document.querySelectorAll('.billing-option')];
+      const numericPrices = [...document.querySelectorAll('.price[data-monthly]')];
+      const annualMonthsCharged = 10;
+      const monthsInTerm = 12;
+      const money = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+
+      function renderPricing(cycle) {
+        cycleButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.cycle === cycle)));
+        numericPrices.forEach(price => {
+          const monthly = Number(price.dataset.monthly);
+          const displayed = cycle === 'annual' ? monthly * annualMonthsCharged / monthsInTerm : monthly;
+          const detail = price.closest('.plan').querySelector('.annual-detail');
+          price.classList.add('changing');
+          window.setTimeout(() => {
+            price.textContent = money.format(displayed);
+            detail.textContent = cycle === 'annual' ? `$${money.format(monthly * annualMonthsCharged)} billed annually` : 'Billed month to month';
+            price.classList.remove('changing');
+          }, 120);
+        });
+      }
+      cycleButtons.forEach(button => button.addEventListener('click', () => renderPricing(button.dataset.cycle)));
+      renderPricing('monthly');
+
+      const toast = document.querySelector('.toast');
+      let toastTimer;
+      document.querySelectorAll('[data-demo]').forEach(control => control.addEventListener('click', event => {
+        event.preventDefault(); clearTimeout(toastTimer); toast.classList.add('show');
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+      }));
+    })();
+  </script>
+</body>
+</html>

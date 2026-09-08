@@ -1,0 +1,95 @@
+<!--
+  Register: technical field-operations desk — dense, legible, tool-like.
+  Palette: surface #F2F0E9, ink #18201D, accent #E4572E.
+  Type pairing: Space Grotesk for operational display; DM Sans for compact interface text.
+  Signature move: the full-bleed “pipe” summary rail that carries live queue counts across the header.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18201d">
+  <title>Northline Plumbing — Dispatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2318201d'/%3E%3Cpath d='M8 8v10a6 6 0 0 0 12 0V8h4v10a10 10 0 0 1-20 0V8z' fill='%23e4572e'/%3E%3C/svg%3E">
+  <style>
+    :root{--paper:#f2f0e9;--ink:#18201d;--accent:#e4572e;--line:rgba(24,32,29,.14);--muted:rgba(24,32,29,.58);--pale:rgba(24,32,29,.055);--ease:cubic-bezier(.22,1,.36,1)}
+    *{box-sizing:border-box}html{background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}body{margin:0;min-width:320px}button,input,select{font:inherit;color:inherit}button{cursor:pointer}::selection{background:var(--accent);color:#fff}
+    .topbar{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 3.2vw;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:12px;font:700 16px "Space Grotesk"}.brand svg{width:29px}.brand span{font-weight:500;color:var(--muted)}
+    .top-meta{display:flex;align-items:center;gap:22px;font-size:13px}.live{display:flex;align-items:center;gap:8px}.live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(228,87,46,.14)}
+    .avatar{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:11px;font-weight:700}
+    .summary{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:minmax(280px,1.4fr) repeat(4,minmax(120px,.65fr));padding:0 3.2vw;position:relative;overflow:hidden}
+    .summary:after{content:"";position:absolute;left:0;right:0;top:66%;height:1px;background:rgba(242,240,233,.13)}
+    .summary-title{min-height:156px;padding:26px 0 22px;position:relative;z-index:1}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:rgba(242,240,233,.55)}
+    h1{font:600 clamp(42px,5vw,72px)/.9 "Space Grotesk";letter-spacing:-.055em;margin:22px 0 0}.slash{color:var(--accent)}
+    .metric{padding:29px 18px 21px;border-left:1px solid rgba(242,240,233,.13);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}.metric strong{font:600 42px/1 "Space Grotesk";font-feature-settings:"tnum"}.metric span{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:rgba(242,240,233,.56)}.metric.active strong{color:var(--accent)}
+    .pipe-dot{position:absolute;width:11px;height:11px;border:3px solid var(--ink);border-radius:50%;background:var(--accent);bottom:48px;left:-6px}
+    main{padding:32px 3.2vw 50px}.controls{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}.date-block h2{font:600 24px "Space Grotesk";margin:0}.date-block p{font-size:12px;color:var(--muted);margin:4px 0 0}
+    .actions{display:flex;gap:8px;align-items:center}.search{position:relative}.search svg{position:absolute;left:12px;top:11px;width:15px}.search input,.filter{height:40px;border:1px solid var(--line);background:transparent;padding:0 13px;border-radius:0;outline:none}.search input{padding-left:36px;width:220px}.search input:focus,.filter:focus{border-color:var(--accent);box-shadow:inset 0 -2px var(--accent)}
+    .primary{height:40px;border:1px solid var(--accent);background:var(--accent);color:#fff;padding:0 17px;font-weight:600;transition:.2s}.primary:hover{transform:translateY(-2px);background:var(--ink);border-color:var(--ink)}button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+    .workspace{display:grid;grid-template-columns:minmax(0,8fr) minmax(270px,3fr);gap:28px;align-items:start}.queue{border-top:2px solid var(--ink)}
+    .queue-head,.job{display:grid;grid-template-columns:90px minmax(220px,1.5fr) minmax(180px,1fr) 145px 112px;align-items:center;column-gap:16px}.queue-head{height:43px;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);border-bottom:1px solid var(--line)}
+    .job{min-height:91px;border-bottom:1px solid var(--line);transition:background .2s,transform .2s;animation:enter .7s var(--ease) both}.job:hover{background:rgba(255,255,255,.43);transform:translateX(3px)}.job-id{font:600 12px "Space Grotesk";color:var(--muted)}.job-title{font:600 15px "Space Grotesk";margin-bottom:6px}.address{font-size:12px;color:var(--muted)}.tech{font-size:13px}.tech.unassigned{color:var(--accent);font-weight:600}.time{font-feature-settings:"tnum";font:600 13px "Space Grotesk"}.time small{display:block;font:400 11px "DM Sans";color:var(--muted);margin-top:5px}.status{justify-self:start;border:1px solid var(--line);padding:6px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}.status.open{border-color:var(--accent);color:var(--accent)}.status.done{background:var(--pale);color:var(--muted)}
+    .side{margin-top:-13px}.side-title{font:600 12px "Space Grotesk";text-transform:uppercase;letter-spacing:.14em;margin:0 0 13px}.attention{background:var(--accent);color:#fff;padding:21px;margin-bottom:27px;position:relative}.attention .num{font:600 54px/.9 "Space Grotesk"}.attention p{font-size:13px;line-height:1.45;margin:13px 0 16px}.text-btn{border:0;background:none;color:inherit;padding:0;font-weight:700;font-size:12px;border-bottom:1px solid currentColor}.text-btn:hover{transform:translateX(4px)}
+    .crew{border-top:2px solid var(--ink)}.crew-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);font-size:13px}.crew-name{font-weight:600}.crew-jobs{font-feature-settings:"tnum";color:var(--muted)}.bar{grid-column:1/-1;height:3px;background:var(--line)}.bar i{display:block;height:100%;background:var(--ink)}.empty{padding:60px 0;text-align:center;color:var(--muted);border-bottom:1px solid var(--line)}
+    dialog{border:0;padding:0;background:var(--paper);color:var(--ink);width:min(520px,calc(100% - 30px));box-shadow:0 24px 48px -12px rgb(0 0 0/.28)}dialog::backdrop{background:rgba(24,32,29,.64)}.modal-head{background:var(--ink);color:var(--paper);padding:24px;display:flex;justify-content:space-between}.modal-head h3{font:600 25px "Space Grotesk";margin:0}.close{border:0;background:none;color:inherit;font-size:22px}.form{padding:24px;display:grid;gap:16px}.field{display:grid;gap:6px}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.14em}.field input,.field select{border:1px solid var(--line);background:transparent;height:42px;padding:0 11px}.form-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:8px}.cancel{border:0;background:transparent}
+    @keyframes enter{from{opacity:0;transform:translateY(12px)}}
+    @media(max-width:980px){.summary{grid-template-columns:1.4fr repeat(4,.6fr)}.summary-title{min-height:140px}.metric{padding-inline:11px}.metric strong{font-size:32px}.workspace{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:0}.attention{margin:0}.queue{overflow-x:auto}.queue-head,.job{min-width:800px}}
+    @media(max-width:680px){.topbar{height:58px}.brand span,.top-meta time{display:none}.summary{grid-template-columns:repeat(4,1fr);padding:0}.summary-title{grid-column:1/-1;padding:22px 18px;min-height:auto}.summary-title h1{font-size:42px;margin-top:16px}.metric{min-height:91px;padding:16px 10px;border-top:1px solid rgba(242,240,233,.13)}.metric strong{font-size:27px}.metric span{font-size:8px}.summary:after,.pipe-dot{display:none}main{padding:24px 16px}.controls{align-items:flex-start;flex-direction:column}.actions{width:100%;flex-wrap:wrap}.search{flex:1}.search input{width:100%}.workspace{gap:22px}.side{grid-template-columns:1fr}.primary{margin-left:auto}.queue-head,.job{grid-template-columns:72px minmax(190px,1.4fr) 160px 125px 95px;min-width:710px}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 5v13a10 10 0 0 0 20 0V5h-6v13a4 4 0 0 1-8 0V5z" fill="#e4572e"/></svg> NORTHLINE <span>/ Dispatch</span></div>
+    <div class="top-meta"><div class="live">Live board</div><time>Tue, Sep 08</time><div class="avatar" title="Dispatcher Alex Morgan">AM</div></div>
+  </header>
+  <section class="summary" aria-label="Queue summary">
+    <div class="summary-title"><div class="eyebrow">Tuesday field operations</div><h1>Job queue<span class="slash">/</span></h1></div>
+    <div class="metric"><span>All jobs</span><strong id="allCount">—</strong><i class="pipe-dot"></i></div>
+    <div class="metric active"><span>Needs dispatch</span><strong id="openCount">—</strong><i class="pipe-dot"></i></div>
+    <div class="metric"><span>Assigned</span><strong id="assignedCount">—</strong><i class="pipe-dot"></i></div>
+    <div class="metric"><span>Completed</span><strong id="doneCount">—</strong><i class="pipe-dot"></i></div>
+  </section>
+  <main>
+    <div class="controls">
+      <div class="date-block"><h2>All scheduled work</h2><p id="rangeText">Loading dispatch data…</p></div>
+      <div class="actions">
+        <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Search jobs or addresses" aria-label="Search jobs"></label>
+        <select id="statusFilter" class="filter" aria-label="Filter by status"><option value="all">All statuses</option><option value="open">Open</option><option value="assigned">Assigned</option><option value="done">Done</option></select>
+        <button class="primary" id="newJob">+ New job</button>
+      </div>
+    </div>
+    <div class="workspace">
+      <section class="queue" aria-label="Job queue"><div class="queue-head"><span>Job</span><span>Service & location</span><span>Technician</span><span>Scheduled</span><span>Status</span></div><div id="jobRows"></div></section>
+      <aside class="side">
+        <div class="attention"><div class="eyebrow">Dispatch attention</div><div class="num" id="attentionCount">—</div><p id="attentionText">Unassigned calls are waiting for a technician.</p><button class="text-btn" id="showOpen">Review open jobs →</button></div>
+        <div><h3 class="side-title">Crew load</h3><div class="crew" id="crewList"></div></div>
+      </aside>
+    </div>
+  </main>
+  <dialog id="jobDialog"><div class="modal-head"><h3>Add service call</h3><button class="close" aria-label="Close">×</button></div><form class="form" id="jobForm"><div class="field"><label for="title">Service</label><input id="title" required placeholder="e.g. Leaking shutoff valve"></div><div class="field"><label for="address">Address</label><input id="address" required placeholder="Street address"></div><div class="field"><label for="scheduled">Scheduled</label><input id="scheduled" type="datetime-local" required value="2026-09-08T14:00"></div><div class="field"><label for="technician">Technician</label><select id="technician"><option value="">Unassigned</option><option>R. Okafor</option><option>M. Duarte</option><option>T. Blanchard</option></select></div><div class="form-actions"><button type="button" class="cancel">Cancel</button><button class="primary" type="submit">Add to queue</button></div></form></dialog>
+  <script>
+    const fallback=[{"id":"J-1041","title":"Water heater replacement","technician":"R. Okafor","address":"1188 Cedar Ln, Apt 3","scheduled_at":"2026-09-05T09:00:00-05:00","status":"done"},{"id":"J-1042","title":"Kitchen sink backup","technician":"M. Duarte","address":"44 Halstead Ave","scheduled_at":"2026-09-07T13:30:00-05:00","status":"done"},{"id":"J-1043","title":"Sump pump inspection","technician":"R. Okafor","address":"9 Wexford Ct","scheduled_at":"2026-09-08T08:15:00-05:00","status":"assigned"},{"id":"J-1044","title":"Burst supply line, basement","technician":null,"address":"2210 Marbury Rd","scheduled_at":"2026-09-08T11:00:00-05:00","status":"open"},{"id":"J-1045","title":"Toilet reseat, unit 2B","technician":"T. Blanchard","address":"77 Iverson St","scheduled_at":"2026-09-09T15:45:00-05:00","status":"assigned"},{"id":"J-1046","title":"Annual backflow test","technician":null,"address":"501 Quarry Industrial Pk","scheduled_at":"2026-09-11T10:00:00-05:00","status":"open"}];
+    let jobs=[]; const $=s=>document.querySelector(s);
+    const fmt=d=>new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(d));
+    function render(){
+      const q=$('#search').value.toLowerCase(), filter=$('#statusFilter').value;
+      const visible=jobs.filter(j=>(filter==='all'||j.status===filter)&&(`${j.id} ${j.title} ${j.address} ${j.technician||''}`.toLowerCase().includes(q))).sort((a,b)=>new Date(a.scheduled_at)-new Date(b.scheduled_at));
+      $('#jobRows').innerHTML=visible.length?visible.map((j,i)=>`<article class="job" style="animation-delay:${i*60}ms"><div class="job-id">${j.id}</div><div><div class="job-title">${j.title}</div><div class="address">${j.address}</div></div><div class="tech ${j.technician?'':'unassigned'}">${j.technician||'Unassigned'}</div><time class="time">${fmt(j.scheduled_at).split(', ')[2]||''}<small>${fmt(j.scheduled_at).split(', ').slice(0,2).join(', ')}</small></time><span class="status ${j.status}">${j.status}</span></article>`).join(''):'<div class="empty">No jobs match this view.</div>';
+      ['open','assigned','done'].forEach(s=>$(`#${s}Count`).textContent=String(jobs.filter(j=>j.status===s).length).padStart(2,'0')); $('#allCount').textContent=String(jobs.length).padStart(2,'0');
+      const open=jobs.filter(j=>j.status==='open').length; $('#attentionCount').textContent=String(open).padStart(2,'0'); $('#attentionText').textContent=open===1?'Unassigned call is waiting for a technician.':'Unassigned calls are waiting for a technician.';
+      const crew=['R. Okafor','M. Duarte','T. Blanchard']; $('#crewList').innerHTML=crew.map(n=>{const c=jobs.filter(j=>j.technician===n&&j.status!=='done').length;return `<div class="crew-row"><span class="crew-name">${n}</span><span class="crew-jobs">${c} active</span><div class="bar"><i style="width:${Math.min(c*34,100)}%"></i></div></div>`}).join('');
+      $('#rangeText').textContent=`${visible.length} of ${jobs.length} jobs · Sep 05–11, 2026`;
+    }
+    fetch('fixtures/jobs.json').then(r=>{if(!r.ok)throw 0;return r.json()}).catch(()=>fallback).then(data=>{jobs=data;render()});
+    $('#search').addEventListener('input',render); $('#statusFilter').addEventListener('change',render); $('#showOpen').onclick=()=>{$('#statusFilter').value='open';render();$('#search').value='';window.scrollTo({top:290,behavior:'smooth'})};
+    const dialog=$('#jobDialog'); $('#newJob').onclick=()=>dialog.showModal(); $('.close').onclick=$('.cancel').onclick=()=>dialog.close();
+    $('#jobForm').onsubmit=e=>{e.preventDefault();const tech=$('#technician').value;jobs.push({id:`J-${1041+jobs.length}`,title:$('#title').value,address:$('#address').value,scheduled_at:new Date($('#scheduled').value).toISOString(),technician:tech||null,status:tech?'assigned':'open'});dialog.close();e.target.reset();render()};
+  </script>
+</body>
+</html>

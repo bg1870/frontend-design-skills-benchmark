@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f3ee">
+  <title>Fieldline — Dispatch board</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path fill=%22%23d95432%22 d=%22M12 1C9 6 5 9 5 14a7 7 0 0 0 14 0c0-5-4-8-7-13Z%22/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Fieldline dispatch home">
+      <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M16 2C11.8 9 7 12.8 7 19a9 9 0 0 0 18 0c0-6.2-4.8-10-9-17Zm0 24.2a7.2 7.2 0 0 1-7.2-7.1c0-4.1 2.8-7.2 7.2-13.8 4.4 6.6 7.2 9.7 7.2 13.8a7.2 7.2 0 0 1-7.2 7.1Z"/></svg>
+      <span>FIELDLINE</span><small>PLUMBING CO.</small>
+    </a>
+    <div class="shift"><span class="signal"></span> Dispatch live <span id="clock">—</span></div>
+    <button class="icon-button" id="refresh" aria-label="Refresh jobs" title="Refresh jobs">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="summary-heading">
+        <p class="eyebrow">Tuesday · Sep 08</p>
+        <h1 id="summary-title">Dispatch board</h1>
+        <p>Day shift <span>07:00—17:00</span></p>
+      </div>
+      <div class="metric urgent"><span>Needs dispatch</span><strong id="openCount">—</strong><small id="nextOpen">Loading queue</small></div>
+      <div class="metric"><span>Assigned</span><strong id="assignedCount">—</strong><small id="activeTechs">— technicians active</small></div>
+      <div class="metric"><span>Completed</span><strong id="doneCount">—</strong><small id="completion">—% of queue</small></div>
+      <div class="metric"><span>Total jobs</span><strong id="totalCount">—</strong><small id="dateRange">This week</small></div>
+    </section>
+
+    <section class="workspace" aria-labelledby="queue-title">
+      <div class="queue-head">
+        <div>
+          <p class="eyebrow">Operations / job queue</p>
+          <h2 id="queue-title">All service calls</h2>
+        </div>
+        <div class="actions">
+          <label class="search">
+            <span class="sr-only">Search jobs</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+            <input id="search" type="search" placeholder="Search job, address, tech…">
+          </label>
+          <button class="primary" id="newJob">+ New service call</button>
+        </div>
+      </div>
+
+      <div class="filterbar" role="toolbar" aria-label="Filter jobs">
+        <div class="tabs" id="tabs">
+          <button class="active" data-status="all">All <b id="tabAll">0</b></button>
+          <button data-status="open">Open <b id="tabOpen">0</b></button>
+          <button data-status="assigned">Assigned <b id="tabAssigned">0</b></button>
+          <button data-status="done">Done <b id="tabDone">0</b></button>
+        </div>
+        <label class="sort">Sort
+          <select id="sort"><option value="scheduled">Scheduled time</option><option value="status">Status</option><option value="title">Job name</option></select>
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Service address</th><th>Scheduled</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+        <div class="state" id="loading">Loading service calls…</div>
+        <div class="state" id="empty" hidden><strong>No calls found</strong><span>Try another status or search term.</span></div>
+      </div>
+      <footer class="queue-foot"><span id="showing">Showing 0 jobs</span><span>Data synced from jobs.json</span></footer>
+    </section>
+  </main>
+
+  <dialog id="jobDialog">
+    <form method="dialog" id="jobForm">
+      <div class="dialog-head"><div><p class="eyebrow">Dispatch intake</p><h2>New service call</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div>
+      <label>Service issue<input name="title" required placeholder="e.g. Leaking shutoff valve"></label>
+      <label>Service address<input name="address" required placeholder="Street and unit"></label>
+      <div class="form-grid"><label>Scheduled<input name="scheduled" type="datetime-local" required></label><label>Technician<select name="technician"><option value="">Unassigned</option><option>R. Okafor</option><option>M. Duarte</option><option>T. Blanchard</option></select></label></div>
+      <p class="form-error" id="formError" role="alert"></p>
+      <div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button type="submit" value="default" class="primary">Add to queue</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite">Service call added to queue</div>
+  <script src="app.js"></script>
+</body>
+</html>

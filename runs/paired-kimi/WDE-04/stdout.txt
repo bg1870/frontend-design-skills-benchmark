@@ -1,0 +1,16 @@
+Implemented the clickable React prototype with:
+
+- Today view with interactive habit completion
+- Streak detail and calendar
+- Add-habit bottom sheet with functional form
+- Responsive mobile-first presentation
+- Keyboard focus, reduced-motion, safe-area, and accessibility support
+- Material assumptions documented in `README.md`
+
+Build verified successfully with `npm run build`.
+
+Run locally:
+
+```bash
+npm run dev
+```

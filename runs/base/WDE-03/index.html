@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Clear, flexible pricing for Northstar analytics." />
+  <title>Pricing — Northstar Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Northstar home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>northstar</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#platform">Platform</a><a href="#solutions">Solutions</a><a href="#resources">Resources</a><a class="active" href="#pricing">Pricing</a>
+    </nav>
+    <div class="header-actions"><a class="login" href="#login">Log in</a><a class="button small dark" href="#demo">Book a demo <span>↗</span></a></div>
+    <button class="menu" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="pricing">
+      <div class="eyebrow"><span></span> SIMPLE, TRANSPARENT PRICING</div>
+      <h1>Turn your data into<br><em>decisions that compound.</em></h1>
+      <p>From your first dashboard to company-wide intelligence, choose a plan that scales with the way your team works.</p>
+      <div class="billing-wrap">
+        <span class="billing-label active" data-period-label="monthly">Monthly</span>
+        <button class="toggle" id="billing-toggle" role="switch" aria-checked="false" aria-label="Switch to annual billing"><span></span></button>
+        <span class="billing-label" data-period-label="annual">Annual</span>
+        <span class="save-badge">SAVE 20%</span>
+      </div>
+    </section>
+
+    <section class="pricing-grid" aria-label="Pricing plans">
+      <article class="price-card">
+        <div class="plan-icon starter" aria-hidden="true">✦</div>
+        <div class="plan-heading"><h2>Starter</h2><p>For small teams finding signal in the noise.</p></div>
+        <div class="price"><span class="currency">$</span><strong data-monthly="0" data-annual="0">0</strong><span class="term">/ month</span></div>
+        <p class="billing-note">Free forever · No credit card</p>
+        <a class="button outline full" href="#start">Start for free <span>→</span></a>
+        <div class="divider"></div>
+        <h3>What’s included</h3>
+        <ul><li>Up to 3 team members</li><li>5 data sources</li><li>10 dashboards</li><li>Daily data refresh</li><li>Community support</li></ul>
+      </article>
+
+      <article class="price-card featured">
+        <div class="popular">MOST POPULAR</div>
+        <div class="plan-icon growth" aria-hidden="true">↗</div>
+        <div class="plan-heading"><h2>Growth</h2><p>For scaling teams that move on data.</p></div>
+        <div class="price"><span class="currency">$</span><strong data-monthly="49" data-annual="39">49</strong><span class="term">/ user / month</span></div>
+        <p class="billing-note dynamic-note">Billed monthly</p>
+        <a class="button lime full" href="#trial">Start 14-day trial <span>→</span></a>
+        <div class="divider"></div>
+        <h3>Everything in Starter, plus</h3>
+        <ul><li>Unlimited dashboards</li><li>50+ native integrations</li><li>Hourly data refresh</li><li>Advanced permissions</li><li>Slack & email alerts</li><li>Priority support</li></ul>
+      </article>
+
+      <article class="price-card">
+        <div class="plan-icon scale" aria-hidden="true">⌁</div>
+        <div class="plan-heading"><h2>Scale</h2><p>For organizations building a data culture.</p></div>
+        <div class="price custom"><strong>Let’s talk</strong></div>
+        <p class="billing-note">Built around your business</p>
+        <a class="button outline full" href="#sales">Contact sales <span>→</span></a>
+        <div class="divider"></div>
+        <h3>Everything in Growth, plus</h3>
+        <ul><li>Unlimited team members</li><li>Real-time data refresh</li><li>SSO & advanced security</li><li>Custom integrations</li><li>Dedicated success manager</li><li>Enterprise SLA</li></ul>
+      </article>
+    </section>
+
+    <section class="proof">
+      <p>TRUSTED BY DATA-DRIVEN TEAMS AT</p>
+      <div class="logos"><span>vertex</span><span><b>◈</b> Layer</span><span>openlane</span><span>QUANTIVE</span><span><b>●</b> focal</span></div>
+    </section>
+
+    <section class="compare">
+      <div><span class="section-kicker">NO SURPRISES</span><h2>Every plan starts with<br>the right foundation.</h2></div>
+      <div class="compare-copy"><p>Secure, reliable, and built to make analytics accessible to everyone—not just analysts.</p><a href="#compare">Compare all features <span>→</span></a></div>
+      <div class="foundation-grid">
+        <article><span>01</span><div class="mini-icon">◎</div><h3>Connect in minutes</h3><p>Bring your tools together with no-code connectors and guided setup.</p></article>
+        <article><span>02</span><div class="mini-icon">◇</div><h3>Built-in governance</h3><p>One source of truth, with definitions your whole team can trust.</p></article>
+        <article><span>03</span><div class="mini-icon">⚿</div><h3>Enterprise-grade security</h3><p>SOC 2 Type II, encrypted at rest and in transit, on every plan.</p></article>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div><span class="section-kicker">QUESTIONS, ANSWERED</span><h2>Good to know.</h2><p>Still curious? <a href="mailto:hello@northstar.example">Talk to our team →</a></p></div>
+      <div class="accordions">
+        <details><summary>Can I try Northstar before paying?<span>+</span></summary><p>Yes. Growth includes a full 14-day trial, with no credit card required. Starter is free forever.</p></details>
+        <details><summary>What counts as a team member?<span>+</span></summary><p>Anyone who can create, edit, or share dashboards is a team member. View-only guests are always free.</p></details>
+        <details><summary>Can I change plans later?<span>+</span></summary><p>Absolutely. Upgrade or downgrade at any time. Changes are prorated automatically.</p></details>
+        <details><summary>Do you offer discounts for startups?<span>+</span></summary><p>We offer eligible early-stage startups preferred pricing for their first year. Contact our team to learn more.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand light" href="#"><span class="brand-mark"><i></i><i></i><i></i></span><span>northstar</span></a><p>Make every decision count.</p><a class="button lime" href="#demo">Book a demo <span>↗</span></a></footer>
+  <script src="script.js"></script>
+</body>
+</html>

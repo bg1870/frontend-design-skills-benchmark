@@ -1,0 +1,6 @@
+Built the finished Ridgeline marketing site.
+
+- Main artifact: `index.html`
+- Assumptions and run instructions: `README.md`
+- Includes responsive navigation, animated service timeline, interactive product preview, pricing, testimonial, accessibility states, and reduced-motion support.
+- HTML validated successfully.

@@ -1,0 +1,22 @@
+Built and polished the responsive B2B analytics pricing page.
+
+### Delivered
+- `index.html` — dependency-free pricing page
+- `ASSUMPTIONS.md` — material product and implementation assumptions
+
+### Included
+- Responsive desktop/mobile layouts
+- Annual/monthly pricing toggle with URL persistence
+- Interactive usage estimator
+- Accessible navigation, skip link, focus states, and semantic controls
+- Expandable pricing FAQs
+- Reduced-motion support
+- Functional email-based CTAs
+
+### Verification
+- HTML parsing passed
+- JavaScript syntax check passed
+- Static accessibility and interface-guideline audit completed
+- No external assets or build step required
+
+Open `index.html` directly in a browser.

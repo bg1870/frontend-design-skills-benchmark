@@ -1,0 +1,18 @@
+Built the clickable React prototype.
+
+### Included
+- Today view with progress and habit completion
+- Streak detail with weekly and monthly activity
+- Add habit bottom sheet with validation
+- Loading, empty, disabled, success, hover, focus, and pressed states
+- Responsive mobile layout and reduced motion support
+- Phosphor icon system
+- Material assumptions in `ASSUMPTIONS.md`
+- Design records under `.tastemaker/`
+
+### Run
+```bash
+npm run dev
+```
+
+Production build verified successfully with `npm run build`. Anti-slop scan passed; remaining motion audit notes are intentional for the loading pulse and bottom sheet. No personal taste profile was modified.

@@ -1,0 +1,24 @@
+## Ritual Habit Tracker
+
+Built a polished, mobile-first React prototype featuring:
+
+- Interactive Today view and completion progress
+- Habit toggling
+- Detailed streak screen with calendar and milestones
+- Add-habit bottom sheet with frequency selection
+- Functional navigation and responsive phone layout
+- Session-based habit creation
+
+Files include:
+
+- `src/main.jsx`
+- `src/styles.css`
+- `README.md`
+
+Validation complete: `npm run build` succeeds.
+
+Run locally:
+
+```bash
+npm run dev
+```

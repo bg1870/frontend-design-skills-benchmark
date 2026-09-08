@@ -1,0 +1,16 @@
+**Blockers:** Final logo, product screenshots, feature verification, pricing, integrations, customer proof, legal URLs, and a live form endpoint remain pending.
+
+**Delivered**
+- [`index.html`](./index.html) — responsive single-page marketing site
+- [`DESIGN.md`](./DESIGN.md) — design system, assumptions, assets, and blockers
+
+Assumed Ridgeline is a greenfield product for independent operators and small restaurant groups. Pricing, fabricated testimonials, unsupported compliance claims, and speculative integrations were intentionally excluded.
+
+Verified:
+- Valid HTML parsing and unique IDs
+- Responsive mobile navigation and layouts
+- Accessible form, accordion, focus, loading, and reduced-motion states
+- Sample product data is clearly labeled
+- Displayed summary figures are computed from source rows
+- All code colors trace to `DESIGN.md`
+- No missing local assets or external dependencies

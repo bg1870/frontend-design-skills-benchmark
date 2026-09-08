@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Clearflow Plumbing dispatch dashboard" />
+  <title>Dispatch — Clearflow Plumbing</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Clearflow home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M14 3.4S6.7 11.5 6.7 17a7.3 7.3 0 0 0 14.6 0C21.3 11.5 14 3.4 14 3.4Z"/><path d="M10.4 18.1a3.8 3.8 0 0 0 3.7 2.7"/></svg></span>
+      <span><b>Clearflow</b><small>PLUMBING</small></span>
+    </a>
+    <div class="header-right">
+      <div class="service-status"><i></i> Dispatch online</div>
+      <button class="icon-btn" aria-label="Notifications"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span></span></button>
+      <div class="profile"><div class="avatar">AD</div><div><strong>Alex Davis</strong><small>Dispatcher</small></div><svg viewBox="0 0 20 20"><path d="m6 8 4 4 4-4"/></svg></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-heading">
+      <div><p class="eyebrow">OPERATIONS DESK</p><h1>Good morning, Alex.</h1><p class="subtitle" id="dateLine">Here’s what’s happening in the field today.</p></div>
+      <button class="primary-btn" id="newJob"><span>＋</span> New job</button>
+    </section>
+
+    <section class="summary" aria-label="Job summary">
+      <article class="summary-card urgent"><div class="summary-icon"><svg viewBox="0 0 24 24"><path d="M12 8v4m0 4h.01M10.3 4.9 3.4 17a2 2 0 0 0 1.7 3h13.8a2 2 0 0 0 1.7-3L13.7 4.9a2 2 0 0 0-3.4 0Z"/></svg></div><div><span>NEEDS DISPATCH</span><strong id="openCount">—</strong><small>Unassigned jobs</small></div><button data-filter="open">View <span>→</span></button></article>
+      <article class="summary-card"><div class="summary-icon blue"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m7-1 2 2 4-4"/></svg></div><div><span>ASSIGNED</span><strong id="assignedCount">—</strong><small>With technicians</small></div><button data-filter="assigned">View <span>→</span></button></article>
+      <article class="summary-card"><div class="summary-icon green"><svg viewBox="0 0 24 24"><path d="m8 12 3 3 5-6m5 3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div><div><span>COMPLETED</span><strong id="doneCount">—</strong><small>Last 7 days</small></div><button data-filter="done">View <span>→</span></button></article>
+      <article class="summary-card today"><div class="summary-icon amber"><svg viewBox="0 0 24 24"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z"/></svg></div><div><span>TODAY’S SCHEDULE</span><strong id="todayCount">—</strong><small id="todaySub">jobs on the board</small></div><button data-filter="today">View <span>→</span></button></article>
+    </section>
+
+    <section class="queue-card">
+      <div class="queue-head">
+        <div><h2>Job queue</h2><p><span id="visibleCount">0</span> jobs · Updated just now</p></div>
+        <div class="controls">
+          <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Search jobs, addresses…" /></label>
+          <button class="filter-btn" id="filterBtn"><svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10m-7 6h4"/></svg> Filter <span class="filter-count" hidden>1</span></button>
+          <select id="sort" aria-label="Sort jobs"><option value="date">Sort: Scheduled</option><option value="status">Sort: Status</option><option value="tech">Sort: Technician</option></select>
+        </div>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="active" data-filter="all">All jobs <b id="allTab">0</b></button>
+        <button data-filter="open">Needs dispatch <b id="openTab">0</b></button>
+        <button data-filter="assigned">Assigned <b id="assignedTab">0</b></button>
+        <button data-filter="done">Completed <b id="doneTab">0</b></button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>JOB</th><th>SCHEDULED</th><th>TECHNICIAN</th><th>STATUS</th><th aria-label="Actions"></th></tr></thead>
+          <tbody id="jobRows"><tr><td colspan="5" class="loading">Loading dispatch board…</td></tr></tbody>
+        </table>
+        <div class="mobile-list" id="mobileList"></div>
+      </div>
+      <div class="empty" id="empty" hidden><div>⌕</div><h3>No jobs found</h3><p>Try changing your search or filter.</p></div>
+      <footer class="queue-footer"><span id="rangeText">Showing 0 jobs</span><span class="legend"><i class="dot red"></i> Needs dispatch <i class="dot blue-dot"></i> Assigned <i class="dot green-dot"></i> Completed</span></footer>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status">New job workflow is ready to connect.</div>
+  <script src="app.js"></script>
+</body>
+</html>

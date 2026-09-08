@@ -1,0 +1,17 @@
+Implemented the plumbing dispatcher dashboard.
+
+### Files
+- `index.html` — dashboard structure and accessible controls
+- `styles.css` — responsive utility-brutalist visual system
+- `app.js` — JSON loading, summaries, search, filtering, refresh, URL state
+- `README.md` — setup instructions and material assumptions
+- `fixtures/jobs.json` — used directly as the data source
+
+### Run
+```bash
+python3 -m http.server 8000
+```
+
+Open `http://localhost:8000`.
+
+JavaScript syntax and local-server smoke tests passed.

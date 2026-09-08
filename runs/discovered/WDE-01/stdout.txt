@@ -1,0 +1,9 @@
+Built the finished Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — responsive marketing page
+- `styles.css` — complete visual system and mobile layouts
+- `script.js` — product tabs, mobile navigation, and demo form interaction
+- `DESIGN_NOTES.md` — material assumptions and design rationale
+
+Includes accessible navigation, keyboard focus states, reduced-motion support, responsive scheduling UI, interactive product tour, and conversion-focused demo form.

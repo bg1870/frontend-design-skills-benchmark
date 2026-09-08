@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#163a3b" />
+  <title>Flowline Dispatch</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Flowline Dispatch home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+      <span><strong>FLOWLINE</strong><small>PLUMBING CO.</small></span>
+    </a>
+    <div class="topbar-right">
+      <div class="live"><span></span> Live dispatch</div>
+      <time id="clock">08:42 AM</time>
+      <button class="icon-button" id="themeToggle" aria-label="Toggle color theme">◐</button>
+      <button class="avatar" aria-label="Open profile menu">AM</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="summary-heading">
+        <p class="kicker">TUESDAY · SEP 08</p>
+        <h1 id="summary-title">Good morning, Alex.</h1>
+        <p>Here’s what needs your attention today.</p>
+      </div>
+      <div class="metrics" aria-label="Job summary">
+        <article class="metric metric-accent"><span>Open jobs</span><strong id="openCount">—</strong><small><b></b> Need assignment</small></article>
+        <article class="metric"><span>Assigned</span><strong id="assignedCount">—</strong><small>Across 2 technicians</small></article>
+        <article class="metric"><span>Completed</span><strong id="doneCount">—</strong><small>This week</small></article>
+        <article class="metric"><span>Today’s route</span><strong id="todayCount">—</strong><small id="nextJob">Loading schedule</small></article>
+      </div>
+    </section>
+
+    <section class="queue" aria-labelledby="queue-title">
+      <div class="queue-head">
+        <div>
+          <div class="title-line"><h2 id="queue-title">Job queue</h2><span id="jobTotal" class="count">0</span></div>
+          <p>All scheduled and completed service calls.</p>
+        </div>
+        <button class="primary" id="newJob">＋ New job</button>
+      </div>
+
+      <div class="toolbar">
+        <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">Search jobs</span><input id="search" type="search" placeholder="Search job, address, technician…" /></label>
+        <div class="filters" role="group" aria-label="Filter by status">
+          <button class="filter active" data-status="all">All <span id="allBadge">0</span></button>
+          <button class="filter" data-status="open">Open <span id="openBadge">0</span></button>
+          <button class="filter" data-status="assigned">Assigned <span id="assignedBadge">0</span></button>
+          <button class="filter" data-status="done">Done <span id="doneBadge">0</span></button>
+        </div>
+        <label class="sort"><span>Sort</span><select id="sort"><option value="date">Scheduled date</option><option value="status">Status</option><option value="title">Job name</option></select></label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Schedule</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="jobRows"><tr><td colspan="5"><div class="loading">Loading jobs…</div></td></tr></tbody>
+        </table>
+        <div class="empty" id="empty" hidden><strong>No jobs found</strong><p>Try changing your search or status filter.</p><button id="clearFilters">Clear filters</button></div>
+      </div>
+      <div class="queue-foot"><span id="resultCount">Showing 0 jobs</span><span>Data refreshed just now</span></div>
+    </section>
+  </main>
+
+  <dialog id="jobDialog">
+    <form method="dialog">
+      <div class="dialog-head"><div><span>QUICK ENTRY</span><h2>Create a new job</h2></div><button value="cancel" aria-label="Close">×</button></div>
+      <p>This demo keeps new jobs in the current browser session.</p>
+      <label>Job title<input name="title" required placeholder="e.g. Leaking shutoff valve" /></label>
+      <label>Service address<input name="address" required placeholder="Street address" /></label>
+      <label>Scheduled date<input name="date" required type="datetime-local" /></label>
+      <div class="dialog-actions"><button value="cancel">Cancel</button><button class="primary" id="saveJob" value="default">Create job</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

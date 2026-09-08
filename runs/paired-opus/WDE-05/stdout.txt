@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added customer testimonials section with an honest “unavailable” state.
+- Added responsive “In the box” section without inventing contents or imagery.
+- Added navigation links, analytics attributes, accessibility improvements, focus states, and mobile layouts.
+- Added form autocomplete metadata.
+- Recorded sourcing attempts and unresolved content blockers in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Validated HTML parsing, CSS brace balance, and guideline anti-patterns.

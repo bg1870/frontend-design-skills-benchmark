@@ -1,0 +1,12 @@
+**Blockers:** None.
+
+Delivered:
+- `index.html` — clickable React prototype with Today, streak detail, add-habit sheet, completion toggles, validation, and three list-style variants via **Tweaks**.
+- `DESIGN.md` — assumptions, design system, interactions, accessibility, and captured sample-data clock.
+
+Verified:
+- Required screens and primary interactions are present.
+- Responsive mobile framing and reduced-motion support.
+- All colors trace to documented tokens.
+- React/Babel scaffold integrity hashes and file structure.
+- No banned font stacks, rogue colors, or prohibited scrolling patterns.

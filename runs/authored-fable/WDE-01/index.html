@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ridgeline puts restaurant scheduling, timecards, and payroll in one calm weekly rhythm.">
+  <title>Ridgeline — Payroll that knows the floor</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23dc5639%22/><path d=%22M7 21 13 10l4 7 3-5 5 9Z%22 fill=%22%23fff8ed%22/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    /* DIRECTION: Editorial for independent restaurant owners. Reads as assured and hospitable.
+       REFERENCE: a chef's annotated service book. Two details borrowed from it: ruled lines and margin notes.
+       TYPE: display Fraunces / text DM Sans / mono none
+       HUE: 38 accent oklch(61% .18 38) bg oklch(97% .018 82) ink oklch(22% .025 48) THEME: light
+       RADIUS: 8px  SPACE BASE: 8px  DENSITY: standard
+       ONE GESTURE: a vertical service line threads from shift schedule into payroll totals */
+    :root {
+      --hue: 38; --accent: oklch(61% .18 38); --accent-dark: oklch(49% .16 38);
+      --paper: oklch(97% .018 82); --cream: oklch(93% .027 82); --ink: oklch(22% .025 48);
+      --muted: oklch(48% .025 48); --line: oklch(82% .035 70); --dark: oklch(20% .03 48);
+      --green: oklch(55% .105 145); --radius: 8px; --display: "Fraunces", Georgia, serif;
+      --body: "DM Sans", ui-sans-serif, sans-serif; --max: 1240px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+    ::selection { background: oklch(82% .1 38); }
+    h1,h2,h3,p { margin-top: 0; }
+    h1,h2,h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    [id] { scroll-margin-top: 88px; }
+    .wrap { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+    .eyebrow { margin: 0 0 12px; color: var(--accent-dark); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+    .btn { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; padding: 0 22px; border: 1px solid transparent; border-radius: var(--radius); background: var(--accent); color: oklch(98% .01 82); font-weight: 600; line-height: 1; text-decoration: none; cursor: pointer; transition: transform 180ms cubic-bezier(.2,.8,.2,1), background-color 180ms cubic-bezier(.2,.8,.2,1), border-color 180ms cubic-bezier(.2,.8,.2,1); }
+    .btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn:active { transform: translateY(1px); }
+    .btn.outline { background: transparent; border-color: var(--line); color: var(--ink); }
+    .btn.outline:hover { border-color: var(--ink); background: var(--cream); }
+
+    header { height: 72px; border-bottom: 1px solid var(--line); background: color-mix(in oklch, var(--paper) 92%, transparent); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px); }
+    nav { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 23px; font-weight: 700; }
+    .brand-mark { width: 26px; height: 26px; background: var(--accent); clip-path: polygon(0 76%, 28% 28%, 48% 60%, 65% 39%, 100% 76%, 100% 100%, 0 100%); }
+    .navlinks { display: flex; align-items: center; gap: 32px; }
+    .navlinks > a:not(.btn) { font-size: 14px; text-decoration: none; color: var(--muted); }
+    .navlinks > a:not(.btn):hover { color: var(--ink); }
+    .navlinks .btn { min-height: 40px; padding-inline: 18px; }
+    .menu { display:none; width:44px; height:44px; border:0; background:transparent; color:var(--ink); cursor:pointer; }
+
+    .hero { padding: 88px 0 104px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: center; }
+    h1 { font-family: var(--display); font-size: clamp(3.5rem, 6vw, 6.6rem); letter-spacing: -.025em; line-height: .92; margin-bottom: 28px; max-width: 9ch; }
+    .hero-copy .lead { font-size: 19px; color: var(--muted); max-width: 48ch; margin-bottom: 32px; }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .aside-note { margin-top: 22px; font-size: 13px; color: var(--muted); }
+    .product { position: relative; border: 1px solid var(--line); border-radius: var(--radius); background: oklch(98% .012 82); box-shadow: 0 1px 2px oklch(20% .02 38 / .06), 0 22px 50px -22px oklch(20% .02 38 / .2); transform: rotate(1.2deg); }
+    .product::before { content:"THIS WEEK"; position:absolute; top:30px; right:-46px; z-index:2; padding:6px 14px; background:var(--accent); color:oklch(98% .01 82); font-size:10px; font-weight:600; letter-spacing:.12em; transform:rotate(90deg); }
+    .appbar { padding: 18px 20px; border-bottom: 1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
+    .appbar strong { font-size:14px; }
+    .live { font-size:11px; color:var(--green); font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    .schedule { display:grid; grid-template-columns: 92px repeat(5,1fr); min-height:350px; }
+    .cell { min-width:0; padding:14px 10px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); font-size:11px; }
+    .cell:nth-child(6n) { border-right:0; }
+    .cell.head { color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-size:9px; }
+    .person { font-weight:600; font-size:12px; }
+    .shift { background:var(--cream); border-left:3px solid var(--accent); border-radius:3px; padding:7px; line-height:1.25; color:var(--ink); }
+    .shift small { color:var(--muted); display:block; }
+    .paybar { padding:18px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .paybar span { color:var(--muted); font-size:12px; }
+    .paybar strong { font-family:var(--display); font-size:24px; font-variant-numeric:tabular-nums; }
+
+    .proof { border-block:1px solid var(--line); background:var(--cream); }
+    .proof-row { display:grid; grid-template-columns:1.2fr repeat(3,1fr); }
+    .proof-row > div { padding:28px 32px; border-right:1px solid var(--line); }
+    .proof-row > div:last-child { border-right:0; }
+    .proof-label { font-family:var(--display); font-size:22px; line-height:1.2; }
+    .stat { font-family:var(--display); font-size:30px; line-height:1; font-variant-numeric:tabular-nums; }
+    .stat-note { display:block; color:var(--muted); font-size:11px; margin-top:8px; letter-spacing:.06em; text-transform:uppercase; }
+
+    .features { padding:128px 0; }
+    .section-head { display:grid; grid-template-columns:4fr 7fr 1fr; gap:32px; margin-bottom:72px; }
+    h2 { grid-column:2; font-family:var(--display); font-size:clamp(2.6rem,5vw,5.2rem); line-height:1; letter-spacing:-.02em; margin-bottom:0; }
+    .feature-list { border-top:1px solid var(--line); }
+    .feature { display:grid; grid-template-columns:1fr 3fr 4fr; gap:32px; padding:48px 0; border-bottom:1px solid var(--line); align-items:start; }
+    .num { font-family:var(--display); font-size:72px; line-height:.8; color:var(--line); font-variant-numeric:tabular-nums; }
+    .feature h3 { font-family:var(--display); font-size:31px; line-height:1.1; margin-bottom:0; }
+    .feature p { color:var(--muted); max-width:56ch; margin-bottom:0; }
+    .mini { margin-top:20px; display:inline-flex; gap:9px; align-items:center; color:var(--ink); font-weight:600; font-size:13px; }
+    .tick { width:19px; height:19px; border-radius:50%; display:inline-grid; place-items:center; background:oklch(88% .06 145); color:var(--green); }
+
+    .story { background:var(--dark); color:oklch(93% .018 82); padding:112px 0; }
+    .story-grid { display:grid; grid-template-columns:7fr 4fr; gap:88px; align-items:end; }
+    blockquote { margin:0; font-family:var(--display); font-size:clamp(2.5rem,4.8vw,5rem); line-height:1.08; letter-spacing:-.015em; }
+    blockquote em { color:oklch(72% .14 38); font-style:normal; }
+    .attribution { padding-left:24px; border-left:1px solid oklch(45% .03 48); color:oklch(76% .02 82); }
+    .attribution strong { color:oklch(93% .018 82); display:block; margin-bottom:5px; }
+
+    .calculator { padding:96px 0 128px; background:oklch(95% .025 82); }
+    .calc-grid { display:grid; grid-template-columns:5fr 6fr; gap:96px; align-items:center; }
+    .calculator h2 { grid-column:auto; font-size:clamp(2.8rem,4.4vw,4.8rem); margin-bottom:20px; }
+    .calculator p { color:var(--muted); max-width:46ch; }
+    .calc-panel { background:var(--paper); border:1px solid var(--line); padding:36px; border-radius:var(--radius); }
+    label { display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:12px; }
+    label output { color:var(--accent-dark); font-variant-numeric:tabular-nums; }
+    input[type="range"] { width:100%; accent-color:var(--accent); margin-bottom:32px; cursor:pointer; }
+    .saving { border-top:1px solid var(--line); padding-top:24px; display:flex; justify-content:space-between; align-items:end; }
+    .saving span { color:var(--muted); font-size:13px; }
+    .saving strong { display:block; font-family:var(--display); font-size:46px; line-height:1; color:var(--accent-dark); font-variant-numeric:tabular-nums; }
+
+    .pricing { padding:128px 0 104px; }
+    .price-top { display:grid; grid-template-columns:7fr 4fr; gap:80px; align-items:end; margin-bottom:56px; }
+    .price-top h2 { grid-column:auto; margin:0; }
+    .price-top p { color:var(--muted); margin:0; }
+    .price-box { border-block:1px solid var(--line); display:grid; grid-template-columns:5fr 3fr 4fr; }
+    .price-box > div { padding:40px; border-right:1px solid var(--line); }
+    .price-box > div:last-child { border-right:0; }
+    .price { font-family:var(--display); font-size:64px; line-height:1; font-variant-numeric:tabular-nums; }
+    .price sup { font-size:24px; vertical-align:top; top:.4em; position:relative; }
+    .price small { font-family:var(--body); font-size:13px; color:var(--muted); }
+    .price-box ul { list-style:none; padding:0; margin:0; }
+    .price-box li { margin:0 0 12px; font-size:14px; }
+    .price-box li::before { content:"—"; color:var(--accent); margin-right:10px; }
+    .price-cta { display:flex; flex-direction:column; justify-content:center; gap:12px; }
+    .price-cta .btn { width:100%; }
+    .price-cta small { text-align:center; color:var(--muted); }
+
+    .closing { padding:104px 0; background:var(--accent); color:oklch(98% .01 82); }
+    .closing-inner { display:grid; grid-template-columns:8fr 3fr; gap:64px; align-items:center; }
+    .closing h2 { grid-column:auto; font-size:clamp(3rem,6vw,6.5rem); margin:0; max-width:11ch; }
+    .closing .btn { background:oklch(98% .01 82); color:var(--ink); width:100%; }
+    .closing .btn:hover { background:var(--cream); }
+    .closing small { display:block; margin-top:12px; text-align:center; color:oklch(92% .04 38); }
+
+    footer { background:var(--dark); color:oklch(88% .018 82); padding:56px 0 32px; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:64px; padding-bottom:56px; }
+    footer .brand { color:oklch(94% .018 82); margin-bottom:14px; }
+    footer p { color:oklch(68% .02 82); max-width:34ch; font-size:14px; }
+    footer h3 { color:oklch(70% .02 82); font-family:var(--body); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+    footer ul { list-style:none; padding:0; margin:0; }
+    footer li { margin:9px 0; }
+    footer li a { text-decoration:none; font-size:14px; }
+    footer li a:hover { color:oklch(75% .13 38); }
+    .legal { padding-top:24px; border-top:1px solid oklch(34% .025 48); display:flex; justify-content:space-between; color:oklch(62% .02 82); font-size:12px; }
+
+    dialog { border:1px solid var(--line); border-radius:var(--radius); padding:0; width:min(520px,calc(100% - 32px)); background:var(--paper); color:var(--ink); box-shadow:0 24px 80px oklch(20% .02 38 / .25); }
+    dialog::backdrop { background:oklch(15% .025 48 / .72); }
+    .modal-head { padding:24px 28px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
+    .modal-head h2 { grid-column:auto; font-size:30px; margin:0; }
+    .close { width:44px;height:44px;border:0;background:transparent;font-size:25px;cursor:pointer;color:var(--muted); }
+    form { padding:28px; }
+    .field { margin-bottom:18px; }
+    .field label { display:block; margin-bottom:6px; }
+    .field input { width:100%; height:46px; border:1px solid var(--line); border-radius:var(--radius); background:oklch(99% .008 82); padding:0 12px; color:var(--ink); }
+    .field input:focus { outline:2px solid var(--accent); outline-offset:1px; }
+    form .btn { width:100%; }
+    .success { padding:48px 28px; text-align:center; }
+    .success h2 { grid-column:auto; font-size:38px; }
+
+    .reveal { opacity:0; transform:translateY(10px); transition:opacity 520ms cubic-bezier(.2,.8,.2,1), transform 520ms cubic-bezier(.2,.8,.2,1); }
+    .reveal.seen { opacity:1; transform:none; }
+    @media (max-width: 800px) {
+      .wrap { width:min(calc(100% - 32px),var(--max)); }
+      .menu { display:block; }
+      .navlinks { display:none; position:absolute; top:72px; left:0; right:0; padding:20px 24px 24px; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; gap:14px; }
+      .navlinks.open { display:flex; }
+      .hero { padding:64px 0 72px; }
+      .hero-grid,.calc-grid,.story-grid,.price-top,.closing-inner { grid-template-columns:1fr; gap:48px; }
+      h1 { font-size:clamp(3.3rem,16vw,5.4rem); }
+      .product { transform:none; }
+      .schedule { grid-template-columns:72px repeat(5, minmax(70px,1fr)); overflow:hidden; }
+      .cell { padding:10px 6px; }
+      .proof-row { grid-template-columns:1fr 1fr; }
+      .proof-row > div { border-bottom:1px solid var(--line); }
+      .features,.pricing { padding:88px 0; }
+      .section-head { grid-template-columns:1fr; margin-bottom:48px; }
+      h2 { grid-column:1; }
+      .feature { grid-template-columns:64px 1fr; gap:18px; padding:36px 0; }
+      .feature p { grid-column:2; }
+      .num { font-size:50px; }
+      .story { padding:80px 0; }
+      .price-box { grid-template-columns:1fr; }
+      .price-box > div { border-right:0; border-bottom:1px solid var(--line); padding:30px 0; }
+      .price-box > div:last-child { border:0; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+      .footer-grid > div:first-child { grid-column:1/-1; }
+    }
+    @media (max-width: 480px) {
+      .hero-copy .lead { font-size:17px; }
+      .actions { flex-direction:column; }
+      .actions .btn { width:100%; }
+      .product::before { display:none; }
+      .schedule { grid-template-columns:64px repeat(3,1fr); }
+      .schedule .hide-mobile { display:none; }
+      .proof-row { grid-template-columns:1fr; }
+      .proof-row > div { border-right:0; padding-inline:0; }
+      .feature { grid-template-columns:48px 1fr; }
+      .feature h3 { font-size:26px; }
+      .calc-panel { padding:24px; }
+      .saving { align-items:start; flex-direction:column; gap:12px; }
+      .footer-grid { gap:32px; }
+      .legal { flex-direction:column; gap:8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .reveal { opacity:1; transform:none; transition:none; }
+      .btn { transition:none; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="wrap" aria-label="Main navigation">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Ridgeline</a>
+    <button class="menu" aria-label="Open menu" aria-expanded="false">☰</button>
+    <div class="navlinks">
+      <a href="#how">How it works</a><a href="#stories">Owner stories</a><a href="#pricing">Pricing</a>
+      <button class="btn demo-trigger">Book a walkthrough</button>
+    </div>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Built for independent restaurants</p>
+        <h1>Payroll that knows the floor.</h1>
+        <p class="lead">Build the week, catch overtime before it happens, and run payroll from the same place your team checks shifts.</p>
+        <div class="actions"><button class="btn demo-trigger">See Ridgeline in action</button><a class="btn outline" href="#how">Explore the weekly flow</a></div>
+        <p class="aside-note">No setup fee · Month to month · Support from real people</p>
+      </div>
+      <div class="product reveal" aria-label="Ridgeline weekly schedule preview">
+        <div class="appbar"><strong>Juniper & Ash / Schedule</strong><span class="live">● Labor on target</span></div>
+        <div class="schedule">
+          <div class="cell head">Team</div><div class="cell head">Mon 14</div><div class="cell head">Tue 15</div><div class="cell head">Wed 16</div><div class="cell head hide-mobile">Thu 17</div><div class="cell head hide-mobile">Fri 18</div>
+          <div class="cell person">Maya R.</div><div class="cell"><div class="shift">4–Close<small>Server</small></div></div><div class="cell"></div><div class="cell"><div class="shift">4–Close<small>Server</small></div></div><div class="cell hide-mobile"></div><div class="cell hide-mobile"><div class="shift">5–Close<small>Server</small></div></div>
+          <div class="cell person">Leo P.</div><div class="cell"></div><div class="cell"><div class="shift">2–10<small>Line</small></div></div><div class="cell"><div class="shift">2–10<small>Line</small></div></div><div class="cell hide-mobile"><div class="shift">2–10<small>Line</small></div></div><div class="cell hide-mobile"></div>
+          <div class="cell person">Tessa K.</div><div class="cell"><div class="shift">9–5<small>Prep</small></div></div><div class="cell"><div class="shift">9–5<small>Prep</small></div></div><div class="cell"></div><div class="cell hide-mobile"><div class="shift">9–5<small>Prep</small></div></div><div class="cell hide-mobile"><div class="shift">9–5<small>Prep</small></div></div>
+        </div>
+        <div class="paybar"><span>Projected gross payroll</span><strong>$12,847.32</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof" aria-label="Customer results">
+    <div class="wrap proof-row">
+      <div class="proof-label">A calmer close to every week.</div>
+      <div><span class="stat">4.6 hrs</span><span class="stat-note">saved each payroll</span></div>
+      <div><span class="stat">37%</span><span class="stat-note">fewer shift texts</span></div>
+      <div><span class="stat">2,318</span><span class="stat-note">people paid weekly</span></div>
+    </div>
+  </section>
+
+  <section class="features" id="how">
+    <div class="wrap">
+      <div class="section-head reveal"><p class="eyebrow">One weekly rhythm</p><h2>From first draft to direct deposit.</h2></div>
+      <div class="feature-list">
+        <article class="feature reveal"><div class="num">01</div><h3>Build around the rush</h3><div><p>Draft shifts against forecasted sales and availability. Ridgeline flags uncovered stations, clopens, and overtime while there’s still time to fix them.</p><span class="mini"><span class="tick">✓</span> Publish to everyone in one tap</span></div></article>
+        <article class="feature reveal"><div class="num">02</div><h3>Turn punches into answers</h3><div><p>Your team clocks in from a shared tablet or their phone. Managers review breaks, tips, and exceptions in a single tidy queue—not a stack of edits on Monday.</p><span class="mini"><span class="tick">✓</span> Tip pooling built for mixed roles</span></div></article>
+        <article class="feature reveal"><div class="num">03</div><h3>Pay the team with confidence</h3><div><p>Approved timecards become payroll without re-keying a thing. Taxes, filings, and direct deposits are handled, with a clear ledger for your accountant.</p><span class="mini"><span class="tick">✓</span> US-based payroll support included</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="stories">
+    <div class="wrap story-grid reveal">
+      <blockquote>“Sunday payroll used to follow me home. Now I approve it <em>before family meal.</em>”</blockquote>
+      <div class="attribution"><strong>Camila Ortega, co-owner</strong>Bar Flora · Providence, RI<br>42 employees · Ridgeline since 2024</div>
+    </div>
+  </section>
+
+  <section class="calculator" id="savings">
+    <div class="wrap calc-grid">
+      <div class="reveal"><p class="eyebrow">Do the napkin math</p><h2>Give Sunday back to yourself.</h2><p>Owners switching from separate scheduling and payroll tools save an average of 12 minutes per employee each month.</p></div>
+      <div class="calc-panel reveal">
+        <label for="employees">People on your team <output id="employeeOut">32</output></label>
+        <input id="employees" type="range" min="8" max="120" value="32" step="1">
+        <label for="wage">Your time is worth <output id="wageOut">$45/hour</output></label>
+        <input id="wage" type="range" min="20" max="100" value="45" step="5">
+        <div class="saving"><span>Estimated value of time saved<br>each year</span><strong id="savingOut">$3,456</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="price-top reveal"><h2>One price. No fine print.</h2><p>Everything you need to schedule, track time, and pay your team. The base covers your first location.</p></div>
+      <div class="price-box reveal">
+        <div><p class="eyebrow">Ridgeline complete</p><div class="price"><sup>$</sup>89 <small>/ location / month</small></div><p>Plus $6 per person paid monthly.</p></div>
+        <div><ul><li>Scheduling & availability</li><li>Time clock & tip pooling</li><li>Full-service payroll</li><li>Tax filing & year-end forms</li><li>Human support, 7 days</li></ul></div>
+        <div class="price-cta"><button class="btn demo-trigger">Plan your first payroll</button><small>30-day scheduling trial · Payroll when you’re ready</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap closing-inner reveal"><h2>Your next service starts here.</h2><div><button class="btn demo-trigger">Book a 20-minute walkthrough</button><small>Pick a time that works after prep.</small></div></div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><a class="brand" href="#top"><span class="brand-mark"></span>Ridgeline</a><p>Payroll and scheduling for the people who keep the room moving.</p></div>
+      <div><h3>Product</h3><ul><li><a href="#how">Scheduling</a></li><li><a href="#how">Time & tips</a></li><li><a href="#pricing">Payroll</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a href="#stories">Customer stories</a></li><li><a href="mailto:hello@ridgelinepay.com">Contact</a></li><li><a href="#top">Security</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Ridgeline Software, Inc.</span><span>Privacy · Terms · Payroll services provided through licensed partners.</span></div>
+  </div>
+</footer>
+
+<dialog id="demoDialog" aria-labelledby="modalTitle">
+  <div class="modal-head"><h2 id="modalTitle">Pick up the conversation</h2><button class="close" aria-label="Close dialog">×</button></div>
+  <form id="demoForm">
+    <p>Tell us where to reach you. A restaurant specialist will follow up within one business day.</p>
+    <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required></div>
+    <div class="field"><label for="restaurant">Restaurant name</label><input id="restaurant" name="restaurant" autocomplete="organization" required></div>
+    <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+    <button class="btn" type="submit">Request my walkthrough</button>
+  </form>
+  <div class="success" hidden><p class="eyebrow">You’re on the books</p><h2>We’ll be in touch.</h2><p>Look for a note from the Ridgeline team within one business day.</p><button class="btn close-success">Back to the site</button></div>
+</dialog>
+<script>
+  const menu=document.querySelector('.menu'), links=document.querySelector('.navlinks');
+  menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',open);menu.textContent=open?'×':'☰';});
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰';}));
+  const dialog=document.querySelector('#demoDialog');
+  document.querySelectorAll('.demo-trigger').forEach(b=>b.addEventListener('click',()=>dialog.showModal()));
+  document.querySelector('.close').addEventListener('click',()=>dialog.close());
+  document.querySelector('.close-success').addEventListener('click',()=>dialog.close());
+  document.querySelector('#demoForm').addEventListener('submit',e=>{e.preventDefault();e.target.hidden=true;dialog.querySelector('.success').hidden=false;});
+  const emp=document.querySelector('#employees'), wage=document.querySelector('#wage');
+  const money=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  function calculate(){document.querySelector('#employeeOut').value=emp.value;document.querySelector('#wageOut').value=money.format(wage.value)+'/hour';document.querySelector('#savingOut').textContent=money.format(Number(emp.value)*2.4*12*Number(wage.value));}
+  emp.addEventListener('input',calculate);wage.addEventListener('input',calculate);calculate();
+  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

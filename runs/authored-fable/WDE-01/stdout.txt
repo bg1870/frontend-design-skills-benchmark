@@ -1,0 +1,6 @@
+Built the finished Ridgeline single-page marketing site.
+
+- `index.html` — responsive, accessible marketing site with interactive calculator, mobile navigation, animations, pricing, and walkthrough form.
+- `ASSUMPTIONS.md` — records product, pricing, testimonial, and implementation assumptions.
+
+The site runs directly by opening `index.html` in a browser.

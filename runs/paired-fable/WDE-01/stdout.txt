@@ -1,0 +1,9 @@
+Built the finished Ridgeline marketing site.
+
+### Deliverables
+- `index.html` — responsive single-page site
+- `styles.css` — industrial kitchen-ticket visual system
+- `script.js` — accessible demo-form validation
+- `ASSUMPTIONS.md` — material product and content assumptions
+
+Includes responsive layouts, keyboard focus states, reduced-motion support, semantic HTML, accessibility features, and mobile optimization.

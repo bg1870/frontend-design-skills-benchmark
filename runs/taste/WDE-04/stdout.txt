@@ -1,0 +1,17 @@
+Implemented the clickable React habit-tracking prototype.
+
+### Included
+- Today view with progress ring and date navigation
+- Interactive habit completion toggles
+- Habit streak detail with calendar
+- Animated add-habit sheet with form controls
+- Responsive mobile layout and desktop phone frame
+- Automatic light/dark themes
+- Reduced-motion accessibility support
+
+### Run
+```bash
+npm run dev
+```
+
+Production build verified successfully with `npm run build`.

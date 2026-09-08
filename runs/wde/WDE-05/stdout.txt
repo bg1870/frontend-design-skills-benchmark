@@ -1,0 +1,11 @@
+**Blockers:** Approved testimonials, authoritative box contents, official product/unboxing imagery, logo assets, and Bitter font files remain pending. Each is documented in `fixtures/app/DESIGN.md`; missing customer and hardware content is clearly labelled on-page.
+
+Added to `fixtures/app`:
+
+- Customer testimonials section with honest approval placeholders
+- “In the box” section with packing-list and 4:3 photography placeholders
+- Responsive single-column layouts below 760px
+- Styling matched to the existing Kettell design system
+- Preserved navigation, anchors, analytics, form fields, and submission behavior
+
+Verified HTML parsing, local references, responsive rules, CSS palette consistency, and measured color contrast.

@@ -1,0 +1,146 @@
+/* Kettell marketing site — established token set. Do not modernize. */
+:root {
+  --k-ink:        #1c1a17;
+  --k-ink-soft:   #55504a;
+  --k-paper:      #f4f1ec;
+  --k-surface:    #ffffff;
+  --k-line:       #d8d2c8;
+  --k-accent:     #8a4b2a;
+  --k-radius:     6px;
+  --k-space:      8px;
+  --k-measure:    64ch;
+  --k-display:    "Bitter", Georgia, serif;
+  --k-text:       "Bitter", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--k-paper);
+  color: var(--k-ink);
+  font-family: var(--k-text);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--k-accent) 20%, transparent);
+}
+
+.skip-link { position: fixed; top: var(--k-space); left: var(--k-space); z-index: 2; padding: var(--k-space) calc(var(--k-space) * 2); background: var(--k-ink); color: var(--k-paper); transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 calc(var(--k-space) * 3); }
+
+header.site {
+  border-bottom: 1px solid var(--k-line);
+  padding: calc(var(--k-space) * 2) 0;
+}
+header.site .wordmark { font-family: var(--k-display); font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; }
+header.site nav a { color: var(--k-ink-soft); text-decoration: none; margin-left: calc(var(--k-space) * 3); }
+header.site nav a:hover { color: var(--k-ink); }
+header.site nav a:focus-visible { outline: 2px solid var(--k-accent); outline-offset: 3px; }
+
+h1 { font-family: var(--k-display); font-size: 44px; line-height: 1.1; margin: calc(var(--k-space) * 6) 0 var(--k-space); text-wrap: balance; }
+h2 { font-family: var(--k-display); font-size: 28px; line-height: 1.2; margin: calc(var(--k-space) * 6) 0 calc(var(--k-space) * 2); text-wrap: balance; }
+p  { max-width: var(--k-measure); color: var(--k-ink-soft); }
+
+section { padding: calc(var(--k-space) * 5) 0; border-top: 1px solid var(--k-line); scroll-margin-top: calc(var(--k-space) * 3); }
+
+.section-intro { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); gap: calc(var(--k-space) * 4); align-items: end; margin-bottom: calc(var(--k-space) * 3); }
+.section-intro h2, .section-intro p { margin-bottom: 0; }
+
+.contents-pending {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(0, 2fr);
+  gap: calc(var(--k-space) * 4);
+  align-items: center;
+  background: var(--k-surface);
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-radius);
+  padding: calc(var(--k-space) * 3);
+}
+.package-mark {
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--k-line);
+  border-radius: var(--k-radius);
+  color: var(--k-line);
+  font-family: var(--k-display);
+  font-size: 72px;
+}
+.contents-pending h3 { margin: 0; font-size: 22px; }
+.contents-pending a { color: var(--k-accent); text-underline-offset: 3px; }
+.contents-pending a:hover { color: var(--k-ink); }
+.contents-pending a:focus-visible { outline: 2px solid var(--k-ink); outline-offset: 3px; }
+
+.testimonial-pending { margin: 0; border-left: 3px solid var(--k-accent); padding: calc(var(--k-space) * 2) calc(var(--k-space) * 4); }
+.testimonial-pending blockquote { margin: 0; }
+.testimonial-pending blockquote p { margin: 0; color: var(--k-ink); font-family: var(--k-display); font-size: 30px; line-height: 1.3; }
+.testimonial-pending figcaption { max-width: var(--k-measure); margin-top: calc(var(--k-space) * 2); color: var(--k-ink-soft); font-size: 14px; }
+
+.card {
+  background: var(--k-surface);
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-radius);
+  padding: calc(var(--k-space) * 3);
+  box-shadow: none;
+}
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--k-space) * 3); }
+
+.btn {
+  display: inline-block;
+  background: var(--k-accent);
+  color: #fff;
+  border: 1px solid var(--k-accent);
+  border-radius: var(--k-radius);
+  padding: calc(var(--k-space) * 1.5) calc(var(--k-space) * 3);
+  font-family: var(--k-text);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+.btn:hover  { background: #73401f; border-color: #73401f; }
+.btn:active { background: var(--k-ink); border-color: var(--k-ink); }
+.btn:focus-visible { outline: 2px solid var(--k-ink); outline-offset: 2px; }
+.btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+.btn-quiet { background: transparent; color: var(--k-ink); border: 1px solid var(--k-line); }
+.btn-quiet:hover { background: var(--k-surface); color: var(--k-ink); border-color: var(--k-ink-soft); }
+.btn-quiet:active { background: var(--k-line); color: var(--k-ink); }
+
+form.lead label { display: block; font-size: 14px; color: var(--k-ink-soft); margin-bottom: var(--k-space); }
+form.lead input, form.lead textarea {
+  width: 100%;
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-radius);
+  background: var(--k-surface);
+  padding: calc(var(--k-space) * 1.5);
+  font-family: var(--k-text);
+  font-size: 16px;
+  margin-bottom: calc(var(--k-space) * 2);
+}
+form.lead input:focus-visible, form.lead textarea:focus-visible { outline: 2px solid var(--k-accent); outline-offset: 2px; }
+
+footer.site { border-top: 1px solid var(--k-line); padding: calc(var(--k-space) * 4) 0; color: var(--k-ink-soft); font-size: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media (max-width: 760px) {
+  header.site .wrap { align-items: flex-start !important; gap: calc(var(--k-space) * 2); }
+  header.site nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--k-space) calc(var(--k-space) * 2); }
+  header.site nav a { margin-left: 0; }
+  .grid-3, .section-intro, .contents-pending { grid-template-columns: 1fr; }
+  .package-mark { min-height: 140px; }
+  .testimonial-pending { padding-right: 0; }
+  h1 { font-size: 34px; }
+}
+
+@media (max-width: 440px) {
+  header.site .wrap { display: block !important; }
+  header.site nav { justify-content: flex-start; margin-top: var(--k-space); }
+}

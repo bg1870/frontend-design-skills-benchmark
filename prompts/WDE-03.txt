@@ -1,0 +1,1 @@
+Build the pricing page for a B2B analytics product, then polish it and verify your work before you hand it over. Work autonomously: do not ask questions, request confirmation, or pause at checkpoints. Select sensible defaults, record material assumptions, and deliver the finished artifact in one pass.

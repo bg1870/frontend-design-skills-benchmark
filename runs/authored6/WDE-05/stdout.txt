@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added responsive **Customer testimonials** section with an honest verified-content placeholder.
+- Added responsive **In the box** hardware section without inventing contents.
+- Added navigation links for both sections.
+- Preserved Kettell’s existing visual system and accessibility patterns.
+- Documented sourcing attempts and blockers in `fixtures/app/SOURCING.md`.
+- Validated HTML parsing and section anchors.

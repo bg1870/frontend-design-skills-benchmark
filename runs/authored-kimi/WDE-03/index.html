@@ -1,0 +1,124 @@
+<!--
+  ART DIRECTION
+  Register: Technical editorial — a financial newspaper meets a precise analytics console.
+  Palette: paper #F4F1E9, ink #171813, signal #E4572E.
+  Type pairing: Fraunces for high-impact editorial display; Manrope for lucid product UI and body copy.
+  Signature move: A working event-volume “rate tape” that reprices plans and draws a live usage sparkline.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tallymark pricing — decision-grade product analytics, priced by monthly events.">
+  <title>Pricing — Tallymark Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,750&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23171813'/%3E%3Cpath d='M8 23V16M16 23V9M24 23V13' stroke='%23E4572E' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Tallymark home"><span class="brand-mark"><i></i><i></i><i></i></span>TALLYMARK</a>
+    <nav aria-label="Primary navigation">
+      <a href="#compare">Compare</a><a href="#answers">Answers</a><a href="#proof">Customers</a>
+    </nav>
+    <a class="header-cta" href="mailto:sales@tallymark.example">Talk to sales <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">Pricing / no mystery math</p>
+        <h1>Answers should cost less than <em>guesswork.</em></h1>
+      </div>
+      <div class="hero-side">
+        <p>Tallymark turns every product signal into a decision your whole company can trust. Start free; pay only when your data does real work.</p>
+        <div class="proofline"><strong>14 days</strong><span>full access<br>no card required</span></div>
+      </div>
+    </section>
+
+    <section class="rate-tape" aria-labelledby="volume-title">
+      <div class="tape-label"><span>01</span><p id="volume-title">Set monthly event volume</p></div>
+      <div class="volume-control">
+        <div class="volume-readout"><strong id="eventValue">250K</strong><span>events / month</span></div>
+        <input id="volume" type="range" min="0" max="4" value="1" step="1" aria-label="Monthly event volume">
+        <div class="ticks" aria-hidden="true"><span>50K</span><span>250K</span><span>1M</span><span>5M</span><span>20M+</span></div>
+      </div>
+      <div class="mini-chart" aria-label="Illustrative event stream">
+        <svg viewBox="0 0 260 70" role="img"><title>Live event volume chart</title><path class="gridline" d="M0 58H260M0 35H260M0 12H260"/><path id="spark" class="spark" d="M0 55 L25 44 L50 48 L75 30 L100 35 L125 17 L150 28 L175 12 L200 21 L225 7 L260 14"/></svg>
+        <span>LIVE ESTIMATE</span>
+      </div>
+    </section>
+
+    <section class="pricing" aria-label="Pricing plans">
+      <article class="plan starter">
+        <div class="plan-head"><p class="kicker">For first questions</p><h2>Starter</h2></div>
+        <div class="price"><span>$</span><strong data-base="0">0</strong><small>/ month</small></div>
+        <p class="plan-note">A complete workspace for small teams building an analytics habit.</p>
+        <a class="button secondary" href="mailto:start@tallymark.example?subject=Start%20Tallymark%20free">Start free <span>→</span></a>
+        <ul><li>Up to 50K events monthly</li><li>3 seats, unlimited reports</li><li>12-month history</li><li>Community support</li></ul>
+      </article>
+
+      <article class="plan scale" id="recommended">
+        <div class="recommendation">BEST FIT AT <span id="fitVolume">250K</span> EVENTS</div>
+        <div class="plan-head"><p class="kicker">For growing products</p><h2>Scale</h2></div>
+        <div class="price"><span>$</span><strong id="scalePrice">349</strong><small>/ month</small></div>
+        <p class="plan-note">Governed product intelligence without an analyst bottleneck.</p>
+        <a class="button primary" href="mailto:start@tallymark.example?subject=Start%20Scale%20trial">Try Scale for 14 days <span>→</span></a>
+        <ul><li><b id="includedEvents">250K</b> events included</li><li>Unlimited seats & dashboards</li><li>Warehouse sync + reverse ETL</li><li>Experiments and session replay</li><li>Priority support, under 4 hours</li></ul>
+      </article>
+
+      <article class="plan enterprise">
+        <div class="plan-head"><p class="kicker">For complex organizations</p><h2>Enterprise</h2></div>
+        <div class="price word"><strong>Let’s talk.</strong></div>
+        <p class="plan-note">Security, control, and volume economics shaped around your stack.</p>
+        <a class="button secondary" href="mailto:sales@tallymark.example?subject=Tallymark%20Enterprise">Design your plan <span>↗</span></a>
+        <ul><li>Custom event volume</li><li>SAML, SCIM, and audit logs</li><li>Regional data residency</li><li>Dedicated success engineer</li></ul>
+      </article>
+    </section>
+
+    <section class="proof" id="proof">
+      <div class="quote-mark">“</div>
+      <blockquote>We retired three tools and cut our weekly reporting ritual from four hours to eleven minutes. The bill was the least surprising part.</blockquote>
+      <div class="attribution"><strong>Mina Kapoor</strong><span>VP Product, Ledgerly<br>Series C · 180 employees</span></div>
+      <div class="proof-stat"><strong>22×</strong><span>faster path<br>to an answer</span></div>
+    </section>
+
+    <section class="comparison" id="compare">
+      <div class="section-intro"><p class="kicker">The useful details</p><h2>Everything required to make the call.</h2><p>No paid add-on maze. No per-seat penalty. Switch plans or leave with your data whenever you like.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Capability</th><th>Starter</th><th class="accent-col">Scale</th><th>Enterprise</th></tr></thead>
+          <tbody>
+            <tr><th>Analytics & funnels</th><td>Core</td><td>Advanced</td><td>Advanced</td></tr>
+            <tr><th>Data history</th><td>12 months</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th>Team seats</th><td>3</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th>Warehouse sync</th><td>—</td><td>Hourly</td><td>Real-time</td></tr>
+            <tr><th>SSO & provisioning</th><td>—</td><td>Google SSO</td><td>SAML + SCIM</td></tr>
+            <tr><th>Support response</th><td>Community</td><td>&lt; 4 hours</td><td>&lt; 1 hour</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="faq" id="answers">
+      <div class="faq-title"><p class="kicker">Straight answers</p><h2>Before procurement asks.</h2></div>
+      <div class="questions">
+        <details open><summary>What counts as an event?<span>+</span></summary><p>An event is a tracked user action such as a page view, checkout, or feature use. Duplicate and blocked events never count toward your allowance.</p></details>
+        <details><summary>What happens if we exceed our volume?<span>+</span></summary><p>Nothing breaks. We notify admins at 80% and 100%, then use a predictable per-million overage rate. You can set a hard cap at any time.</p></details>
+        <details><summary>Can we use our own warehouse?<span>+</span></summary><p>Yes. Scale connects to Snowflake, BigQuery, Redshift, and Databricks. Your warehouse can remain the source of truth.</p></details>
+        <details><summary>Is annual pricing available?<span>+</span></summary><p>Annual plans include two months free and a locked event rate. Monthly billing remains available for Starter and Scale.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top"><p>Your next decision is already in the data.</p><a href="mailto:start@tallymark.example?subject=Start%20Tallymark">Find it now <span>→</span></a></div>
+    <div class="footer-word">TALLYMARK<span>®</span></div>
+    <div class="footer-bottom"><span>© 2026 Tallymark Systems</span><span>New York · London · Everywhere</span><a href="mailto:hello@tallymark.example">hello@tallymark.example</a></div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

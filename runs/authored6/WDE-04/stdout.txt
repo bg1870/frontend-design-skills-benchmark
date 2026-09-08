@@ -1,0 +1,17 @@
+Implemented a complete clickable React prototype for **Daymark**, featuring:
+
+- Interactive Today view with habit completion progress
+- Morning Walk streak detail and calendar
+- Add-habit bottom sheet with scheduling options
+- Responsive mobile-first presentation
+- Keyboard focus states and Escape-to-close dialog behavior
+- Reduced-motion support
+- Material assumptions documented in `README.md`
+
+Build verified successfully with `npm run build`.
+
+Run locally:
+
+```bash
+npm run dev
+```

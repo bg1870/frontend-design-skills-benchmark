@@ -1,0 +1,19 @@
+Built the plumbing dispatcher dashboard.
+
+### Files
+- `index.html` — responsive dashboard with:
+  - Dynamic summary metrics
+  - Search and status filtering
+  - Scheduled job queue
+  - Dispatch attention panel
+  - Technician workload overview
+  - Functional new-job dialog
+- `README.md` — setup instructions and documented assumptions
+
+Run locally:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then open `http://localhost:8080`.

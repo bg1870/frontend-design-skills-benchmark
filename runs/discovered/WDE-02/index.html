@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b4a">
+  <title>Flowline Dispatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#" aria-label="Flowline Dispatch home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M7 4v8a7 7 0 0 0 14 0V4M3 8h8M17 8h8M14 19v5"/></svg></span>
+      <span><strong>Flowline</strong><small>Dispatch board</small></span>
+    </a>
+    <div class="header-right">
+      <div class="service-status"><span></span> Crews online</div>
+      <time id="currentDate">Monday, September 7</time>
+      <button class="icon-button" aria-label="Notifications">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-dot"></span>
+      </button>
+      <div class="avatar" aria-label="Signed in as A. Chen">AC</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="summary-intro">
+        <p>Monday dispatch</p>
+        <h1 id="summary-title">Keep the day moving.</h1>
+        <span id="summaryWindow">Sept 7–11, 2026</span>
+      </div>
+      <div class="metric urgent">
+        <span class="metric-icon" aria-hidden="true">!</span>
+        <div><strong id="openCount">0</strong><span>Need assignment</span></div>
+      </div>
+      <div class="metric">
+        <span class="metric-icon assigned-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span>
+        <div><strong id="assignedCount">0</strong><span>Assigned</span></div>
+      </div>
+      <div class="metric">
+        <span class="metric-icon done-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 12h8M12 8v8"/></svg></span>
+        <div><strong id="doneCount">0</strong><span>Completed</span></div>
+      </div>
+      <div class="load-block">
+        <div><span>Week load</span><strong id="loadLabel">0 / 0</strong></div>
+        <div class="load-track"><span id="loadBar"></span></div>
+        <small>Scheduled jobs completed</small>
+      </div>
+    </section>
+
+    <section class="queue" aria-labelledby="queue-title">
+      <div class="queue-heading">
+        <div>
+          <h2 id="queue-title">Job queue <span id="visibleCount">0</span></h2>
+          <p>All scheduled service calls, ordered by arrival time.</p>
+        </div>
+        <button class="primary-button" id="newJobButton"><span aria-hidden="true">+</span> New job</button>
+      </div>
+
+      <div class="toolbar">
+        <div class="tabs" role="group" aria-label="Filter jobs by status">
+          <button class="tab active" data-filter="all">All <span id="allTabCount">0</span></button>
+          <button class="tab" data-filter="open">Needs assignment <span id="openTabCount">0</span></button>
+          <button class="tab" data-filter="assigned">Assigned <span id="assignedTabCount">0</span></button>
+          <button class="tab" data-filter="done">Completed <span id="doneTabCount">0</span></button>
+        </div>
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+          <span class="sr-only">Search jobs</span>
+          <input id="searchInput" type="search" placeholder="Search jobs, techs, addresses…">
+        </label>
+      </div>
+
+      <div class="table-shell">
+        <table>
+          <thead><tr><th>Schedule</th><th>Job</th><th>Location</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState" hidden>
+          <strong>No jobs found</strong><span>Try a different status or search.</span>
+        </div>
+      </div>
+      <div class="queue-footer"><span id="footerCount">Showing 0 jobs</span><span>Last synced just now <i></i></span></div>
+    </section>
+  </main>
+
+  <dialog id="jobDialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Close">×</button>
+      <h2>Create a new job</h2>
+      <p>This demo keeps the dispatch queue read-only.</p>
+      <button class="primary-button">Got it</button>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

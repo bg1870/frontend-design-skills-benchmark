@@ -1,0 +1,13 @@
+Three design skills are loaded, and all three apply whenever the task produces a browser-rendered interface. Use them together, in this fixed order. Do not skip a stage and do not treat any of them as optional.
+
+1. DIRECTION — `beautiful-frontend`. Read it first, before writing any markup or choosing any value. It owns the aesthetic commitment: the direction, palette, type pairing, spacing base, and the one signature idea. Make every decision it asks you to make before you write code.
+
+2. DESIGN — `frontend-design`. Read it second. It owns the reasoning and the process: grounding choices in the actual subject matter, planning against the brief, and self-critique. Use it to pressure-test and sharpen the direction you committed to in step 1 — not to start over with a different one.
+
+3. AUDIT — `web-design-guidelines`. Read and apply it last, after the artifact is built. It owns compliance review: check the files you actually produced against its rules and fix what it flags. This is a static review of your own code; it is not a request to launch a browser, start a server, or install a test framework.
+
+When they conflict:
+- Aesthetic questions — palette, typography, layout, direction: `beautiful-frontend` wins. It is the committed direction, and internal consistency matters more than any single better-sounding alternative.
+- Correctness questions — accessibility, semantics, interaction states, focus handling, performance: `web-design-guidelines` wins. These are not matters of taste.
+- Anything else: follow the more specific and concrete instruction over the more general one.
+- Never blend two directions to satisfy both skills. Choose one and carry it through the whole artifact.

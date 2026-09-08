@@ -1,0 +1,15 @@
+Wrote `SKILL.md` to the current directory. It is the only file there.
+
+**Shape.** 148 lines including frontmatter, under the 150 budget. Frontmatter has `name: beautiful-frontend` and a one-paragraph third-person description covering when to load it (any browser-rendered visual artifact in any framework, read before writing markup) and when not to (backend or CLI work, logic-only UI edits, or when a complete spec or Figma is supplied to match).
+
+**What the body does differently from design-advice prose.** It targets my own autopilot rather than describing good design:
+
+- **Forced decision block.** The first instruction is to write a fill-in comment at the top of the stylesheet naming direction, a physical-world reference object, type pairing, OKLCH hue values, radius, spacing base, theme, and one signature gesture. Vague answers like "clean" are defined as not-a-decision.
+- **Anti-monoculture rule.** Eight distinct directions (editorial, Swiss, technical, warm humanist, quiet luxury, brutalist, playful, industrial) with concrete cues each. Selection comes from the brief's domain, choosing the fit that the domain's typical sites do not use. Domain clichés are named and banned. Novelty is limited to two places so the rest stays quiet.
+- **Banned defaults list.** The specific tells I produce on autopilot: Inter as display, pure white and black, Tailwind default grays with indigo, purple gradients, blurred blobs, the centered badge-headline-two-buttons-screenshot hero, three icon-in-circle cards, `transition: all`, hover scale, emoji, Lorem ipsum, Acme, and a list of marketing verbs.
+- **Numeric constraints where they change output.** Tracking and leading ranges per role, type ratio per density, measure in ch, OKLCH lightness and chroma ranges for tinted neutrals and dark themes, accent pixel budget, spacing scale with a 1:2 grouping ratio, varied section padding, button heights, layered tinted shadow values, easing curves, stagger timing.
+- **Per-artifact recipes.** Marketing hero variants and feature layouts that are not three cards, dashboard density and KPI strip rules, pricing highlight rules, prototype interaction requirements, and an explicit "match the host site, skip the direction step" path for extending existing sites.
+- **Content as design.** Invented plausible product names, outcome-named features, un-round numbers, distinct CTA labels, no placeholders.
+- **Self-check.** A grep-style sweep for banned tokens, a one-word direction test, and a 1440px/390px review list.
+
+Two checks I could not run: the shell blocked my long-line scan, so line widths were kept around 110 characters by hand. The description line is intentionally one long paragraph as required.

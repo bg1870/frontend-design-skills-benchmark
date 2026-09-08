@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added accessible **Customer stories** section with an honest testimonial placeholder.
+- Added responsive **In the box** section with a pending-verification packing list.
+- Added navigation links and mobile navigation improvements.
+- Added visible keyboard focus styling.
+- Documented sourcing attempts and unresolved content requirements in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Verified all internal links resolve correctly.

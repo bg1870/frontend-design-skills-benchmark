@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17202b">
+  <meta name="description" content="Meridian pricing for governed product analytics, from first dashboard to enterprise scale.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Pricing — Meridian Analytics</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to Main Content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Meridian home" translate="no">
+      <svg viewBox="0 0 32 32" role="img" aria-hidden="true"><path d="M4 25V7l8 11 5-8 11 15M4 25h24"/></svg>
+      Meridian
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#plans">Plans</a>
+      <a href="#compare">Compare</a>
+      <a href="#questions">Questions</a>
+    </nav>
+    <a class="header-cta" href="mailto:sales@meridian.example?subject=Meridian%20pricing">Talk to Sales</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker">Pricing That Scales With Your Team</p>
+        <h1 id="hero-title">Answers Everyone Can Trust.</h1>
+        <p class="lede">Give every product team governed metrics, fresh dashboards, and room to investigate. Pay for the people who build—not everyone who reads.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="mailto:sales@meridian.example?subject=Start%20Meridian%20Team">Start Team Plan</a>
+          <a class="text-link" href="#compare">Compare Features</a>
+        </div>
+      </div>
+
+      <div class="price-console" aria-label="Team plan price">
+        <div class="billing-switch" role="group" aria-label="Billing period">
+          <button type="button" data-period="monthly" aria-pressed="false">Monthly</button>
+          <button type="button" data-period="annual" aria-pressed="true">Annual <span>Save 20%</span></button>
+        </div>
+        <div class="hero-price">
+          <span class="currency">$</span><strong data-price="team">18</strong>
+          <span class="unit">per builder<br>per month</span>
+        </div>
+        <p class="price-note" data-note>Billed annually. Viewers stay free.</p>
+      </div>
+
+      <figure class="usage-figure">
+        <figcaption>
+          <span>Included Queries per Month</span>
+          <strong>1.2M</strong>
+        </figcaption>
+        <svg viewBox="0 0 1200 190" preserveAspectRatio="none" role="img" aria-labelledby="chart-title chart-desc">
+          <title id="chart-title">Included query capacity</title>
+          <desc id="chart-desc">A rising line shows query capacity increasing from 90 thousand to 1.2 million as your team grows from 5 to 50 builders.</desc>
+          <g class="grid" aria-hidden="true"><path d="M0 30H1200M0 85H1200M0 140H1200"/><path d="M90 0V190M330 0V190M570 0V190M810 0V190M1050 0V190"/></g>
+          <path class="signal" d="M0 166 C120 160 175 154 250 142 S390 124 460 128 S620 104 700 91 S850 79 930 57 S1080 42 1200 18"/>
+          <g class="dots" aria-hidden="true"><circle cx="250" cy="142" r="4"/><circle cx="460" cy="128" r="4"/><circle cx="700" cy="91" r="4"/><circle cx="930" cy="57" r="4"/></g>
+        </svg>
+        <div class="axis" aria-hidden="true"><span>5 Builders</span><span>20 Builders</span><span>50 Builders</span></div>
+      </figure>
+    </section>
+
+    <section class="plans-section" id="plans" aria-labelledby="plans-title">
+      <div class="section-heading">
+        <div><p class="kicker">3 Plans, Clear Boundaries</p><h2 id="plans-title">Choose Your Operating Range</h2></div>
+        <p>Every plan includes unlimited viewers, metric definitions, and data exports. Upgrade when your workflow—not a hidden limit—requires it.</p>
+      </div>
+
+      <div class="plans-grid">
+        <article class="plan">
+          <header><h3>Observe</h3><p>For one team establishing a shared view of product health.</p></header>
+          <div class="plan-price"><span class="currency">$</span><strong data-price="observe">0</strong><span class="unit">forever</span></div>
+          <a class="button button-secondary" href="mailto:hello@meridian.example?subject=Create%20Meridian%20Workspace">Create Workspace</a>
+          <ul>
+            <li>2 builders, unlimited viewers</li><li>3 data sources</li><li>Daily data refresh</li><li>90-day history</li>
+          </ul>
+        </article>
+
+        <article class="plan plan-featured">
+          <div class="recommended">Recommended for Growing Teams</div>
+          <header><h3>Team</h3><p>For product, growth, and revenue teams working from one governed model.</p></header>
+          <div class="plan-price"><span class="currency">$</span><strong data-price="team-card">18</strong><span class="unit">per builder / month</span></div>
+          <p class="billing-copy" data-billing>Billed annually; $216 per builder.</p>
+          <a class="button button-primary" href="mailto:sales@meridian.example?subject=Start%20Meridian%20Team">Start Team Plan</a>
+          <div class="feature-columns">
+            <ul><li>Unlimited data sources</li><li>Hourly data refresh</li><li>3-year history</li></ul>
+            <ul><li>Metric approval flows</li><li>Slack & email digests</li><li>Priority support</li></ul>
+          </div>
+        </article>
+
+        <article class="plan">
+          <header><h3>Control</h3><p>For organizations that need security controls and dedicated capacity.</p></header>
+          <div class="plan-price"><strong class="custom">Custom</strong><span class="unit">annual agreement</span></div>
+          <a class="button button-secondary" href="mailto:sales@meridian.example?subject=Meridian%20Control">Talk to Sales</a>
+          <ul>
+            <li>SAML SSO & SCIM</li><li>Regional data hosting</li><li>Audit logs & private links</li><li>Named success architect</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="comparison" id="compare" aria-labelledby="compare-title">
+      <div class="section-heading compact"><div><p class="kicker">Plan Detail</p><h2 id="compare-title">Compare Without the Fine Print</h2></div></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable plan comparison">
+        <table>
+          <thead><tr><th scope="col">Capability</th><th scope="col">Observe</th><th scope="col">Team</th><th scope="col">Control</th></tr></thead>
+          <tbody>
+            <tr class="group"><th colspan="4" scope="colgroup">Analysis</th></tr>
+            <tr><th scope="row">Monthly queries</th><td>25K</td><td>1.2M</td><td>Dedicated</td></tr>
+            <tr><th scope="row">Data freshness</th><td>Daily</td><td>Hourly</td><td>15 minutes</td></tr>
+            <tr><th scope="row">Saved explorations</th><td>12</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr class="group"><th colspan="4" scope="colgroup">Governance</th></tr>
+            <tr><th scope="row">Metric approval</th><td><span class="dash">—</span><span class="sr-only">Not included</span></td><td><span class="check">Yes</span></td><td><span class="check">Yes</span></td></tr>
+            <tr><th scope="row">Row-level policies</th><td><span class="dash">—</span><span class="sr-only">Not included</span></td><td>5 policies</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Audit history</th><td><span class="dash">—</span><span class="sr-only">Not included</span></td><td>90 days</td><td>7 years</td></tr>
+            <tr class="group"><th colspan="4" scope="colgroup">Support</th></tr>
+            <tr><th scope="row">Response target</th><td>Community</td><td>8 business hours</td><td>1 hour</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="faq" id="questions" aria-labelledby="faq-title">
+      <div><p class="kicker">Buying Meridian</p><h2 id="faq-title">Questions Worth Asking</h2><p class="faq-intro">Pricing should survive procurement. If your question is not here, the team responds within 1 business day.</p></div>
+      <div class="questions">
+        <details><summary>Who counts as a builder?</summary><p>Only people who create or edit analyses, metrics, and dashboards. Anyone who views, filters, subscribes, or comments is free.</p></details>
+        <details><summary>Can we start monthly?</summary><p>Yes. Monthly billing is $23 per builder. Switch to annual billing at any time to reduce the rate to $18.</p></details>
+        <details><summary>What happens if we exceed query capacity?</summary><p>Queries continue. We notify workspace admins at 80% and 100%, then help tune workloads or move capacity. There are no surprise overage invoices.</p></details>
+        <details><summary>Do you offer a proof of concept?</summary><p>Control plans include a 21-day proof of concept using one production data source, with success criteria agreed before it starts.</p></details>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div><h2 id="closing-title">Put One Metric in Production This Week.</h2><p>Connect your warehouse, define a governed metric, and invite every viewer at no cost.</p></div>
+      <a class="button button-primary" href="mailto:hello@meridian.example?subject=Start%20Meridian">Start With Observe</a>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top" translate="no">Meridian</a><p>Governed analytics for product organizations.</p><p>© <span id="year"></span> Meridian Labs</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

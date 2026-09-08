@@ -1,0 +1,11 @@
+Built the complete responsive Ridgeline marketing site.
+
+### Files
+- `index.html` — page structure and content
+- `styles.css` — responsive visual design
+- `script.js` — workflow tabs and demo modal
+- `README.md` — setup notes and material assumptions
+
+Includes a detailed product preview, interactive workflow demonstration, pricing, responsive mobile layouts, accessible controls, and local demo-form behavior.
+
+Validation completed successfully with `node --check script.js`.

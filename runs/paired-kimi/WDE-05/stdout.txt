@@ -1,0 +1,9 @@
+Implemented in `fixtures/app`:
+
+- Added responsive **customer testimonials** section with an honest verification-pending state.
+- Added **In the box** section with a labelled neutral box illustration and confirmation-pending packing list.
+- Added navigation links for both sections.
+- Improved accessibility with skip navigation, focus states, form autocomplete, reduced-motion handling, and semantic SVG descriptions.
+- Documented sourcing attempts and unresolved content requirements in `fixtures/app/CONTENT_BLOCKERS.md`.
+
+No customer identities, quotations, product imagery, or box contents were fabricated.

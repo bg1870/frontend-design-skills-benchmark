@@ -1,0 +1,13 @@
+Implemented the Kettell extension in `fixtures/app`.
+
+### Added
+- Customer testimonials section with an honest verified-content pending state.
+- “In the box” section with a clearly labelled unverified packing list.
+- Navigation links for both sections.
+- Responsive styling matching the existing Kettell design system.
+
+### Documentation
+- `fixtures/app/brand-spec.md`
+- `fixtures/app/BLOCKERS.md`
+
+No testimonials, customers, ratings, product imagery, logos, or box contents were fabricated. HTML and CSS structure checks passed.

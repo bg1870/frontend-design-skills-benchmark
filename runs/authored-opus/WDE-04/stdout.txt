@@ -1,0 +1,19 @@
+Implemented a complete clickable React habit-tracking prototype.
+
+### Included
+- Today dashboard with progress and habit completion
+- Interactive habit toggles
+- Streak detail and five-week consistency view
+- Add-habit bottom sheet with name and color selection
+- Mobile-first responsive design
+- Bottom navigation
+- Desktop device preview styling
+
+### Run
+```bash
+npm run dev
+```
+
+Production build verified successfully with `npm run build`.
+
+**Assumptions:** Daily habits repeat once per day; new habits use a default leaf icon and start with a zero-day streak.

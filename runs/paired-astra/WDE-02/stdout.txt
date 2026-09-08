@@ -1,0 +1,12 @@
+Built the plumbing dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- `index.html` — accessible dashboard structure
+- `styles.css` — responsive, plumbing-specific visual design
+- `app.js` — filtering, search, assignment, completion, summaries, and error states
+- `ASSUMPTIONS.md` — recorded operational assumptions
+
+### Validation
+- JavaScript syntax passed
+- JSON source validated
+- Static accessibility and interface-guideline audit completed

@@ -1,0 +1,6 @@
+Built the finished Ridgeline single-page marketing site.
+
+- `index.html` — responsive, dependency-free marketing page
+- `ASSUMPTIONS.md` — documented product, pricing, and content assumptions
+- Includes mobile navigation, accessible interactions, product visualization, workflow, features, pricing, FAQ, and conversion CTAs
+- HTML parsing validated successfully

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e8f04f">
+  <title>Pipework Dispatch Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#queue">Skip To Job Queue</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Pipework Dispatch home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v6a4 4 0 0 0 4 4h6a4 4 0 0 1 4 4v4M2 6h6M16 18h6"/></svg>
+      <span>PIPEWORK</span><small>Dispatch</small>
+    </a>
+    <div class="shift">
+      <span id="today">Today</span>
+      <strong>Morning Shift</strong>
+    </div>
+    <button class="icon-button" id="refresh" type="button" aria-label="Refresh jobs" title="Refresh jobs">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M18.5 9A7 7 0 0 0 6.2 6.2L4 8m16 8-2.2 1.8A7 7 0 0 1 5.5 15"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-heading">
+      <h1 id="summary-heading">Dispatch Overview</h1>
+      <dl id="metrics" aria-live="polite">
+        <div><dt>Total Jobs</dt><dd>—</dd></div>
+        <div><dt>Open</dt><dd>—</dd></div>
+        <div><dt>Assigned</dt><dd>—</dd></div>
+        <div><dt>Completed</dt><dd>—</dd></div>
+      </dl>
+      <p id="alert-summary">Loading queue…</p>
+    </section>
+
+    <section class="queue" id="queue" aria-labelledby="queue-heading">
+      <div class="queue-heading">
+        <div>
+          <p class="section-label">Live Board</p>
+          <h2 id="queue-heading">Job Queue</h2>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span class="sr-only">Search jobs</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+            <input id="search" name="search" type="search" placeholder="Search jobs…" autocomplete="off">
+          </label>
+          <label class="filter-label" for="status-filter">Show</label>
+          <select id="status-filter" name="status" aria-label="Filter jobs by status">
+            <option value="active">Active Jobs</option>
+            <option value="all">All Jobs</option>
+            <option value="open">Open</option>
+            <option value="assigned">Assigned</option>
+            <option value="done">Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="queue-state" class="queue-state" aria-live="polite">Loading jobs…</div>
+      <div class="table-wrap" hidden>
+        <table>
+          <thead><tr><th scope="col">Job</th><th scope="col">Service & Location</th><th scope="col">Scheduled</th><th scope="col">Technician</th><th scope="col">Status</th></tr></thead>
+          <tbody id="job-rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer><span>Pipework Service Co.</span><span id="sync-time">Awaiting sync</span></footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7faff">
+  <meta name="description" content="Dispatcher job queue for Northline Plumbing.">
+  <title>Dispatch board · Northline Plumbing</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to job queue</a>
+
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Northline Plumbing dispatch home">
+      <img src="assets/mark.svg" width="36" height="36" alt="">
+      <span class="brand-copy"><strong>Northline Plumbing</strong><span>Dispatch</span></span>
+    </a>
+    <div class="topbar-actions">
+      <div class="sync-state" id="syncState" role="status" aria-live="polite"><span></span>Live schedule</div>
+      <button class="icon-button" type="button" aria-label="Notifications" title="No new notifications">
+        <img src="assets/icons/bell.svg" width="20" height="20" alt="">
+      </button>
+      <button class="profile-button" type="button" aria-label="Dispatcher account menu">
+        <span class="avatar" aria-hidden="true">DK</span>
+        <span class="profile-copy"><strong>Dana Kim</strong><span>Dispatcher</span></span>
+        <img src="assets/icons/caret-down.svg" width="16" height="16" alt="">
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="summary-section" aria-labelledby="pageTitle">
+      <div class="summary-heading">
+        <div>
+          <p class="date-kicker" id="dateKicker">Schedule</p>
+          <h1 id="pageTitle">Good morning, Dana</h1>
+        </div>
+        <p class="summary-note"><span class="summary-open-count" id="openCallout">2</span> jobs still need a technician</p>
+      </div>
+
+      <div class="summary-bar" aria-label="Job summary">
+        <article class="summary-item summary-primary">
+          <span class="summary-icon"><img src="assets/icons/calendar-blank.svg" width="20" height="20" alt=""></span>
+          <span><small>Scheduled</small><strong id="scheduledCount">6</strong></span>
+          <span class="summary-detail" id="scheduleRange">Sep 5 to 11</span>
+        </article>
+        <article class="summary-item">
+          <span class="status-mark mark-open" aria-hidden="true"></span>
+          <span><small>Open</small><strong id="openCount">2</strong></span>
+          <span class="summary-detail">Needs assignment</span>
+        </article>
+        <article class="summary-item">
+          <span class="status-mark mark-assigned" aria-hidden="true"></span>
+          <span><small>Assigned</small><strong id="assignedCount">2</strong></span>
+          <span class="summary-detail">Crew confirmed</span>
+        </article>
+        <article class="summary-item">
+          <span class="status-mark mark-done" aria-hidden="true"></span>
+          <span><small>Complete</small><strong id="doneCount">2</strong></span>
+          <span class="summary-detail">Closed jobs</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="queue-section" aria-labelledby="queueTitle">
+      <div class="queue-header">
+        <div>
+          <h2 id="queueTitle">Job queue</h2>
+          <p id="resultCount" aria-live="polite">6 jobs</p>
+        </div>
+        <div class="view-toggle" aria-label="Queue view">
+          <button class="view-button active" type="button" data-view="list" aria-pressed="true">List</button>
+          <button class="view-button" type="button" data-view="compact" aria-pressed="false">Compact</button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="search-control">
+          <span class="sr-only">Search jobs</span>
+          <img src="assets/icons/magnifying-glass.svg" width="18" height="18" alt="">
+          <input id="searchInput" type="search" name="job-search" autocomplete="off" placeholder="Search job, address, or technician…">
+          <kbd>/</kbd>
+        </label>
+        <div class="filters" role="group" aria-label="Filter by status">
+          <button class="filter-chip active" type="button" data-status="all" aria-pressed="true">All <span id="allChip">6</span></button>
+          <button class="filter-chip" type="button" data-status="open" aria-pressed="false">Open <span id="openChip">2</span></button>
+          <button class="filter-chip" type="button" data-status="assigned" aria-pressed="false">Assigned <span id="assignedChip">2</span></button>
+          <button class="filter-chip" type="button" data-status="done" aria-pressed="false">Complete <span id="doneChip">2</span></button>
+        </div>
+        <label class="sort-control">
+          <span class="sr-only">Sort jobs</span>
+          <img src="assets/icons/sliders-horizontal.svg" width="18" height="18" alt="">
+          <select id="sortSelect" name="sort-jobs">
+            <option value="soonest">Soonest first</option>
+            <option value="latest">Latest first</option>
+            <option value="status">Status</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="errorState" class="state-panel error-state" hidden role="alert">
+        <img src="assets/icons/warning-circle.svg" width="24" height="24" alt="">
+        <div><strong>Schedule could not be loaded</strong><p>Check the data file, then try again.</p></div>
+        <button id="retryButton" class="secondary-button" type="button">Try again</button>
+      </div>
+
+      <div id="loadingState" class="job-list" aria-label="Loading jobs">
+        <div class="skeleton-row"></div><div class="skeleton-row"></div><div class="skeleton-row"></div>
+      </div>
+      <div id="jobList" class="job-list" hidden></div>
+      <div id="emptyState" class="state-panel empty-state" hidden>
+        <img src="assets/icons/magnifying-glass.svg" width="28" height="28" alt="">
+        <strong>No jobs match this view</strong>
+        <p>Clear the search or choose another status.</p>
+        <button id="clearFilters" class="secondary-button" type="button">Clear filters</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <img src="assets/icons/check-circle.svg" width="20" height="20" alt="">
+    <span id="toastMessage"></span>
+  </div>
+
+  <dialog id="assignDialog" aria-labelledby="dialogTitle">
+    <form method="dialog" id="assignForm">
+      <div class="dialog-header">
+        <div><p class="date-kicker">Assign technician</p><h2 id="dialogTitle">Choose a crew member</h2></div>
+        <button class="icon-button" value="cancel" aria-label="Close assignment dialog" type="submit">×</button>
+      </div>
+      <p class="dialog-job" id="dialogJob"></p>
+      <fieldset id="technicianOptions"><legend class="sr-only">Available technicians</legend></fieldset>
+      <p class="form-error" id="assignError" tabindex="-1" hidden>Select a technician to continue.</p>
+      <div class="dialog-actions">
+        <button class="secondary-button" value="cancel" type="submit">Cancel</button>
+        <button class="primary-button" id="confirmAssign" value="default" type="submit">Assign technician</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

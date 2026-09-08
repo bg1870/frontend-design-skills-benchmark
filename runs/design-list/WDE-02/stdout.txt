@@ -1,0 +1,19 @@
+Built the plumbing dispatcher dashboard.
+
+### Deliverables
+- `index.html` — responsive dashboard
+- `styles.css` — polished operational UI and states
+- `app.js` — JSON loading, search, filters, sorting, compact view, and technician assignment
+- `assumptions.md` — recorded material assumptions
+- `assets/` — local brand mark and Phosphor icons
+- `.tastemaker/` — style lock, reference board, and pending design decisions
+
+### Verification
+- JavaScript syntax passed
+- JSON validation passed
+- SVG assets validated
+- Anti-slop scan passed
+- Motion audit passed
+- HTTP source-loading smoke test passed
+
+The dashboard reads `fixtures/jobs.json` at runtime, with a mirrored fallback for direct local-file previews. No personal taste profile was modified.

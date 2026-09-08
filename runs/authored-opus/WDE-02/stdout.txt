@@ -1,0 +1,17 @@
+Implemented the plumbing dispatcher dashboard.
+
+### Files
+- `index.html` — Dashboard structure
+- `styles.css` — Responsive desktop/mobile styling
+- `app.js` — Loads and displays `fixtures/jobs.json`, with filtering, search, and sorting
+- `ASSUMPTIONS.md` — Material assumptions documented
+
+### Features
+- Top summary metrics
+- Job queue with statuses and technician assignments
+- Search, filtering, and sorting
+- Responsive mobile layout
+- Empty/loading/error states
+- Demo New Job interaction
+
+Validation passed for JavaScript syntax and fixture JSON.

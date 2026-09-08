@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Signalist pricing — product analytics that turns every customer signal into a decision.">
+  <title>Pricing — Signalist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#" aria-label="Signalist home">
+        <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M5 25.5V17a12 12 0 0 1 24 0v8.5"/><path d="M11 25.5V17a6 6 0 0 1 12 0v8.5"/><circle cx="17" cy="25.5" r="2.5"/></svg>
+        <span>signalist</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links"><span class="sr-only">Open menu</span><span></span><span></span></button>
+        <div class="nav-links" id="nav-links">
+          <a href="#features">Product</a><a href="#proof">Customers</a><a href="#faq">Resources</a><a href="#pricing">Pricing</a>
+        </div>
+      </nav>
+      <div class="nav-actions"><a href="#login">Log in</a><a class="button button-small" href="#contact">Get a demo <span>↗</span></a></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="pricing">
+      <div class="orb orb-one"></div><div class="orb orb-two"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow"><span></span> Straightforward pricing</div>
+        <h1>Turn your data into<br><em>decisions.</em></h1>
+        <p class="hero-copy">Start with the essentials, scale when you’re ready. Every plan gives your team the clarity to move with confidence.</p>
+        <div class="billing" role="group" aria-label="Billing frequency">
+          <button data-period="monthly" aria-pressed="false">Monthly</button>
+          <button class="active" data-period="annual" aria-pressed="true">Annual <span>Save 20%</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-section" aria-label="Pricing plans">
+      <div class="container pricing-grid">
+        <article class="plan-card">
+          <div class="plan-top"><span class="plan-number">01</span><div class="plan-icon blue">↗</div></div>
+          <h2>Launch</h2><p class="plan-for">For teams finding product-market fit.</p>
+          <div class="price"><span class="currency">$</span><strong data-monthly="59" data-annual="49">49</strong><span class="term">/ month<br><small>billed annually</small></span></div>
+          <a class="button button-outline" href="#start">Start free <span>↗</span></a>
+          <div class="divider"></div><h3>Everything you need to start:</h3>
+          <ul><li>Up to 25K monthly events</li><li>5 team seats</li><li>Core product analytics</li><li>Unlimited dashboards</li><li>30-day data history</li><li>Community support</li></ul>
+        </article>
+
+        <article class="plan-card featured">
+          <div class="popular">MOST POPULAR</div>
+          <div class="plan-top"><span class="plan-number">02</span><div class="plan-icon coral">✦</div></div>
+          <h2>Scale</h2><p class="plan-for">For growing teams ready to move faster.</p>
+          <div class="price"><span class="currency">$</span><strong data-monthly="179" data-annual="149">149</strong><span class="term">/ month<br><small>billed annually</small></span></div>
+          <a class="button button-dark" href="#start">Start free <span>↗</span></a>
+          <div class="divider"></div><h3>Everything in Launch, plus:</h3>
+          <ul><li>Up to 250K monthly events</li><li>Unlimited team seats</li><li>Advanced behavioral insights</li><li>AI-powered reports</li><li>1-year data history</li><li>Priority support</li></ul>
+        </article>
+
+        <article class="plan-card enterprise">
+          <div class="plan-top"><span class="plan-number">03</span><div class="plan-icon yellow">⌁</div></div>
+          <h2>Enterprise</h2><p class="plan-for">For organizations operating at scale.</p>
+          <div class="price custom"><strong>Let’s talk</strong><span class="term">Tailored to your<br>team’s needs</span></div>
+          <a class="button button-outline" href="#contact">Contact sales <span>↗</span></a>
+          <div class="divider"></div><h3>Everything in Scale, plus:</h3>
+          <ul><li>Custom event volume</li><li>SAML SSO & advanced roles</li><li>Data warehouse sync</li><li>Custom data retention</li><li>Dedicated success manager</li><li>Enterprise SLA & security</li></ul>
+        </article>
+      </div>
+      <p class="trial-note"><span>✓</span> All plans include a 14-day free trial. No credit card required.</p>
+    </section>
+
+    <section class="logo-strip" id="proof"><div class="container"><p>Trusted by product teams who never stop asking why</p><div class="logos"><span>APERTURE</span><span class="logo-script">Northstar</span><span>QUOTIENT</span><span>◆ VERTEX</span><span class="logo-serif">Arc & Co.</span></div></div></section>
+
+    <section class="included" id="features"><div class="container included-grid"><div><div class="eyebrow"><span></span> Included in every plan</div><h2>The essentials are<br>never an <em>extra.</em></h2></div><div class="feature-list"><div><b>01</b><p><strong>Built for speed</strong><span>Reports load in milliseconds, not minutes.</span></p></div><div><b>02</b><p><strong>Your data, protected</strong><span>SOC 2 Type II, GDPR, and encryption by default.</span></p></div><div><b>03</b><p><strong>Set up in an afternoon</strong><span>One lightweight SDK. No engineering maze.</span></p></div></div></div></section>
+
+    <section class="faq" id="faq"><div class="container"><div class="eyebrow"><span></span> Common questions</div><h2>Good to <em>know.</em></h2><div class="faq-grid">
+      <details><summary>Can I change plans at any time?<i>+</i></summary><p>Yes. Upgrade, downgrade, or cancel whenever you need. Changes are prorated automatically.</p></details>
+      <details><summary>What counts as an event?<i>+</i></summary><p>An event is any tracked action a user takes in your product, such as viewing a page or completing a workflow.</p></details>
+      <details><summary>Is there a free trial?<i>+</i></summary><p>Every self-serve plan includes 14 days free with no credit card required.</p></details>
+      <details><summary>Do you offer startup discounts?<i>+</i></summary><p>Yes. Eligible early-stage startups can contact our team for special pricing.</p></details>
+    </div></div></section>
+  </main>
+
+  <footer id="contact"><div class="container footer-grid"><div><a class="brand brand-light" href="#"><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M5 25.5V17a12 12 0 0 1 24 0v8.5"/><path d="M11 25.5V17a6 6 0 0 1 12 0v8.5"/><circle cx="17" cy="25.5" r="2.5"/></svg><span>signalist</span></a><p>Know what happened.<br>Understand why.</p></div><div><span>PRODUCT</span><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#">Integrations</a></div><div><span>COMPANY</span><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a></div><div><span>LEGAL</span><a href="#">Privacy</a><a href="#">Security</a><a href="#">Terms</a></div></div><div class="container copyright">© 2026 Signalist, Inc. <span>Made for curious teams.</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>

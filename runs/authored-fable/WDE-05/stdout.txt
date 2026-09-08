@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added responsive **In the box** section with a clearly labelled inventory placeholder.
+- Added **Customer notes** section without fabricating testimonials or identities.
+- Extended navigation for both sections.
+- Matched the existing Kettell typography, palette, spacing, and responsive behavior.
+- Documented sourcing attempts and unresolved content in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Confirmed `index.html` parses successfully.

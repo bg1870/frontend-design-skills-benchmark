@@ -1,0 +1,20 @@
+{
+  "name": "stride-habit-prototype",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "vite": "^7.1.3",
+    "typescript": "~5.8.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "@vitejs/plugin-react": "^5.0.4"
+  },
+  "devDependencies": {}
+}

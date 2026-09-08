@@ -1,0 +1,9 @@
+[done] authored-fable/WDE-05 exit=0 seconds=142
+[done] authored-fable/WDE-04 exit=0 seconds=268
+[done] authored-fable/WDE-01 exit=0 seconds=307
+[done] authored-fable/WDE-03 exit=0 seconds=334
+[done] authored-fable/WDE-02 exit=0 seconds=483
+ALL DONE
+/home/basil/tmp/.local/run.sh: line 52: one: command not found
+/home/basil/tmp/.local/run.sh: line 54: syntax error near unexpected token `done'
+/home/basil/tmp/.local/run.sh: line 54: `  done'

@@ -1,0 +1,14 @@
+`SKILL.md` written — 96 lines, single file, no dependencies.
+
+The structure is built around one bet: my generic output isn't a craft failure, it's a *commitment* failure. I converge on the same page because I start writing markup before deciding anything. So step 1 forces a direction choice from a 7-row table with concrete OKLCH triples, type pairings, and edge treatments — including a deterministic tiebreak (product name's first letter mod 7) specifically to defeat "reach for the one that feels natural," which is always the generic one. Hybridising two rows is allowed; averaging all seven is not. That's the anti-monoculture mechanism: seven bodies of craft rules that are style-agnostic, one direction that isn't.
+
+The rest encodes the things I do on autopilot:
+
+- **Optical type corrections** I skip by default — negative tracking above 32px, positive on small caps, measure caps (a headline running the full container width is the single most common tell), largest text ≥6× smallest with the middle tier deleted if everything lands mid-size.
+- **Neutrals in OKLCH at one hue, chroma 0.005–0.02**, with `gray-*` and `#f3f4f6` banned outright — plus the rule that text is never pure black or white.
+- **Pick one elevation language.** Border + shadow + background-shift on the same component is the generated look; so is `0 10px 15px rgba(0,0,0,0.1)` everywhere.
+- **One deliberate container break** and a ban on three equal cards as the primary layout.
+- **Content as half the design** — real numbers, one outlier, one negative, one string that has to truncate, plus a banned-word list.
+- A **named banlist** (§8) of my actual fingerprints, and a §9 check that greps my own output for them.
+
+Two judgment calls worth flagging: the description routes extension-of-existing-site work to "extract the site's tokens, novelty is a bug" rather than the direction table, since a beautiful page that clashes with its host is a failure. And I spent lines on OKLCH values rather than prose because a triple changes a render and an adjective doesn't.

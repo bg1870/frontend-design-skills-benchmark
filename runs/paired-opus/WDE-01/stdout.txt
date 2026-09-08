@@ -1,0 +1,9 @@
+Built and audited the finished Ridgeline marketing site.
+
+### Deliverables
+- `index.html` — Responsive single-page site
+- `styles.css` — Utility-brutalist visual system and responsive styling
+- `script.js` — Interactive schedule and payroll demo actions
+- `ASSUMPTIONS.md` — Material product and design assumptions
+
+Includes accessible navigation, keyboard focus states, reduced-motion support, mobile reflow, realistic restaurant scheduling content, pricing, and email-based conversion links.

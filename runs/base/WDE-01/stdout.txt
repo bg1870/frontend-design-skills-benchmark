@@ -1,0 +1,15 @@
+Built the finished Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — complete responsive landing page
+- `styles.css` — polished desktop/mobile design
+- `script.js` — mobile navigation and scroll animations
+- `README.md` — setup instructions and material assumptions
+
+Run locally with:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then visit `http://localhost:8080`.

@@ -1,0 +1,1 @@
+Make every design decision yourself — do not ask me anything, request confirmation, or pause at checkpoints. Select sensible defaults, record material assumptions, and deliver the finished artifact in one pass. I want a clickable React prototype of a mobile habit-tracking app: today view, streak detail, and add-habit sheet.

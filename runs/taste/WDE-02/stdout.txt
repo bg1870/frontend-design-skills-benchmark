@@ -1,0 +1,17 @@
+Delivered the dispatcher dashboard.
+
+### Files
+- `index.html` — responsive dashboard structure
+- `styles.css` — light/dark themes and mobile layouts
+- `app.js` — fixture loading, summaries, search, filters, sorting, job creation
+- `ASSUMPTIONS.md` — documented material assumptions
+- `fixtures/jobs.json` — runtime data source
+
+### Run
+```bash
+python3 -m http.server 4173
+```
+
+Open `http://localhost:4173`.
+
+Validated JavaScript syntax, JSON parsing, and HTTP fixture loading.

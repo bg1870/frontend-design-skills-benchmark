@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ridgeline brings restaurant scheduling, time tracking, and payroll into one calm weekly rhythm." />
+  <title>Ridgeline — Run the week, not after it</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ridgeline home">
+      <svg viewBox="0 0 42 24" aria-hidden="true"><path d="M2 20 12 8l6 7L27 3l13 17"/><path d="M2 20h38"/></svg>
+      <span>Ridgeline</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#product">Product</a><a href="#week">How it works</a><a href="#owners">For owners</a>
+    </nav>
+    <a class="button button-small" href="#demo">Book a walkthrough</a>
+    <button class="menu" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <div class="kicker"><span></span>Built for independent restaurants</div>
+        <h1>Run the week.<br>Not after it.</h1>
+        <p>Ridgeline keeps the schedule, hours, and payroll in one place—so you can close out Friday before the dinner rush.</p>
+        <div class="hero-actions">
+          <a class="button" href="#demo">See Ridgeline in action</a>
+          <a class="text-link" href="#product">Take the product tour <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="trust-line"><strong>One clean handoff</strong><span>Schedule</span><i></i><span>Timecards</span><i></i><span>Payroll</span></div>
+      </div>
+
+      <div class="schedule-wrap" aria-label="Example weekly staff schedule">
+        <div class="schedule-top">
+          <div><b>This week</b><span>Jun 16–22</span></div>
+          <span class="status"><i></i> Schedule live</span>
+        </div>
+        <div class="schedule-grid">
+          <div class="corner">Team</div>
+          <div class="day"><b>MON</b><span>16</span></div><div class="day"><b>TUE</b><span>17</span></div><div class="day active"><b>WED</b><span>18</span></div><div class="day"><b>THU</b><span>19</span></div><div class="day"><b>FRI</b><span>20</span></div>
+          <div class="person"><span class="avatar a1">MC</span><div><b>Maya</b><small>Server</small></div></div>
+          <div class="shift coral">4–10p</div><div class="shift empty">OFF</div><div class="shift blue">11a–5p</div><div class="shift coral">4–10p</div><div class="shift coral">5–11p</div>
+          <div class="person"><span class="avatar a2">JR</span><div><b>Jonah</b><small>Line cook</small></div></div>
+          <div class="shift blue">10a–4p</div><div class="shift blue">10a–4p</div><div class="shift blue">10a–4p</div><div class="shift empty">OFF</div><div class="shift gold">2–10p</div>
+          <div class="person"><span class="avatar a3">AS</span><div><b>Ari</b><small>Bar</small></div></div>
+          <div class="shift empty">OFF</div><div class="shift coral">5–11p</div><div class="shift coral">5–11p</div><div class="shift coral">5–11p</div><div class="shift coral">5–12a</div>
+          <div class="person"><span class="avatar a4">LN</span><div><b>Leah</b><small>Host</small></div></div>
+          <div class="shift gold">3–9p</div><div class="shift gold">3–9p</div><div class="shift empty">PTO</div><div class="shift gold">3–9p</div><div class="shift gold">4–10p</div>
+        </div>
+        <div class="coverage-note"><span>✓</span><div><b>Friday is fully covered</b><small>Labor is on target at 24.6%</small></div></div>
+      </div>
+    </section>
+
+    <section class="problem-strip" aria-label="Ridgeline benefits">
+      <p>No more schedule in a spreadsheet.</p><p>No more hours in a group text.</p><p>No more Sunday-night payroll.</p>
+    </section>
+
+    <section class="product" id="product">
+      <div class="section-heading"><p>One week, one system</p><h2>From “who can cover?”<br>to payroll ready.</h2></div>
+      <div class="product-stage">
+        <div class="tabs" role="tablist" aria-label="Product features">
+          <button role="tab" aria-selected="true" data-tab="schedule"><span>Build the schedule</span><small>See availability, labor, and gaps as you go.</small></button>
+          <button role="tab" aria-selected="false" data-tab="hours"><span>Approve the hours</span><small>Catch missed punches before they become payroll problems.</small></button>
+          <button role="tab" aria-selected="false" data-tab="payroll"><span>Run payroll</span><small>Tips, overtime, and taxes—ready without retyping.</small></button>
+        </div>
+        <div class="product-screen" id="feature-screen">
+          <div class="screen-bar"><span class="mini-brand">R</span><b id="screen-title">Schedule</b><span>Jun 16–22</span><button>Publish week</button></div>
+          <div class="screen-body" id="screen-body">
+            <div class="labor-card"><small>PROJECTED LABOR</small><strong>24.6%</strong><span>Target 22–26%</span><div class="meter"><i></i></div></div>
+            <div class="coverage"><div><span>Lunch</span><b>Covered</b></div><div><span>Dinner</span><b>1 gap</b></div><div><span>Scheduled</span><b>342 hrs</b></div></div>
+            <div class="gap"><span>FRI · DINNER</span><b>Need 1 line cook</b><button>Offer open shift</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="week" id="week">
+      <div class="week-title"><h2>A calmer weekly rhythm.</h2><p>Ridgeline keeps routine work moving before it turns into cleanup.</p></div>
+      <ol>
+        <li><span>Monday</span><div><h3>Set the week</h3><p>Build from your last schedule. Availability and approved time off are already there.</p></div><b>15 min</b></li>
+        <li><span>Every shift</span><div><h3>Stay ahead</h3><p>Your team clocks in, trades shifts, and gets updates without another group chat.</p></div><b>Live</b></li>
+        <li><span>Payday</span><div><h3>Close with confidence</h3><p>Review exceptions, approve hours, and run payroll from the same record.</p></div><b>Done</b></li>
+      </ol>
+    </section>
+
+    <section class="owner-quote" id="owners">
+      <div class="quote-mark">“</div>
+      <blockquote>Friday night should be about the floor, not figuring out whose hours are right.</blockquote>
+      <p>Ridgeline gives owners one dependable place to see the whole week.</p>
+      <div class="receipt">
+        <div class="receipt-head"><span>WEEK CLOSED</span><b>FRI 4:12 PM</b></div>
+        <div><span>Timecards approved</span><b>28 / 28</b></div><div><span>Payroll exceptions</span><b>0</b></div><div><span>Tips allocated</span><b>✓</b></div>
+        <p>READY TO RUN PAYROLL</p>
+      </div>
+    </section>
+
+    <section class="cta" id="demo">
+      <div><p>See your next week in Ridgeline</p><h2>Bring the schedule.<br>We’ll bring the calm.</h2></div>
+      <form class="demo-form">
+        <label for="email">Work email</label>
+        <div><input id="email" type="email" placeholder="you@yourrestaurant.com" required><button class="button" type="submit">Book a walkthrough</button></div>
+        <small>20 minutes. Your questions, your workflow—no hard sell.</small>
+        <p class="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top"><svg viewBox="0 0 42 24" aria-hidden="true"><path d="M2 20 12 8l6 7L27 3l13 17"/><path d="M2 20h38"/></svg><span>Ridgeline</span></a><p>Scheduling and payroll for independent restaurants.</p><div><a href="#">Privacy</a><a href="#">Terms</a><span>© 2026 Ridgeline</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>

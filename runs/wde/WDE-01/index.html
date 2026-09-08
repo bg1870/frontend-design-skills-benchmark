@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ridgeline brings restaurant scheduling and payroll into one clear weekly rhythm.">
+  <title>Ridgeline — Payroll that knows the schedule</title>
+  <style>
+    :root {
+      --ink-950:#171A18; --ink-700:#454A46; --ink-500:#6B716C;
+      --steel-300:#DDE0DA; --steel-150:#E8EAE4; --paper-100:#F3F0E7; --paper-50:#FAF8F1;
+      --red-600:#C9331F; --red-500:#E5482D; --red-100:#F7D7CF; --white:#FFFFFF;
+      --text:var(--ink-950); --text-soft:var(--ink-700); --muted:var(--ink-500); --ground:var(--paper-100);
+      --display:"Helvetica Neue","Nimbus Sans Narrow",sans-serif;
+      --body:"Helvetica Neue","Nimbus Sans",sans-serif;
+      --mono:"Nimbus Mono PS","Liberation Mono",monospace;
+      --ease:cubic-bezier(.22,1,.36,1); --fast:160ms; --standard:320ms; --reveal:700ms;
+      --pad:clamp(24px,4.4vw,64px); --section:clamp(72px,10vw,144px); --max:1440px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--ground);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.5;text-wrap:pretty} button,input{font:inherit} a{color:inherit} ::selection{background:var(--red-500);color:var(--white)}
+    .shell{width:min(100%,var(--max));margin-inline:auto;padding-inline:var(--pad)}
+    .site-header{height:88px;border-bottom:1px solid var(--steel-300);display:flex;align-items:center;position:relative;z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:32px;width:100%}.brand{display:flex;align-items:center;gap:13px;text-decoration:none;font-weight:800;letter-spacing:-.04em;font-size:23px}.logo-pending{font:10px/1 var(--mono);letter-spacing:.04em;border:1px dashed var(--ink-500);padding:7px;color:var(--muted)}
+    .nav-links{display:flex;align-items:center;gap:32px}.nav-links a:not(.button){font-size:14px;text-decoration:none;font-weight:600}.nav-links a:hover{text-decoration:underline;text-underline-offset:5px}.menu-toggle{display:none;background:none;border:1px solid var(--ink-950);min-width:48px;min-height:48px}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;background:var(--red-600);color:var(--white);border:1px solid var(--red-600);text-decoration:none;font-weight:700;transition:transform var(--fast) var(--ease),background var(--fast) var(--ease)}.button:hover{background:var(--red-600);transform:translateY(-2px)}.button:active{transform:none}.button:disabled{background:var(--steel-300);border-color:var(--steel-300);color:var(--ink-500);transform:none;cursor:not-allowed}.button:focus-visible,.menu-toggle:focus-visible,.faq button:focus-visible{outline:2px solid var(--ink-950);outline-offset:3px;box-shadow:0 0 0 2px var(--white)}.button.secondary{background:transparent;color:var(--ink-950);border-color:var(--ink-950)}
+    .hero{min-height:calc(100svh - 88px);display:grid;grid-template-columns:repeat(12,1fr);gap:28px;align-content:center;padding-block:clamp(56px,8vw,112px);overflow:hidden}.hero-copy{grid-column:1/10}.kicker{font:700 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:0 0 24px}.hero h1{font-family:var(--display);font-size:clamp(68px,11.2vw,164px);font-weight:900;letter-spacing:-.065em;line-height:.8;margin:0;max-width:12ch}.hero h1 span{display:block;animation:rise var(--reveal) var(--ease) both}.hero h1 span:nth-child(2){animation-delay:90ms}.hero h1 .red{color:var(--red-500)}.hero-side{grid-column:10/13;align-self:end;border-top:1px solid var(--ink-950);padding-top:18px}.hero-side p{font-size:clamp(17px,1.45vw,21px);margin:0 0 28px;line-height:1.38}.quiet-link{font-weight:700;text-underline-offset:5px}.hero-foot{grid-column:1/13;margin-top:48px;border-top:1px solid var(--steel-300);padding-top:12px;display:flex;justify-content:space-between;color:var(--muted);font:12px var(--mono)}
+    @keyframes rise{from{opacity:0;transform:translateY(.55em)}to{opacity:1;transform:none}}
+    .statement{background:var(--red-500);color:var(--ink-950);padding-block:var(--section)}.statement p{font-family:var(--display);font-size:clamp(46px,7.5vw,110px);font-weight:900;letter-spacing:-.06em;line-height:.88;margin:0;max-width:12ch}.statement p span{color:var(--white)}
+    .product{padding-block:var(--section)}.product-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:28px}.product-copy{grid-column:1/5;position:sticky;top:32px;align-self:start}.product-copy h2,.workflow h2,.faq-title{font-family:var(--display);font-size:clamp(48px,6vw,88px);line-height:.88;letter-spacing:-.055em;margin:0 0 28px}.product-copy p{max-width:34ch;color:var(--text-soft);font-size:19px}.product-frame{grid-column:6/13;background:var(--paper-50);border:1px solid var(--ink-950)}
+    .preview-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 16px;border-bottom:1px solid var(--steel-300);font:11px var(--mono);text-transform:uppercase;letter-spacing:.05em}.preview-label{background:var(--red-100);padding:4px 7px}.preview-head{padding:28px 24px 18px;display:flex;justify-content:space-between;gap:20px;align-items:end}.preview-head h3{font-size:32px;letter-spacing:-.04em;margin:0}.coverage{font:12px var(--mono);color:var(--text-soft)}
+    .shift-list{border-top:1px solid var(--steel-300)}.shift{display:grid;grid-template-columns:72px 1fr auto;gap:16px;padding:18px 24px;border-bottom:1px solid var(--steel-150);align-items:center}.day{font:700 12px var(--mono);text-transform:uppercase}.person{font-weight:700}.role{display:block;color:var(--muted);font-size:13px;font-weight:400}.time{font:12px var(--mono);text-align:right}.time b{display:block;color:var(--red-600)}.payroll-strip{display:grid;grid-template-columns:1fr auto;padding:24px;gap:24px;background:var(--ink-950);color:var(--white)}.payroll-strip p{margin:0;color:var(--steel-300);font-size:13px}.payroll-strip strong{font-family:var(--display);font-size:28px;letter-spacing:-.04em}.source-note{font:11px var(--mono);color:var(--muted);padding:12px 24px;margin:0}
+    .workflow{padding-block:var(--section);border-top:1px solid var(--steel-300)}.workflow-top{display:grid;grid-template-columns:repeat(12,1fr);gap:28px;margin-bottom:72px}.workflow h2{grid-column:1/9}.workflow-intro{grid-column:10/13;align-self:end;margin:0;color:var(--text-soft)}.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink-950)}.step{padding:24px 28px 48px 0;border-right:1px solid var(--steel-300);min-height:250px}.step+.step{padding-left:28px}.step:last-child{border-right:0}.step-index{font:12px var(--mono);display:block;margin-bottom:64px}.step h3{font-size:26px;letter-spacing:-.035em;margin:0 0 12px}.step p{margin:0;color:var(--text-soft);max-width:30ch}
+    .faq-section{padding-block:var(--section);background:var(--paper-50)}.faq-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:28px}.faq-title{grid-column:1/5}.faq{grid-column:6/13;border-top:1px solid var(--ink-950)}.faq-item{border-bottom:1px solid var(--steel-300)}.faq button{width:100%;min-height:76px;background:none;border:0;display:flex;justify-content:space-between;align-items:center;text-align:left;padding:18px 0;font-weight:700;cursor:pointer}.faq button span:last-child{font:24px var(--mono)}.faq-answer{display:none;max-width:58ch;color:var(--text-soft);padding:0 40px 24px 0}.faq-item.open .faq-answer{display:block}
+    .close{background:var(--ink-950);color:var(--white);padding-block:var(--section)}.close-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:28px}.close h2{grid-column:1/9;font-family:var(--display);font-size:clamp(62px,9vw,132px);line-height:.82;letter-spacing:-.065em;margin:0}.close-form{grid-column:9/13;align-self:end}.close-form p{color:var(--steel-300)}label{font:11px var(--mono);display:block;margin-bottom:7px;text-transform:uppercase}.field{display:grid;grid-template-columns:1fr auto}.field input{min-width:0;height:54px;background:var(--paper-50);border:1px solid var(--paper-50);padding:0 14px;color:var(--ink-950)}.field input:focus{outline:2px solid var(--red-600);outline-offset:-3px}.field input:invalid:not(:placeholder-shown){background:var(--red-100);border-color:var(--red-600)}.field .button{height:54px}.form-note,.form-status{font:11px var(--mono);color:var(--steel-300);margin-top:10px}.form-status{min-height:18px;color:var(--white)}
+    footer{background:var(--ink-950);color:var(--steel-300);border-top:1px solid var(--ink-700);padding-block:28px}.footer-row{display:flex;justify-content:space-between;gap:24px;font:11px var(--mono)}
+    @media(max-width:820px){.site-header{height:76px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:76px;left:0;right:0;background:var(--paper-100);border-bottom:1px solid var(--ink-950);padding:24px var(--pad);flex-direction:column;align-items:stretch}.nav-links.open{display:flex}.hero{min-height:auto;display:block}.hero h1{font-size:clamp(64px,20vw,104px)}.hero-side{margin-top:48px;max-width:420px}.hero-foot{margin-top:64px}.product-grid,.workflow-top,.faq-grid,.close-grid{display:block}.product-copy{position:static;margin-bottom:48px}.preview-head{align-items:start;flex-direction:column}.workflow-intro{max-width:40ch}.steps{grid-template-columns:1fr;margin-top:48px}.step,.step+.step{padding:24px 0 40px;border-right:0;border-bottom:1px solid var(--steel-300);min-height:0}.step-index{margin-bottom:32px}.faq-title{margin-bottom:48px}.close-form{margin-top:56px;max-width:520px}.field{grid-template-columns:1fr}.field .button{width:100%}.footer-row{flex-direction:column}.logo-pending{display:none}}
+    @media(max-width:480px){.shift{grid-template-columns:58px 1fr}.time{grid-column:2;text-align:left}.hero-foot{display:block}.hero-foot span{display:block;margin-top:6px}.preview-head,.shift,.payroll-strip{padding-inline:16px}.payroll-strip{grid-template-columns:1fr}.nav-links .button{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="shell nav">
+    <a class="brand" href="#top" aria-label="Ridgeline home"><span class="logo-pending">[logo pending]</span><span>Ridgeline</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <nav class="nav-links" id="nav-links" aria-label="Primary"><a href="#product">Product</a><a href="#how">How it works</a><a href="#questions">Questions</a><a class="button" href="#demo">Book a demo</a></nav>
+  </div></header>
+  <main id="top">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="kicker">Payroll + scheduling for independent restaurants</p><h1 id="hero-title"><span>Run the shift.</span><span class="red">Not the spreadsheet.</span></h1></div>
+      <div class="hero-side"><p>Build the week, track the hours, and get payroll ready—without stitching together three different tools.</p><a class="quiet-link" href="#product">See the weekly rhythm ↓</a></div>
+      <div class="hero-foot"><strong>Built around restaurant weeks</strong><span>One schedule → one time record → one payroll review</span></div>
+    </section>
+    <section class="statement"><div class="shell"><p>The schedule already knows <span>who worked.</span> Payroll should too.</p></div></section>
+    <section class="product shell" id="product"><div class="product-grid">
+      <div class="product-copy"><h2>One week.<br>One truth.</h2><p>Ridgeline keeps schedule changes and worked time in the same flow, so the handoff to payroll starts with context—not cleanup.</p></div>
+      <div class="product-frame" aria-label="Illustrative Ridgeline product preview">
+        <div class="preview-bar"><span>Ridgeline / Weekly view</span><span class="preview-label">Illustrative preview</span></div>
+        <div class="preview-head"><div><span class="kicker">Dining room · sample shift</span><h3>This week</h3></div><div class="coverage"><span id="shift-count">—</span> sample shifts · <span id="role-count">—</span> roles</div></div>
+        <div class="shift-list" id="shift-list">
+          <div class="shift" data-role="Server"><div class="day">Tue</div><div class="person">Maya R.<span class="role">Server</span></div><div class="time">4:00–10:00 <b>Scheduled</b></div></div>
+          <div class="shift" data-role="Bar"><div class="day">Wed</div><div class="person">Theo K.<span class="role">Bar</span></div><div class="time">5:00–Close <b>Confirmed</b></div></div>
+          <div class="shift" data-role="Host"><div class="day">Thu</div><div class="person">Nina P.<span class="role">Host</span></div><div class="time">3:30–9:30 <b>Updated</b></div></div>
+          <div class="shift" data-role="Server"><div class="day">Fri</div><div class="person">Jon B.<span class="role">Server</span></div><div class="time">4:00–Close <b>Scheduled</b></div></div>
+        </div>
+        <div class="payroll-strip"><div><p>Next step</p><strong>Review time records</strong></div><a class="button" href="#demo">Book a demo</a></div>
+        <p class="source-note">Demo workspace · sample names and shifts · not a live product screenshot</p>
+      </div>
+    </div></section>
+    <section class="workflow shell" id="how"><div class="workflow-top"><h2>A clean handoff from Monday to payday.</h2><p class="workflow-intro">No grand reinvention. Just the restaurant week connected end to end.</p></div>
+      <div class="steps"><article class="step"><span class="step-index">01 / BUILD</span><h3>Schedule the real week</h3><p>Set roles, publish shifts, and keep changes attached to the people they affect.</p></article><article class="step"><span class="step-index">02 / WORK</span><h3>Keep the record current</h3><p>See the difference between the plan and the shift while there is still time to fix it.</p></article><article class="step"><span class="step-index">03 / REVIEW</span><h3>Close with context</h3><p>Review time records in one place before anything moves into payroll.</p></article></div>
+    </section>
+    <section class="faq-section" id="questions"><div class="shell faq-grid"><h2 class="faq-title">Straight answers.</h2><div class="faq">
+      <div class="faq-item"><button type="button" aria-expanded="false"><span>Is Ridgeline for multi-location groups?</span><span aria-hidden="true">+</span></button><div class="faq-answer"><p>The initial design is centered on independent operators and small groups. Confirm supported location limits during a demo.</p></div></div>
+      <div class="faq-item"><button type="button" aria-expanded="false"><span>Does it replace my payroll provider?</span><span aria-hidden="true">+</span></button><div class="faq-answer"><p>Integration and payroll-processing details are pending verification. Ridgeline is presented here as the workflow connecting schedules, time records, and payroll review.</p></div></div>
+      <div class="faq-item"><button type="button" aria-expanded="false"><span>Can my team use it on their phones?</span><span aria-hidden="true">+</span></button><div class="faq-answer"><p>Mobile product support has not been supplied for verification. The marketing site itself is fully responsive.</p></div></div>
+    </div></div></section>
+    <section class="close" id="demo"><div class="shell close-grid"><h2>Make next week lighter.</h2><form class="close-form" id="demo-form"><p>Leave a work email and we’ll prepare a demo request.</p><label for="email">Work email</label><div class="field"><input id="email" name="email" type="email" autocomplete="email" placeholder="you@restaurant.com" required><button class="button" type="submit">Book a demo</button></div><p class="form-note">Prototype form · no information is sent or stored.</p><p class="form-status" id="form-status" role="status" aria-live="polite"></p></form></div></section>
+  </main>
+  <footer><div class="shell footer-row"><span>Ridgeline · [logo pending]</span><span>Payroll and scheduling for independent restaurants</span></div></footer>
+  <script>
+    const menuButton=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav-links');
+    menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'Close':'Menu'});
+    nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='Menu'}));
+    document.querySelectorAll('.faq-item button').forEach(button=>button.addEventListener('click',()=>{const item=button.closest('.faq-item');const open=item.classList.toggle('open');button.setAttribute('aria-expanded',String(open));button.lastElementChild.textContent=open?'−':'+'}));
+    const shifts=[...document.querySelectorAll('.shift')];document.querySelector('#shift-count').textContent=shifts.length;document.querySelector('#role-count').textContent=new Set(shifts.map(row=>row.dataset.role)).size;
+    document.querySelector('#demo-form').addEventListener('submit',event=>{event.preventDefault();const button=event.currentTarget.querySelector('button');const status=document.querySelector('#form-status');button.disabled=true;button.textContent='Sending…';window.setTimeout(()=>{button.disabled=false;button.textContent='Book a demo';status.textContent='Demo request previewed locally. Nothing was sent.'},500)});
+  </script>
+</body>
+</html>

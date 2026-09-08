@@ -1,0 +1,232 @@
+<!--
+  Register: industrial service-board — a crisp field-operations sheet inspired by pipe labels and dispatch clipboards.
+  Palette: surface #F2F4F3, ink #17211F, accent #006C67.
+  Type pairing: Archivo (compressed display and queue titles) + IBM Plex Sans (quiet operational text and figures).
+  Signature move: the queue is a continuous vertical “pipe run”; status valves punctuate the line and visually connect the day’s work.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F2F4F3">
+  <meta name="description" content="Fieldline Plumbing dispatcher job queue">
+  <title>Fieldline Dispatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23006c67'/%3E%3Cpath d='M14 20h21v9h8v21h-9V38H14z' fill='%23f2f4f3'/%3E%3C/svg%3E">
+  <style>
+    :root { --surface:#f2f4f3; --ink:#17211f; --accent:#006c67; --line:rgba(23,33,31,.16); --muted:rgba(23,33,31,.62); --soft:rgba(0,108,103,.09); --base:8px; }
+    * { box-sizing:border-box; }
+    html { color-scheme:light; overflow-x:hidden; }
+    body { margin:0; min-width:320px; color:var(--ink); background:var(--surface); font:400 16px/1.5 "IBM Plex Sans", sans-serif; -webkit-tap-highlight-color:rgba(0,108,103,.2); }
+    button,input,select { font:inherit; touch-action:manipulation; }
+    .skip-link { position:fixed; z-index:10; top:8px; left:8px; padding:10px 14px; background:var(--surface); color:var(--ink); transform:translateY(-160%); }
+    .skip-link:focus { transform:translateY(0); }
+    .skip-link:hover { background:var(--accent); color:var(--surface); }
+    button { color:inherit; }
+    ::selection { background:var(--accent); color:var(--surface); }
+    .topbar { position:relative; z-index:2; display:grid; grid-template-columns:minmax(190px,1.05fr) 2.2fr; min-height:184px; background:var(--ink); color:var(--surface); border-bottom:6px solid var(--accent); }
+    .brand { padding:28px clamp(20px,4vw,64px); display:flex; flex-direction:column; justify-content:space-between; border-right:1px solid rgba(242,244,243,.22); }
+    .brand-mark { display:flex; align-items:center; gap:12px; font-family:"Archivo",sans-serif; font-weight:750; font-stretch:condensed; font-size:19px; letter-spacing:-.02em; }
+    .brand-mark svg { width:26px; height:26px; color:var(--accent); }
+    .board-title { margin:22px 0 0; max-width:8ch; font:700 clamp(42px,5.4vw,78px)/.84 "Archivo",sans-serif; font-stretch:condensed; letter-spacing:-.055em; }
+    .summary { display:grid; grid-template-columns:repeat(4,1fr); min-width:0; }
+    .metric { padding:30px clamp(14px,2.5vw,38px) 24px; display:flex; flex-direction:column; justify-content:flex-end; border-right:1px solid rgba(242,244,243,.16); }
+    .metric:last-child { border:0; }
+    .metric-value { display:block; font:700 clamp(36px,5vw,70px)/.86 "Archivo",sans-serif; font-feature-settings:"tnum"; text-align:right; letter-spacing:-.05em; }
+    .metric-label { margin-top:14px; color:rgba(242,244,243,.7); font-size:13px; }
+    .metric:first-child .metric-value { color:#49b7b0; }
+    main { width:min(1460px,100%); margin:0 auto; padding:34px clamp(20px,4vw,64px) 72px; }
+    .control-row { display:grid; grid-template-columns:minmax(230px,1.4fr) minmax(180px,.6fr) auto; gap:12px; align-items:end; padding-bottom:26px; border-bottom:1px solid var(--line); }
+    .field label { display:block; margin-bottom:7px; color:var(--muted); font-size:13px; font-weight:600; }
+    .input-shell { position:relative; }
+    .input-shell svg { position:absolute; left:14px; top:50%; width:18px; transform:translateY(-50%); pointer-events:none; }
+    input,select { width:100%; height:46px; border:1px solid var(--line); border-radius:2px; background:transparent; color:var(--ink); padding:0 14px; transition:border-color .18s, background .18s; }
+    input { padding-left:42px; }
+    input:hover,select:hover { border-color:var(--ink); }
+    input:focus-visible,select:focus-visible,button:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+    .date-stamp { align-self:center; padding-top:21px; font-size:14px; color:var(--muted); white-space:nowrap; }
+    .queue-heading { display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:30px 0 20px; }
+    h1,h2,h3 { text-wrap:balance; }
+    h2 { margin:0; font:700 clamp(28px,3vw,43px)/1 "Archivo",sans-serif; font-stretch:condensed; letter-spacing:-.035em; }
+    .result-count { color:var(--muted); font-size:14px; font-feature-settings:"tnum"; }
+    .queue { position:relative; list-style:none; margin:0; padding:0; }
+    .queue::before { content:""; position:absolute; left:164px; top:0; bottom:0; width:3px; background:var(--accent); }
+    .job { position:relative; display:grid; grid-template-columns:140px 48px minmax(230px,1.35fr) minmax(180px,.85fr) 120px; align-items:center; min-height:116px; border-top:1px solid var(--line); animation:arrive .7s cubic-bezier(.22,1,.36,1) both; animation-delay:calc(var(--i) * 65ms); }
+    .job:last-child { border-bottom:1px solid var(--line); }
+    .when { font-feature-settings:"tnum"; }
+    .day { display:block; color:var(--muted); font-size:13px; }
+    .time { display:block; font:650 25px/1.2 "Archivo",sans-serif; letter-spacing:-.02em; }
+    .valve { position:relative; z-index:1; justify-self:center; width:20px; height:20px; border:4px solid var(--surface); border-radius:50%; background:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+    .job[data-status="done"] .valve { background:var(--surface); }
+    .job[data-status="open"] .valve { border-radius:2px; transform:rotate(45deg); }
+    .job-main { padding:20px 28px 20px 12px; min-width:0; }
+    .job-id { color:var(--accent); font-size:12px; font-weight:700; }
+    .job h3 { margin:2px 0 5px; font:650 clamp(20px,2vw,27px)/1.15 "Archivo",sans-serif; font-stretch:condensed; letter-spacing:-.025em; }
+    .address { margin:0; color:var(--muted); font-size:14px; overflow-wrap:anywhere; }
+    .tech { padding:20px 18px; }
+    .tech-label { display:block; margin-bottom:3px; color:var(--muted); font-size:12px; }
+    .unassigned { color:var(--accent); font-weight:600; }
+    .status { justify-self:end; min-width:96px; border:1px solid currentColor; border-radius:999px; padding:7px 12px; color:var(--accent); text-align:center; font-size:12px; font-weight:700; text-transform:capitalize; }
+    .job[data-status="done"] .status { color:var(--muted); }
+    .empty,.error { padding:54px 20px; text-align:center; border-bottom:1px solid var(--line); color:var(--muted); }
+    .error { color:var(--ink); }
+    .error strong { display:block; color:var(--accent); margin-bottom:4px; }
+    footer { display:flex; justify-content:space-between; gap:24px; padding:18px max(clamp(20px,4vw,64px), env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(clamp(20px,4vw,64px), env(safe-area-inset-left)); background:var(--accent); color:var(--surface); font-size:12px; }
+    @keyframes arrive { from { opacity:0; transform:translateX(-10px); } }
+    @media (max-width:850px) {
+      .topbar { grid-template-columns:1fr; }
+      .brand { min-height:150px; border-right:0; border-bottom:1px solid rgba(242,244,243,.2); }
+      .board-title { max-width:none; }
+      .summary { min-height:124px; }
+      .metric { padding:22px 16px; }
+      .metric-value { font-size:42px; }
+      .control-row { grid-template-columns:1fr 1fr; }
+      .date-stamp { display:none; }
+      .queue::before { left:117px; }
+      .job { grid-template-columns:96px 42px minmax(180px,1fr) 110px; }
+      .tech { display:none; }
+    }
+    @media (max-width:560px) {
+      .summary { grid-template-columns:repeat(2,1fr); }
+      .metric { min-height:104px; border-bottom:1px solid rgba(242,244,243,.16); }
+      .control-row { grid-template-columns:1fr; }
+      .queue-heading { padding-top:26px; }
+      .queue::before { left:13px; }
+      .job { grid-template-columns:28px minmax(0,1fr) auto; min-height:130px; align-items:start; padding:18px 0; }
+      .valve { grid-column:1; grid-row:1; margin-top:8px; }
+      .when { grid-column:2; grid-row:1; display:flex; gap:7px; align-items:baseline; }
+      .day { order:2; }
+      .time { font-size:21px; }
+      .job-main { grid-column:2 / 4; grid-row:2; padding:8px 16px 0 0; }
+      .status { grid-column:3; grid-row:1; min-width:72px; padding:5px 8px; }
+      footer { flex-direction:column; gap:3px; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-delay:0ms !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to Job Queue</a>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 5h15v7h6v15h-7v-9H3z"/></svg>
+        Fieldline Plumbing
+      </div>
+      <h1 class="board-title">Dispatch board</h1>
+    </div>
+    <section class="summary" aria-label="Job summary">
+      <div class="metric"><span class="metric-value" id="todayCount">—</span><span class="metric-label">Scheduled today</span></div>
+      <div class="metric"><span class="metric-value" id="openCount">—</span><span class="metric-label">Open jobs</span></div>
+      <div class="metric"><span class="metric-value" id="assignedCount">—</span><span class="metric-label">Assigned</span></div>
+      <div class="metric"><span class="metric-value" id="unassignedCount">—</span><span class="metric-label">Need a tech</span></div>
+    </section>
+  </header>
+
+  <main id="main">
+    <div class="control-row" aria-label="Queue controls">
+      <div class="field">
+        <label for="search">Find a job</label>
+        <div class="input-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+          <input id="search" name="search" type="search" placeholder="Try J-1044 or Marbury…" autocomplete="off">
+        </div>
+      </div>
+      <div class="field">
+        <label for="statusFilter">Job status</label>
+        <select id="statusFilter" name="status">
+          <option value="all">All statuses</option>
+          <option value="open">Open</option>
+          <option value="assigned">Assigned</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+      <time class="date-stamp" id="boardDate"></time>
+    </div>
+
+    <div class="queue-heading">
+      <h2>Job queue</h2>
+      <span class="result-count" id="resultCount" aria-live="polite">Loading jobs…</span>
+    </div>
+    <ol class="queue" id="jobQueue" aria-label="Scheduled jobs"></ol>
+  </main>
+
+  <footer><span>Fieldline service operations</span><span>Queue sorted by scheduled arrival</span></footer>
+
+  <script>
+    const queue = document.querySelector('#jobQueue');
+    const search = document.querySelector('#search');
+    const statusFilter = document.querySelector('#statusFilter');
+    const resultCount = document.querySelector('#resultCount');
+    const referenceDate = '2026-09-08';
+    let jobs = [];
+
+    const dateFmt = new Intl.DateTimeFormat('en-US', { weekday:'short', month:'short', day:'numeric' });
+    const fullDateFmt = new Intl.DateTimeFormat('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    const timeFmt = new Intl.DateTimeFormat('en-US', { hour:'numeric', minute:'2-digit' });
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+    }
+
+    function render() {
+      const term = search.value.trim().toLowerCase();
+      const status = statusFilter.value;
+      const filtered = jobs.filter(job => {
+        const haystack = [job.id, job.title, job.address, job.technician || 'unassigned'].join(' ').toLowerCase();
+        return (status === 'all' || job.status === status) && haystack.includes(term);
+      });
+      resultCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'job' : 'jobs'}`;
+      if (!filtered.length) {
+        queue.innerHTML = '<li class="empty">No jobs match these filters.</li>';
+        return;
+      }
+      queue.innerHTML = filtered.map((job, index) => {
+        const when = new Date(job.scheduled_at);
+        return `<li class="job" data-status="${escapeHTML(job.status)}" style="--i:${index}">
+          <time class="when" datetime="${escapeHTML(job.scheduled_at)}"><span class="day">${dateFmt.format(when)}</span><span class="time">${timeFmt.format(when)}</span></time>
+          <span class="valve" aria-hidden="true"></span>
+          <div class="job-main"><span class="job-id">${escapeHTML(job.id)}</span><h3>${escapeHTML(job.title)}</h3><p class="address">${escapeHTML(job.address)}</p></div>
+          <div class="tech"><span class="tech-label">Technician</span><span class="${job.technician ? '' : 'unassigned'}">${escapeHTML(job.technician || 'Unassigned')}</span></div>
+          <span class="status">${escapeHTML(job.status)}</span>
+        </li>`;
+      }).join('');
+    }
+
+    function updateSummary() {
+      document.querySelector('#todayCount').textContent = jobs.filter(j => j.scheduled_at.slice(0,10) === referenceDate).length;
+      document.querySelector('#openCount').textContent = jobs.filter(j => j.status === 'open').length;
+      document.querySelector('#assignedCount').textContent = jobs.filter(j => j.status === 'assigned').length;
+      document.querySelector('#unassignedCount').textContent = jobs.filter(j => !j.technician).length;
+      document.querySelector('#boardDate').textContent = fullDateFmt.format(new Date(`${referenceDate}T12:00:00`));
+      document.querySelector('#boardDate').dateTime = referenceDate;
+    }
+
+    fetch('./fixtures/jobs.json')
+      .then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
+      .then(data => {
+        jobs = data.slice().sort((a,b) => new Date(a.scheduled_at) - new Date(b.scheduled_at));
+        const params = new URLSearchParams(location.search);
+        search.value = params.get('search') || '';
+        if (['all','open','assigned','done'].includes(params.get('status'))) statusFilter.value = params.get('status');
+        updateSummary(); render();
+      })
+      .catch(() => {
+        resultCount.textContent = 'Unavailable';
+        queue.innerHTML = '<li class="error"><strong>Job data could not be loaded.</strong>Run this dashboard from a local web server and refresh.</li>';
+      });
+
+    function updateFilters() {
+      const params = new URLSearchParams();
+      if (search.value.trim()) params.set('search', search.value.trim());
+      if (statusFilter.value !== 'all') params.set('status', statusFilter.value);
+      history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}`);
+      render();
+    }
+    search.addEventListener('input', updateFilters);
+    statusFilter.addEventListener('change', updateFilters);
+  </script>
+</body>
+</html>

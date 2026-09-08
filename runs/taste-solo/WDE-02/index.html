@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f7f9" />
+  <title>Northline Plumbing | Dispatch</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" aria-label="Northline Plumbing dispatch">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span><strong>Northline</strong><small>PLUMBING CO.</small></span>
+    </div>
+    <div class="topbar-meta">
+      <span class="service-status"><i aria-hidden="true"></i> Dispatch online</span>
+      <time datetime="2026-09-08">Tuesday, Sep 8</time>
+      <button class="avatar" type="button" aria-label="Open account menu">AD</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="summary-intro">
+        <p class="kicker">Dispatch overview</p>
+        <h1 id="summary-title">Good morning, Alex.</h1>
+        <p>Two visits are scheduled today. One still needs a technician.</p>
+      </div>
+      <div class="metrics" aria-label="Job summary">
+        <div class="metric"><span>Today</span><strong id="metric-today">0</strong><small id="metric-next">Loading schedule</small></div>
+        <div class="metric alert"><span>Unassigned</span><strong id="metric-open">0</strong><small>Needs dispatch</small></div>
+        <div class="metric"><span>Assigned</span><strong id="metric-assigned">0</strong><small>Technician confirmed</small></div>
+        <div class="metric"><span>Completed</span><strong id="metric-done">0</strong><small>This queue</small></div>
+      </div>
+    </section>
+
+    <section class="queue" aria-labelledby="queue-title">
+      <div class="queue-heading">
+        <div>
+          <h2 id="queue-title">Job queue</h2>
+          <p id="result-count" aria-live="polite">Loading jobs...</p>
+        </div>
+        <button id="reset-button" class="text-button" type="button" hidden>Reset changes</button>
+      </div>
+
+      <div class="toolbar" aria-label="Queue controls">
+        <label class="search-field">
+          <span class="sr-only">Search jobs</span>
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Search job, address, or technician" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <div class="filters" role="group" aria-label="Filter jobs by status">
+          <button class="filter active" data-filter="all" type="button">All <span id="count-all">0</span></button>
+          <button class="filter" data-filter="open" type="button">Open <span id="count-open">0</span></button>
+          <button class="filter" data-filter="assigned" type="button">Assigned <span id="count-assigned">0</span></button>
+          <button class="filter" data-filter="done" type="button">Done <span id="count-done">0</span></button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Job</th><th scope="col">Scheduled</th><th scope="col">Technician</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="job-list"></tbody>
+        </table>
+        <div id="state-message" class="state-message" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="assign-dialog">
+    <form method="dialog" id="assign-form">
+      <div class="dialog-head"><div><p class="kicker">Assign technician</p><h3 id="dialog-title">Select a technician</h3></div><button value="cancel" class="close-button" aria-label="Close dialog">×</button></div>
+      <p class="dialog-job" id="dialog-job"></p>
+      <label for="technician">Technician</label>
+      <select id="technician" required><option value="">Choose technician</option><option>R. Okafor</option><option>M. Duarte</option><option>T. Blanchard</option></select>
+      <div class="dialog-actions"><button value="cancel" class="secondary-button">Cancel</button><button id="confirm-assignment" value="default" class="primary-button">Assign job</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

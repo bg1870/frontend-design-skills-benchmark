@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dispatcher job queue for Northline Plumbing.">
+  <meta name="theme-color" content="#153d49">
+  <title>Dispatch Board · Northline Plumbing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#queue">Skip to job queue</a>
+  <header class="topbar">
+    <a class="brand" href="#queue" aria-label="Northline Plumbing dispatch home">
+      <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M8 4v9a8 8 0 0 0 8 8h8M4 8h8M20 17v8M16 25h8"/></svg>
+      <span>Northline <b>Plumbing</b></span>
+    </a>
+    <div class="shift"><span class="live-dot" aria-hidden="true"></span><span>Dispatch live</span><time datetime="2026-09-08">Tue, Sep 8</time></div>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="page-title">
+      <div class="summary-intro">
+        <p>Tuesday operations</p>
+        <h1 id="page-title">Dispatch board</h1>
+      </div>
+      <div class="summary-metrics" aria-label="Job summary">
+        <div class="metric urgent"><span class="metric-label">Needs dispatch</span><strong id="open-count">—</strong><span>unassigned</span></div>
+        <div class="metric"><span class="metric-label">Today</span><strong id="today-count">—</strong><span>scheduled</span></div>
+        <div class="metric"><span class="metric-label">In field</span><strong id="assigned-count">—</strong><span>assigned</span></div>
+        <div class="metric"><span class="metric-label">Completed</span><strong id="done-count">—</strong><span>this queue</span></div>
+      </div>
+    </section>
+
+    <section class="workspace" id="queue" aria-labelledby="queue-title">
+      <div class="queue-head">
+        <div>
+          <h2 id="queue-title">Job queue</h2>
+          <p id="result-count" aria-live="polite">Loading jobs…</p>
+        </div>
+        <button class="primary" id="new-job" type="button">Add job</button>
+      </div>
+
+      <div class="controls" aria-label="Queue controls">
+        <div class="filter-group" role="group" aria-label="Filter by status">
+          <button class="filter active" type="button" data-status="all" aria-pressed="true">All <span id="all-badge"></span></button>
+          <button class="filter" type="button" data-status="open" aria-pressed="false">Open</button>
+          <button class="filter" type="button" data-status="assigned" aria-pressed="false">Assigned</button>
+          <button class="filter" type="button" data-status="done" aria-pressed="false">Done</button>
+        </div>
+        <label class="search"><span class="sr-only">Search jobs</span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="search" name="job-search" type="search" autocomplete="off" placeholder="Search jobs…"></label>
+      </div>
+
+      <div class="queue-table" role="region" aria-label="Job queue" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">Job</th><th scope="col">Schedule</th><th scope="col">Technician</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="job-rows"></tbody>
+        </table>
+        <div class="state-message" id="state-message" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="assign-dialog" aria-labelledby="dialog-title">
+    <form method="dialog">
+      <div class="dialog-head"><div><p id="dialog-job"></p><h2 id="dialog-title">Assign technician</h2></div><button class="icon-button" value="cancel" aria-label="Close dialog">×</button></div>
+      <label for="technician">Technician</label>
+      <select id="technician" name="technician" autocomplete="off" required><option value="">Choose a technician</option><option>R. Okafor</option><option>M. Duarte</option><option>T. Blanchard</option></select>
+      <div class="dialog-actions"><button class="secondary" value="cancel">Cancel</button><button class="primary" id="confirm-assign" value="default">Assign job</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+# Test scenarios for the `wde-fixed` skill (Web Design Engineer)
+#
+# Each scenario is a single-turn prompt handed to an agent that has the skill
+# available but not pre-loaded, so scenario 1 also exercises description-based
+# triggering. Scoring is by rubric: every `must` assertion has to hold and no
+# `must_not` assertion may fire. `must_not` items are the load-bearing half —
+# they encode failures this skill has actually shipped.
+
+meta:
+  skill: wde-fixed
+  skill_version: 1.3.0-fixed.2
+  skill_path: skills/wde-fixed/SKILL.md
+  created: 2026-09-07
+  scenario_count: 5
+  scoring: rubric
+  pass_threshold: all `must` satisfied and zero `must_not` violations
+  notes: >
+    Scenarios are independent; run each in a clean working directory with no
+    prior brand-spec.md or design context. Fixtures under `fixtures/` are
+    created by the scenario's `setup` block.
+
+scenarios:
+  - id: WDE-01
+    name: Greenfield brief commits to a named recipe and re-hues it
+    area: Step 2 — Design context / recipe selection
+    capability: anti-AI-default palette discipline; required reads; Step 3 design-system declaration
+    priority: P0
+    difficulty: hard
+    tags: [greenfield, style-recipes, brand-spec, anti-cliche, triggering]
+    setup: none — empty directory, no design context provided
+    prompt: >
+      Build me a single-page marketing site for Ridgeline, a payroll and
+      shift-scheduling tool sold to independent restaurant owners. Work
+      autonomously: do not ask questions, request confirmation, or pause at
+      checkpoints. Select sensible defaults, record material assumptions, and
+      deliver the finished artifact in one pass.
+    expected_result:
+      must:
+        - Skill triggers without being named (matches the "build a page" clause in its description).
+        - Reads `references/design-calibration.md`, exactly one file from `references/style-recipes/`, and the marketing-page sections of `references/failure-patterns.md` before declaring a system.
+        - Writes `brand-spec.md` containing (a) 2–3 hex colours drawn from the subject's physical world — kitchen steel, ticket paper, grease-pencil red or equivalent, (b) a shortlist of three recipes from three different schools with one line each, (c) the reason the pick won.
+        - Emits a "Design Read" block with all five dials, and a Step 3 design-system declaration listing palette, typography, spacing base unit, radius, shadow and motion as concrete values.
+        - Names the chosen recipe to the user and why.
+        - Shipped canvas and accent are re-hued from the subject's colours; recipe structure (type scale, spacing, radius, shadow, motion) is pasted as-is.
+        - Neutral ramp carries the accent's hue (accent desaturated to roughly 3–12%).
+      must_not:
+        - Inter, Roboto, Arial, Fraunces or system-ui used as the display face.
+        - Purple→pink→blue gradient, or a `#3b82f6`-family blue accent.
+        - Warm off-white / cream canvas chosen without the one-sentence justification the skill requires for a warm-paper recipe.
+        - Any recipe hex shipped unchanged ("a default wearing a citation").
+        - The phrase 'establish a temporary system based on industry best practices', or equivalent design-from-feel framing.
+        - Three shortlist recipes from the same school.
+        - Fabricated stats, fake logo wall or dummy testimonials.
+    regression_origin: >
+      Measured across ten unrelated greenfield briefs, eight landed on a warm
+      off-white canvas and two pairs shipped byte-identical palettes.
+    evaluator: rubric + grep for banned font names and hex families
+
+  - id: WDE-02
+    name: Dashboard figures are computed, never typed
+    area: Design Principles — Derived Figures
+    capability: no hardcoded counts/totals; sample data labelled on the surface; no invented feeds
+    priority: P0
+    difficulty: hard
+    tags: [dashboard, derived-figures, fabricated-data, data-integrity]
+    setup:
+      files:
+        - path: fixtures/jobs.json
+          content: >
+            Six job records. Fields: id, title, technician, address, scheduled_at,
+            status (one of open|assigned|done). Deliberately NO risk, priority,
+            duration or history field.
+    prompt: >
+      Using fixtures/jobs.json as the data source, build a dispatcher dashboard
+      for a plumbing company: a job queue plus a summary bar across the top.
+      Work autonomously: do not ask questions, request confirmation, or pause at
+      checkpoints. Select sensible defaults, record material assumptions, and
+      deliver the finished artifact in one pass.
+    expected_result:
+      must:
+        - Every count, total, percentage, "n of m", progress width and tab badge is rendered from an expression over the job array, not written as a digit in markup.
+        - Summary-bar numbers and the queue list agree because they read the same source.
+        - A visible line in the UI marks the data as sample — e.g. "Demo workspace · sample jobs, fixed clock".
+        - Seeded dates derive from one captured clock so the set shows past, present and future, and do not re-shift per page load.
+        - Tiles requiring fields absent from the data are either dropped or rendered as an explicitly labelled placeholder.
+        - Chart/table styling respects data-ink ratio (no 3D, no decorative gridlines); colour encodes meaning, not decoration.
+      must_not:
+        - A literal like `08 open · 02 at risk · 04 technicians active` beside a queue labelled `WORK QUEUE 06`.
+        - An "at risk" metric, trend delta ("↑18% vs. last Tuesday"), rating, response time or weather tile invented with no field behind it.
+        - Round-number KPIs standing in for real ones.
+        - A note in the chat message substituting for the on-surface sample-data label.
+    regression_origin: >
+      Measured: a shift bar reading `08 open · 02 at risk · 04 technicians
+      active` beside `WORK QUEUE 06` over six job rows, with no risk field in
+      the data at all.
+    evaluator: rubric + static check that no summary numeral appears as a literal in the rendered markup
+
+  - id: WDE-03
+    name: "\"Build and verify\" does not unlock the browser harness"
+    area: Step 6 — Verification / browser-acceptance trigger gate
+    capability: negative trigger discipline; lightweight pre-delivery checklist instead
+    priority: P0
+    difficulty: medium
+    tags: [trigger-gate, negative-test, verification, checklist, no-js-render]
+    setup: none
+    prompt: >
+      Build the pricing page for a B2B analytics product, then polish it and
+      verify your work before you hand it over. Work autonomously: do not ask
+      questions, request confirmation, or pause at checkpoints. Select sensible
+      defaults, record material assumptions, and deliver the finished artifact
+      in one pass.
+    expected_result:
+      must:
+        - Runs only the lightweight Pre-delivery Checklist, item by item against the built files.
+        - Delivery message states which checklist items were verified and how.
+        - Explicitly checks an intermediate width (~1280px), not only 320 and 1440.
+        - Explicitly checks display headline against its container and any table's last column for overflow/truncation; `text-wrap: pretty` applied.
+        - Content renders with JavaScript disabled — no section left at `opacity: 0` behind an IntersectionObserver.
+        - Interactive states present: hover / focus / active / disabled, plus empty or error where warranted.
+        - Any SVG the build drew was actually rendered and looked at, not only code-read.
+      must_not:
+        - Reads `references/browser-acceptance.md`.
+        - Launches a browser, starts a dev server for QA, or installs a test framework (Playwright, Puppeteer, Cypress).
+        - Produces screenshots, viewport matrices or an acceptance report as if acceptance had been requested.
+        - Asks the user whether to run browser acceptance instead of just running the self-check.
+    inverse_check: >
+      Re-run with "…then do a responsive browser acceptance pass at mobile,
+      tablet and laptop." The harness MUST then load, run, record evidence, and
+      repair or disclose failures. A skill that fails both directions is
+      guessing rather than gating.
+    evaluator: tool-call trace inspection (which reference files were read; whether a browser was launched)
+
+  - id: WDE-04
+    name: Autonomous brief converts checkpoints to written records
+    area: Workflow checkpoints + React technical hard rules
+    capability: checkpoint override; no mid-build pausing; React/Babel non-negotiables; Tweaks panel
+    priority: P1
+    difficulty: medium
+    tags: [checkpoints, autonomous, react, babel, tweaks, prototype]
+    setup: none
+    prompt: >
+      Make every design decision yourself — do not ask me anything, request
+      confirmation, or pause at checkpoints. Select sensible defaults, record
+      material assumptions, and deliver the finished artifact in one pass. I
+      want a clickable React prototype of a mobile habit-tracking app: today
+      view, streak detail, and add-habit sheet.
+    expected_result:
+      must:
+        - Does not pause at any of the three checkpoints; delivers a finished artifact in one pass.
+        - Records what the checkpoints would have surfaced in `brand-spec.md`: declared system, recipe picked, assumptions made, alternatives rejected.
+        - React/Babel loaded via pinned CDN scripts with integrity hashes, in order React → ReactDOM → Babel → component files; no `type="module"`.
+        - Cross-file components exported with `Object.assign(window, {...})`.
+        - Style objects are namespaced (`headerStyles`, `sheetStyles`); the bare identifier `styles` is never used.
+        - Prototype opens straight into the product — no title/cover screen; centred or filling the viewport.
+        - At least three variants exposed through a bottom-right panel titled "Tweaks", fully hidden when closed, including 1–2 creative tweaks not asked for.
+        - State coverage: default / hover / active / focus / disabled / loading / empty / error.
+        - Touch targets ≥ 44px.
+      must_not:
+        - Any "Confirm and I'll start the v0" pause, or a question posed back to the user.
+        - "`const styles = { ... }`."
+        - "`scrollIntoView` anywhere."
+        - Framer Motion, GSAP or Lottie without an explicit request.
+        - Separate files per variant instead of one file with Tweaks toggles.
+        - Emoji standing in for icons.
+    regression_origin: Waiting for approval a brief has already refused; and the three React hard rules.
+    evaluator: rubric + grep for `const styles`, `scrollIntoView`, `type="module"`
+
+  - id: WDE-05
+    name: Branded extension handles a missing logo autonomously and preserves contracts
+    area: Asset Protocol + redesign-protocol (Extension / Preserve classification)
+    capability: asset > spec; logo non-negotiable; smallest-change mode; protected contracts
+    priority: P1
+    difficulty: hard
+    tags: [brand, assets, extension, preserve, redesign-protocol, ask-dont-guess]
+    setup:
+      files:
+        - path: fixtures/app/
+          content: >
+            A small existing marketing site — index.html, styles.css with an
+            established token set (its own display face, 6px radius, flat
+            borders, no shadows), a working contact form posting to /api/lead,
+            and analytics data attributes on the CTAs. No logo asset anywhere.
+    prompt: >
+      Add a customer-testimonials section and a hardware "in the box" section to
+      fixtures/app for Kettell, our countertop espresso machine. Work
+      autonomously: do not ask questions, request confirmation, or pause at
+      checkpoints. Select sensible defaults and complete the extension in one
+      pass. For unavailable real assets or content, make a genuine sourcing
+      attempt, then use an honest, clearly labelled neutral placeholder and
+      record the unresolved blocker; never fabricate a logo, product image,
+      testimonial, customer, or box contents.
+    expected_result:
+      must:
+        - Classifies the task as Extension (not Overhaul) and says so before editing.
+        - Reads `references/redesign-protocol.md`; audits the existing visual vocabulary and extracts tokens from `styles.css` rather than importing a new system.
+        - New sections are indistinguishable from the originals — same display face, 6px radius, flat borders, no shadows.
+        - Leaves the /api/lead form contract, routes, IA and analytics attributes untouched.
+        - Makes a genuine sourcing attempt for the real Kettell logo in the documented order (press kit → launch-video frames → app-store shots → Wikimedia); if none is found, records the unresolved blocker and completes the extension with an honest, clearly labelled neutral placeholder rather than pausing.
+        - Creates `brand-spec.md` recording asset paths, tokens and fonts; HTML references assets via `<img src="…">`.
+        - Testimonial content is an honest labelled placeholder pending real quotes.
+        - Any wordmark or mark it does draw is rendered and visually inspected.
+      must_not:
+        - A brand name in a coloured box, or a coloured rectangle, standing in for the logo.
+        - A CSS silhouette or hand-drawn SVG standing in for the espresso machine's product imagery.
+        - Redesigning unrelated surfaces, restyling the existing sections, or "modernizing" the token set.
+        - Fabricated testimonials, named fake customers, or a fake logo wall.
+        - Fabricating a logo or product asset, disguising a placeholder as final, or omitting the unresolved asset from the written blocker record.
+    regression_origin: >
+      CSS silhouettes replacing real product imagery is called out as the #1 way
+      branded work fails; a wordmark that rendered as `KETTELL|` passed a code
+      read and failed on screen.
+    evaluator: rubric + diff review of fixtures/app (unchanged files must stay unchanged)
+
+coverage_map:
+  Step 0 fact verification: not covered — add a scenario naming a recent product/SDK
+  Step 1 ask-vs-build routing: WDE-01 (build), WDE-04 (autonomous)
+  Step 2 design context / recipe choice: WDE-01
+  Step 2 asset protocol: WDE-05
+  Step 2 redesign classification: WDE-05
+  Step 2b five dials: WDE-01
+  Step 3 system declaration: WDE-01, WDE-04
+  Step 4 v0 draft: WDE-04 (suppressed by autonomous brief)
+  Checkpoints 1–3: WDE-04
+  Step 6 verification gate: WDE-03 (+ inverse_check)
+  Step 7 critique mode: not covered — add a "review this page, score it" scenario
+  Design Direction Advisor fallback: not covered — add a "make me something nice" scenario
+  Derived figures: WDE-02
+  Colour system: WDE-01
+  React hard rules: WDE-04
+  Anti-cliche patterns: WDE-01, WDE-04
+  Slide-deck guidelines: not covered

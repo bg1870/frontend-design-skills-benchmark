@@ -1,0 +1,23 @@
+Built the responsive plumbing dispatcher dashboard.
+
+### Files
+- `index.html` — dashboard structure
+- `styles.css` — responsive visual design and accessibility states
+- `app.js` — loads `fixtures/jobs.json`, renders metrics, filtering, and search
+- `README.md` — run instructions and material assumptions
+
+### Features
+- Summary bar with assignment, completion, and workload metrics
+- Chronological job queue
+- Status filters and live search
+- Responsive mobile/tablet layouts
+- Accessible controls, focus states, and semantic markup
+- Graceful data-loading error state
+
+Run with:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then open `http://localhost:8080`. JavaScript and fixture syntax checks passed.

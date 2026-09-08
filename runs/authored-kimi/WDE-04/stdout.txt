@@ -1,0 +1,21 @@
+Implemented a complete clickable React prototype for **Stead**, a mobile habit tracker.
+
+### Included
+- Today view with interactive habit completion
+- Animated daily progress dial
+- Streak overview and individual streak details
+- Add-habit bottom sheet with functional form
+- Responsive phone-frame presentation and full-screen mobile layout
+- Accessible controls, focus states, reduced-motion support
+- Custom editorial visual direction and typography
+
+### Run
+```bash
+npm run dev
+```
+
+Production build verified successfully with:
+
+```bash
+npm run build
+```

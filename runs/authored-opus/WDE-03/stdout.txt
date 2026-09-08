@@ -1,0 +1,34 @@
+## Signalist Pricing Page
+
+Built and polished a responsive B2B analytics pricing page featuring:
+
+- Three distinct pricing tiers
+- Monthly/annual billing toggle
+- Mobile navigation
+- Feature and trust sections
+- Interactive FAQ
+- Accessible semantic markup
+- Responsive desktop and mobile layouts
+- Documented product assumptions
+
+### Files
+
+- `index.html`
+- `styles.css`
+- `script.js`
+- `README.md`
+- `verify.js`
+
+### Verification
+
+- HTML parsed successfully
+- JavaScript syntax validated
+- All automated page checks passed
+
+Run locally with:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`.

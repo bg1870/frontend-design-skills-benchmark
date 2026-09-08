@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ridgeline brings restaurant scheduling, time tracking, and payroll into one calm weekly workflow.">
+  <meta name="theme-color" content="#edf3f0">
+  <title>Ridgeline — Payroll that knows the schedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ridgeline home">
+      <svg viewBox="0 0 42 30" aria-hidden="true"><path d="M2 27 13 11l7 8L29 3l11 24"/><path d="M2 27h38"/></svg>
+      <span>Ridgeline</span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <a href="#product">Product</a><a href="#how">How it works</a><a href="#pricing">Pricing</a>
+      <button class="button button-small demo-trigger" type="button">Book a walkthrough</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="kicker">Built for independent restaurants</p>
+        <h1>Close the week.<br>Not the laptop.</h1>
+        <p class="lede">Ridgeline turns your posted schedule and approved hours into payroll—without retyping a shift, chasing a spreadsheet, or calling your accountant at midnight.</p>
+        <div class="hero-actions">
+          <button class="button demo-trigger" type="button">See Ridgeline with your restaurant</button>
+          <a class="text-link" href="#product">View the weekly workflow</a>
+        </div>
+        <p class="fine-print">30-minute walkthrough · No credit card</p>
+      </div>
+
+      <div class="product-stage" aria-label="Example weekly schedule in Ridgeline">
+        <div class="rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="schedule-window">
+          <div class="window-top">
+            <div><span class="location-dot"></span><strong>Juniper & Main</strong><span class="demo-label">Demo</span></div>
+            <span>May 12–18</span>
+          </div>
+          <div class="schedule-summary">
+            <div><span>Scheduled labor</span><strong>$8,412</strong></div>
+            <div><span>Sales forecast</span><strong>$31,700</strong></div>
+            <div class="labor"><span>Labor target</span><strong>26.5%</strong></div>
+          </div>
+          <div class="schedule-head"><span>Team</span><span>Mon 12</span><span>Tue 13</span><span>Wed 14</span></div>
+          <div class="schedule-row">
+            <div class="person"><b>AM</b><span><strong>Ana M.</strong><small>Server</small></span></div>
+            <div class="shift front">4–10p</div><div class="shift front">4–10p</div><div class="shift off">Off</div>
+          </div>
+          <div class="schedule-row">
+            <div class="person"><b>JL</b><span><strong>Jon L.</strong><small>Line cook</small></span></div>
+            <div class="shift kitchen">2–10p</div><div class="shift kitchen">2–10p</div><div class="shift kitchen">3–11p</div>
+          </div>
+          <div class="schedule-row">
+            <div class="person"><b>RK</b><span><strong>Rosa K.</strong><small>Bartender</small></span></div>
+            <div class="shift off">Off</div><div class="shift front">5–Close</div><div class="shift front">5–Close</div>
+          </div>
+          <div class="approval-bar">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> 42 shifts ready for payroll</span>
+            <button class="approve-button" type="button" id="approve-button">Approve week</button>
+          </div>
+        </div>
+        <div class="ticket" aria-hidden="true"><span>FRI 16</span><strong>2 open shifts</strong><small>Kitchen · 4:00–Close</small></div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="Product coverage">
+      <p>One weekly rhythm from first draft to final paycheck.</p>
+      <ul><li>Schedule</li><li>Time clock</li><li>Tips</li><li>Payroll</li></ul>
+    </section>
+
+    <section class="workflow" id="product">
+      <div class="section-intro">
+        <p class="kicker">The weekly workflow</p>
+        <h2>Your schedule already knows what payroll needs.</h2>
+        <p>Ridgeline keeps hours, roles, rates, overtime, and tips connected from the moment you publish a shift.</p>
+      </div>
+      <div class="workflow-list">
+        <article><span>Monday</span><div><h3>Build the week around service</h3><p>Copy last week, set labor targets, and spot uncovered stations before you publish.</p></div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 14h32M8 24h24M8 34h28"/><circle cx="37" cy="24" r="3"/></svg></article>
+        <article><span>Every shift</span><div><h3>Keep actual hours honest</h3><p>Staff clock in by PIN. Managers review late starts, missed breaks, and shift swaps in one place.</p></div><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"/><path d="M24 14v11l8 5"/></svg></article>
+        <article><span>Payday</span><div><h3>Approve once, then run payroll</h3><p>Tips and approved time flow into payroll. Review taxes and totals, then pay your team by direct deposit.</p></div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 13h32v24H8zM8 20h32M14 29h8"/></svg></article>
+      </div>
+    </section>
+
+    <section class="split-feature" id="how">
+      <div class="split-copy">
+        <p class="kicker">Fewer handoffs</p>
+        <h2>The floor changes. Your numbers stay together.</h2>
+        <p>A callout or swapped close shouldn’t create three versions of the truth. Ridgeline records the change where it happens and carries it through to payday.</p>
+        <ul class="check-list"><li>Role-based overtime and pay rates</li><li>Tip pooling by hours or points</li><li>Payroll tax filing in all 50 states</li><li>Employee mobile schedule access</li></ul>
+      </div>
+      <div class="change-log" aria-label="Example shift change activity">
+        <header><strong>Tonight’s changes</strong><span>Fri, May 16</span></header>
+        <div class="log-row"><time>2:18p</time><div><strong>Shift covered</strong><p>Mateo picked up Grill · 4:00–Close</p></div><span class="status">Ready</span></div>
+        <div class="log-row"><time>3:02p</time><div><strong>Clock-in adjusted</strong><p>Rosa K. · Manager approved 8 min.</p></div><span class="status">Logged</span></div>
+        <div class="log-row"><time>11:47p</time><div><strong>Tip pool closed</strong><p>$1,284.60 split across 9 employees</p></div><span class="status">Payroll</span></div>
+        <footer><span>All changes saved to this pay period</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></footer>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="pricing-heading"><p class="kicker">Straightforward pricing</p><h2>One location.<br>One monthly bill.</h2></div>
+      <div class="price-block">
+        <div class="price"><span>$</span><strong>80</strong><span>/ location<br>each month</span></div>
+        <p>Plus $8 per employee paid that month. Scheduling, time tracking, tip management, and full-service payroll included.</p>
+        <button class="button demo-trigger" type="button">Talk through your first payroll</button>
+        <small>No setup fee. Month to month. Pricing shown is sample launch pricing.</small>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div><p class="kicker">Before next payday</p><h2>Bring the schedule.<br>We’ll map the rest.</h2></div>
+      <button class="button button-light demo-trigger" type="button">Book a Ridgeline walkthrough</button>
+    </section>
+  </main>
+
+  <footer><a class="brand brand-footer" href="#top"><svg viewBox="0 0 42 30" aria-hidden="true"><path d="M2 27 13 11l7 8L29 3l11 24"/><path d="M2 27h38"/></svg><span>Ridgeline</span></a><p>Payroll and scheduling for independent restaurants.</p><div><a href="mailto:hello@ridgeline.example">Contact</a><a href="#pricing">Pricing</a><span>© 2026 Ridgeline</span></div></footer>
+
+  <dialog id="demo-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+    <p class="kicker">Your restaurant, your workflow</p>
+    <h2 id="dialog-title">Book a walkthrough</h2>
+    <p>Tell us where to reach you. We’ll follow up to find a time.</p>
+    <form id="demo-form">
+      <label for="name">Your name</label><input id="name" name="name" autocomplete="name" required>
+      <label for="restaurant">Restaurant name</label><input id="restaurant" name="restaurant" autocomplete="organization" required>
+      <label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" spellcheck="false" required>
+      <button class="button" type="submit">Request my walkthrough</button>
+    </form>
+    <div class="form-success" role="status" hidden><strong>Request received.</strong><p>We’ll follow up at the email you provided.</p></div>
+  </dialog>
+</body>
+</html>

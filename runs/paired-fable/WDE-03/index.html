@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gauge pricing for governed analytics, dashboards, and operational reporting.">
+  <meta name="theme-color" content="#f7f5ef">
+  <title>Pricing — Gauge analytics</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ea5b32'/%3E%3Cpath d='M7 22V10h4v8h4V6h4v12h4v4z' fill='%23fff8f1'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Gauge home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>gauge</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Primary navigation">
+      <a href="#platform">Platform</a><a href="#comparison">Compare</a><a href="#faq">Questions</a>
+      <a class="nav-login" href="/login">Sign in</a><a class="button button-small" href="#plans">Open a workspace</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-index" aria-hidden="true">PR / 01</div>
+      <div class="hero-copy">
+        <h1 id="page-title">Every number.<br>One agreed price.</h1>
+        <p>Connect your warehouse, define trusted metrics, and put live answers in every team’s hands. Pay for the workspace—not every person who needs the truth.</p>
+      </div>
+      <div class="billing-control">
+        <span id="billing-label">Billing frequency</span>
+        <div class="segmented" role="group" aria-labelledby="billing-label">
+          <button type="button" data-billing="monthly" aria-pressed="false">Monthly</button>
+          <button type="button" data-billing="annual" aria-pressed="true">Annual <span>Save 20%</span></button>
+        </div>
+        <p>Prices shown in USD. Annual plans are billed once per year.</p>
+      </div>
+    </section>
+
+    <section class="plans" id="plans" aria-labelledby="plans-title">
+      <h2 class="sr-only" id="plans-title">Choose a plan</h2>
+      <article class="plan">
+        <div class="plan-head"><p class="plan-code">01 / Core</p><h3>For the team replacing spreadsheet reporting.</h3></div>
+        <div class="price"><span class="currency">$</span><span class="amount" data-monthly="49" data-annual="39">39</span><span class="period">/ month<br>per workspace</span></div>
+        <a class="button button-outline plan-action" href="mailto:sales@gauge.example?subject=Start%20Core">Start with Core</a>
+        <ul><li>5 editor seats</li><li>Unlimited viewers</li><li>10 data sources</li><li>Hourly refresh</li></ul>
+      </article>
+      <article class="plan plan-focus">
+        <div class="plan-head"><p class="plan-code">02 / Scale <span>Recommended</span></p><h3>For operators running the business on shared metrics.</h3></div>
+        <div class="price"><span class="currency">$</span><span class="amount" data-monthly="149" data-annual="119">119</span><span class="period">/ month<br>per workspace</span></div>
+        <a class="button plan-action" href="mailto:sales@gauge.example?subject=Choose%20Scale">Choose Scale</a>
+        <ul><li>20 editor seats</li><li>Unlimited viewers</li><li>50 data sources</li><li>15-minute refresh</li></ul>
+      </article>
+      <article class="plan">
+        <div class="plan-head"><p class="plan-code">03 / Control</p><h3>For data teams with security and governance requirements.</h3></div>
+        <div class="price price-custom"><span class="amount">Custom</span><span class="period">annual<br>agreement</span></div>
+        <a class="button button-dark plan-action" href="mailto:sales@gauge.example?subject=Design%20Control%20plan">Design your plan</a>
+        <ul><li>Unlimited editors</li><li>Dedicated compute</li><li>Enterprise identity</li><li>Priority support</li></ul>
+      </article>
+    </section>
+
+    <section class="proof" id="platform" aria-labelledby="proof-title">
+      <div class="proof-label"><span>Included in every plan</span><span>GAUGE / STANDARD</span></div>
+      <div class="proof-content"><h2 id="proof-title">Built for the last mile of analytics.</h2><p>“Gauge gave finance and sales the same revenue number in 11 days. Our Monday meeting is for decisions now, not reconciliation.”</p><footer><strong>Mina Patel</strong><span>VP Operations, Fieldnote</span></footer></div>
+      <div class="readout" aria-label="Customer outcome: 11 days to shared reporting"><span>TIME TO SHARED REPORTING</span><strong>11<span>days</span></strong><svg viewBox="0 0 300 76" role="img" aria-label="Trend line falling over six measurements"><path class="gridline" d="M0 15H300M0 38H300M0 61H300"/><path class="trend" d="M0 12L55 21L106 25L160 47L216 53L300 65"/><circle cx="300" cy="65" r="4"/></svg></div>
+    </section>
+
+    <section class="comparison" id="comparison" aria-labelledby="comparison-title">
+      <div class="section-intro"><p>Plan detail</p><h2 id="comparison-title">Compare the operating limits.</h2><p>All plans include dashboards, metric definitions, scheduled reports, and community support.</p></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable plan comparison">
+        <table><thead><tr><th scope="col">Capability</th><th scope="col">Core</th><th scope="col">Scale</th><th scope="col">Control</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Historical data</th><td>12 months</td><td>5 years</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Dashboard refresh</th><td>Hourly</td><td>15 minutes</td><td>5 minutes</td></tr>
+          <tr><th scope="row">Custom metric models</th><td>25</td><td>250</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Data alerts</th><td>10</td><td>100</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Single sign-on</th><td>—</td><td>Google</td><td>SAML + SCIM</td></tr>
+          <tr><th scope="row">Support response</th><td>2 business days</td><td>8 business hours</td><td>2 hours</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div><p>Buying notes</p><h2 id="faq-title">Before the first query.</h2><p>Need procurement documents or a data processing agreement? Write to <a href="mailto:sales@gauge.example">sales@gauge.example</a>.</p></div>
+      <div class="questions">
+        <details><summary>What counts as an editor?<span aria-hidden="true">+</span></summary><p>Editors create models, dashboards, and alerts. Anyone who only views, filters, or receives a report is free and unlimited.</p></details>
+        <details><summary>Can we change plans later?<span aria-hidden="true">+</span></summary><p>Yes. Upgrades apply immediately with a prorated charge. Downgrades take effect at the next billing date.</p></details>
+        <details><summary>Is there a trial?<span aria-hidden="true">+</span></summary><p>Core and Scale include a 14-day trial with sample data. No card is required until you connect a live source.</p></details>
+        <details><summary>How do annual contracts work?<span aria-hidden="true">+</span></summary><p>Core and Scale are billed annually at the displayed discount. Control agreements can include invoicing, purchase orders, and custom terms.</p></details>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title"><div><span>READY / WHEN YOU ARE</span><h2 id="closing-title">Give every team the same number.</h2></div><a class="button button-light" href="mailto:sales@gauge.example?subject=Open%20a%20Gauge%20workspace">Open a workspace</a></section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#" aria-label="Gauge home">gauge</a><div><a href="#platform">Product</a><a href="#comparison">Pricing</a><a href="mailto:security@gauge.example">Security</a><a href="#faq">Support</a></div><p>© 2026 Gauge Labs, Inc. <a href="/privacy">Privacy</a> <a href="/terms">Terms</a></p></footer>
+  <div class="toast" role="status" aria-live="polite" hidden>Annual pricing applied</div>
+</body>
+</html>

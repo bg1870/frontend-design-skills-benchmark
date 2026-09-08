@@ -1,0 +1,12 @@
+Built the complete Ridgeline single-page marketing site.
+
+### Deliverables
+- `index.html` — responsive marketing site with product mockups, motion, FAQ, trial form validation, legal dialogs, and accessible navigation
+- `assets/ridgeline-mark.svg` — custom logo and favicon
+- `assumptions.md` — product assumptions, copy strategy, page outline, SEO, and layout rationale
+- `.tastemaker/style-lock.md` — design tokens and visual rules
+- `.tastemaker/reference-board.md` — inferred reference direction
+- `.tastemaker/log.json` — structural design record
+- `.tastemaker/decisions.log` — pending design decisions
+
+Validation completed for HTML parsing, asset paths, accessibility basics, dead links, and motion. Remaining scanner warnings are intentional marketing treatments required by the selected design system. No personal taste profile was modified.

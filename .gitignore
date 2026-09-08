@@ -1,0 +1,14 @@
+# Build artifacts from test runs — 1.2GB, regenerable, never review these
+runs/*/*/node_modules/
+runs/*/*/dist/
+runs/*/*/package-lock.json
+
+# Third-party skill repos under test. Cloned, not authored here.
+# Pinned commits are recorded in SKILL-SOURCES.tsv; re-clone with fetch-skills.sh
+skillsets/design-list/
+skillsets/taste/
+skillsets/discovered/
+
+# pi session transcripts: full run traces. ~200MB, useful for auditing tool
+# calls but large. Drop this line if the team wants to inspect traces.
+runs/*/*/.session/

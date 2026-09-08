@@ -1,0 +1,1 @@
+Using fixtures/jobs.json as the data source, build a dispatcher dashboard for a plumbing company: a job queue plus a summary bar across the top. Work autonomously: do not ask questions, request confirmation, or pause at checkpoints. Select sensible defaults, record material assumptions, and deliver the finished artifact in one pass.

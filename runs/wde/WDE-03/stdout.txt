@@ -1,0 +1,15 @@
+**Blockers:** Production requires approved branding, pricing/contracts, and destination routes. These are documented in `DESIGN.md` §10; the interface identifies itself as illustrative.
+
+**Delivered**
+- `index.html` — polished responsive pricing page
+- `DESIGN.md` — assumptions, design system, accessibility decisions, and handoff notes
+
+**Verified**
+- Valid HTML parsing and JavaScript syntax
+- No broken local anchors or duplicate IDs
+- CSS colors match documented design tokens
+- WCAG contrast pairs measured and recorded
+- Responsive stacking and reduced-motion rules included
+- Pricing toggle computes annual rates from monthly source values
+- No fabricated testimonials, metrics, customer logos, or claims
+- Core content remains available without JavaScript

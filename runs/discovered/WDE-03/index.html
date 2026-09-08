@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Clear, usage-based pricing for Northstar product analytics." />
+  <title>Pricing — Northstar Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Northstar home">
+      <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 1.5 17.1 11 26.5 14l-9.4 3L14 26.5 10.9 17 1.5 14l9.4-3L14 1.5Z"/><circle cx="14" cy="14" r="3.2"/></svg>
+      <span>northstar</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#platform">Platform</a><a href="#customers">Customers</a><a href="#resources">Resources</a><a class="active" href="#pricing">Pricing</a>
+    </nav>
+    <div class="header-actions"><a href="#login">Log in</a><a class="button button-dark button-small" href="#start">Start free</a></div>
+    <button class="menu-button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="pricing">
+      <div class="hero-copy">
+        <h1>Pricing that scales with insight, not headcount.</h1>
+        <p>Give every team a reliable view of the business. Start with the data you have and expand when you’re ready.</p>
+      </div>
+      <div class="hero-proof" aria-label="Northstar customer statistic">
+        <div class="signal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <strong>32%</strong>
+        <span>faster reporting cycles<br>for teams using Northstar</span>
+      </div>
+    </section>
+
+    <section class="pricing-section" aria-labelledby="plans-heading">
+      <div class="pricing-toolbar">
+        <div>
+          <span class="section-index">Plans / 03</span>
+          <h2 id="plans-heading">Choose your workspace</h2>
+        </div>
+        <div class="billing-control" role="group" aria-label="Billing period">
+          <button class="billing-option active" data-period="monthly" aria-pressed="true">Monthly</button>
+          <button class="billing-option" data-period="annual" aria-pressed="false">Annual <span>save 20%</span></button>
+        </div>
+      </div>
+
+      <div class="plans">
+        <article class="plan">
+          <div class="plan-top"><span class="plan-name">Starter</span><span class="plan-mark mark-starter" aria-hidden="true"></span></div>
+          <p class="plan-description">For small teams building a shared source of truth.</p>
+          <div class="price"><span class="currency">$</span><strong data-monthly="0" data-annual="0">0</strong><span class="cadence">/ month</span></div>
+          <a class="button button-outline" href="#start">Start free</a>
+          <div class="capacity"><span>Up to 3 people</span><span>100k events / month</span></div>
+          <ul><li>Core dashboards</li><li>Unlimited reports</li><li>14-day data history</li><li>Community support</li></ul>
+        </article>
+
+        <article class="plan featured">
+          <div class="popular">Most selected</div>
+          <div class="plan-top"><span class="plan-name">Scale</span><span class="plan-mark mark-scale" aria-hidden="true"></span></div>
+          <p class="plan-description">For growing companies that need deeper, faster analysis.</p>
+          <div class="price"><span class="currency">$</span><strong data-monthly="149" data-annual="119">149</strong><span class="cadence">/ month</span></div>
+          <a class="button button-lime" href="#start">Start 14-day trial</a>
+          <div class="capacity"><span>Up to 20 people</span><span>2m events / month</span></div>
+          <ul><li>Everything in Starter</li><li>Funnels and cohorts</li><li>Warehouse sync</li><li>Custom data alerts</li><li>Priority support</li></ul>
+        </article>
+
+        <article class="plan">
+          <div class="plan-top"><span class="plan-name">Enterprise</span><span class="plan-mark mark-enterprise" aria-hidden="true"></span></div>
+          <p class="plan-description">For data organizations with complex scale and governance.</p>
+          <div class="price custom"><strong>Let’s talk</strong><span>Tailored to your data volume</span></div>
+          <a class="button button-outline" href="mailto:sales@northstar.example">Contact sales</a>
+          <div class="capacity"><span>Unlimited people</span><span>Custom event volume</span></div>
+          <ul><li>Everything in Scale</li><li>SAML SSO and SCIM</li><li>Advanced permissions</li><li>Dedicated data region</li><li>Solutions architect</li></ul>
+        </article>
+      </div>
+      <p class="pricing-note">All plans include a managed cloud workspace, no setup fees, and exportable data. Prices in USD.</p>
+    </section>
+
+    <section class="included" id="platform">
+      <div class="included-heading"><span class="section-index">The standard</span><h2>Serious analytics,<br>without the fine print.</h2></div>
+      <div class="included-grid">
+        <article><span class="feature-icon">↗</span><h3>Your data stays yours</h3><p>Export raw data anytime. We never train models on customer data or sell it.</p></article>
+        <article><span class="feature-icon">◎</span><h3>Answers, not seat fees</h3><p>Viewer seats are always free, so the whole company can follow the numbers.</p></article>
+        <article><span class="feature-icon">⌁</span><h3>Useful from day one</h3><p>Connect your stack with guided setup and more than 40 native integrations.</p></article>
+      </div>
+    </section>
+
+    <section class="comparison" aria-labelledby="compare-heading">
+      <div class="comparison-head"><div><span class="section-index">Compare</span><h2 id="compare-heading">The complete breakdown</h2></div><button class="expand-button" aria-expanded="false" aria-controls="comparison-table">Show all features <span>+</span></button></div>
+      <div class="table-wrap" id="comparison-table">
+        <table><thead><tr><th>Capability</th><th>Starter</th><th>Scale</th><th>Enterprise</th></tr></thead><tbody>
+          <tr><td>Dashboards and reports</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Data history</td><td>14 days</td><td>2 years</td><td>Unlimited</td></tr>
+          <tr><td>Custom alerts</td><td>—</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr class="extra"><td>Warehouse sync</td><td>—</td><td>Daily</td><td>Real-time</td></tr>
+          <tr class="extra"><td>Single sign-on</td><td>—</td><td>—</td><td><span class="check">✓</span></td></tr>
+          <tr class="extra"><td>Support</td><td>Community</td><td>Priority</td><td>Dedicated</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <section class="cta" id="start"><div class="cta-graphic" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div><h2>Find the signal<br>in your data.</h2><p>Start exploring in minutes. No credit card required.</p><a class="button button-lime" href="mailto:hello@northstar.example">Create your workspace</a></div></section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 1.5 17.1 11 26.5 14l-9.4 3L14 26.5 10.9 17 1.5 14l9.4-3L14 1.5Z"/><circle cx="14" cy="14" r="3.2"/></svg><span>northstar</span></a><p>Analytics your whole company can trust.</p><div><a href="#privacy">Privacy</a><a href="#security">Security</a><span>© 2026 Northstar</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>

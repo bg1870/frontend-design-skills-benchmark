@@ -1,0 +1,9 @@
+**Blockers:** Company logo/name and production assignment API were not supplied. The dashboard displays a logo placeholder; assignment edits are session-only.
+
+Delivered:
+- `index.html` — responsive dispatcher dashboard
+- `app.js` — fixture loading, computed summaries, filtering, search, job details, assignment editing
+- `DESIGN.md` — assumptions, design system, assets, and captured clock
+- Data source: `fixtures/jobs.json`
+
+Verified JavaScript syntax, JSON validity, documented color tokens, responsive breakpoints, reduced-motion handling, empty/error/loading states, and local asset paths. Run through a local HTTP server to allow fixture loading.

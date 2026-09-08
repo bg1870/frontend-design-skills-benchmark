@@ -1,0 +1,11 @@
+config	repo	commit
+design-list	https://github.com/elayadesign/ai-design-skills	1c1e97c
+design-list	https://github.com/Owl-Listener/designer-skills	9a6930c
+design-list	https://github.com/emilkowalski/skills	d23d7f8
+design-list	https://github.com/ConardLi/garden-skills	aaf9a82
+design-list	https://github.com/jakubkrehel/skills	267330e
+design-list	https://github.com/MengTo/Skills	321c769
+design-list	https://github.com/codeswithroh/tastemaker	a8136a0
+taste	https://github.com/leonxlnx/taste-skill	ccbc156
+discovered	anthropics/skills@frontend-design	npx skills add
+discovered	vercel-labs/agent-skills@web-design-guidelines	npx skills add
