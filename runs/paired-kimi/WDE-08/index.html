@@ -1,0 +1,126 @@
+<!--
+  Register: technical reference manual — precise, direct, built for developers
+  Palette: surface #F3F6F8, ink #111820, accent #2457F5
+  Type pairing: IBM Plex Mono for display/code; IBM Plex Sans for reading/interface text
+  Signature move: a continuous electric-blue request spine threads the three setup steps into a live response
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Install Nojom SDK, authenticate, and send your first Claude request in under five minutes.">
+  <meta name="theme-color" content="#F3F6F8">
+  <title>Nojom SDK — Quickstart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232457F5'/%3E%3Cpath d='M17 45V19h7l16 16V19h7v26h-7L24 29v16z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#quickstart">Skip to quickstart</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Nojom SDK home"><span class="brand-mark" aria-hidden="true">N</span><span>Nojom <b>SDK</b></span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#quickstart">Quickstart</a>
+      <a href="#cost">Pricing</a>
+      <a href="#reference">Reference</a>
+    </nav>
+    <span class="version">TypeScript · v1.4</span>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="status"><span aria-hidden="true"></span> Stable release</p>
+        <h1 id="hero-title">Claude,<br>Typed End<br>to End.</h1>
+        <p class="hero-intro">Nojom is our internal TypeScript wrapper for the Claude API. Install the package, add one key, and ship your first request.</p>
+        <a class="start-link" href="#quickstart">Start the 3-step setup <span aria-hidden="true">↓</span></a>
+      </div>
+      <aside class="hero-terminal" aria-label="Quick install command">
+        <div class="terminal-bar"><span>terminal</span><span>01 / install</span></div>
+        <div class="command-row"><code><span class="prompt">$</span> npm install @nojom/sdk</code><button class="copy" data-copy="npm install @nojom/sdk" aria-label="Copy install command">Copy</button></div>
+        <div class="terminal-output"><span>+</span> @nojom/sdk@1.4.0<br><span>✓</span> added in 1.2s</div>
+      </aside>
+    </section>
+
+    <section class="quickstart" id="quickstart" aria-labelledby="quickstart-title">
+      <header class="section-heading">
+        <span>About five minutes</span>
+        <h2 id="quickstart-title">From Install to Response.</h2>
+      </header>
+
+      <div class="steps">
+        <article class="step">
+          <div class="step-marker" aria-hidden="true">1</div>
+          <div class="step-copy"><h3>Install the Package</h3><p>Use Node.js 20 or later. Nojom ships with its own TypeScript declarations.</p></div>
+          <div class="code-block compact">
+            <div class="code-label"><span>shell</span><button class="copy" data-copy="npm install @nojom/sdk" aria-label="Copy npm install command">Copy</button></div>
+            <pre><code><span class="blue">npm</span> install @nojom/sdk</code></pre>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-marker" aria-hidden="true">2</div>
+          <div class="step-copy"><h3>Authenticate Locally</h3><p>Create an API key in the Anthropic Console, then expose it to Nojom through your environment. Never commit this value.</p></div>
+          <div class="code-block compact">
+            <div class="code-label"><span>.env.local</span><button class="copy" data-copy="ANTHROPIC_API_KEY=sk-ant-…" aria-label="Copy environment variable">Copy</button></div>
+            <pre><code><span class="blue">ANTHROPIC_API_KEY</span>=sk-ant-…</code></pre>
+          </div>
+        </article>
+
+        <article class="step request-step">
+          <div class="step-marker" aria-hidden="true">3</div>
+          <div class="step-copy"><h3>Send Your First Request</h3><p>Create a client and call <code>messages.create</code>. The SDK reads your key automatically and keeps the response fully typed.</p></div>
+          <div class="code-block code-main">
+            <div class="code-label"><span>src/hello.ts</span><button class="copy" data-copy-target="first-request" aria-label="Copy first request code">Copy</button></div>
+            <pre><code id="first-request"><span class="pink">import</span> { Nojom } <span class="pink">from</span> <span class="green">"@nojom/sdk"</span>;
+
+<span class="pink">const</span> nojom = <span class="pink">new</span> Nojom();
+
+<span class="pink">const</span> message = <span class="pink">await</span> nojom.messages.create({
+  model: <span class="green">"claude-sonnet-4-5-20250929"</span>,
+  max_tokens: <span class="orange">256</span>,
+  messages: [
+    { role: <span class="green">"user"</span>, content: <span class="green">"Name one moon of Saturn."</span> }
+  ]
+});
+
+console.log(message.content[<span class="orange">0</span>].text);</code></pre>
+            <div class="response"><span>response</span><output>Titan is one of Saturn's moons.</output><span class="latency">742 ms</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cost" id="cost" aria-labelledby="cost-title">
+      <div class="cost-copy">
+        <span class="cost-index">Before you ship</span>
+        <h2 id="cost-title">Know the Cost of Every Call.</h2>
+        <p>Claude Sonnet 4.5 is billed by tokens processed. Nojom adds no usage markup. Cache and batch discounts are not included in this quick estimate.</p>
+      </div>
+      <div class="price-sheet" aria-label="Claude Sonnet 4.5 token pricing">
+        <div class="price-row"><span>Input</span><strong>$3.00</strong><small>per 1M tokens</small></div>
+        <div class="price-row"><span>Output</span><strong>$15.00</strong><small>per 1M tokens</small></div>
+        <div class="estimate">
+          <p><strong>Example request</strong><span>1,000 input + 250 output tokens</span></p>
+          <output>≈ $0.00675</output>
+        </div>
+        <p class="formula">(1,000 ÷ 1M × $3) + (250 ÷ 1M × $15)</p>
+      </div>
+    </section>
+
+    <section class="next" id="reference" aria-labelledby="next-title">
+      <h2 id="next-title">You Have a Typed Response.<br>Keep Building.</h2>
+      <div class="next-links">
+        <a href="#quickstart"><span>Handle streaming responses</span><b aria-hidden="true">↗</b></a>
+        <a href="#cost"><span>Set usage limits</span><b aria-hidden="true">↗</b></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-word">NOJOM</div><p>Internal developer platform · API keys stay server-side.</p></footer>
+</body>
+</html>

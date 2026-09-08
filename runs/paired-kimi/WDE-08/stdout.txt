@@ -1,0 +1,18 @@
+Implemented the finished Nojom SDK quickstart page.
+
+### Deliverables
+- `index.html` — responsive quickstart interface
+- `styles.css` — technical reference-manual visual system
+- `script.js` — accessible copy-to-clipboard interactions
+- `README.md` — setup details and material assumptions
+
+### Included
+- npm installation
+- `ANTHROPIC_API_KEY` authentication
+- Typed first-request example using `claude-sonnet-4-5-20250929`
+- Input/output token pricing and example cost calculation
+- Responsive mobile layout
+- Keyboard focus, reduced-motion, skip navigation, and screen-reader support
+- Inline favicon and documented pricing/model assumptions
+
+Static checks and JavaScript syntax validation passed.

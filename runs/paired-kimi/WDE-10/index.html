@@ -1,0 +1,111 @@
+<!--
+  Register: calm clinical editorial — precise enough for clinic operations, warm enough for patient care.
+  Palette: porcelain #F5F7F3, deep teal #123C3A, coral #E85D4A.
+  Type pairing: Fraunces for expressive, human headlines; Manrope for clear interface text.
+  Signature move: a woven appointment-day visualization crossing the split-page boundary.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create your Loomwork account and start running a calmer physiotherapy clinic schedule.">
+  <meta name="theme-color" content="#F5F7F3">
+  <title>Create Your Account — Loomwork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23123C3A'/%3E%3Cpath d='M8 9v14h16M12 9v10h12M16 9v6h8' fill='none' stroke='%23F5F7F3' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root{--surface:#f5f7f3;--ink:#123c3a;--accent:#e85d4a;--mint:#dce9e2;--muted:#5d706d;--line:rgba(18,60,58,.16);--error:#a5362a}
+    *{box-sizing:border-box}
+    html{background:var(--surface);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden;-webkit-tap-highlight-color:rgba(232,93,74,.18)}
+    body{margin:0;min-height:100vh;background:var(--surface);overflow-x:hidden}
+    button,a{touch-action:manipulation}
+    .skip-link{position:fixed;z-index:10;top:8px;left:8px;padding:10px 14px;background:var(--surface);color:var(--ink);transform:translateY(-150%)}.skip-link:focus{transform:translateY(0)}
+    ::selection{background:var(--accent);color:#fff}
+    button,input{font:inherit}
+    a{color:inherit;text-underline-offset:3px}
+    a:hover{text-decoration-color:var(--accent)}
+    .page{min-height:100vh;display:grid;grid-template-columns:minmax(0,5fr) minmax(480px,7fr)}
+    .form-side{position:relative;z-index:2;background:var(--surface);padding:34px clamp(28px,5vw,76px) 40px;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+    .brand{display:inline-flex;align-items:center;gap:11px;width:max-content;font-weight:700;text-decoration:none;letter-spacing:-.03em}
+    .brand-mark{width:28px;height:28px;display:grid;grid-template-columns:repeat(3,1fr);align-items:end;gap:3px}
+    .brand-mark i{display:block;background:var(--ink);border-radius:2px 2px 0 0}.brand-mark i:nth-child(1){height:12px}.brand-mark i:nth-child(2){height:20px}.brand-mark i:nth-child(3){height:16px}
+    main{width:min(100%,490px);margin:auto 0;padding:72px 0 42px}
+    h1{font-family:Fraunces,Georgia,serif;font-size:clamp(3.3rem,5.7vw,5.9rem);font-weight:500;line-height:.92;letter-spacing:-.045em;margin:0 0 24px;max-width:7ch;text-wrap:balance;scroll-margin-top:24px}
+    .intro{color:var(--muted);font-size:1rem;line-height:1.65;margin:0 0 34px;max-width:44ch}
+    form{display:grid;gap:19px}
+    .field{display:grid;gap:7px}
+    label{font-size:.84rem;font-weight:700}
+    input{width:100%;height:50px;border:1px solid rgba(18,60,58,.28);border-radius:5px;background:#fff;color:var(--ink);padding:0 15px;outline:none;transition:border-color .18s,box-shadow .18s}
+    input::placeholder{color:#84928f}
+    input:hover{border-color:var(--ink)}
+    input:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px rgba(232,93,74,.2)}
+    input[aria-invalid="true"]{border-color:var(--error)}
+    .error{display:none;color:var(--error);font-size:.78rem;margin:0}.error.visible{display:block}
+    .password-row{position:relative}.password-row input{padding-right:70px}
+    .show{position:absolute;right:10px;top:9px;height:32px;border:0;background:transparent;color:var(--ink);font-size:.78rem;font-weight:700;cursor:pointer;border-radius:3px}
+    .show:hover{color:var(--accent);transform:translateY(-1px)}
+    .show:focus-visible,.brand:focus-visible,a:focus-visible{outline:3px solid rgba(232,93,74,.5);outline-offset:3px}
+    .submit{height:53px;border:0;border-radius:5px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;margin-top:4px;box-shadow:0 9px 22px -12px rgba(132,42,30,.8);transition:transform .18s,box-shadow .18s,background .18s}
+    .submit:hover{transform:translateY(-2px);box-shadow:0 14px 24px -12px rgba(132,42,30,.8);background:#d94e3c}.submit:focus-visible{outline:3px solid var(--ink);outline-offset:3px}.submit:active{transform:translateY(0)}
+    .terms,.signin{font-size:.76rem;line-height:1.55;color:var(--muted)}.terms{margin:0}.signin{margin:24px 0 0}.signin a{font-weight:700;color:var(--ink)}
+    .visual-side{position:relative;overflow:hidden;background:var(--ink);color:var(--surface);padding:34px clamp(28px,5vw,76px);display:flex;align-items:center}
+    .visual-side:after{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .story{position:relative;z-index:1;width:min(100%,700px);margin:auto}
+    .story h2{font-family:Fraunces,Georgia,serif;font-size:clamp(2.2rem,4vw,4.8rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;margin:0 0 18px;max-width:10ch;text-wrap:balance}
+    .story-copy{color:rgba(245,247,243,.7);line-height:1.65;max-width:40ch;margin:0}
+    .weave{position:relative;margin:66px 0 58px;border-top:1px solid rgba(245,247,243,.18);border-bottom:1px solid rgba(245,247,243,.18);padding:20px 0;display:grid;grid-template-columns:56px 1fr;gap:16px}
+    .times{display:grid;grid-template-rows:repeat(4,55px);font-size:.69rem;color:rgba(245,247,243,.5);font-feature-settings:"tnum";text-align:right;padding-top:3px}
+    .tracks{position:relative;height:220px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 54px,rgba(245,247,243,.1) 54px,rgba(245,247,243,.1) 55px)}
+    .thread{position:absolute;height:37px;border-radius:19px;display:flex;align-items:center;padding:0 16px;font-size:.73rem;font-weight:700;color:var(--ink);white-space:nowrap;animation:draw .85s cubic-bezier(.22,1,.36,1) both;transform-origin:left}
+    .thread.one{top:8px;left:2%;width:56%;background:var(--mint)}.thread.two{top:62px;left:28%;width:67%;background:#f2b6a9;animation-delay:.08s}.thread.three{top:116px;left:8%;width:70%;background:#f5f7f3;animation-delay:.16s}.thread.four{top:170px;left:43%;width:49%;background:#a8ccc0;animation-delay:.24s}
+    .knot{position:absolute;left:-101px;top:96px;width:136px;height:136px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:#fff;text-align:center;font-family:Fraunces,Georgia,serif;font-size:1.2rem;line-height:1.1;box-shadow:0 24px 48px -12px rgba(0,0,0,.3);transform:rotate(-8deg)}
+    .proof{display:flex;align-items:center;gap:14px;font-size:.8rem;color:rgba(245,247,243,.72)}.faces{display:flex}.face{width:30px;height:30px;border-radius:50%;border:2px solid var(--ink);background:var(--mint);color:var(--ink);display:grid;place-items:center;font-size:.63rem;font-weight:700;margin-left:-7px}.face:first-child{margin-left:0}.proof strong{color:var(--surface);font-weight:700}
+    @keyframes draw{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+    @media (max-width:900px){.page{grid-template-columns:1fr}.form-side{border-right:0;padding:28px clamp(24px,7vw,64px)}main{padding:64px 0 34px;width:min(100%,600px)}h1{font-size:clamp(3.7rem,11vw,6rem);max-width:8ch}.visual-side{min-height:560px;padding:76px clamp(24px,7vw,64px)}.story{margin:0}.knot{left:auto;right:-18px;top:-88px}.weave{margin-top:52px}}
+    @media (max-width:520px){.form-side{padding:22px 20px 30px}main{padding:52px 0 28px}h1{font-size:3.45rem;margin-bottom:20px}.intro{margin-bottom:28px}.visual-side{min-height:485px;padding:58px 20px}.story h2{font-size:2.65rem}.weave{margin:42px 0 36px;grid-template-columns:44px 1fr;gap:10px}.thread{padding:0 10px;font-size:.65rem}.thread.one{width:68%}.thread.two{left:17%;width:81%}.thread.three{width:84%}.thread.four{left:34%;width:64%}.knot{width:100px;height:100px;right:-8px;top:-63px;font-size:.95rem}.proof{align-items:flex-start}}
+    @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#signup-heading">Skip to Sign Up</a>
+  <div class="page">
+    <section class="form-side" aria-labelledby="signup-heading">
+      <a class="brand" href="#" aria-label="Loomwork home" translate="no"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Loomwork</span></a>
+      <main>
+        <h1 id="signup-heading">Your clinic, in rhythm.</h1>
+        <p class="intro">Create your workspace for fewer scheduling tangles and more time with patients. Free for 14 days.</p>
+        <form id="signup" novalidate>
+          <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" placeholder="Amira Patel" required><p class="error" id="name-error">Enter your full name.</p></div>
+          <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="amira@yourclinic.com…" required><p class="error" id="email-error">Enter a valid work email.</p></div>
+          <div class="field"><label for="password">Password</label><div class="password-row"><input id="password" name="password" type="password" autocomplete="new-password" minlength="8" aria-describedby="password-hint" required><button class="show" type="button" aria-controls="password" aria-pressed="false">Show</button></div><p class="terms" id="password-hint">Use at least 8 characters.</p><p class="error" id="password-error">Use at least 8 characters for your password.</p></div>
+          <button class="submit" type="submit">Create my workspace</button>
+          <p class="terms">By creating an account, you agree to Loomwork’s <a href="#terms">terms</a> and <a href="#privacy">privacy policy</a>.</p>
+          <p id="form-status" class="terms" aria-live="polite"></p>
+        </form>
+        <p class="signin">Already using Loomwork? <a href="#login">Sign in</a></p>
+      </main>
+    </section>
+    <aside class="visual-side" aria-label="A calmer clinic day">
+      <div class="story">
+        <h2>Make room for care.</h2>
+        <p class="story-copy">Keep practitioners, rooms and recovery plans moving together—without the spreadsheet shuffle.</p>
+        <div class="weave" aria-label="Example clinic schedule showing four appointments">
+          <div class="times" aria-hidden="true"><span>9:00</span><span>10:00</span><span>11:00</span><span>12:00</span></div>
+          <div class="tracks"><div class="thread one">Assessment · Studio 2</div><div class="thread two">Follow-up · Mara</div><div class="thread three">Rehab session · Studio 1</div><div class="thread four">New patient · Jules</div></div>
+          <div class="knot" aria-hidden="true">No<br>double-booking</div>
+        </div>
+        <div class="proof"><div class="faces" aria-hidden="true"><span class="face">AR</span><span class="face">MP</span><span class="face">JL</span></div><span><strong>2,400+ practitioners</strong> start their day with Loomwork</span></div>
+      </div>
+    </aside>
+  </div>
+  <script>
+    const form=document.querySelector('#signup');
+    const show=document.querySelector('.show');
+    show.addEventListener('click',()=>{const input=document.querySelector('#password');const visible=input.type==='text';input.type=visible?'password':'text';show.textContent=visible?'Show':'Hide';show.setAttribute('aria-pressed',String(!visible));input.focus()});
+    form.addEventListener('submit',event=>{event.preventDefault();let valid=true;[['name',v=>v.trim().split(/\s+/).length>1],['email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],['password',v=>v.length>=8]].forEach(([id,test])=>{const input=document.querySelector('#'+id);const error=document.querySelector('#'+id+'-error');const ok=test(input.value);input.setAttribute('aria-invalid',String(!ok));input.setAttribute('aria-describedby',id==='password'?(ok?'password-hint':'password-hint password-error'):(ok?'':id+'-error'));error.classList.toggle('visible',!ok);valid&&=ok});if(valid){const button=form.querySelector('.submit');button.textContent='Workspace created';button.style.background='#123c3a';button.disabled=true;document.querySelector('#form-status').textContent='Your Loomwork workspace is ready.'}else{document.querySelector('#form-status').textContent='Check the highlighted fields and try again.';form.querySelector('[aria-invalid="true"]')?.focus()}});
+  </script>
+</body>
+</html>

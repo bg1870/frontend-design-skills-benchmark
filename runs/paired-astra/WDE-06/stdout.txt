@@ -1,0 +1,108 @@
+# Score: 43/100 — substantial accessibility and mobile usability failures
+
+- **Accessibility: 28/100**
+- **Interaction/forms: 35/100**
+- **Responsive layout: 45/100**
+- **Visual/content quality: 62/100**
+- **Performance/robustness: 55/100**
+
+Static source audit only; no browser rendering performed.
+
+## Fix First — P0/P1
+
+### `fixtures/site/styles.css`
+
+fixtures/site/styles.css:29 — **Critical:** removes focus outlines globally without replacement. Violates “never `outline: none` without focus replacement” and makes every link, button, and input lack visible keyboard focus. Add a strong `:focus-visible` treatment.
+
+fixtures/site/styles.css:25 — **Critical:** muted text is only **2.45:1** against `#fbfaf7` and **2.56:1** against white; WCAG requires **4.5:1** for ordinary text. This affects body copy, navigation, integration summary, icons, and footer.
+
+fixtures/site/styles.css:95-100 — **High:** mobile header is not reorganized; navigation remains visible alongside wordmark, 80px horizontal padding, gaps, and menu button. Its estimated minimum width exceeds a 390px viewport, creating overflow or severe compression. Collapse navigation or remove the redundant menu control at the breakpoint.
+
+fixtures/site/styles.css:98 — **High:** mobile `.btn` is approximately **29px tall** (`13px × 1.6 + 8px padding`), below the approximately **44×44px** touch-target recommendation.
+
+fixtures/site/styles.css:92 — **High:** reveal animation has no `prefers-reduced-motion` override. Violates “honor `prefers-reduced-motion`.”
+
+### `fixtures/site/index.html`
+
+fixtures/site/index.html:19 — **Critical:** icon-only menu button has no accessible name. Violates “icon-only buttons need `aria-label`.” It also has no implemented behavior, so it is a nonfunctional visible control.
+
+fixtures/site/index.html:43-61 — **Critical:** clickable `<li>` elements use inline `onclick` navigation and cannot be reached or activated by keyboard. Violates semantic navigation and keyboard-handler rules. Use actual links rather than click handlers.
+
+fixtures/site/index.html:45-61 — **High:** five arrow buttons have no `aria-label` and no independent behavior. They are focusable dead controls nested inside clickable rows. Either make each row one link or implement and label a genuine button action.
+
+fixtures/site/index.html:70 — **Critical:** email input has no `<label>` or `aria-label`. Violates “form controls need labels.”
+
+fixtures/site/index.html:70 — **High:** email input uses `type="text"` instead of `type="email"` and lacks `autocomplete="email"` and `spellcheck="false"`. Violates form type, autocomplete, and email spellcheck rules.
+
+fixtures/site/index.html:22 — **High:** no skip link is provided before navigation. Violates “include skip link for main content.”
+
+## Fix Next — P2
+
+### `fixtures/site/index.html`
+
+fixtures/site/index.html:17,26 — **Medium:** duplicate `id="cta"` values produce invalid, ambiguous DOM identifiers. IDs must be unique.
+
+fixtures/site/index.html:19,45-61 — **Medium:** decorative SVGs are exposed to assistive technology without `aria-hidden="true"`. Once their parent buttons/links receive accessible names, hide the SVGs.
+
+fixtures/site/index.html:44-60 — **Medium:** below-fold logo images omit HTML `width`, `height`, and `loading="lazy"`. CSS dimensions do not provide the intrinsic sizing required to prevent layout shift before CSS loads.
+
+fixtures/site/index.html:70 — **Medium:** placeholder is neither an example pattern nor terminated with an ellipsis. Guideline: placeholders should show a pattern and end with `…`; the visible label must remain separate.
+
+fixtures/site/index.html:69-72 — **Medium:** no visible error region or `aria-live="polite"` status exists for failed or asynchronous submission. Provide inline corrective errors and announce submission status.
+
+fixtures/site/index.html:30,39,66 — **Medium:** anchored sections have no `scroll-margin-top`. Violates the heading-anchor rule and becomes important if the header is later made sticky.
+
+fixtures/site/index.html:43-61 — **Medium:** integration rows navigate to sign-up rather than integration details or setup. The displayed interaction does not match the row labels; visible controls should produce truthful, predictable results.
+
+fixtures/site/index.html:44-60 — **Medium:** image `alt` duplicates adjacent visible integration names (“ezyVet logo” followed by “ezyVet”). This causes repetitive screen-reader output; use empty alt text if the adjacent name is sufficient.
+
+fixtures/site/index.html:7-8 — **Low:** Google Fonts is preconnected, but the actual font asset host `fonts.gstatic.com` is not. Add a crossorigin preconnect for the CDN asset domain.
+
+fixtures/site/index.html:24,31,40,67,71 — **Low:** headings and buttons do not consistently follow the audit guideline’s Chicago Title Case: “How it works,” “Start free,” and “Create workspace.”
+
+### `fixtures/site/styles.css`
+
+fixtures/site/styles.css:40,70,84 — **Medium:** only `.btn` has a hover style. Navigation links, icon controls, and clickable integration rows have no hover/active feedback. Guideline requires interactive states to become more prominent.
+
+fixtures/site/styles.css:70 — **Medium:** icon buttons have roughly **36×36px** targets (`20px + 16px padding`, or `16px + 16px` in rows), below the approximately **44×44px** touch recommendation.
+
+fixtures/site/styles.css:35,43,89 — **Medium:** fixed 40px side padding remains on small screens. The design guidance recommends approximately **16–24px** outer gutters on narrow screens.
+
+fixtures/site/styles.css:92 — **Medium:** content begins at `opacity: 0` and depends on JavaScript to become readable. Script failure or blocked JavaScript leaves all sections after the hero invisible. Default content to visible and apply animation only after enhancement is available.
+
+fixtures/site/styles.css:47-55 — **Low:** headings lack `text-wrap: balance` or `text-wrap: pretty`, contrary to the heading-wrap guideline.
+
+fixtures/site/styles.css:20,38,48,62 — **Low:** four font families are downloaded and used. Design guidance recommends no more than two families and three useful weights; this creates an inconsistent identity and unnecessary font requests.
+
+fixtures/site/styles.css:62 — **Low:** all-caps, tracked monospace summary is generic template chrome rather than meaningful structure. It also compounds readability problems at 13px with the failing muted color.
+
+fixtures/site/styles.css:14 — **Low:** no intentional `touch-action: manipulation` or `-webkit-tap-highlight-color` is set for interactive controls.
+
+## Asset and Credibility Problems — P2
+
+### `fixtures/site/screenshot.svg`
+
+fixtures/site/screenshot.svg:3-16 — **High:** the primary product evidence is only anonymous bars and rectangles, despite the HTML alt text claiming a handover screen with four patients grouped by escalation level. Product previews should contain readable, coherent UI with meaningful labels and demonstrated operation.
+
+### `fixtures/site/logo-*.svg`
+
+fixtures/site/logo-avimark.svg:1 — **Medium:** generic placeholder, visually identical to every other integration logo; it does not credibly represent AVImark.
+
+fixtures/site/logo-cornerstone.svg:1 — **Medium:** generic placeholder, visually identical to every other integration logo; it does not credibly represent Cornerstone.
+
+fixtures/site/logo-ezyvet.svg:1 — **Medium:** generic placeholder, visually identical to every other integration logo; it does not credibly represent ezyVet.
+
+fixtures/site/logo-provet.svg:1 — **Medium:** generic placeholder, visually identical to every other integration logo; it does not credibly represent Provet Cloud.
+
+fixtures/site/logo-vetspire.svg:1 — **Medium:** generic placeholder, visually identical to every other integration logo; it does not credibly represent Vetspire.
+
+## Recommended Order
+
+1. Restore keyboard focus and fix text contrast.
+2. Replace clickable `<li>` rows and dead icon buttons with one semantic interaction.
+3. Label and correctly configure the email field.
+4. Repair the mobile header and 44px touch targets.
+5. Add reduced-motion and no-JavaScript-safe reveal behavior.
+6. Correct duplicate IDs, image dimensions/lazy loading, and status/error semantics.
+7. Replace placeholder product/integration artwork with truthful assets.
+8. Consolidate typography and polish secondary hover, wrapping, and spacing issues.

@@ -1,0 +1,9 @@
+Delivered a complete responsive landing page for **Sill**, an independent monthly seed subscription.
+
+### Files
+- `index.html` — semantic landing page
+- `styles.css` — responsive visual system and accessibility states
+- `script.js` — email validation and reservation interaction
+- `ASSUMPTIONS.md` — business, brand, audience, offer, and design assumptions
+
+Includes responsive layouts, original branding and product artwork, accessible navigation and forms, reduced-motion support, and keyboard focus states. Syntax and HTML parsing checks pass.

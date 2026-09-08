@@ -1,0 +1,229 @@
+# Site review — **41/100 (Poor)**
+
+**Breakdown:** Accessibility 28/100 · Responsive/interaction 42/100 · Performance 65/100 · Visual design 48/100
+
+The page communicates the product clearly, uses semantic sections/headings, and gives the hero image useful alternative text. However, keyboard accessibility, contrast, form semantics, motion preferences, and mobile layout contain release-blocking problems.
+
+## Fix first — Critical
+
+### 1. Keyboard focus is completely removed
+**Severity: Critical**
+
+`fixtures/site/styles.css:29` — `:focus { outline: none; }` removes focus from every link, button, and input without providing a replacement.
+
+**Rule:** Never remove outlines without an equivalent visible `:focus-visible` state; all interactive elements require visible keyboard focus.
+
+**Fix first:** Delete this rule and add high-contrast `:focus-visible` styling.
+
+---
+
+### 2. Integration rows are mouse-only fake links
+**Severity: Critical**
+
+`fixtures/site/index.html:43,47,51,55,59` — `<li onclick="location.href='#signup'">` performs navigation but is neither a link nor keyboard-operable.
+
+**Rules:** Navigation must use `<a>`; interactive elements require keyboard support; clickable `<div>`/`<span>`-like containers are an anti-pattern. Native links also preserve Cmd/Ctrl-click and middle-click behavior.
+
+The nested buttons at `fixtures/site/index.html:45,49,53,57,61` compound the issue: clicking them bubbles into the row navigation, but the buttons themselves have no defined action.
+
+**Fix:** Make each navigable row an `<a href="#signup">`. Remove the redundant nested button or make its purpose distinct.
+
+---
+
+### 3. Most body text fails WCAG contrast
+**Severity: Critical**
+
+`fixtures/site/styles.css:4,25` — `#9aa3ad` text on `#fbfaf7` measures approximately **2.45:1**; on white cards it is **2.56:1**.
+
+Affected content includes the hero explanation, feature descriptions, signup details, footer, and navigation (`fixtures/site/styles.css:40`).
+
+**Rule:** WCAG 2.2 AA requires **4.5:1** for normal text and **3:1** only for large text. These 13–16px styles require 4.5:1.
+
+**Fix:** Darken `--muted` substantially and recheck against both paper and white surfaces.
+
+---
+
+## High priority
+
+### 4. Icon-only buttons have no accessible names
+**Severity: High**
+
+`fixtures/site/index.html:19,45,49,53,57,61` — all icon-only buttons lack `aria-label` or visible text.
+
+**Rule:** Icon-only buttons require an accessible name.
+
+The header button at line 19 also has no implemented menu behavior, expanded state, or controlled element.
+
+**Fix:** Label every retained icon button. Implement proper menu state for the header button or remove it.
+
+---
+
+### 5. Signup input has no label and uses the wrong input type
+**Severity: High**
+
+`fixtures/site/index.html:70` — the email field has only a placeholder, uses `type="text"`, and lacks `autocomplete`.
+
+**Rules:** Form controls need `<label>` or `aria-label`; email fields use `type="email"`; inputs need meaningful `name` and `autocomplete`; placeholders are not labels.
+
+**Fix:** Add a persistent `<label>`, use `type="email"`, `autocomplete="email"`, and consider `spellcheck="false"` and an example placeholder ending in `…`.
+
+---
+
+### 6. Scroll-reveal ignores reduced-motion preferences
+**Severity: High**
+
+`fixtures/site/styles.css:92-93` and `fixtures/site/index.html:80-84` — every post-hero section starts hidden and animates, with no `prefers-reduced-motion` override.
+
+**Rule:** Motion must provide a reduced or disabled variant.
+
+It also creates a robustness failure: if JavaScript or `IntersectionObserver` fails, all three sections remain invisible.
+
+**Fix:** Make content visible by default, apply reveal styles only after JS enhancement, and disable transitions under `@media (prefers-reduced-motion: reduce)`.
+
+---
+
+### 7. Mobile header is likely to overflow
+**Severity: High**
+
+`fixtures/site/styles.css:31-40,95-100` — the header retains the wordmark, three navigation links, menu button, 40px side padding, and 32px gaps on a 375px viewport. Nothing wraps or hides.
+
+Estimated required width is roughly **490–520px**, well beyond 375px.
+
+**Rule:** No horizontal scrolling at 375px; avoid unwanted overflow and use responsive flex/grid behavior.
+
+**Fix:** Establish one mobile navigation pattern, reduce horizontal padding, and test at 320px and 375px. Do not show full navigation and a menu trigger simultaneously.
+
+---
+
+### 8. Duplicate `id="cta"` values make the document invalid
+**Severity: High**
+
+`fixtures/site/index.html:17,26` — `id="cta"` occurs twice.
+
+**Rule:** HTML IDs must be unique; duplicate IDs create ambiguous DOM, fragment, and assistive-technology behavior.
+
+**Fix:** Remove these IDs if unused or assign unique identifiers.
+
+---
+
+## Medium priority
+
+### 9. Missing skip link and anchor offset handling
+**Severity: Medium**
+
+`fixtures/site/index.html:11-22` — no “Skip to main content” link exists.
+
+`fixtures/site/styles.css:47-55` — headings/anchored sections have no `scroll-margin-top`.
+
+**Rules:** Include a skip link for main content; heading anchors should use `scroll-margin-top` so navigation does not obscure targets.
+
+**Fix:** Add a keyboard-visible skip link and an ID on `<main>`. Add anchor scroll margin.
+
+---
+
+### 10. Interactive feedback is incomplete
+**Severity: Medium**
+
+`fixtures/site/styles.css:27,38-41,65,70,84` — only `.btn` has a hover state. Navigation links, footer link, integration rows, and icon buttons have no distinct hover/active treatment.
+
+**Rule:** Buttons and links need hover feedback, with interactive states becoming more prominent rather than merely disappearing.
+
+**Fix:** Add coherent hover and active states to each interactive class, alongside the required focus-visible styles.
+
+---
+
+### 11. Below-fold logo images lack dimensions and lazy loading
+**Severity: Medium**
+
+`fixtures/site/index.html:44,48,52,56,60` — integration logos have no HTML `width`/`height` attributes and no `loading="lazy"`.
+
+CSS dimensions at `fixtures/site/styles.css:67` visually constrain them, but intrinsic dimensions still should be declared in markup.
+
+**Rules:** Images need explicit width and height to prevent layout shift; below-fold images should load lazily.
+
+**Fix:** Add `width="24" height="24" loading="lazy"`.
+
+---
+
+### 12. Touch targets are undersized
+**Severity: Medium**
+
+`fixtures/site/styles.css:70` — row icons are approximately **32×32px**: 16px SVG plus 8px padding per side.
+
+`fixtures/site/styles.css:95-99` — mobile `.btn` height is approximately **29px**: 13px text at 1.6 line-height plus 8px vertical padding.
+
+**Measurement:** WCAG 2.2 minimum target size is **24×24 CSS px**, but the widely recommended mobile target is approximately **44×44px**. These technically clear the WCAG minimum but are poor for gloved or hurried clinical use.
+
+**Fix:** Raise primary controls and icon hit areas to about 44px without necessarily enlarging the icons.
+
+---
+
+### 13. Heading wrapping is unmanaged
+**Severity: Medium**
+
+`fixtures/site/styles.css:47-55` — headings lack `text-wrap: balance` or `text-wrap: pretty`.
+
+**Rule:** Balance or prettify heading wrapping to prevent widows and awkward short final lines.
+
+**Fix:** Apply balanced wrapping to display headings.
+
+---
+
+## Lower-priority visual/design issues
+
+### 14. The typography is fragmented and expensive
+**Severity: Low–Medium**
+
+`fixtures/site/index.html:8` — four font families are downloaded: Inter, Playfair Display, Roboto Mono, and Lobster.
+
+**Design rule:** Use at most two typefaces with explicit roles. Four unrelated faces make the identity feel assembled rather than coherent and increase font requests.
+
+**Fix:** Consolidate to one display family and one text family. This is a refinement after accessibility problems are fixed.
+
+---
+
+### 15. The page relies on generic landing-page patterns
+**Severity: Low–Medium**
+
+`fixtures/site/index.html:23-27,30-36` and `fixtures/site/styles.css:43-60` — centered-width hero followed by a three-up rounded-card feature grid; every section shares the same container and 64px padding.
+
+**Design rules:** Avoid the default centered hero stack and universal three-card grid; vary section rhythm, container width, alignment, or surfaces. The design guidance also calls for one subject-specific signature element.
+
+The content is veterinary-specific, but the visual structure could belong to almost any SaaS product.
+
+**Fix:** Do not redesign now; after compliance work, improve hierarchy and section rhythm while preserving the current content and direction.
+
+---
+
+### 16. Display hierarchy is weaker than the stated scale
+**Severity: Low**
+
+`fixtures/site/styles.css:21,47-50,97` — desktop H1 is **52px versus 16px body**, or **3.25×**; mobile is **32px**, or **2×**.
+
+**Design measurement:** The supplied visual guideline recommends display type at least **4× body size**, with roughly 0.95–1.05 line-height. Current desktop line-height is 1.08.
+
+**Fix:** Revisit display scale only after mobile fit and accessibility are resolved.
+
+---
+
+### 17. No theme color metadata
+**Severity: Low**
+
+`fixtures/site/index.html:3-9` — missing `<meta name="theme-color">`.
+
+**Rule:** Browser theme color should match the page background.
+
+**Fix:** Add a theme color matching `#fbfaf7`.
+
+## Recommended repair order
+
+1. Restore keyboard focus.
+2. Replace clickable integration `<li>` elements with real links; remove or define nested buttons.
+3. Fix `--muted` contrast.
+4. Repair the email field semantics.
+5. Add accessible names and real behavior to icon buttons.
+6. Add reduced-motion handling and make content visible without JavaScript.
+7. Fix the 375px header layout and touch targets.
+8. Remove duplicate IDs; add skip-link and anchor offsets.
+9. Add image dimensions/lazy loading and missing interaction states.
+10. Only then refine typography, hierarchy, and generic visual structure.

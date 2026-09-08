@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Test-suite runner: 5 WDE scenarios x 4 skill configurations, pi CLI / gpt-5.6-sol / low.
+# Test-suite runner: 10 WDE scenarios x N skill configurations, pi CLI / gpt-5.6-sol / low.
+# CFGS="cfg1 cfg2" ./run.sh              — all scenarios in SCENARIOS
+# SCENARIOS="WDE-06 WDE-07" ./run.sh     — subset (WDE-06..10 are the extension set)
+# ./run.sh <cfg> <scenario>              — one cell
 set -u
 ROOT=/home/basil/tmp/.local
 RUNS=$ROOT/runs
@@ -44,6 +47,7 @@ run_one() {
   case $sc in
     WDE-02) cp -r $ROOT/fixtures/wde02/fixtures "$dir"/ ;;
     WDE-05) cp -r $ROOT/fixtures/wde05/fixtures "$dir"/ ;;
+    WDE-06) cp -r $ROOT/fixtures/wde06/fixtures "$dir"/ ;;
   esac
   local start=$(date +%s)
   ( cd "$dir" && timeout 2700 pi -p $MODEL_ARGS $COMMON $(skill_args "$cfg") $(extra_args "$cfg") \
@@ -58,7 +62,7 @@ SC=${2:-}
 if [ -n "$CFG" ] && [ -n "$SC" ]; then run_one "$CFG" "$SC"; exit 0; fi
 
 for cfg in ${CFGS:-base wde design-list discovered}; do
-  for sc in WDE-01 WDE-02 WDE-03 WDE-04 WDE-05; do
+  for sc in ${SCENARIOS:-WDE-01 WDE-02 WDE-03 WDE-04 WDE-05 WDE-06 WDE-07 WDE-08 WDE-09 WDE-10}; do
     run_one "$cfg" "$sc" &
     while [ "$(jobs -rp | wc -l)" -ge 8 ]; do wait -n; done
   done

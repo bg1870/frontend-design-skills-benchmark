@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create a Loomwork account for your physiotherapy clinic.">
+  <meta name="theme-color" content="#f9fbfa">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23087f79'/%3E%3C/svg%3E">
+  <title>Create your clinic workspace — Loomwork</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#signup-title">Skip to signup</a>
+  <main class="shell">
+    <section class="signup" aria-labelledby="signup-title">
+      <a class="brand" href="#" aria-label="Loomwork home">
+        <svg aria-hidden="true" viewBox="0 0 36 36"><path d="M6 8h12a8 8 0 0 1 0 16H6m6-10v16h11a7 7 0 0 0 0-14h-5"/></svg>
+        <span>Loomwork</span>
+      </a>
+
+      <div class="form-wrap">
+        <header>
+          <p class="context">Set up your clinic workspace</p>
+          <h1 id="signup-title">A calmer schedule starts here.</h1>
+          <p class="intro">Plan practitioners, rooms and patient appointments in one shared view.</p>
+        </header>
+
+        <form id="signup-form" novalidate>
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" autocomplete="name" placeholder="e.g. Maya Chen…" required>
+            <p class="error" id="name-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="clinic">Clinic name</label>
+            <input id="clinic" name="clinic" autocomplete="organization" placeholder="e.g. Harbour Physiotherapy…" required>
+            <p class="error" id="clinic-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@clinic.com…" required>
+            <p class="error" id="email-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <div class="label-row"><label for="password">Password</label><span>At least 8 characters</span></div>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+              <button class="show-password" type="button" aria-label="Show password" aria-pressed="false">Show</button>
+            </div>
+            <p class="error" id="password-error" aria-live="polite"></p>
+          </div>
+          <label class="check"><input type="checkbox" name="terms" required><span>I agree to the <a href="#terms">Terms</a> and <a href="#privacy">Privacy Policy</a>.</span></label>
+          <p class="error" id="terms-error" aria-live="polite"></p>
+          <button class="primary" type="submit">Create clinic workspace</button>
+          <p class="fineprint">No credit card required · 14-day free trial</p>
+          <div id="success" class="success" role="status" tabindex="-1" hidden>Workspace ready. Check your email to verify your account.</div>
+        </form>
+        <p class="login">Already use Loomwork? <a href="#login">Sign in</a></p>
+      </div>
+    </section>
+
+    <aside class="schedule-panel" aria-label="A preview of Loomwork's clinic schedule">
+      <div class="panel-copy">
+        <span class="live-dot"><i></i>Today’s live schedule</span>
+        <h2>Every moving part,<br>in its place.</h2>
+      </div>
+      <div class="schedule" aria-hidden="true">
+        <div class="schedule-head"><span>Today’s clinic</span><strong>12 appointments</strong></div>
+        <div class="timeline">
+          <div class="times"><span>8:00</span><span>9:00</span><span>10:00</span><span>11:00</span></div>
+          <div class="lane"><b>MC</b><div class="appt a1"><strong>Maya Chen</strong><small>Initial assessment · Room 2</small></div><div class="appt a2"><strong>Jon Bell</strong><small>Follow-up · Gym</small></div></div>
+          <div class="lane"><b>SL</b><div class="appt a3"><strong>Sofia Lane</strong><small>Rehab session · Room 1</small></div><div class="appt a4"><strong>Anya Patel</strong><small>Review · Room 3</small></div></div>
+          <div class="now"><span>Now 9:30</span></div>
+        </div>
+      </div>
+      <p class="panel-note">Built for the way physiotherapy clinics actually move.</p>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

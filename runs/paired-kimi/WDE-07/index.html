@@ -1,0 +1,89 @@
+<!--
+  Register: civic-cartographic — wayfinding graphics, field notes, and city signage.
+  Palette: sky surface #DDE9F2, midnight ink #10233A, signal orange accent #F04B23.
+  Type pairing: Syne for directional display type; DM Sans for clear, practical reading.
+  Signature move: one continuous animated walking route threads through and beyond the hero grid.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nearway sends you one thoughtful city walk every Saturday—complete with a route, local stories, and a good place to stop.">
+  <meta name="theme-color" content="#DDE9F2">
+  <title>Nearway — A better way around</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23F04B23'/%3E%3Cpath d='M15 42 27 18l9 26 13-24' fill='none' stroke='%2310233A' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    :root{--sky:#dde9f2;--ink:#10233a;--orange:#f04b23;--pale:#f4f7f8;--line:rgba(16,35,58,.18);--display:"Syne",sans-serif;--text:"DM Sans",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--sky);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-tap-highlight-color:rgba(240,75,35,.25)}a,button{touch-action:manipulation}h1,h2,h3{text-wrap:balance;scroll-margin-top:24px}.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:fixed;left:12px;top:12px;z-index:20;transform:translateY(-150%);background:var(--ink);color:var(--pale);padding:10px 16px}.skip-link:focus{transform:translateY(0)}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}::selection{background:var(--orange);color:var(--pale)}a{color:inherit}button,input{font:inherit}.wrap{width:min(1240px,calc(100% - 48px));margin:auto}.nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}.logo{font:700 1.3rem var(--display);text-decoration:none;letter-spacing:-.04em}.nav-links{display:flex;align-items:center;gap:30px}.nav-links a{text-decoration:none;font-size:.88rem;font-weight:600}.text-link{position:relative}.text-link:after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--orange);transition:right .2s}.text-link:hover:after{right:0}.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border:2px solid var(--ink);background:var(--ink);color:var(--pale);text-decoration:none;font-weight:600;cursor:pointer;transition:transform .2s,background .2s,color .2s}.button:hover{transform:translateY(-3px);background:var(--orange);color:var(--ink)}:focus-visible{outline:3px solid var(--orange);outline-offset:4px}.hero{position:relative;min-height:770px;overflow:hidden;border-bottom:1px solid var(--line)}.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:7fr 5fr;min-height:680px}.hero-copy{padding:96px 5vw 72px 0}.hero h1{max-width:850px;margin:0;font:700 clamp(4.1rem,9vw,8.8rem)/.86 var(--display);letter-spacing:-.065em}.hero-note{align-self:end;margin:0 0 88px;border-left:2px solid var(--orange);padding-left:22px;max-width:330px;font-size:1.08rem}.hero-note strong{display:block;margin-bottom:8px;font-family:var(--display);font-size:1.35rem;line-height:1.15}.route{position:absolute;width:min(1050px,75vw);height:640px;right:-90px;top:55px;z-index:1;overflow:visible}.route .street{fill:none;stroke:rgba(16,35,58,.1);stroke-width:1}.route .path{fill:none;stroke:var(--orange);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1600;stroke-dashoffset:1600;animation:draw 2.2s .25s cubic-bezier(.22,1,.36,1) forwards}.route .pin{fill:var(--orange);stroke:var(--ink);stroke-width:4;opacity:0;animation:pin .5s 2s forwards}.hero-index{position:absolute;left:24px;bottom:22px;font-size:.76rem;font-weight:600;letter-spacing:.08em;writing-mode:vertical-rl}.ticker{position:absolute;bottom:0;z-index:3;width:100%;height:88px;background:var(--ink);color:var(--sky);display:flex;align-items:center;overflow:hidden;white-space:nowrap;font:600 1rem var(--display);letter-spacing:.03em}.ticker-track{display:flex;gap:54px;min-width:max-content;transform:translateX(-3vw)}.ticker b{color:var(--orange);font-size:1.4em}.intro{background:var(--pale);padding:148px 0 160px}.intro-grid{display:grid;grid-template-columns:4fr 8fr;gap:8vw}.section-label{margin:8px 0;font-size:.8rem;font-weight:600;color:var(--orange)}.intro h2{margin:0;max-width:900px;font:600 clamp(2.8rem,5.7vw,6.2rem)/.98 var(--display);letter-spacing:-.055em}.intro p{max-width:550px;margin:42px 0 0;font-size:1.15rem}.walk{background:var(--ink);color:var(--pale);padding:118px 0 128px}.walk-grid{display:grid;grid-template-columns:5fr 7fr;gap:7vw;align-items:start}.walk-title{position:sticky;top:40px}.walk h2{margin:0;font:600 clamp(3.4rem,6.5vw,7rem)/.9 var(--display);letter-spacing:-.055em}.walk-meta{display:flex;gap:28px;margin-top:34px;color:var(--sky);font-size:.88rem;font-feature-settings:"tnum"}.stops{border-top:1px solid rgba(244,247,248,.25)}.stop{display:grid;grid-template-columns:58px 1fr;gap:20px;padding:34px 0;border-bottom:1px solid rgba(244,247,248,.25)}.stop-num{font-feature-settings:"tnum";color:var(--orange);font-weight:600}.stop h3{margin:0 0 8px;font:600 1.45rem var(--display)}.stop p{max-width:540px;margin:0;color:rgba(244,247,248,.72)}.promise{background:var(--pale);padding:170px 0}.promise-inner{width:min(720px,calc(100% - 48px));margin:auto}.promise h2{font:600 clamp(2.8rem,5.5vw,5.8rem)/.96 var(--display);letter-spacing:-.05em;margin:0 0 40px}.promise-list{list-style:none;padding:0;margin:0}.promise-list li{display:flex;justify-content:space-between;gap:28px;padding:20px 0;border-top:1px solid var(--line)}.promise-list span{color:rgba(16,35,58,.67);text-align:right}.signup{position:relative;background:var(--orange);color:var(--ink);padding:110px 0 120px;overflow:hidden}.signup-grid{display:grid;grid-template-columns:7fr 5fr;gap:8vw;align-items:end}.signup h2{margin:0;font:700 clamp(3.7rem,7.5vw,8rem)/.87 var(--display);letter-spacing:-.065em}.signup p{max-width:430px;margin:0 0 26px}.form{display:flex;max-width:500px}.form input{min-width:0;flex:1;border:2px solid var(--ink);background:transparent;padding:14px 16px;color:var(--ink);border-radius:0}.form input::placeholder{color:rgba(16,35,58,.65)}.form button{border:2px solid var(--ink);background:var(--ink);color:var(--pale);padding:14px 20px;font-weight:600;cursor:pointer;transition:transform .2s,background .2s}.form button:hover{background:var(--pale);color:var(--ink);transform:translateX(3px)}.form-status{min-height:1.6em;margin:12px 0 0!important;font-size:.88rem}.footer{background:var(--sky);padding:36px 0 24px}.footer-top{display:flex;justify-content:space-between;align-items:center}.footer small{font-size:.78rem}.footer-word{overflow:hidden;margin-top:30px;font:700 clamp(6rem,18vw,18rem)/.7 var(--display);letter-spacing:-.085em;white-space:nowrap}
+    @keyframes draw{to{stroke-dashoffset:0}}@keyframes pin{to{opacity:1}}
+    @media(max-width:760px){.wrap{width:min(100% - 30px,1240px)}.nav{height:68px}.nav-links .text-link{display:none}.button{min-height:42px;padding:0 15px}.hero{min-height:720px}.hero-grid{display:block;min-height:630px}.hero-copy{padding:68px 0 0}.hero h1{font-size:clamp(4rem,20vw,6.4rem);max-width:95%}.hero-note{position:absolute;bottom:16px;right:0;margin:0;width:72%;background:var(--sky);padding:14px 0 14px 18px}.route{width:780px;height:500px;right:-410px;top:135px}.hero-index{display:none}.ticker{height:74px}.intro{padding:96px 0 105px}.intro-grid,.walk-grid,.signup-grid{grid-template-columns:1fr}.intro h2{margin-top:45px}.intro p{margin-top:30px}.walk{padding:85px 0}.walk-title{position:static}.walk-meta{margin-bottom:48px}.promise{padding:110px 0}.promise-list li{display:block}.promise-list span{display:block;text-align:left;margin-top:5px}.signup{padding:85px 0}.signup-grid{gap:48px}.form{display:block}.form input,.form button{width:100%}.form button{margin-top:8px}.footer-word{font-size:23vw}.footer-top{align-items:flex-start;gap:20px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.route .path{animation:none;stroke-dashoffset:0}.route .pin{animation:none;opacity:1}.ticker-track{animation:none}.button,.form button{transition:none}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="wrap nav">
+    <a class="logo" href="#main-content" aria-label="Nearway home" translate="no">Nearway</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="text-link" href="#sample">This week’s walk</a>
+      <a class="text-link" href="#about">How it works</a>
+      <a class="button" href="#join">Join free</a>
+    </nav>
+  </header>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy"><h1 id="hero-title">A better way around.</h1></div>
+        <p class="hero-note"><strong>One excellent walk, every Saturday.</strong> A route through overlooked streets, local stories, and somewhere worth stopping.</p>
+      </div>
+      <svg class="route" viewBox="0 0 1000 640" aria-hidden="true">
+        <path class="street" d="M44 130H930M20 300H980M80 490H960M210 20V620M480 0V640M755 20V630M30 600L900 70M100 25L940 570"/>
+        <path class="street" d="M100 210C300 130 400 280 620 180S900 120 970 230M30 420C240 350 390 480 570 400s290-20 400 80"/>
+        <path class="path" d="M115 518C172 465 234 483 278 427s-10-103 52-137 116 20 174-21 42-112 112-132 78 42 126 7 99-23 143 18"/>
+        <circle class="pin" cx="115" cy="518" r="13"/><circle class="pin" cx="885" cy="162" r="13"/>
+      </svg>
+      <span class="hero-index">51.5072° N / 0.1276° W</span>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><span><b>●</b> Walk slowly</span><span>Look up</span><span>Take the long way</span><span>Saturday, 9am</span><span><b>●</b> Walk slowly</span><span>Look up</span><span>Take the long way</span><span>Saturday, 9am</span></div></div>
+    </section>
+
+    <section class="intro" id="about">
+      <div class="wrap intro-grid">
+        <p class="section-label">Why Nearway</p>
+        <div><h2>Your city is more interesting on foot.</h2><p>Nearway is a free Saturday email for curious people. Each edition is one hand-drawn route you can finish before lunch—researched, walked, and written by a local. No ratings. No top tens. Just a reason to turn left.</p></div>
+      </div>
+    </section>
+
+    <section class="walk" id="sample">
+      <div class="wrap walk-grid">
+        <div class="walk-title"><p class="section-label">This Saturday</p><h2>Water, brick &amp; wild fennel</h2><div class="walk-meta"><span>4.8 km</span><span>72 min</span><span>Mostly flat</span></div></div>
+        <div class="stops">
+          <article class="stop"><span class="stop-num">01</span><div><h3>Begin under the old clock</h3><p>Start where the market porters once checked the hour. The clock still runs four minutes fast.</p></div></article>
+          <article class="stop"><span class="stop-num">02</span><div><h3>Follow the vanished river</h3><p>A blue tile appears every hundred metres, tracing water that now moves beneath the pavement.</p></div></article>
+          <article class="stop"><span class="stop-num">03</span><div><h3>Cross at the red footbridge</h3><p>Pause halfway. On clear mornings, the warehouse windows turn the whole canal gold.</p></div></article>
+          <article class="stop"><span class="stop-num">04</span><div><h3>Finish with something warm</h3><p>The corner bakery saves its sesame buns for Saturday. Your route ends at the window.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="promise">
+      <div class="promise-inner"><h2>Made for wandering, not scrolling.</h2><ul class="promise-list"><li>One complete route <span>Ready every Saturday at 9am</span></li><li>Written by a person <span>Walked before it reaches you</span></li><li>Yours for the day <span>Printable and easy to save</span></li><li>Free from clutter <span>No app, adverts, or tracking</span></li></ul></div>
+    </section>
+
+    <section class="signup" id="join">
+      <div class="wrap signup-grid"><h2>Meet you out there.</h2><div><p>Join the first walk next month. We’ll send one welcome note, then your Saturday route.</p><form class="form" id="signup-form"><label class="visually-hidden" for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com…" required><button type="submit">Send me the first walk</button></form><p class="form-status" id="form-status" role="status" aria-live="polite"></p></div></div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><div class="footer-top"><small>© 2026 Nearway. Independently made.</small><a class="text-link" href="mailto:hello@nearway.example">hello@nearway.example</a></div><div class="footer-word" aria-hidden="true" translate="no">Nearway</div></div></footer>
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const email = this.elements.email.value;
+      document.getElementById('form-status').textContent = `You’re on the list. Your first walk will find ${email} next month.`;
+      this.reset();
+    });
+  </script>
+</body>
+</html>

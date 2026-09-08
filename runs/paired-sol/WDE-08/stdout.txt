@@ -1,0 +1,11 @@
+Built the Nojom SDK quickstart page in `index.html`.
+
+Includes:
+- Installation and authentication steps
+- Current Claude Sonnet model request example
+- Per-token pricing and cost calculation
+- Copy-to-clipboard controls
+- Responsive layout and accessible navigation
+- Documented package, environment, and runtime assumptions
+
+Validated that the HTML parses successfully.
