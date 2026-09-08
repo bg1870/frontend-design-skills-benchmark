@@ -242,7 +242,7 @@ Two prompt lines close most of the remaining gap for any config, and cost nothin
   results as partly attributable to that instruction.
 - **Screenshots need a real browser.** `chromium --headless --virtual-time-budget`
   freezes CSS animations mid-fade and produces false contrast failures. All screenshots
-  in `shots/pw-*.png` were taken via Playwright. An earlier `wde` "contrast failure" was
+  in `shots/` were taken via Playwright. An earlier `wde` "contrast failure" was
   this artifact, not a defect.
 - **Automated fabrication counting is crude.** It flags any `<blockquote>`, including
   legitimate brand statements. The table above uses a stricter check: a quote plus an
@@ -271,7 +271,8 @@ Two prompt lines close most of the remaining gap for any config, and cost nothin
 │  ├─ paired/                      frontend-design + local-guidelines variant
 │  └─ wig-command.md               cached Vercel Web Interface Guidelines
 ├─ runs/<config>/<scenario>/       built artifacts + meta.txt
-└─ shots/                          Playwright screenshots, pw-*.png
+└─ shots/                          Playwright screenshots, paired configs only
+                                   <config>-WDE-0N.png (1440x900 / 390x844) + -full.png
 ```
 
 ### Reproducing
