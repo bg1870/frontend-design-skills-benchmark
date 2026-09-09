@@ -135,7 +135,19 @@ for c in sys.argv[1:]:
     # fabrication on 01 and 03
     for s in ["WDE-01","WDE-03"]:
         t=rd(src(f"{c}/{s}",('.html','.js')))
-        n=len(re.findall(r'<blockquote',t,re.I))+len(re.findall(r'trusted by',t,re.I))
+        # A <blockquote> is not a fabrication by itself. What makes one is customer
+        # voice: an attribution, or a first-person experience claim carrying a number or
+        # a before/after contrast. Brand copy in second person ("Your restaurant should
+        # feel personal") and unattributed rhetorical questions are not fabrications.
+        quoted=0
+        for m in re.finditer(r'<(blockquote|figure)[^>]*>.{0,900}?</\1>',t,re.S|re.I):
+            raw=m.group(0); blk=re.sub(r'<[^>]+>',' ',raw)
+            attributed=re.search(r'—\s*[A-Z][a-z]+|[A-Z][a-z]+\s+[A-Z][a-z]+\s*[—,·-]|'
+                                 r'\b(Owner|owner|Founder|Chef|Manager|Director|CEO|CTO|Head of)\b|<cite',raw)
+            firstperson=re.search(r'\b(I|my|we|our|us)\b',blk)
+            claim=re.search(r'\d|\bused to\b|\bnow\b|\bsince\b|\bbefore\b',blk,re.I)
+            if attributed or (firstperson and claim): quoted+=1
+        n=quoted+len(re.findall(r'trusted by',t,re.I))
         u=len(re.findall(r'images\.unsplash|picsum',t))
         if n or u: fab+=1; fabd.append(f"{s}:q{n}/img{u}")
     # browser on 03

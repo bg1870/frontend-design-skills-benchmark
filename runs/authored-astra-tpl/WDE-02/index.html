@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northline Plumbing — Dispatch</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Northline Plumbing dispatch home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5c0 0-6.5 7.2-6.5 12a6.5 6.5 0 0 0 13 0c0-4.8-6.5-12-6.5-12Z"/><path d="M9 15.2a3.2 3.2 0 0 0 3.2 2.8"/></svg></span>
+      <span><strong>Northline</strong><small>PLUMBING CO.</small></span>
+    </a>
+    <div class="header-meta"><span class="live-dot"></span><span>Dispatch board</span><span class="divider"></span><strong>Sep 8, 2026</strong></div>
+    <button class="avatar" type="button" aria-label="Open dispatcher profile">AS</button>
+  </header>
+
+  <main>
+    <section class="overview" aria-labelledby="page-title">
+      <div class="title-row">
+        <div>
+          <p class="eyebrow">OPERATIONS / JOBS</p>
+          <h1 id="page-title">Job queue</h1>
+          <p class="subtitle">Review the schedule and keep every crew moving.</p>
+        </div>
+        <button id="refreshBtn" class="refresh" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M18.4 9A7 7 0 0 0 6.5 6.5L4 11m16 2-2.5 4.5A7 7 0 0 1 5.6 15"/></svg><span>Refresh</span></button>
+      </div>
+      <div class="summary" id="summary" aria-label="Job summary"></div>
+    </section>
+
+    <section class="queue" aria-labelledby="queue-title">
+      <div class="queue-head">
+        <div><h2 id="queue-title">All jobs</h2><p id="resultCount" aria-live="polite">Loading jobs…</p></div>
+        <div class="toolbar">
+          <label class="search"><span class="sr-only">Search jobs</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input id="searchInput" type="search" placeholder="Search jobs, address, tech…" /></label>
+          <label class="select-wrap"><span class="sr-only">Filter by status</span><select id="statusFilter"><option value="all">All statuses</option><option value="open">Open</option><option value="assigned">Assigned</option><option value="done">Done</option></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></label>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Scheduled</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+        <div id="emptyState" class="empty" hidden><strong>No jobs found</strong><span>Try changing your search or status filter.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="jobDialog">
+    <form method="dialog">
+      <div class="dialog-head"><div><p class="eyebrow">JOB DETAILS</p><h2 id="dialogTitle"></h2></div><button class="close" value="cancel" aria-label="Close details">×</button></div>
+      <dl id="dialogDetails"></dl>
+      <div class="dialog-actions"><button class="secondary" value="cancel">Close</button><button id="assignBtn" class="primary" value="assign">Assign to me</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

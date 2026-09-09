@@ -24,6 +24,42 @@
   "scenarios": 5
  },
  {
+  "tin": 67850,
+  "cr": 167168,
+  "out": 26834,
+  "rea": 1156,
+  "cost": 1.2278540000000002,
+  "turns": 31,
+  "tools": 44,
+  "cfg": "authored-astra-tpl",
+  "secs": 1073,
+  "scenarios": 5
+ },
+ {
+  "tin": 76205,
+  "cr": 212864,
+  "out": 27561,
+  "rea": 1127,
+  "cost": 1.314287,
+  "turns": 40,
+  "tools": 49,
+  "cfg": "authored-kimi-tpl",
+  "secs": 1130,
+  "scenarios": 5
+ },
+ {
+  "tin": 65671,
+  "cr": 262016,
+  "out": 29193,
+  "rea": 1197,
+  "cost": 1.3351529999999998,
+  "turns": 44,
+  "tools": 62,
+  "cfg": "authored-sol-tpl",
+  "secs": 1191,
+  "scenarios": 5
+ },
+ {
   "tin": 74215,
   "cr": 184832,
   "out": 32298,

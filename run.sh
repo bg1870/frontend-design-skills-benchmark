@@ -38,6 +38,14 @@ skill_args() {
     authored-sol-r4) echo "--skill $AUTH/authored-r4/beautiful-frontend/SKILL.md" ;;
     authored-kimi-r3) echo "--skill $AUTH/authored-kimi-r3/beautiful-frontend/SKILL.md" ;;
     authored-kimi-r4) echo "--skill $AUTH/authored-kimi-r4/beautiful-frontend/SKILL.md" ;;
+    # template experiment: authored from the original brief + astra's TEMPLATE.md
+    authored-astra-tpl) echo "--skill $AUTH/authored6-tpl/beautiful-frontend/SKILL.md" ;;
+    authored-sol-tpl) echo "--skill $AUTH/authored-tpl/beautiful-frontend/SKILL.md" ;;
+    authored-kimi-tpl) echo "--skill $AUTH/authored-kimi-tpl/beautiful-frontend/SKILL.md" ;;
+    # design-shaped template variant
+    authored-astra-dtpl) echo "--skill $AUTH/authored6-dtpl/beautiful-frontend/SKILL.md" ;;
+    authored-sol-dtpl) echo "--skill $AUTH/authored-dtpl/beautiful-frontend/SKILL.md" ;;
+    authored-kimi-dtpl) echo "--skill $AUTH/authored-kimi-dtpl/beautiful-frontend/SKILL.md" ;;
     base)        echo "" ;;
     wde)         echo "--skill /home/basil/tmp/skills/wde-fixed/SKILL.md" ;;
     design-list) for d in $ROOT/skillsets/design-list/*/; do printf -- "--skill %s " "$d"; done ;;

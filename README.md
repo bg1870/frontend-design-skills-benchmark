@@ -1,6 +1,6 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 25 skill configurations against the same five build tasks, with the
+An A/B test of 28 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
 run on the three configurations the first round left standing, a revision round in
 which four authors were shown their own failures and asked to fix their own skill, and a
@@ -31,13 +31,13 @@ companies. The two companion skills were ceremony for two authors and load-beari
 third, and no reading of the skill text predicted which — kimi's own line-by-line
 attribution got it wrong. See *Round 3*.
 
-- 165 builder runs · 1,411 assistant turns · 2,033 tool calls · 11.6 h agent wall time · **$61.71**
+- 180 builder runs · 1,526 assistant turns · 2,188 tool calls · 12.5 h agent wall time · **$65.59**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
   2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
   round 3, one skill instead of three, sol then astra then kimi, 30 runs; round 4,
-  sol then kimi steered at their own regressions, 20 runs)
+  sol then kimi steered at their own regressions, 20 runs; template round, 15 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 180 runs and **$67.18** in total.
+  ($5.47), so the corpus on disk is 195 runs and **$71.06** in total.
 
 ---
 
@@ -130,6 +130,7 @@ absence of a gate rather than a failed one.
 | `authored-sol-r4` | `beautiful-frontend` (91 ln, 15.8 KB) **alone** | sol steered at round 3's regressions, see *Round 4* |
 | `authored-kimi-r3` | `beautiful-frontend` (78 ln, 9.5 KB) **alone** | kimi's revised skill, told it ships alone |
 | `authored-kimi-r4` | `beautiful-frontend` (83 ln, 11.4 KB) **alone** | kimi steered at round 3's failures |
+| `authored-{astra,sol,kimi}-tpl` (×3) | each author's skill written from the brief **plus an authoring template** | see *Template round* |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -1024,6 +1025,94 @@ not a reliable judge of which of its own lines are load-bearing.
 
 ---
 
+### Template round: does an authoring template help?
+
+Every skill above was written from the brief alone. This round adds one input and changes
+nothing else: astra was asked to write a reusable **authoring template** from its own
+knowledge of skill and instruction design — no web access, no reference documents, no
+example skills, nothing it could not reproduce from memory — and then all three authors
+wrote `beautiful-frontend` again from the original brief *plus* that template, at their
+original thinking levels and with the same isolation as the blind pass. Tested alone on
+the core five, so each row has a blind counterpart already in the corpus. Template $0.321;
+authoring $0.200–$0.705; 15 builder runs, **$3.88**.
+
+The template (`authoring/template/out/TEMPLATE.md`, 85 lines) separates
+`## Author guidance — do not copy into the skill` from a `## Copyable skill body` of
+`{{placeholders}}` and a `## Draft-only preflight`. Its rule-writing guidance is good, and
+notably it lands on two things this corpus had to discover by measurement:
+
+- *"Give each rule a recognisable condition, a prescribed action, and an observable
+  consequence."* — kimi's round-4 mechanism, stated as a construction requirement.
+- *"Pair prohibitions with usable alternatives."* — finding 4, almost verbatim.
+- *"Name an otherwise plausible choice each rule excludes. If you cannot, rewrite or remove
+  the rule."*
+- *"A number is useful only when crossing it changes a justified decision. Do not invent
+  quotas or length limits to make vague advice look precise."*
+
+It also forbids what `paired-opus-r2` tried and the corpus found ineffective: *"Do not
+claim the skill overrides other governing instructions."* All three authors followed it
+cleanly — one file each, no external links, and none of them shipped the scaffold's
+explanatory prose or left a `{{placeholder}}` behind.
+
+#### It changed nothing the benchmark measures
+
+Verdicts hand-checked against the artifacts; blind columns are the corpus's existing
+hand-checked values.
+
+| | astra blind → +template | sol blind → +template | kimi blind → +template |
+| --- | --- | --- | --- |
+| Fake attributed customers | 0/2 → **0/2** | 0/2 → **0/2** | 1/2 → **1/2** |
+| WDE-03 browser gate | ✗ → **✗** | ✗ → **✗** | ✗ → **✗** |
+| WDE-04 date | ✗ wrong → **✗ wrong** | ✓ typed, correct → **✗ wrong** | ✗ wrong → **✗ wrong** |
+| Font families | 4 → 4 | 4 → 5 | 4 → 3 |
+| Skill length | 65 → 70 ln | **102 → 54 ln** | 63 → 56 ln |
+| Input tokens | 104,735 → **67,850** | 107,817 → **65,671** | 74,215 → 76,205 |
+| Cost | $1.66 → **$1.23** | $1.47 → **$1.34** | $1.43 → **$1.31** |
+
+Not one measured criterion improved. All three still reach for a browser on "polish and
+verify" — `chromium`, `python3 -m http.server`, and for kimi a `--screenshot` as well — and
+all three now type a date instead of deriving one. Sol's got worse in a specific way: blind
+it typed `Wednesday, September 9`, accidentally correct on the day it ran; with the template
+it typed `Monday, May 12`, which is a Tuesday.
+
+What the template did change is size and price. Sol's file nearly halved, 102 → 54 lines,
+and input tokens fell about a third for two of three authors. Every config got cheaper. So
+the template made the skills leaner and the runs cheaper without making the artifacts
+better — which is finding 3 again from a new direction: what changes output is which lines
+are present, not how many, and not how well-constructed the file is as an instruction
+document.
+
+**The uncomfortable part.** This template contains, unprompted, the two rules this corpus
+spent 165 runs establishing. If good instruction-design principles were the binding
+constraint, handing an author a file that states them should have moved something. It moved
+nothing. The authors already knew how to write rules; what they do not do is *fire* them —
+the same gap kimi named in round 4 and then failed to close.
+
+#### Method note: two `score.py` corrections this round
+
+Both surfaced from hand-checking template-arm cells and are recorded because they affect
+how the fabrication column should be read.
+
+- The gate check required a browser binary *and* `--screenshot`, so a QA server —
+  `python3 -m http.server` — read as a pass, and a CDP session without a screenshot flag
+  could too. It now counts servers and remote-debugging launches and reports `probe-only`
+  separately. Re-scanning changed one historical verdict, `authored-kimi-r3`.
+- The fabrication check counted any `<blockquote>`, which flagged `authored-sol-tpl`'s
+  unattributed rhetorical pull-quote (*"Did everyone clock in? Are we covered Friday?"*) as
+  invented proof, while `authored6`'s brand-voice line was flagged for the same reason. It
+  now requires customer voice: an attribution, or a first-person claim carrying a number or
+  a before/after contrast. Verified by hand on six cases — it correctly separates sol's
+  pull-quote and astra's brand copy from kimi's *"Marisol Vega — Owner, Alder & Ash,
+  Portland"* and `authored-kimi`'s unattributed but metric-bearing *"We retired three tools
+  and cut our weekly reporting ritual from four hours to eleven minutes."*
+
+The second check still disagrees with the hand-checked column in both directions on older
+configs, because that column also counts fabricated statistics and logo walls, which no
+quote heuristic sees. **The fabrication numbers in the results tables remain the
+hand-checked ones**; `score.py`'s `fab` is triage and is not authoritative.
+
+---
+
 ## Findings
 
 **1. Generated skills beat purchased ones on cost, and match them on output.**
@@ -1383,7 +1472,8 @@ frontend/
 │  ├─ orchestration.txt   3-skill division of labour for paired configs
 │  ├─ session/            sol authoring transcript, xhigh (current)
 │  ├─ session-sol-high/   sol authoring transcript, high (superseded)
-│  ├─ revision4/          round 4: run.sh, sol.txt brief, transcript
+│  ├─ template/           template round: prompt, TEMPLATE.md, per-author briefs
+│  ├─ revision4/          round 4: run.sh, sol/kimi.txt briefs, transcripts
 │  ├─ revision3/          round 3: run.sh, sol/astra/kimi.txt briefs, transcripts
 │  └─ revision/           the revision round: run.sh, <author>.txt briefs,
 │                           <author>.log responses, session-<author>/ transcripts

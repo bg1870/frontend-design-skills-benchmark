@@ -1,0 +1,56 @@
+Write a template that defines the shape of a front-end design skill.
+
+An agent skill is a single instruction file loaded into a model's context before it works,
+in order to change what that model produces. The skills authored from your template will
+all be for one domain: making a model produce browser-rendered visual work — pages,
+product surfaces, dashboards, prototypes, extensions to existing sites.
+
+You are not writing generic advice about instruction design. You are defining the shape
+this particular kind of skill has to have: which sections a front-end design skill must
+contain, in what order, and — for each one — the specific decision it forces the author to
+commit to. An author who fills in your template should end up with a skill that changes
+what gets shipped. An author who fills it in badly should be visibly missing something.
+
+Work out that shape yourself. Decide which aspects of browser-rendered visual work a skill
+must legislate, which it must leave to the individual artifact, and which are traps that
+look worth legislating and are not. Do not defer those decisions to the author — deciding
+them is the job of this file. Where a section needs a value, say whether the template
+supplies it, the author supplies it once, or the artifact decides each time.
+
+Draw only on what you already know about visual design, front-end implementation and
+instruction design. You have no web access, no reference documents, no example skills to
+consult, and no tools beyond writing the file. Do not cite or allude to external sources,
+documentation, design systems, frameworks or named methodologies you cannot reproduce from
+memory in full. Everything in the template must stand on its own.
+
+What the template has to do:
+
+1. Fix the section structure of a front-end design skill and say what belongs in each
+   section — concretely enough that two authors produce comparably complete files.
+2. For each section, state the decision it must force and what an unfilled or evasive
+   answer looks like, so the author can tell a real commitment from a placeholder.
+3. Say what a front-end design skill must NOT contain, including the things that feel
+   essential to write and change nothing about the output.
+4. Give the author a way to check a filled-in draft before shipping it, using only the
+   draft — and specific to visual work, not generic proofreading.
+
+Hard constraints:
+
+- Output exactly one file: TEMPLATE.md. Nothing else. No reference files, no scripts, no
+  directories.
+- 120 lines maximum for the whole file. Every line must earn its place: if a line would not
+  change what an author writes, cut it.
+- Self-contained. No external links, no tool or script dependencies, no reliance on
+  anything the author would have to look up.
+- Nothing that requires asking a human anything. Assume the author works alone from a task
+  brief and this template.
+- No generic exhortation. "Use good typography", "make it polished", "consider the user"
+  are worthless on their own because they do not constrain a choice.
+- Do not encode a single house style. The template must be equally usable by an author
+  writing a skill for austere editorial work and by one writing for exuberant consumer
+  work; it fixes what must be decided, not what the answer is.
+- Distinguish clearly between the parts of the template that are fixed scaffolding the
+  author copies, and the parts that are guidance the author acts on and does not reproduce
+  in the finished skill.
+
+Write the file to TEMPLATE.md in the current directory.

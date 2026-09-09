@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipework Dispatch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#queue" aria-label="Pipework dispatch home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M10 4v8a6 6 0 0 0 6 6h6v10M6 4h8M18 28h8"/><circle cx="16" cy="18" r="2.5"/></svg></span>
+      <span><strong>PIPEWORK</strong><small>Service dispatch</small></span>
+    </a>
+    <div class="shift">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span><b>Dispatch board</b><small>Central service area</small></span>
+    </div>
+    <button class="icon-button" id="refresh" aria-label="Refresh job data" title="Refresh data">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-heading">
+      <div class="summary-intro">
+        <p class="eyebrow">Operations overview</p>
+        <h1 id="summary-heading">Keep every call moving.</h1>
+        <p id="board-date">Loading schedule…</p>
+      </div>
+      <div class="metric urgent">
+        <span class="metric-icon" aria-hidden="true">!</span>
+        <div><strong id="open-count">—</strong><span>Need dispatch</span></div>
+      </div>
+      <div class="metric">
+        <span class="metric-rule assigned-rule"></span>
+        <div><strong id="assigned-count">—</strong><span>Assigned</span></div>
+      </div>
+      <div class="metric">
+        <span class="metric-rule done-rule"></span>
+        <div><strong id="done-count">—</strong><span>Completed</span></div>
+      </div>
+      <div class="next-up">
+        <span class="eyebrow">Next unassigned</span>
+        <strong id="next-time">—</strong>
+        <span id="next-title">Loading…</span>
+      </div>
+    </section>
+
+    <section class="workspace" id="queue" aria-labelledby="queue-heading">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Work orders</p>
+          <h2 id="queue-heading">Job queue <span id="result-count"></span></h2>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span class="sr-only">Search jobs</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+            <input id="search" type="search" placeholder="Search job, tech, address…">
+          </label>
+          <label class="select-wrap"><span class="sr-only">Sort jobs</span>
+            <select id="sort"><option value="time">Scheduled time</option><option value="status">Dispatch priority</option><option value="tech">Technician</option></select>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-row" role="group" aria-label="Filter by status">
+        <button class="filter active" data-filter="all" aria-pressed="true">All <span id="all-chip">0</span></button>
+        <button class="filter" data-filter="open" aria-pressed="false">Needs dispatch <span id="open-chip">0</span></button>
+        <button class="filter" data-filter="assigned" aria-pressed="false">Assigned <span id="assigned-chip">0</span></button>
+        <button class="filter" data-filter="done" aria-pressed="false">Completed <span id="done-chip">0</span></button>
+      </div>
+
+      <div class="queue-shell">
+        <div class="queue-labels" aria-hidden="true"><span>Schedule / work order</span><span>Location</span><span>Technician</span><span>Status</span><span></span></div>
+        <div id="job-list" class="job-list" aria-live="polite"></div>
+        <div id="empty" class="empty" hidden><strong>No matching work orders</strong><span>Try another search or status filter.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="job-dialog" aria-labelledby="dialog-title">
+    <form method="dialog">
+      <div class="dialog-head"><span class="eyebrow">Work order details</span><button class="close" value="cancel" aria-label="Close details">×</button></div>
+      <div id="dialog-content"></div>
+      <div class="dialog-actions"><button value="cancel" class="secondary">Close</button><button value="confirm" id="advance-job" class="primary">Assign technician</button></div>
+    </form>
+  </dialog>
+
+  <footer>Schedule shown in local service time (UTC−05:00). Status totals are derived from <code>fixtures/jobs.json</code>.</footer>
+  <script src="app.js"></script>
+</body>
+</html>

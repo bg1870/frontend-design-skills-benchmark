@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Clear, usage-based pricing for Northstar, a collaborative B2B analytics workspace." />
+  <title>Pricing — Northstar Analytics</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#pricing">Skip to pricing</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Northstar home"><span class="brand-mark" aria-hidden="true">N</span><span>Northstar</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#platform">Platform</a><a href="#plans">Plans</a><a href="#questions">FAQ</a>
+    </nav>
+    <a class="header-action" href="mailto:sales@northstar.example?subject=Northstar%20demo">Book a demo <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>Pricing model / 2026</span><span>USD</span></p>
+        <h1 id="page-title">One workspace.<br><em>Every decision in view.</em></h1>
+        <p class="lede">Plans shaped around how analytics teams actually grow—from the first shared dashboard to governed metrics across the company.</p>
+      </div>
+      <div class="signal" aria-label="Illustration of data flowing from sources through models to decisions">
+        <div class="signal-stage sources"><span>01 / Sources</span><b>12 connected</b><i style="--w:82%"></i><i style="--w:61%"></i><i style="--w:74%"></i></div>
+        <div class="signal-stage model"><span>02 / Model</span><b>Revenue model</b><svg viewBox="0 0 160 56" role="img" aria-label="Sample upward trend line"><path d="M2 48 C30 45,36 31,61 34 S98 19,112 23 S138 8,158 5"/><circle cx="112" cy="23" r="3"/></svg></div>
+        <div class="signal-stage decision"><span>03 / Decision</span><b>Plan approved</b><small>Live · 4 viewers</small></div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing" aria-labelledby="plans-title">
+      <div class="section-head" id="plans">
+        <div><p class="index">01 — Choose a plan</p><h2 id="plans-title">Start with the way you work now.</h2></div>
+        <div class="billing" role="group" aria-label="Billing frequency">
+          <button type="button" data-period="monthly" aria-pressed="false">Monthly</button>
+          <button type="button" data-period="annual" aria-pressed="true">Annual <span>save 20%</span></button>
+        </div>
+      </div>
+
+      <div class="plan-grid">
+        <article class="plan">
+          <div class="plan-top"><p class="plan-number">01</p><h3>Explore</h3><p>For a small team bringing scattered reporting into one shared view.</p></div>
+          <div class="price"><span class="currency">$</span><strong data-monthly="49" data-annual="39">39</strong><span>/ user<br>month</span></div>
+          <p class="billing-note">$468 per user, billed annually</p>
+          <a class="button secondary" href="mailto:sales@northstar.example?subject=Start%20Explore">Start Explore</a>
+          <ul>
+            <li>Up to 10 users</li><li>5 data source connections</li><li>Unlimited dashboards</li><li>Scheduled email reports</li><li>Community support</li>
+          </ul>
+        </article>
+
+        <article class="plan featured">
+          <div class="recommended">Recommended for analytics teams</div>
+          <div class="plan-top"><p class="plan-number">02</p><h3>Model</h3><p>For growing teams building reliable metrics and recurring decision workflows.</p></div>
+          <div class="price"><span class="currency">$</span><strong data-monthly="99" data-annual="79">79</strong><span>/ user<br>month</span></div>
+          <p class="billing-note">$948 per user, billed annually</p>
+          <a class="button primary" href="mailto:sales@northstar.example?subject=Start%20Model">Start Model <span aria-hidden="true">→</span></a>
+          <ul>
+            <li>Unlimited users</li><li>25 data source connections</li><li>Semantic metrics layer</li><li>Version history &amp; approvals</li><li>Priority email support</li>
+          </ul>
+        </article>
+
+        <article class="plan">
+          <div class="plan-top"><p class="plan-number">03</p><h3>Govern</h3><p>For organizations standardizing access, controls, and trusted definitions.</p></div>
+          <div class="price custom"><strong>Custom</strong><span>annual<br>agreement</span></div>
+          <p class="billing-note">Structured around deployment scope</p>
+          <a class="button secondary" href="mailto:sales@northstar.example?subject=Discuss%20Govern">Talk to sales</a>
+          <ul>
+            <li>Everything in Model</li><li>Single sign-on (SAML)</li><li>Role-based data access</li><li>Audit log export</li><li>Dedicated success manager</li>
+          </ul>
+        </article>
+      </div>
+      <p class="price-footnote">Prices exclude applicable taxes. Annual plans are paid upfront. All plans include encrypted data transfer and workspace exports.</p>
+    </section>
+
+    <section class="fit" id="platform" aria-labelledby="fit-title">
+      <div class="fit-copy"><p class="index">02 — Map your needs</p><h2 id="fit-title">The difference is not more charts. It is more control.</h2><p>Move plans when the shape of your analytics practice changes—not because you hit an arbitrary dashboard limit.</p></div>
+      <div class="fit-table" role="region" aria-label="Plan capabilities" tabindex="0">
+        <div class="fit-row labels"><span>Capability</span><span>Explore</span><span>Model</span><span>Govern</span></div>
+        <div class="fit-row"><span><b>Share answers</b><small>Dashboards and reports</small></span><span>Included</span><span>Included</span><span>Included</span></div>
+        <div class="fit-row"><span><b>Define truth</b><small>Reusable governed metrics</small></span><span>—</span><span>Included</span><span>Included</span></div>
+        <div class="fit-row"><span><b>Control access</b><small>Identity and row-level policy</small></span><span>—</span><span>Basic</span><span>Advanced</span></div>
+        <div class="fit-row"><span><b>Prove change</b><small>Audit history and exports</small></span><span>30 days</span><span>1 year</span><span>Custom</span></div>
+      </div>
+    </section>
+
+    <section class="faq" id="questions" aria-labelledby="faq-title">
+      <div><p class="index">03 — Details</p><h2 id="faq-title">Before you commit.</h2></div>
+      <div class="accordions">
+        <details><summary>What counts as a user?<span aria-hidden="true">+</span></summary><p>A user is anyone who can sign in to create, edit, or view workspace content. Service accounts used only for data connections are not billed as users.</p></details>
+        <details><summary>Can I change plans later?<span aria-hidden="true">+</span></summary><p>Yes. You can upgrade at any time. Annual plan changes are prorated for the remaining term; contact us before renewal to move to a lower tier.</p></details>
+        <details><summary>Do you offer a trial?<span aria-hidden="true">+</span></summary><p>Yes. Explore and Model include a 14-day trial with no card required. Govern begins with a scoped technical evaluation.</p></details>
+        <details><summary>Is onboarding included?<span aria-hidden="true">+</span></summary><p>Every plan includes guided setup resources. Govern agreements include an implementation plan and a dedicated success manager.</p></details>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="index">Ready when your data is</p><h2>Put your next decision<br>on a firmer foundation.</h2><div><a class="button light" href="mailto:sales@northstar.example?subject=Northstar%20demo">Book a demo <span aria-hidden="true">↗</span></a><a href="#plans">Review plans ↑</a></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top"><span class="brand-mark">N</span><span>Northstar</span></a><p>Collaborative analytics for operational teams.</p><p>© 2026 Northstar Analytics</p></footer>
+</body>
+</html>

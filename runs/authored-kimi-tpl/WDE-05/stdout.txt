@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added an “Owner stories” testimonials section with a clearly labelled verification placeholder.
+- Added an “In the box” section with a neutral packaging illustration and pending-manifest notice.
+- Added navigation links, responsive layouts, accessibility states, reduced-motion support, selection styling, and inline SVG favicon.
+- Recorded the unresolved sourcing blocker in `index.html`.
+- Preserved Kettell’s established typography, palette, and visual language.
+- Verified HTML parsing and scanned for prohibited placeholder patterns.

@@ -1,0 +1,45 @@
+Write a reusable template for authoring an agent skill.
+
+An agent skill is a single instruction file that gets loaded into a model's context before
+it performs a task, in order to change what that model produces. You are writing the
+template that another model will fill in when it authors one — the scaffold plus the
+authoring discipline that makes the resulting file actually change output rather than
+merely sound like good advice.
+
+Draw only on what you already know about skill design, instruction design and prompting.
+You have no web access, no reference documents, no example skills to consult, and no tools
+beyond writing the file. Do not cite or allude to external sources, documentation,
+frameworks, or named methodologies you cannot reproduce from memory in full. Everything in
+the template must stand on its own.
+
+The template must be domain-agnostic: it will be used to author skills for visual design,
+for code review, for data analysis, for writing — you do not know which. Do not encode the
+subject matter of any one domain.
+
+What the template has to do:
+
+1. Give the author a concrete structure to fill in — sections, and what belongs in each.
+2. Tell the author how to write an instruction that changes a model's behaviour, and how
+   to recognise one that will not. Be specific about the difference.
+3. Tell the author what to leave out, and why.
+4. Give the author a way to check a draft before shipping it, using only the draft itself.
+
+Hard constraints:
+
+- Output exactly one file: TEMPLATE.md. Nothing else. No reference files, no scripts, no
+  directories.
+- 120 lines maximum for the whole file. Every line must earn its place: if a line would not
+  change what an author writes, cut it.
+- Self-contained. No external links, no tool or script dependencies, no reliance on
+  anything the author would have to look up.
+- Nothing that requires asking a human anything. Assume the author works alone from a task
+  brief and this template.
+- No generic exhortation. "Be specific", "write clearly", "consider the user" are worthless
+  on their own because they do not constrain a choice. Anything you assert must be
+  actionable enough that two authors following it would produce recognisably better files
+  than two authors without it.
+- Distinguish clearly, wherever it matters, between the parts of the template that are
+  fixed scaffolding the author copies, and the parts that are guidance the author acts on
+  and does not reproduce in the finished skill.
+
+Write the file to TEMPLATE.md in the current directory.

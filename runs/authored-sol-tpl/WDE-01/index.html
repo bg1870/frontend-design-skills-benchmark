@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ridgeline brings restaurant scheduling, time tracking, and payroll into one calm weekly workflow." />
+  <title>Ridgeline — Payroll that knows the schedule</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ridgeline home">
+      <svg viewBox="0 0 36 24" aria-hidden="true"><path d="M2 20 11 8l5 7 7-12 11 17"/><path d="M5 20h26"/></svg>
+      <span>RIDGELINE</span>
+    </a>
+    <button class="menu-button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><i></i><i></i></button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="#workflow">How it works</a>
+      <a href="#operators">For operators</a>
+      <a href="#pricing">Pricing</a>
+      <button class="text-button" data-open-demo>Book a walkthrough</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>Built for independent restaurants</span></p>
+        <h1>From first clock-in<br>to <em>payday.</em></h1>
+        <p class="lede">Ridgeline keeps your schedule, timecards, and payroll on the same line—so labor decisions make sense before the week is over.</p>
+        <div class="hero-actions">
+          <button class="button primary" data-open-demo>Book a walkthrough <span aria-hidden="true">→</span></button>
+          <a class="button secondary" href="#workflow">See the weekly flow</a>
+        </div>
+        <p class="microcopy">A practical tour, shaped around your restaurant.</p>
+      </div>
+
+      <div class="service-board" aria-label="Sample Ridgeline weekly labor overview">
+        <div class="board-top">
+          <div><span class="board-kicker">THE WILLOW · SAMPLE WEEK</span><strong>Labor board</strong></div>
+          <div class="week-control"><button aria-label="Previous week">‹</button><span>SEP 14–20</span><button aria-label="Next week">›</button></div>
+        </div>
+        <div class="board-stats">
+          <div><span>SCHEDULED</span><b>286.5 h</b></div>
+          <div><span>ACTUAL</span><b>281.2 h</b></div>
+          <div class="good"><span>VARIANCE</span><b>−5.3 h</b></div>
+        </div>
+        <div class="shift-grid">
+          <div class="grid-labels"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+          <div class="role-row"><b>FOH</b><div class="bars"><i style="--start:2%;--width:10%"></i><i style="--start:17%;--width:11%"></i><i style="--start:32%;--width:10%"></i><i style="--start:47%;--width:11%"></i><i style="--start:62%;--width:12%"></i><i style="--start:77%;--width:12%"></i><i style="--start:92%;--width:7%"></i></div></div>
+          <div class="role-row"><b>BOH</b><div class="bars amber"><i style="--start:1%;--width:12%"></i><i style="--start:16%;--width:12%"></i><i style="--start:31%;--width:12%"></i><i style="--start:46%;--width:12%"></i><i style="--start:61%;--width:13%"></i><i style="--start:76%;--width:13%"></i><i style="--start:91%;--width:8%"></i></div></div>
+          <div class="role-row"><b>PREP</b><div class="bars pale"><i style="--start:3%;--width:7%"></i><i style="--start:18%;--width:7%"></i><i style="--start:33%;--width:7%"></i><i style="--start:48%;--width:7%"></i><i style="--start:63%;--width:8%"></i><i style="--start:78%;--width:8%"></i></div></div>
+        </div>
+        <div class="board-footer"><span><i class="status-dot"></i> All timecards reviewed</span><button class="run-payroll" data-open-demo>Run payroll <span>→</span></button></div>
+      </div>
+      <div class="hero-rule" aria-hidden="true"><span>01</span></div>
+    </section>
+
+    <section class="proof-strip" aria-label="Product summary">
+      <p>One operating rhythm</p><div>PLAN <span>→</span> CLOCK IN <span>→</span> REVIEW <span>→</span> PAY</div>
+    </section>
+
+    <section class="workflow" id="workflow">
+      <div class="section-intro"><p class="eyebrow">The weekly flow</p><h2>Less back-office.<br><em>More foresight.</em></h2></div>
+      <div class="workflow-list">
+        <article><span class="step">01 / PLAN</span><div><h3>Build the week around service.</h3><p>Schedule by role and shift, see coverage at a glance, and make changes without rebuilding the whole week.</p></div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12h32M8 24h22M8 36h28"/><circle cx="35" cy="24" r="5"/></svg></article>
+        <article><span class="step">02 / TRACK</span><div><h3>Keep time tied to the plan.</h3><p>Compare scheduled and worked hours in one view. Catch missed punches and changes while the shift is still fresh.</p></div><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"/><path d="M24 14v11l8 5"/></svg></article>
+        <article><span class="step">03 / PAY</span><div><h3>Turn reviewed hours into payroll.</h3><p>Move from approved timecards to a clear payroll run—without re-keying the week into another system.</p></div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 14h28v22H10zM16 9h16v10H16zM17 27h14"/></svg></article>
+      </div>
+    </section>
+
+    <section class="operator-section" id="operators">
+      <div class="quote-block">
+        <p class="eyebrow light">For the person carrying the week</p>
+        <blockquote>“Did everyone clock in? Are we covered Friday? Is payroll ready?”</blockquote>
+        <p>Ridgeline puts the answers in one place, built around how a restaurant actually runs—not how a generic office works.</p>
+      </div>
+      <div class="checklist">
+        <p class="list-title">BEFORE YOU LOCK UP</p>
+        <ul>
+          <li><span>Coverage gaps</span><b>Clear</b></li>
+          <li><span>Missed punches</span><b>Reviewed</b></li>
+          <li><span>Timecards</span><b>Ready</b></li>
+          <li><span>Next payroll</span><b>On track</b></li>
+        </ul>
+        <div class="signed"><svg viewBox="0 0 30 22" aria-hidden="true"><path d="m3 11 7 7L27 3"/></svg><span>Close the laptop.<br><strong>The week is handled.</strong></span></div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div><p class="eyebrow">Straightforward setup</p><h2>One restaurant or your next location.</h2></div>
+      <div class="pricing-copy"><p>We’ll learn your roles, pay cadence, and current workflow, then show you the right Ridgeline setup. Pricing is tailored to restaurant size and needs—no mystery bundles in the walkthrough.</p><button class="button primary dark" data-open-demo>Talk through your setup <span>→</span></button></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#top"><svg viewBox="0 0 36 24" aria-hidden="true"><path d="M2 20 11 8l5 7 7-12 11 17"/><path d="M5 20h26"/></svg><span>RIDGELINE</span></a>
+    <p>Payroll and scheduling for independent restaurants.</p>
+    <div><a href="mailto:hello@ridgeline.example">hello@ridgeline.example</a><span>© <span id="year"></span> Ridgeline</span></div>
+  </footer>
+
+  <dialog id="demo-dialog" aria-labelledby="demo-title">
+    <button class="dialog-close" aria-label="Close dialog">×</button>
+    <p class="eyebrow">A useful first conversation</p>
+    <h2 id="demo-title">Tell us about your restaurant.</h2>
+    <p>Share the basics and the Ridgeline team will follow up to arrange a walkthrough.</p>
+    <form id="demo-form">
+      <label>Your name<input name="name" autocomplete="name" required /></label>
+      <label>Work email<input name="email" type="email" autocomplete="email" required /></label>
+      <label>Number of locations<select name="locations" required><option value="">Select</option><option>1 location</option><option>2–3 locations</option><option>4+ locations</option></select></label>
+      <button class="button primary" type="submit">Request walkthrough <span>→</span></button>
+      <p class="form-note">Demo form only—no data is sent.</p>
+    </form>
+    <div class="success" hidden><span>✓</span><h3>Request noted.</h3><p>This demo is ready to connect to your preferred form service.</p><button class="button secondary" data-close-demo>Done</button></div>
+  </dialog>
+</body>
+</html>
