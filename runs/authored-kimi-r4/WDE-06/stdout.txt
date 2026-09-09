@@ -1,0 +1,208 @@
+# Review: `fixtures/site`
+
+## Overall score: **54/100 — needs significant remediation**
+
+| Area | Score | Assessment |
+|---|---:|---|
+| Accessibility | 34/100 | Several keyboard, labeling, contrast, and focus failures |
+| Responsive behavior | 45/100 | Mobile header and signup form are likely to overflow |
+| Usability | 56/100 | Primary interactions are ambiguous or nonfunctional |
+| Content/visual hierarchy | 76/100 | Clear messaging and structure, but supporting text is hard to read |
+| Code quality/resilience | 60/100 | Simple implementation, but invalid IDs and JS-dependent visibility |
+
+This is a static source review; the score is not a Lighthouse result.
+
+---
+
+## Fix first
+
+### 1. Restore visible keyboard focus
+**Severity: Critical**
+
+- **Location:** `fixtures/site/styles.css:29`
+- `:focus { outline: none; }` removes the only focus indicator from every link, button, and input without providing a replacement.
+- This fails **WCAG 2.4.7 Focus Visible** and can also fail **WCAG 2.4.11 Focus Not Obscured/appearance expectations** in WCAG 2.2.
+
+**Fix:** Replace the global suppression with a clearly visible `:focus-visible` style having at least a 2px indicator and sufficient contrast.
+
+---
+
+### 2. Make the integration rows genuinely keyboard-accessible
+**Severity: Critical**
+
+- **Location:** `fixtures/site/index.html:43–62`
+- Each `<li>` is clickable only through `onclick`. A list item is not focusable and has no keyboard activation semantics.
+- The nested arrow button is focusable but has no accessible name and no explicit behavior.
+- This fails **WCAG 2.1.1 Keyboard**, **4.1.2 Name, Role, Value**, and likely **2.4.3 Focus Order** because keyboard and pointer users encounter different interaction models.
+
+**Fix:** Use one real link or button as the row’s interactive control. Do not simulate links with `onclick` on `<li>` elements.
+
+---
+
+### 3. Give the email field a real label and correct input semantics
+**Severity: High**
+
+- **Location:** `fixtures/site/index.html:69–71`
+- The field has only a placeholder. Placeholders are not persistent labels and disappear after entry.
+- `type="text"` provides no native email validation or email-optimized mobile keyboard.
+- There is no `required` or `autocomplete="email"`.
+- Missing labeling fails **WCAG 1.3.1 Info and Relationships** and **3.3.2 Labels or Instructions**. Missing programmatic purpose weakens **WCAG 1.3.5 Identify Input Purpose**.
+
+**Fix:** Add an associated `<label>`, use `type="email"` and `autocomplete="email"`, and mark it required if submission requires an address.
+
+---
+
+### 4. Correct the low-contrast muted text
+**Severity: High**
+
+- **Location:** `fixtures/site/styles.css:4,25,40,70`
+- `#9aa3ad` has:
+  - **2.45:1** contrast against `#fbfaf7`
+  - **2.56:1** contrast against white
+- It is used for body copy, 12–14px navigation/footer text, placeholders, and icons.
+- Normal text requires **4.5:1** under **WCAG 1.4.3 Contrast (Minimum)**. These elements do not qualify as large text.
+- Icon/control boundaries generally require **3:1** under **WCAG 1.4.11 Non-text Contrast**.
+
+**Fix:** Darken `--muted` enough to reach 4.5:1 on both page backgrounds. Check placeholder contrast separately.
+
+---
+
+## Next priority
+
+### 5. Fix the mobile header overflow instead of shrinking its text
+**Severity: High**
+
+- **Location:** `fixtures/site/styles.css:31–40,95–100`
+- At 320px, the header has only **240px** after its 40px left/right padding. It must contain the wordmark, three navigation links, a 32px gap, and a menu button.
+- The mobile rule only reduces navigation text to 12px; it does not collapse, wrap, or hide either navigation mode.
+- This is likely to create horizontal overflow and can fail **WCAG 1.4.10 Reflow**, which requires content to work at a CSS viewport width of 320px without two-dimensional scrolling.
+
+**Fix:** At the breakpoint, use either the navigation links or a functioning menu control—not both—and reduce header gutters if necessary.
+
+---
+
+### 6. The hamburger button is unlabeled and nonfunctional
+**Severity: High**
+
+- **Location:** `fixtures/site/index.html:19`
+- The icon-only button has no text, `aria-label`, or title, so it has no useful accessible name.
+- No script or state connects it to a menu; it does nothing when activated.
+- This fails **WCAG 4.1.2 Name, Role, Value**. An inert visible control is also a major usability defect.
+- It appears at all viewport sizes because there is no CSS rule hiding it on desktop.
+
+**Fix:** Either remove it when full navigation is visible or implement it with an accessible name, menu state, `aria-expanded`, and `aria-controls`.
+
+---
+
+### 7. Prevent the mobile signup form from overflowing
+**Severity: High**
+
+- **Location:** `fixtures/site/styles.css:43,86–87,95–100`
+- At 320px, `<main>` provides only **240px** of content width because of 40px side padding.
+- The form remains one flex row. The input, submit button, and 8px gap are unlikely to fit, especially because flex items retain automatic minimum widths by default.
+- This risks failure of **WCAG 1.4.10 Reflow**.
+
+**Fix:** Stack the input and button at the mobile breakpoint or explicitly allow safe shrinking while preserving usable controls.
+
+---
+
+### 8. Do not reduce mobile buttons below practical touch size
+**Severity: Medium–High**
+
+- **Location:** `fixtures/site/styles.css:98`
+- Mobile `.btn` padding becomes 4px vertically with 13px text. At the inherited 1.6 line height, the control is approximately **29px high**.
+- WCAG 2.2 **2.5.8 Target Size (Minimum)** expects a **24×24 CSS px** target or sufficient spacing; the button technically exceeds 24px but is well below the commonly recommended **44×44px** touch target.
+- The icon buttons are about **32–36px** square from their SVG size plus 8px padding (`styles.css:70`), also below the 44px recommendation.
+
+**Fix:** Retain at least a 44px practical hit area, especially for the main conversion button and mobile controls.
+
+---
+
+## Other findings
+
+### 9. Duplicate `id="cta"` values produce invalid and ambiguous markup
+**Severity: Medium**
+
+- **Location:** `fixtures/site/index.html:17,26`
+- HTML IDs must be unique within a document.
+- `document.getElementById("cta")`, fragment targeting, testing tools, and accessibility tooling can resolve the wrong element.
+
+**Fix:** Remove these IDs if unused or give each element a unique ID.
+
+---
+
+### 10. Most page content is hidden when JavaScript fails
+**Severity: Medium**
+
+- **Location:** `fixtures/site/styles.css:92–93`; `fixtures/site/index.html:30,39,66,80–85`
+- Every `.reveal` section starts at `opacity: 0`; JavaScript is required to make it visible.
+- If the script is blocked, errors, or `IntersectionObserver` is unavailable, “How it works,” integrations, and signup remain invisible despite being present in the document.
+
+**Fix:** Make content visible by default and apply the hidden animation state only after JavaScript successfully initializes.
+
+---
+
+### 11. Motion preferences are not respected
+**Severity: Medium**
+
+- **Location:** `fixtures/site/styles.css:92–93`
+- Reveal animations always apply a 16px translation and 0.5-second transition.
+- There is no `@media (prefers-reduced-motion: reduce)` fallback.
+- This conflicts with the reduced-motion user preference and WCAG guidance associated with **2.3.3 Animation from Interactions**, though the exact conformance applicability depends on whether the scroll-triggered effect is considered user-triggered.
+
+**Fix:** Disable the transform and transition under `prefers-reduced-motion: reduce`.
+
+---
+
+### 12. Logo alternative text repeats adjacent visible text
+**Severity: Low**
+
+- **Location:** `fixtures/site/index.html:44,48,52,56,60`
+- A screen reader may announce “ezyVet logo, ezyVet,” and similarly for every row.
+- Under **WCAG 1.1.1 Non-text Content**, decorative images whose meaning is already supplied by adjacent text should generally use `alt=""`.
+
+**Fix:** Give these images empty alt text unless the image communicates information beyond the adjacent product name.
+
+---
+
+### 13. The product screenshot’s description overstates what the SVG contains
+**Severity: Low**
+
+- **Location:** `fixtures/site/index.html:27`; `fixtures/site/screenshot.svg:1–16`
+- The HTML alt says it shows four patients “grouped by escalation level,” but the SVG is an abstract skeleton with four rows and only one escalation marker.
+- **WCAG 1.1.1** requires equivalent text that accurately conveys the image’s purpose/content.
+
+**Fix:** Use a concise description matching the actual illustration, or use empty alt text if it is purely decorative and the surrounding copy already communicates the point.
+
+---
+
+### 14. The signup offer does not explain important terms
+**Severity: Low / conversion risk**
+
+- **Location:** `fixtures/site/index.html:66–72`
+- “Two clinics, unlimited handovers, no card” does not state duration, eligibility, what happens after signup, or privacy expectations.
+- This is not a direct WCAG failure, but it adds uncertainty at the primary conversion point.
+
+**Fix:** Clarify the free-plan/trial terms and provide nearby privacy reassurance without changing the page’s overall design.
+
+---
+
+## What is working
+
+- Clear, specific primary message and CTA.
+- Logical heading order (`h1` → `h2` → `h3`).
+- Semantic landmarks for header, navigation, main, sections, and footer.
+- Desktop body line length is capped at `62ch`.
+- Main accent text and white-on-accent buttons pass contrast at approximately **4.95:1–5.17:1**.
+- The primary desktop button is approximately **48px high**, providing a good pointer target before the mobile override.
+
+## Recommended order
+
+1. Restore focus indicators.
+2. Replace clickable list items and label all icon controls.
+3. Correct the email form’s label and semantics.
+4. Fix muted-text contrast.
+5. Repair mobile header and form reflow.
+6. Remove or implement the hamburger control.
+7. Make reveal content resilient and respect reduced motion.
+8. Clean up duplicate IDs and image alternative text.

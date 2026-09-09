@@ -1,0 +1,9 @@
+Delivered a complete responsive landing page for **Morrow**, an independent daily-planning app.
+
+### Files
+- `index.html` — Full landing page
+- `styles.css` — Responsive visual design and animations
+- `script.js` — Signup interaction and navigation behavior
+- `ASSUMPTIONS.md` — Product, brand, launch, and technical assumptions
+
+The page includes product positioning, app preview, benefits, features, launch signup, mobile layouts, and a cohesive custom brand identity.

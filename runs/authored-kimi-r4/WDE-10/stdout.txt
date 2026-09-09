@@ -1,0 +1,27 @@
+Implemented the responsive Loomwork signup experience.
+
+### Deliverables
+- `index.html` — accessible signup page
+- `styles.css` — responsive mobile, tablet, and laptop layouts
+- `script.js` — validation, password visibility, and success state
+- `tests/acceptance.js` — automated responsive acceptance capture
+- `evidence/acceptance-report.md` — test results and assumptions
+
+### Acceptance evidence
+- `evidence/mobile-390x844.png`
+- `evidence/tablet-768x1024.png`
+- `evidence/laptop-1440x900.png`
+
+All acceptance checks pass. The mobile layout was tightened after review to keep primary signup actions visible sooner.
+
+Run locally with:
+
+```bash
+npm start
+```
+
+Re-run acceptance with:
+
+```bash
+npm test
+```

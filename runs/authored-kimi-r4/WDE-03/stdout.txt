@@ -1,0 +1,25 @@
+## Pricing page complete
+
+Built a polished, responsive B2B analytics pricing page featuring:
+
+- Three pricing tiers with monthly/annual billing toggle
+- Clear conversion-focused CTAs
+- Responsive desktop and mobile navigation
+- Customer trust section
+- Interactive FAQ accordion
+- Accessible semantic markup
+- Documented assumptions in `README.md`
+
+### Files
+
+- `index.html`
+- `styles.css`
+- `script.js`
+- `README.md`
+
+### Verification
+
+- HTML parsed successfully
+- JavaScript syntax validated
+- Reviewed in headless Chromium at 1440×1000
+- Final checks passed

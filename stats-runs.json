@@ -192,6 +192,18 @@
   "scenarios": 10
  },
  {
+  "tin": 155918,
+  "cr": 180352,
+  "out": 60176,
+  "rea": 2701,
+  "cost": 2.675046,
+  "turns": 62,
+  "tools": 83,
+  "cfg": "authored-kimi-r4",
+  "secs": 2290,
+  "scenarios": 10
+ },
+ {
   "tin": 223444,
   "cr": 1145856,
   "out": 33879,

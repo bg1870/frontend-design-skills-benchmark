@@ -13,6 +13,7 @@ SETS=/home/basil/tmp/frontend/skillsets
 spec() {
   case "$1" in
     sol)   echo "openai-codex|gpt-5.6-sol|xhigh|authored-r4" ;;
+    kimi)  echo "openrouter|moonshotai/kimi-k3|max|authored-kimi-r4" ;;
   esac
 }
 
@@ -29,6 +30,6 @@ run_one() {
   echo "[done] $a exit=$? seconds=$(( $(date +%s) - start )) lines=$(wc -l < "$dir/SKILL.md" 2>/dev/null || echo MISSING)"
 }
 
-for a in ${@:-sol}; do run_one "$a" & done
+for a in ${@:-sol kimi}; do run_one "$a" & done
 wait
 echo "ROUND-4 AUTHORING DONE"

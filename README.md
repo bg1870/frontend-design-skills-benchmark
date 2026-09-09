@@ -1,6 +1,6 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 24 skill configurations against the same five build tasks, with the
+An A/B test of 25 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
 run on the three configurations the first round left standing, a revision round in
 which four authors were shown their own failures and asked to fix their own skill, and a
@@ -31,13 +31,13 @@ companies. The two companion skills were ceremony for two authors and load-beari
 third, and no reading of the skill text predicted which — kimi's own line-by-line
 attribution got it wrong. See *Round 3*.
 
-- 155 builder runs · 1,349 assistant turns · 1,950 tool calls · 10.9 h agent wall time · **$59.03**
+- 165 builder runs · 1,411 assistant turns · 2,033 tool calls · 11.6 h agent wall time · **$61.71**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
   2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
   round 3, one skill instead of three, sol then astra then kimi, 30 runs; round 4,
-  sol steered at its own regressions, 10 runs)
+  sol then kimi steered at their own regressions, 20 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 170 runs and **$64.51** in total.
+  ($5.47), so the corpus on disk is 180 runs and **$67.18** in total.
 
 ---
 
@@ -129,6 +129,7 @@ absence of a gate rather than a failed one.
 | `authored-astra-r3` | `beautiful-frontend` (81 ln, 18.6 KB) **alone** | astra shown its own failures and told it ships alone |
 | `authored-sol-r4` | `beautiful-frontend` (91 ln, 15.8 KB) **alone** | sol steered at round 3's regressions, see *Round 4* |
 | `authored-kimi-r3` | `beautiful-frontend` (78 ln, 9.5 KB) **alone** | kimi's revised skill, told it ships alone |
+| `authored-kimi-r4` | `beautiful-frontend` (83 ln, 11.4 KB) **alone** | kimi steered at round 3's failures |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -219,6 +220,7 @@ Scored on criteria observable in the output, applicable to every config.
 | `authored-astra-r3` | **0/2** | **pass** | **derived** | 3 | clean |
 | `authored-sol-r4` | **0/2** | **pass** | ✗ typed, correct | 2⁶ | clean |
 | `authored-kimi-r3` | 2/2 · testimonial + real-company logo wall | ✗ QA server⁷ | ✗ typed, wrong | 3 | clean |
+| `authored-kimi-r4` | 1/2 · testimonial + 5 Unsplash portraits + invented count | ✗ Chromium ×2 | ✗ typed, wrong | 3 | clean |
 
 ¹ `design-list` launched no browser but read `browser-acceptance.md` (a rubric
 `must_not`) and left 11 text blocks at `opacity: 0` behind an IntersectionObserver,
@@ -955,6 +957,71 @@ time, the file does not accumulate — it trades. That is finding 14 with three 
 instead of one, and it is the strongest argument in this corpus against treating a skill
 as a thing you improve by iterating on the last failure you saw.
 
+#### Round 4, kimi: the best diagnosis in the corpus, and the worst outcome
+
+Kimi's r3 brief was answered with the sharpest self-analysis anyone produced here, so its
+r4 brief did something no other brief does: it quoted that analysis back and reported that
+**all four results it had attributed to its own sections failed**, while the one result it
+said its file did not cover was the one that held. It then asked a single question — not
+what rule to add, but *why four rules that were present, unchanged, and agreed with did
+not fire*. Authoring $0.235, 10 builder runs, **$2.68**. The file went **78 → 83 lines**.
+
+The answer it gave is the most useful sentence in this corpus:
+
+| Rule | Why it says it did not fire |
+| --- | --- |
+| Honesty | The failing decision happens at *section-planning* time — choosing a testimonial carousel and a logo wall — "then needing words to fill it." The executable line was "buried mid-paragraph as a consequence, not a gate." |
+| Runtime clock | "Written as a principle about 'dates' as a category. A builder typing a calendar component is in component mode; the rule never intersected the act of typing the string." |
+| Sample-data label | "Stated as a property a surface should have, with no moment attached; by audit time the dashboard read as finished." |
+| Static verification | "One descriptive clause at the bottom, competing against the brief's own words *polish and verify*, which prime running something. It described what verification *is*; it never named what not to run." |
+
+One theory covering four failures: a rule fires only where it intersects the moment the
+decision is made. That subsumes finding 4 (a prohibition needs an alternative action) and
+finding 16 (rules bound to their vocabulary) as special cases. It rewrote accordingly —
+gates at outline time, stop-triggers on the act of typing a name or a date, provenance
+attached to the moment the data source is wired, banned commands named as imperatives at
+the top of the audit.
+
+**The output got worse.**
+
+| | `paired-kimi-r2` | `authored-kimi-r3` | `authored-kimi-r4` |
+| --- | --- | --- | --- |
+| Cost (core five) | $1.89 | **$1.23** | $1.32 |
+| Wall | 1129 s | 1063 s | **1027 s** |
+| Fake attributed customers | **0/2** | 2/2 | 1/2 + **5 Unsplash portraits** |
+| WDE-03 browser gate | **pass** | ✗ QA server | ✗✗ **Chromium `--screenshot` ×2** |
+| WDE-04 date | **derived** | ✗ typed, wrong | ✗ typed, wrong |
+| WDE-02 sample label | **✓** | ✗ | ✗ |
+| Webfont families | **6** | 3 | 3 |
+| WDE-06 review | *not run* | **10/10** | 8/10 |
+| WDE-05 contract | clean | clean | clean |
+| Grounds differentiated | ✗ four near-identical | **✓** | **✓** |
+
+The marketing page still ships an invented testimonial — *"Ridgeline gave me back my Sunday
+mornings…"* — and now pairs it with **five `images.unsplash.com` photographs cropped to
+80×80**, which is a real person's face presented as a named customer, plus *"Trusted by
+1,200+ owners"*, an invented adoption count. The one thing the new rule did close is the
+part it named explicitly: the logo wall listing real companies is gone. The fabrication
+moved from named companies to stock faces and a made-up number.
+
+The gate got harder to excuse: r3 started a QA server, r4 launched headless Chromium with
+`--screenshot` twice. The clock rule, rewritten as a trigger on the act of typing a date,
+produced a typed `Thursday, May 23` — a Saturday — with the cell's only `Date.now()` again
+generating list-item ids. The sample-data label is still absent. Review accuracy fell from
+10/10 to 8/10.
+
+What survived both rounds: contract preservation, and the differentiated grounds.
+
+**This is the corpus's strongest evidence against iterating a skill on its own failures.**
+Kimi is the author that reasons best about its own file — precise attribution in r2, the
+borrowed-luck catch in r3, this mechanism in r4 — and its measured output went 0/2 → 2/2 →
+1/2-with-stock-faces on fabrication, and pass → server → browser on the gate, across two
+rounds of accurate diagnosis. Correct analysis of why a rule failed did not produce a rule
+that works. Set against sol, whose r4 closed the corpus's one unsolved failure and lost the
+clock, and astra, whose single pass held everything and cost type variety, the pattern is
+that each round moves the failure rather than removing it — and that a skill's author is
+not a reliable judge of which of its own lines are load-bearing.
+
 ---
 
 ## Findings
@@ -1079,6 +1146,14 @@ wording is to show the author what its words produced. The honest qualifier is l
 and sits in the caveats: the revised skills were fitted to the five scenarios they were
 then scored on.
 
+**Rounds 3 and 4 put a ceiling on this.** One feedback pass moved every metric. The
+second and third passes did not accumulate: sol's r4 closed the corpus's one unsolved
+failure and lost the derived date; kimi's r3 lost fabrication, the fixture label, the
+clock and half its type variety; kimi's r4, working from a correct diagnosis of why its
+rules had not fired, made fabrication and the browser gate worse still. The intervention
+that works is *the first* pass. Treating it as a loop that converges is not supported by
+anything here.
+
 **14. Fixing one failure class narrowed another.** Three of the four revisions lost type
 variety while gaining honesty — `paired-sol-r2` most sharply, down to a single pairing
 across the set with two of four scenarios loading no webfont at all. Nothing in the
@@ -1129,6 +1204,19 @@ diligence and because the check asked only whether a hedge was present. Where a 
 the run's own work is possible, the only trustworthy verdict pairs the page against the
 trace — which is what `score.py` now reports for this cell: `sourced` when the lookup
 happened, `INVENTED` when it did not.
+
+**18. An author's account of its own skill is not evidence about its skill.** Kimi is the
+most analytically capable author in this corpus. In r2 it diagnosed itself line by line;
+in r3 it caught, unprompted, that a clean result it had been credited with had no rule
+behind it at all — *"borrowed luck"* — and wrote one, which held; in r4 it produced the
+best explanation here of why rules fail, one mechanism covering four of them: a rule fires
+only where it intersects the moment the decision is made. Its measured output across those
+same rounds went 0/2 → 2/2 → 1/2-with-stock-faces on fabrication, and pass → QA server →
+headless Chromium on the gate. Meanwhile its one confident attribution — that its §8
+carried the honesty results — was inverted by the test. Correct reasoning about a skill
+predicted neither which lines were load-bearing nor whether a rewrite would work. Where a
+claim about a skill's mechanism matters, the run is the evidence and the author's account
+is a hypothesis.
 
 ### Recommendation
 
@@ -1312,6 +1400,7 @@ frontend/
 │  ├─ authored6-r3/                round 3: astra's single skill, tested alone
 │  ├─ authored-r4/                 round 4: sol steered at r3's regressions
 │  ├─ authored-kimi-r3/            round 3: kimi's single skill, tested alone
+│  ├─ authored-kimi-r4/            round 4: kimi steered at r3's failures
 │  ├─ paired/                      frontend-design + local-guidelines variant
 │  └─ wig-command.md               cached Vercel Web Interface Guidelines
 ├─ runs/<config>/<scenario>/       built artifacts + meta.txt
@@ -1365,8 +1454,9 @@ Round 4 — sol shown round 3's regressions plus the one extension cell, the oth
 withheld:
 
 ```bash
-./authoring/revision4/run.sh                   # overwrites skillsets/authored-r4/
-CFGS="authored-sol-r4" ./run.sh
+./authoring/revision4/run.sh                   # sol and kimi; overwrites skillsets/authored{,-kimi}-r4/
+./authoring/revision4/run.sh kimi              # or one
+CFGS="authored-sol-r4 authored-kimi-r4" ./run.sh
 ```
 
 To reproduce the authoring-effort comparison, `authored-solhigh` and `paired-solhigh`
@@ -1410,8 +1500,8 @@ and pi session transcripts. The transcripts hold the full tool-call traces behin
 findings — **delete the `runs/*/*/.session/` line from `.gitignore` if the team wants
 to audit those claims**; it adds ~200 MB.
 
-Tracked content is 46.8 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
-`shots/` is 36.8 MB. The history of this figure, since earlier revisions got it wrong in
+Tracked content is 50.0 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
+`shots/` is 39.5 MB. The history of this figure, since earlier revisions got it wrong in
 both directions: 9.0 MB before the extension set, 18.3 MB after it, 20.3 MB after the
 sol re-test added the 15 retained `high` cells and both authoring transcripts, then
 45.6 MB of screenshots once `shots/` covered all 18 configs instead of 5 — cut to
@@ -1420,7 +1510,7 @@ revision round's own runs and shots took it to 33.3 MB without the line being up
 Round 3 adds 4.4 MB — ten runs (1.8 MB, including 1.3 MB of Lato TTFs the WDE-10 run
 copied out of the system font directory to back its `@font-face`, which is exactly the
 evidence the round is checking) and 17 screenshots. Astra's ten runs and round 4's ten add
-6.2 MB more, almost all of it screenshots, and kimi's ten add 2.9 MB.
+6.2 MB more, almost all of it screenshots, and kimi's twenty add 6.1 MB.
 
 Screenshots are still 79% of the tree. The remaining lever is deleting
 `runs/authored-solhigh/` and `runs/paired-solhigh/` (−2 MB), which costs the

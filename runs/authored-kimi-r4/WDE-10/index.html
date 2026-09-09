@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Start scheduling your physiotherapy clinic with Loomwork." />
+  <title>Create your account · Loomwork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="signup-panel" aria-labelledby="signup-title">
+      <a class="brand" href="#" aria-label="Loomwork home">
+        <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true"><rect x="2" y="2" width="13" height="13" rx="4"/><rect x="19" y="2" width="13" height="13" rx="4"/><rect x="2" y="19" width="13" height="13" rx="4"/><path d="M19 19h6a7 7 0 0 1 7 7v6H19V19Z"/></svg>
+        <span>Loomwork</span>
+      </a>
+
+      <div class="form-wrap">
+        <header class="form-header">
+          <p class="eyebrow">START YOUR FREE TRIAL</p>
+          <h1 id="signup-title">Your clinic, in rhythm.</h1>
+          <p>Set up your workspace and bring calm to every appointment.</p>
+        </header>
+
+        <form id="signup-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="first-name">First name</label>
+              <input id="first-name" name="firstName" autocomplete="given-name" placeholder="Maya" required />
+              <span class="error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="last-name">Last name</label>
+              <input id="last-name" name="lastName" autocomplete="family-name" placeholder="Patel" required />
+              <span class="error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="clinic">Clinic name</label>
+            <input id="clinic" name="clinic" autocomplete="organization" placeholder="Northside Physiotherapy" required />
+            <span class="error" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="maya@northsidephysio.com" required />
+            <span class="error" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="password">Create a password</label>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required />
+              <button class="show-password" type="button" aria-label="Show password" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              </button>
+            </div>
+            <span class="error" aria-live="polite"></span>
+          </div>
+
+          <label class="terms">
+            <input id="terms" name="terms" type="checkbox" required />
+            <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 12 10"><path d="m1 5 3 3 7-7"/></svg></span>
+            <span>I agree to Loomwork’s <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
+          </label>
+          <p class="terms-error" aria-live="polite"></p>
+
+          <button class="submit-button" type="submit">Create my workspace <span aria-hidden="true">→</span></button>
+          <p class="signin">Already using Loomwork? <a href="#">Sign in</a></p>
+        </form>
+        <div class="success" role="status" aria-live="polite" hidden>
+          <div class="success-icon">✓</div><h2>You’re all set.</h2><p>Your Loomwork workspace is ready to take shape.</p>
+          <button type="button" onclick="location.reload()">Continue</button>
+        </div>
+      </div>
+      <p class="security-note"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 9V6a5 5 0 0 1 10 0v3M4 9h12v9H4z"/></svg> Your data is encrypted and securely stored.</p>
+    </section>
+
+    <aside class="story-panel" aria-label="Loomwork scheduling preview">
+      <div class="story-content">
+        <div class="pill"><span></span> BUILT FOR PHYSIO TEAMS</div>
+        <blockquote>“We finally spend less time arranging care and more time delivering it.”</blockquote>
+        <div class="person"><div class="avatar">EM</div><div><strong>Elena Morris</strong><span>Clinic Director, Movement House</span></div></div>
+      </div>
+
+      <div class="schedule-card" aria-hidden="true">
+        <div class="card-head"><div><span>Tuesday</span><strong>14 May</strong></div><button>Day view⌄</button></div>
+        <div class="calendar-body">
+          <div class="times"><span>9 AM</span><span>10 AM</span><span>11 AM</span><span>12 PM</span><span>1 PM</span></div>
+          <div class="appointments">
+            <div class="appointment blue"><small>09:00 · 45 min</small><strong>Initial assessment</strong><span>Olivia Chen · Room 2</span></div>
+            <div class="appointment green"><small>10:15 · 30 min</small><strong>Follow-up session</strong><span>James Wilson · Room 1</span></div>
+            <div class="appointment sand"><small>11:30 · 45 min</small><strong>Sports rehabilitation</strong><span>Sofia Torres · Studio</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="floating-stat"><span class="stat-icon">↗</span><div><strong>18%</strong><small>fewer no-shows</small></div></div>
+      <div class="woven-lines" aria-hidden="true"></div>
+      <p class="panel-foot">Thoughtful scheduling for healthier clinics.</p>
+    </aside>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

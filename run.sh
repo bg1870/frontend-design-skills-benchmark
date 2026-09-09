@@ -37,6 +37,7 @@ skill_args() {
     authored-astra-r3) echo "--skill $AUTH/authored6-r3/beautiful-frontend/SKILL.md" ;;
     authored-sol-r4) echo "--skill $AUTH/authored-r4/beautiful-frontend/SKILL.md" ;;
     authored-kimi-r3) echo "--skill $AUTH/authored-kimi-r3/beautiful-frontend/SKILL.md" ;;
+    authored-kimi-r4) echo "--skill $AUTH/authored-kimi-r4/beautiful-frontend/SKILL.md" ;;
     base)        echo "" ;;
     wde)         echo "--skill /home/basil/tmp/skills/wde-fixed/SKILL.md" ;;
     design-list) for d in $ROOT/skillsets/design-list/*/; do printf -- "--skill %s " "$d"; done ;;

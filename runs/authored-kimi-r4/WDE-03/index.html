@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Clear, flexible pricing for Looma analytics." />
+  <title>Pricing — Looma Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav-wrap">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#" aria-label="Looma home"><span class="logo"><i></i><i></i><i></i></span><span>Looma</span></a>
+      <div class="nav-links">
+        <a href="#product">Product <span>⌄</span></a><a href="#solutions">Solutions <span>⌄</span></a><a href="#resources">Resources <span>⌄</span></a><a class="active" href="#pricing">Pricing</a>
+      </div>
+      <div class="nav-actions"><a href="#login">Log in</a><a class="btn btn-dark btn-small" href="#start">Start for free <b>→</b></a></div>
+      <button class="menu" aria-label="Open menu" aria-expanded="false">☰</button>
+    </nav>
+  </header>
+
+  <main id="pricing">
+    <section class="hero">
+      <div class="eyebrow"><span></span> SIMPLE, SCALABLE PRICING</div>
+      <h1>Turn data into decisions.<br><em>Not invoices.</em></h1>
+      <p>Start with everything you need to understand your business.<br class="desktop"> Scale when your questions—and your team—grow.</p>
+      <div class="billing" role="group" aria-label="Billing frequency">
+        <button class="billing-option active" data-cycle="monthly">Monthly</button>
+        <button class="billing-option" data-cycle="annual">Annually <span>Save 20%</span></button>
+      </div>
+    </section>
+
+    <section class="pricing-grid" aria-label="Pricing plans">
+      <article class="price-card">
+        <div class="card-head"><div class="plan-icon sprout">✣</div><h2>Starter</h2><p>For small teams finding their signal.</p></div>
+        <div class="price"><span>$</span><strong data-monthly="0" data-annual="0">0</strong><small>/ month</small></div>
+        <p class="billing-note">Free forever. No card required.</p>
+        <a class="card-button outline" href="#start">Start for free <span>→</span></a>
+        <div class="features"><h3>INCLUDES</h3><ul><li>Up to 5 team members</li><li>10,000 monthly events</li><li>Unlimited dashboards</li><li>14-day data history</li><li>Community support</li></ul></div>
+      </article>
+
+      <article class="price-card featured">
+        <div class="popular">MOST POPULAR</div>
+        <div class="card-head"><div class="plan-icon growth">↗</div><h2>Growth</h2><p>For growing teams ready to move faster.</p></div>
+        <div class="price"><span>$</span><strong data-monthly="79" data-annual="63">79</strong><small>/ month</small></div>
+        <p class="billing-note dynamic-note">Billed monthly. Cancel anytime.</p>
+        <a class="card-button primary" href="#start">Start 14-day trial <span>→</span></a>
+        <div class="features"><h3>EVERYTHING IN STARTER, PLUS</h3><ul><li>Up to 25 team members</li><li>1 million monthly events</li><li>Advanced funnels & cohorts</li><li>1-year data history</li><li>Data exports & integrations</li><li>Priority email support</li></ul></div>
+      </article>
+
+      <article class="price-card">
+        <div class="card-head"><div class="plan-icon scale">⌁</div><h2>Scale</h2><p>For data-driven organizations with big goals.</p></div>
+        <div class="price custom"><strong>Let’s talk</strong></div>
+        <p class="billing-note">Plans tailored to your volume.</p>
+        <a class="card-button dark" href="#contact">Contact sales <span>→</span></a>
+        <div class="features"><h3>EVERYTHING IN GROWTH, PLUS</h3><ul><li>Unlimited team members</li><li>Custom event volume</li><li>SSO & advanced permissions</li><li>Unlimited data history</li><li>Dedicated success manager</li><li>SLA & premium support</li></ul></div>
+      </article>
+    </section>
+
+    <section class="trust">
+      <p>POWERING BETTER DECISIONS AT</p>
+      <div class="logos"><span><b>◈</b> NORTHSTAR</span><span><b>✳</b> vertex</span><span><b>◒</b> orbit</span><span><b>⬡</b> ACME</span><span><b>⌁</b> waves</span></div>
+    </section>
+
+    <section class="faq">
+      <div><div class="eyebrow"><span></span> GOOD TO KNOW</div><h2>Questions, answered.</h2><p>Can’t find what you’re looking for? <a href="#contact">Talk to our team →</a></p></div>
+      <div class="accordion">
+        <details><summary>Can I change plans at any time?<i>+</i></summary><p>Yes. Upgrade, downgrade, or cancel whenever you need. Changes are prorated automatically.</p></details>
+        <details><summary>What counts as a monthly event?<i>+</i></summary><p>An event is any tracked user action—such as a page view, signup, or purchase—sent to Looma.</p></details>
+        <details><summary>Do you offer discounts for startups?<i>+</i></summary><p>Eligible early-stage startups can receive up to 50% off their first year. Contact our team to apply.</p></details>
+      </div>
+    </section>
+  </main>
+  <footer><a class="brand" href="#"><span class="logo"><i></i><i></i><i></i></span><span>Looma</span></a><p>© 2026 Looma Analytics, Inc.</p><div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
