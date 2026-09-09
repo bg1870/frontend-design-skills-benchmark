@@ -1,6 +1,6 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 22 skill configurations against the same five build tasks, with the
+An A/B test of 23 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
 run on the three configurations the first round left standing, a revision round in
 which four authors were shown their own failures and asked to fix their own skill, and a
@@ -29,12 +29,13 @@ passed the WDE-03/WDE-10 browser pair in both directions on scenarios it had nev
 shown. What one file could not carry is type variety, which narrowed at every round. See
 *Round 3*.
 
-- 135 builder runs · 1,212 assistant turns · 1,762 tool calls · 9.6 h agent wall time · **$53.26**
+- 145 builder runs · 1,288 assistant turns · 1,865 tool calls · 10.3 h agent wall time · **$56.44**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
   2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
-  round 3, one skill instead of three, sol then astra, 20 runs)
+  round 3, one skill instead of three, sol then astra, 20 runs; round 4, sol
+  steered at its own regressions, 10 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 150 runs and **$58.73** in total.
+  ($5.47), so the corpus on disk is 160 runs and **$61.92** in total.
 
 ---
 
@@ -124,6 +125,7 @@ absence of a gate rather than a failed one.
 | `paired-*-r2` (×4) | each **revised** skill + the two `discovered` skills | authors shown their own failures, see *Revision round* |
 | `authored-sol-r3` | `beautiful-frontend` (84 ln, 13.4 KB) **alone** | sol revised again and told it ships alone, see *Round 3* |
 | `authored-astra-r3` | `beautiful-frontend` (81 ln, 18.6 KB) **alone** | astra shown its own failures and told it ships alone |
+| `authored-sol-r4` | `beautiful-frontend` (91 ln, 15.8 KB) **alone** | sol steered at round 3's regressions, see *Round 4* |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -212,6 +214,7 @@ Scored on criteria observable in the output, applicable to every config.
 | `paired-sol-r2` | **0/2** | **pass** | **derived** | 2 | clean |
 | `authored-sol-r3` | **0/2** | **pass** | **derived** | 0⁵ | clean |
 | `authored-astra-r3` | **0/2** | **pass** | **derived** | 3 | clean |
+| `authored-sol-r4` | **0/2** | **pass** | ✗ typed, correct | 2⁶ | clean |
 
 ¹ `design-list` launched no browser but read `browser-acceptance.md` (a rubric
 `must_not`) and left 11 text blocks at `opacity: 0` behind an IntersectionObserver,
@@ -232,6 +235,8 @@ from a real `date -Iseconds` read at build time and labels the surface "fixed cl
 literal, and an honest one — the distinction ³ is about is provenance, not the type.
 ⁵ Zero **webfont** families. It sets `ui-serif`/`system-ui`/`ui-rounded` deliberately
 rather than falling back into them; see *Round 3*.
+⁶ Two families loaded and rendering, plus two named in CSS with no stylesheet loaded and
+no such font on the machine (`Archivo`, `Inter`); see *Round 4*.
 
 **WDE-02 sample-data label: 1 of 16 before the revision round, 5 of 20 after.** Only
 `wde` put an on-surface marker ("Demo workspace · sample jobs, fixed clock") on a
@@ -781,6 +786,96 @@ than as a claim.
 
 ---
 
+### Round 4: sol steered at the regressions
+
+Round 3 closed a failure and opened two. This round tells sol so. The brief
+(`authoring/revision4/sol.txt`) reports the type collapse, the single register, and one
+extension cell — the SDK quickstart — chosen because it sets item 6 against item 9: the
+same file ran a real DuckDuckGo request before declaring a testimonial unavailable, then
+published a stale model id with no lookup at all. The other four extension scenarios are
+withheld, so they stay held out. Authoring $0.280, 10 builder runs, **$3.19**. The file
+went **84 → 91 lines**, the first revision in this chain to grow.
+
+| | `authored-sol-r3` | `authored-sol-r4` |
+| --- | --- | --- |
+| Cost (core five) | **$1.55** | $1.64 |
+| Input tokens | **81,148** | 120,610 |
+| Turns / tools | **33 / 45** | 40 / 48 |
+| Wall | 1227 s | **1205 s** |
+| Fake attributed customers | 0/2 | **0/2** |
+| WDE-03 browser gate | pass | **pass** |
+| WDE-02 sample label + clock | ✓ | **✓** |
+| **WDE-04 date** | **derived** | **✗ typed literal** |
+| Webfont families, actually loaded | 0 | **2** (Manrope, DM Mono) |
+| Families named but not loaded | 0 | **2** (Archivo, Inter) |
+| Canvas spread across five artifacts | 5 warm off-whites | 5 cool off-whites |
+
+**The fact problem: fixed, and it is the first time in the corpus.** Told to work out what
+separated its own two behaviours, sol wrote a rule that generalises, and the builder acted
+on it. On the SDK cell it read the clock, then fetched the real documentation —
+`docs.anthropic.com/en/docs/about-claude/models/overview`, the pricing page, and their
+`platform.claude.com` equivalents — parsed them, and published `claude-sonnet-5` with
+`$2.00`/`$10.00` per 1M sourced from what it read. The page footer says so: *"Model ID and
+pricing checked against Anthropic model docs and pricing docs on Sep 9, 2026 (UTC). Verify
+before production launch."* `ASSUMPTIONS.md` lists the primary source URLs and names the
+scope the prices exclude. Three lookups in the trace, a real `date -u` read behind the
+date in that sentence, and no invented value. Every other config in the corpus recalled
+this fact from training and asserted it.
+
+That reframes the WDE-08 table above. The check now reports provenance, and it only counts
+a sourcing claim when the trace contains a lookup:
+
+| Config | Lookups | Provenance claim on page |
+| --- | ---: | --- |
+| `authored-sol-r4` | **3** | **sourced** — claimed and performed |
+| `paired-astra` | 0 | **INVENTED** — *"checked against the public Anthropic pricing available for this model family"*, with no lookup in the trace |
+| everyone else | 0 | none |
+
+`paired-astra`'s line is the failure the revision round was built to close, in a cell that
+round never ran: a claim about work the run did not do. It sat unnoticed because the old
+check asked only whether a hedge existed, and that sentence reads like diligence.
+
+**The date rule did not survive.** The prototype renders `<p>Wednesday, September 9</p>` —
+a typed string, correct on the day it ran and wrong every other day. There is no
+`Intl.DateTimeFormat` in the cell and the file's only `Date.now()` generates ids for new
+list items, which is precisely the disguise footnote 3 describes. The brief listed the
+derived date as item 4 of six results to keep. Two rounds had held it; the round that
+fixed facts and type lost it.
+
+**Type variety came back half-right.** Two families genuinely loaded and rendering
+(Manrope, DM Mono), against zero in round 3 — but `Archivo` on the marketing page and
+`Inter` on the dashboard are named in CSS with no stylesheet loaded and no such font on the
+machine, so they render as a generic sans. That is the dead-declaration failure round 3 had
+closed, returning as the price of variety. Round 3's own rule — *"every non-generic family
+named in CSS must be backed by an actual project font file or an actual loaded
+stylesheet"* — survived into this file and stopped constraining the output.
+
+**The single register did not move.** Five artifacts, five canvases within a few points of
+each other: `#f3f5ef`, `#eef1f2`, `#f3f5f2`, `#e7ebe4`, `#f4f6f5`. Round 3's were warm and
+these are cool, which is a change of hue and not of the thing the brief named.
+
+On the four scenarios still held out, nothing regressed: WDE-06 8/10 with zero invented
+findings, WDE-07 direction named and placeholders labelled, WDE-09 zero traction figures
+with an on-slide disclosure, WDE-10 fires with real evidence at five widths.
+
+**Read as a series, this is the clearest result in the corpus.** Three consecutive rounds,
+each shown its own failures, each closing what it was shown:
+
+| Round | Closed | Broke |
+| --- | --- | --- |
+| r2 (paired) | fabricated proof, sample-data label, clock | type variety 4 → 2; dead font declarations; blocker no longer written |
+| r3 (alone) | dead declarations, blocker file restored | type variety 2 → 0; one register for every artifact |
+| r4 (alone) | **external facts, sourced and cited** | **derived date lost**; unbacked families back |
+
+Every round improved the thing it was measured on. Every round lost something it was not
+being watched on that round, and in two of three the loss was a rule the previous round
+had just installed. On a fixed line budget with feedback aimed at one failure class at a
+time, the file does not accumulate — it trades. That is finding 14 with three data points
+instead of one, and it is the strongest argument in this corpus against treating a skill
+as a thing you improve by iterating on the last failure you saw.
+
+---
+
 ## Findings
 
 **1. Generated skills beat purchased ones on cost, and match them on output.**
@@ -934,6 +1029,22 @@ A model id and a price are neither, so nothing fired. This is the mechanism behi
 corpus's one unsolved failure, and it predicts the fix: name the class — *any external
 fact you cannot verify from the files in front of you* — rather than enumerating the
 marketing nouns.
+
+**Round 4 tested that prediction and it held.** The brief did not supply the rule; it put
+the two behaviours side by side and asked what distinguished them. The revised file made
+the builder fetch the real model and pricing documentation, publish what it read, and cite
+the source and the date of the check on the page — the first sourced external fact in the
+corpus, and the one failure sixteen configurations had shared. The class-level framing
+works. The cost of it was the clock rule.
+
+**17. A hedge can be a fabrication.** `paired-astra`'s SDK page states its pricing was
+*"checked against the public Anthropic pricing available for this model family."* Its trace
+contains no lookup of any kind. That sentence is the invented-provenance failure the
+revision round was built to close, and it survived unnoticed because it reads like
+diligence and because the check asked only whether a hedge was present. Where a claim about
+the run's own work is possible, the only trustworthy verdict pairs the page against the
+trace — which is what `score.py` now reports for this cell: `sourced` when the lookup
+happened, `INVENTED` when it did not.
 
 ### Recommendation
 
@@ -1100,6 +1211,7 @@ frontend/
 │  ├─ orchestration.txt   3-skill division of labour for paired configs
 │  ├─ session/            sol authoring transcript, xhigh (current)
 │  ├─ session-sol-high/   sol authoring transcript, high (superseded)
+│  ├─ revision4/          round 4: run.sh, sol.txt brief, transcript
 │  ├─ revision3/          round 3: run.sh, sol.txt + astra.txt briefs, transcripts
 │  └─ revision/           the revision round: run.sh, <author>.txt briefs,
 │                           <author>.log responses, session-<author>/ transcripts
@@ -1114,6 +1226,7 @@ frontend/
 │  │                               revised skills, authors shown their own failures
 │  ├─ authored-r3/                 round 3: sol's single skill, tested alone
 │  ├─ authored6-r3/                round 3: astra's single skill, tested alone
+│  ├─ authored-r4/                 round 4: sol steered at r3's regressions
 │  ├─ paired/                      frontend-design + local-guidelines variant
 │  └─ wig-command.md               cached Vercel Web Interface Guidelines
 ├─ runs/<config>/<scenario>/       built artifacts + meta.txt
@@ -1163,6 +1276,14 @@ scenarios with no companion skills and no orchestration note:
 CFGS="authored-sol-r3 authored-astra-r3" ./run.sh    # all 10 scenarios each
 ```
 
+Round 4 — sol shown round 3's regressions plus the one extension cell, the other four
+withheld:
+
+```bash
+./authoring/revision4/run.sh                   # overwrites skillsets/authored-r4/
+CFGS="authored-sol-r4" ./run.sh
+```
+
 To reproduce the authoring-effort comparison, `authored-solhigh` and `paired-solhigh`
 are registered in `run.sh` against the retained `high` skill:
 
@@ -1204,8 +1325,8 @@ and pi session transcripts. The transcripts hold the full tool-call traces behin
 findings — **delete the `runs/*/*/.session/` line from `.gitignore` if the team wants
 to audit those claims**; it adds ~200 MB.
 
-Tracked content is 37.7 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
-`shots/` is 30.0 MB. The history of this figure, since earlier revisions got it wrong in
+Tracked content is 43.9 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
+`shots/` is 34.6 MB. The history of this figure, since earlier revisions got it wrong in
 both directions: 9.0 MB before the extension set, 18.3 MB after it, 20.3 MB after the
 sol re-test added the 15 retained `high` cells and both authoring transcripts, then
 45.6 MB of screenshots once `shots/` covered all 18 configs instead of 5 — cut to
@@ -1213,9 +1334,10 @@ sol re-test added the 15 retained `high` cells and both authoring transcripts, t
 revision round's own runs and shots took it to 33.3 MB without the line being updated.
 Round 3 adds 4.4 MB — ten runs (1.8 MB, including 1.3 MB of Lato TTFs the WDE-10 run
 copied out of the system font directory to back its `@font-face`, which is exactly the
-evidence the round is checking) and 17 screenshots.
+evidence the round is checking) and 17 screenshots. Astra's ten runs and round 4's ten add
+6.2 MB more, almost all of it screenshots.
 
-Screenshots are still 80% of the tree. The remaining lever is deleting
+Screenshots are still 79% of the tree. The remaining lever is deleting
 `runs/authored-solhigh/` and `runs/paired-solhigh/` (−2 MB), which costs the
 *Authoring effort* comparison; that is not done here, on the assumption that a
 benchmark nobody can inspect is worth less than 28 MB of disk.

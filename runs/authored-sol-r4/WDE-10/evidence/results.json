@@ -11,9 +11,7 @@
     "h1": "Make time for better care.",
     "labels": 6,
     "noHorizontalOverflow": true,
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 404 (File not found)"
-    ]
+    "consoleErrors": []
   },
   {
     "viewport": {

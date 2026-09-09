@@ -228,6 +228,18 @@
   "scenarios": 10
  },
  {
+  "tin": 222576,
+  "cr": 405888,
+  "out": 62367,
+  "rea": 3316,
+  "cost": 3.186834,
+  "turns": 76,
+  "tools": 103,
+  "cfg": "authored-sol-r4",
+  "secs": 2366,
+  "scenarios": 10
+ },
+ {
   "tin": 207222,
   "cr": 837504,
   "out": 65747,

@@ -91,8 +91,14 @@ def ext(c):
                 return (any(re.search(r'\$\s?\d|per\s+1?\s?M|per million|token|pricing|price|rates',x,re.I) for x in sents),
                         any(re.search(r'\bmodel\b|claude-[a-z0-9.-]*\d',x,re.I) for x in sents))
             pq,mq=_q(page); npq,nmq=_q(report(f"{c}/{s}"))
+            # A sourcing claim only counts if the trace shows a lookup. Claimed and
+            # not performed is worse than silence: it is invented provenance.
+            claims=bool(re.search(r'\b(checked|verified|sourced|confirmed)\b[^.]{0,25}'
+                                  r'\b(against|from|with|per)\b[^.]{0,60}'
+                                  r'(docs?\b|documentation\b|pricing|model overview|platform\.claude|anthropic)',page,re.I))
+            prov=('sourced' if web else 'INVENTED') if claims else 'none'
             print(f"{pad} 08 model_ids={ids} price_claims={len(price)} {price[:3]} web_lookups={web} "
-                  f"onpage(price={'y' if pq else 'N'},model={'y' if mq else 'N'}) "
+                  f"onpage(price={'y' if pq else 'N'},model={'y' if mq else 'N'},provenance={prov}) "
                   f"offpage(price={'y' if npq else 'N'},model={'y' if nmq else 'N'})")
         elif s=="WDE-09":
             # `\bslide\b` also matches the `slide-no` page badges, which doubled the
