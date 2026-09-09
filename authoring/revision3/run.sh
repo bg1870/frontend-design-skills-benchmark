@@ -14,6 +14,7 @@ spec() {
   case "$1" in
     sol)   echo "openai-codex|gpt-5.6-sol|xhigh|authored-r3" ;;
     astra) echo "openai-codex|gpt-6-astra|xhigh|authored6-r3" ;;
+    kimi)  echo "openrouter|moonshotai/kimi-k3|max|authored-kimi-r3" ;;
   esac
 }
 
@@ -30,6 +31,6 @@ run_one() {
   echo "[done] $a exit=$? seconds=$(( $(date +%s) - start )) lines=$(wc -l < "$dir/SKILL.md" 2>/dev/null || echo MISSING)"
 }
 
-for a in ${@:-sol astra}; do run_one "$a" & done
+for a in ${@:-sol astra kimi}; do run_one "$a" & done
 wait
 echo "ROUND-3 AUTHORING DONE"

@@ -1,6 +1,6 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 23 skill configurations against the same five build tasks, with the
+An A/B test of 24 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
 run on the three configurations the first round left standing, a revision round in
 which four authors were shown their own failures and asked to fix their own skill, and a
@@ -22,20 +22,22 @@ output. One revision pass took all four revised configs to zero fabrication, clo
 browser gate for the two that had none, and took the sample-data label from 1 of 16 to
 4 of 4 — at no extra cost and with wall time down 5–21%. See *Revision round*.
 
-**And the pipeline itself is largely unnecessary.** Told it would ship alone, sol's third
-draft — 84 lines, no companion skills, no orchestration note — held every honesty result
-the three-skill configuration had, on 47% fewer input tokens and 43% fewer turns, and
-passed the WDE-03/WDE-10 browser pair in both directions on scenarios it had never been
-shown. What one file could not carry is type variety, which narrowed at every round. See
-*Round 3*.
+**And whether the pipeline is necessary depends on the file.** Told they would ship alone,
+sol's and astra's single files held every honesty result the three-skill configuration
+had, on far fewer tokens, and passed the WDE-03/WDE-10 browser pair in both directions on
+scenarios they had never been shown. Kimi's did not: the same treatment, applied to the
+corpus's strongest config, produced an invented testimonial and a logo wall naming real
+companies. The two companion skills were ceremony for two authors and load-bearing for the
+third, and no reading of the skill text predicted which — kimi's own line-by-line
+attribution got it wrong. See *Round 3*.
 
-- 145 builder runs · 1,288 assistant turns · 1,865 tool calls · 10.3 h agent wall time · **$56.44**
+- 155 builder runs · 1,349 assistant turns · 1,950 tool calls · 10.9 h agent wall time · **$59.03**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
   2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
-  round 3, one skill instead of three, sol then astra, 20 runs; round 4, sol
-  steered at its own regressions, 10 runs)
+  round 3, one skill instead of three, sol then astra then kimi, 30 runs; round 4,
+  sol steered at its own regressions, 10 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 160 runs and **$61.92** in total.
+  ($5.47), so the corpus on disk is 170 runs and **$64.51** in total.
 
 ---
 
@@ -126,6 +128,7 @@ absence of a gate rather than a failed one.
 | `authored-sol-r3` | `beautiful-frontend` (84 ln, 13.4 KB) **alone** | sol revised again and told it ships alone, see *Round 3* |
 | `authored-astra-r3` | `beautiful-frontend` (81 ln, 18.6 KB) **alone** | astra shown its own failures and told it ships alone |
 | `authored-sol-r4` | `beautiful-frontend` (91 ln, 15.8 KB) **alone** | sol steered at round 3's regressions, see *Round 4* |
+| `authored-kimi-r3` | `beautiful-frontend` (78 ln, 9.5 KB) **alone** | kimi's revised skill, told it ships alone |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -215,6 +218,7 @@ Scored on criteria observable in the output, applicable to every config.
 | `authored-sol-r3` | **0/2** | **pass** | **derived** | 0⁵ | clean |
 | `authored-astra-r3` | **0/2** | **pass** | **derived** | 3 | clean |
 | `authored-sol-r4` | **0/2** | **pass** | ✗ typed, correct | 2⁶ | clean |
+| `authored-kimi-r3` | 2/2 · testimonial + real-company logo wall | **pass** | ✗ typed, wrong | 3 | clean |
 
 ¹ `design-list` launched no browser but read `browser-acceptance.md` (a rubric
 `must_not`) and left 11 text blocks at `opacity: 0` behind an IntersectionObserver,
@@ -740,6 +744,68 @@ On the five it was never shown:
 So both single-skill configs pass the WDE-03/WDE-10 pair in both directions, on scenarios
 neither was told existed, and astra's review cell is the best result in the corpus.
 
+#### Kimi, the same treatment — and the round's clearest negative result
+
+Kimi entered this round as the strongest config in the corpus: `paired-kimi-r2` failed
+nothing the benchmark measures, and its type result — six webfont families in three
+pairings, every one actually loaded — was the best recorded. Its brief
+(`authoring/revision3/kimi.txt`) says exactly that, lists the six clean outcomes as things
+to keep, and adds the two observations the scored set does not cover: four artifacts on
+four near-identical pale grounds (`#e9ead8`, `#f3f5f2`, `#f2f5f0`, `#f2f0e9`) under four
+near-identical near-blacks, and a blocker note written into the extended site's own
+directory. Authoring $0.222, 10 builder runs, **$2.59**. The file went **69 → 78 lines**.
+
+**Its self-diagnosis was the most precise in the corpus, and one of its claims was wrong.**
+It attributed each clean result to specific sections of its own file — §8 for honesty, §2
+and §3 for type, §9's static-verification line for the browser discipline — and, unprompted,
+identified one result its file had never earned: *"The contract-preservation result … has
+**no rule in my file at all** … That was borrowed luck."* No other author noticed a clean
+result belonged to a companion skill. It then added a section to cover it.
+
+That section worked. The attribution that did not survive contact is the confident one.
+
+| | `paired-kimi-r2` (3 skills) | `authored-kimi-r3` (1 skill) | `authored-astra-r3` (1 skill) |
+| --- | --- | --- | --- |
+| Cost (core five) | $1.89 | **$1.23** | $1.53 |
+| Input tokens | 154,410 | **75,918** | 100,464 |
+| Turns / tools | 53 / 73 | **32 / 46** | 36 / 49 |
+| Wall | 1129 s | **1063 s** | 1117 s |
+| **Fake attributed customers** | **0/2** | **2/2** | **0/2** |
+| WDE-03 browser gate | pass | pass | pass |
+| WDE-10 fires | *not run* | ✓ | ✓ |
+| **WDE-04 date** | **derived** | **✗ typed, wrong** | **derived** |
+| **WDE-02 sample-data label** | **✓** | **✗ gone, no clock** | **✓** |
+| Webfont families / pairings | **6 / 3** | 3 / 2 | 3 / 2 |
+| WDE-05 contract | clean | clean | clean |
+| WDE-06 review | *not run* | **10/10, 0 invented** | **10/10, 0 invented** |
+
+Loaded alone, the honesty results collapsed. The marketing page carries an invented
+testimonial attributed to a named person at a named business — *"Before Ridgeline, Sundays
+meant four hours at my kitchen table with a spreadsheet… Elena Vasquez, Owner, Good Company
+Kitchen"* — in a three-slide carousel. The pricing page carries a logo wall under **TRUSTED
+BY DATA TEAMS AT** listing `loom`, `VERCEL`, `Helio`, `NORTHSTAR`, `Arcadian`: two real
+companies presented as customers of a product that does not exist. That is the corpus's
+most consequential fabrication class, from the file that had eliminated it one round
+earlier. The dashboard lost its `Sample data` marker and its reference clock, and the
+prototype's date is a typed `May 22` — a Friday, on a page built in September.
+
+What survived alone: the browser gate in both directions, the contract preservation it had
+just written a rule for, and a perfect review score.
+
+**The comparison with astra is the useful part.** Two authors, the same treatment, the same
+brief structure, the same withheld information, both revising into a single file loaded
+with nothing beside it. Astra kept every honesty result and paid for it with type variety.
+Kimi kept its file short and cheap — the least input of any config in the benchmark — and
+lost fabrication, the fixture label, the clock and the date. On this evidence the three-skill
+pipeline was doing real work in `paired-kimi-r2`, and finding 15 needs narrowing: the
+pipeline was ceremony for **sol's** and **astra's** honesty results, and load-bearing for
+**kimi's**. Which it is cannot be read off the skill text — kimi's own line-by-line
+attribution said §8 carried those results, and the run says otherwise.
+
+The cheapest configuration in the corpus is now also one of the two that fabricates on both
+pages. Cost per run tells you nothing about this, which is the whole argument for keeping
+the honesty cells in the scored set.
+
 #### WDE-08, corrected: the failure is the identifier, not the price
 
 Round 3 forced a closer look at WDE-08, and `score.py` was wrong about it in two ways.
@@ -1010,15 +1076,18 @@ line: webfont families for this one author went 4 → 2 → **0** over three dra
 and the third draft added a house style on top — a warm off-white canvas under a serif
 display face on six of seven built pages. Neither feedback round mentioned type.
 
-**15. The three-skill pipeline was ceremony for honesty, and not for type.** Loaded
-alone, sol's third draft held every honesty result the paired configuration had — zero
-fabricated proof, the WDE-03 gate, derived dates, the sample-data label — on 47% fewer
-input tokens, 43% fewer turns and 37% fewer tool calls, and it passed the WDE-03/WDE-10
-pair on scenarios never described to it. What the pipeline did appear to protect was
-aesthetic range: `frontend-design`'s pressure-testing stage is the plausible reason the
-paired runs still reached for webfonts at all. Caveat 3 applies — text and configuration
-moved together, so this is one file in one configuration and not a measurement of the
-two companion skills.
+**15. The pipeline was ceremony for two authors and load-bearing for the third.** Loaded
+alone, sol's and astra's revised files held every honesty result their paired
+configurations had — zero fabricated proof, the WDE-03 gate, derived dates, the
+sample-data label — on 19–47% fewer input tokens and up to 43% fewer turns, and both
+passed the WDE-03/WDE-10 pair on scenarios never described to them. Kimi's file, from the
+config that had failed nothing at all, lost fabrication on both pages, the fixture label,
+the clock and the date the moment the companions came off. Three authors, one treatment,
+opposite outcomes. Nothing in the skill text distinguishes them in advance: kimi attributed
+its own honesty results to its §8, section by section, and the run says those results were
+coming from somewhere else. What the pipeline consistently protected across all three is
+aesthetic range — every single-file config lost type variety relative to its paired
+parent. Caveat 3 still applies: text and configuration moved together in each case.
 
 **16. Anti-fabrication rules are bound to the vocabulary they are written in.** The same
 file, in the same run set, ran a real DuckDuckGo request before reporting a testimonial
@@ -1212,7 +1281,7 @@ frontend/
 │  ├─ session/            sol authoring transcript, xhigh (current)
 │  ├─ session-sol-high/   sol authoring transcript, high (superseded)
 │  ├─ revision4/          round 4: run.sh, sol.txt brief, transcript
-│  ├─ revision3/          round 3: run.sh, sol.txt + astra.txt briefs, transcripts
+│  ├─ revision3/          round 3: run.sh, sol/astra/kimi.txt briefs, transcripts
 │  └─ revision/           the revision round: run.sh, <author>.txt briefs,
 │                           <author>.log responses, session-<author>/ transcripts
 │                           (session-opus-openrouter-400/ is the failed openrouter
@@ -1227,6 +1296,7 @@ frontend/
 │  ├─ authored-r3/                 round 3: sol's single skill, tested alone
 │  ├─ authored6-r3/                round 3: astra's single skill, tested alone
 │  ├─ authored-r4/                 round 4: sol steered at r3's regressions
+│  ├─ authored-kimi-r3/            round 3: kimi's single skill, tested alone
 │  ├─ paired/                      frontend-design + local-guidelines variant
 │  └─ wig-command.md               cached Vercel Web Interface Guidelines
 ├─ runs/<config>/<scenario>/       built artifacts + meta.txt
@@ -1271,9 +1341,9 @@ To reproduce round 3 — sol revises again, is told it ships alone, then runs al
 scenarios with no companion skills and no orchestration note:
 
 ```bash
-./authoring/revision3/run.sh                   # both authors; overwrites skillsets/authored{,6}-r3/
+./authoring/revision3/run.sh                   # all three; overwrites skillsets/authored{,6,-kimi}-r3/
 ./authoring/revision3/run.sh astra             # or one
-CFGS="authored-sol-r3 authored-astra-r3" ./run.sh    # all 10 scenarios each
+CFGS="authored-sol-r3 authored-astra-r3 authored-kimi-r3" ./run.sh   # 10 scenarios each
 ```
 
 Round 4 — sol shown round 3's regressions plus the one extension cell, the other four
@@ -1325,8 +1395,8 @@ and pi session transcripts. The transcripts hold the full tool-call traces behin
 findings — **delete the `runs/*/*/.session/` line from `.gitignore` if the team wants
 to audit those claims**; it adds ~200 MB.
 
-Tracked content is 43.9 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
-`shots/` is 34.6 MB. The history of this figure, since earlier revisions got it wrong in
+Tracked content is 46.8 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
+`shots/` is 36.8 MB. The history of this figure, since earlier revisions got it wrong in
 both directions: 9.0 MB before the extension set, 18.3 MB after it, 20.3 MB after the
 sol re-test added the 15 retained `high` cells and both authoring transcripts, then
 45.6 MB of screenshots once `shots/` covered all 18 configs instead of 5 — cut to
@@ -1335,7 +1405,7 @@ revision round's own runs and shots took it to 33.3 MB without the line being up
 Round 3 adds 4.4 MB — ten runs (1.8 MB, including 1.3 MB of Lato TTFs the WDE-10 run
 copied out of the system font directory to back its `@font-face`, which is exactly the
 evidence the round is checking) and 17 screenshots. Astra's ten runs and round 4's ten add
-6.2 MB more, almost all of it screenshots.
+6.2 MB more, almost all of it screenshots, and kimi's ten add 2.9 MB.
 
 Screenshots are still 79% of the tree. The remaining lever is deleting
 `runs/authored-solhigh/` and `runs/paired-solhigh/` (−2 MB), which costs the

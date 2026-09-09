@@ -1,0 +1,15 @@
+Completed the responsive Ridgeline single-page marketing site.
+
+Files created:
+- `index.html`
+- `styles.css`
+- `script.js`
+- `README.md` — includes setup instructions and material assumptions
+
+Run locally with:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then visit `http://localhost:8000`.

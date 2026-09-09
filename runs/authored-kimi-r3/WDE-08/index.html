@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get started with the Nojom TypeScript SDK." />
+  <title>Quickstart · Nojom SDK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Nojom documentation home">
+      <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Nojom</span><span class="brand-muted">Developers</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a class="active" href="#quickstart">Documentation</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#">API reference</a>
+    </nav>
+    <div class="header-actions">
+      <button class="search" aria-label="Search documentation"><span>⌕</span> Search docs <kbd>⌘ K</kbd></button>
+      <a class="console" href="#">Open console <span>↗</span></a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <p class="section-label">GET STARTED</p>
+        <a class="side-link selected" href="#quickstart"><span>Quickstart</span></a>
+        <a class="side-link" href="#install">Installation</a>
+        <a class="side-link" href="#authenticate">Authentication</a>
+        <p class="section-label gap">SDK GUIDES</p>
+        <a class="side-link" href="#request">Messages</a>
+        <a class="side-link" href="#">Streaming</a>
+        <a class="side-link" href="#">Tool use</a>
+        <a class="side-link" href="#">Errors &amp; retries</a>
+        <p class="section-label gap">RESOURCES</p>
+        <a class="side-link" href="#pricing">Models &amp; pricing</a>
+        <a class="side-link" href="#">Changelog</a>
+      </div>
+      <div class="sidebar-foot">
+        <span class="status-dot"></span> All systems operational
+      </div>
+    </aside>
+
+    <main id="quickstart">
+      <div class="breadcrumbs"><span>Documentation</span><b>/</b><span>Quickstart</span></div>
+      <div class="eyebrow"><span>TS</span> TYPESCRIPT SDK</div>
+      <h1>Build with Nojom</h1>
+      <p class="lede">Make your first Claude request in under five minutes. Nojom gives your TypeScript app a small, typed interface to the Claude API.</p>
+
+      <div class="requirements"><strong>Before you begin</strong><span>Node.js 18 or later</span><span class="sep">·</span><span>A Nojom API key</span></div>
+
+      <section id="install">
+        <div class="step-title"><span class="step">1</span><div><h2>Install the SDK</h2><p>Add Nojom to your project using your preferred package manager.</p></div></div>
+        <div class="code-card terminal-card">
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-manager="npm">npm</button><button class="tab" data-manager="pnpm">pnpm</button><button class="tab" data-manager="yarn">yarn</button>
+            <button class="copy" data-copy="npm install @nojom/sdk" aria-label="Copy install command"><span class="copy-icon">□</span><span class="copy-label">Copy</span></button>
+          </div>
+          <pre><span class="prompt">$</span> <code id="install-command">npm install @nojom/sdk</code></pre>
+        </div>
+      </section>
+
+      <section id="authenticate">
+        <div class="step-title"><span class="step">2</span><div><h2>Set your API key</h2><p>Create a key in the <a href="#">Nojom console ↗</a>, then expose it as an environment variable.</p></div></div>
+        <div class="callout warning"><span class="lock">◇</span><div><strong>Keep your key private</strong><p>Never commit API keys or expose them in browser code. Make requests from a trusted server.</p></div></div>
+        <div class="code-card simple">
+          <div class="code-head"><span>.env</span><button class="copy" data-copy="NOJOM_API_KEY=nj_live_your_key_here" aria-label="Copy environment variable"><span class="copy-icon">□</span><span class="copy-label">Copy</span></button></div>
+          <pre><span class="variable">NOJOM_API_KEY</span><span class="punctuation">=</span><span class="string">nj_live_your_key_here</span></pre>
+        </div>
+      </section>
+
+      <section id="request">
+        <div class="step-title"><span class="step">3</span><div><h2>Send your first request</h2><p>Create a message and print Claude’s response.</p></div></div>
+        <div class="code-card simple code-large">
+          <div class="code-head"><span>index.ts</span><button class="copy" data-target="sample-code" aria-label="Copy code sample"><span class="copy-icon">□</span><span class="copy-label">Copy</span></button></div>
+<pre id="sample-code"><span class="kw">import</span> { Nojom } <span class="kw">from</span> <span class="string">"@nojom/sdk"</span>;
+
+<span class="kw">const</span> nojom = <span class="kw">new</span> <span class="fn">Nojom</span>({
+  apiKey: process.env.<span class="variable">NOJOM_API_KEY</span>,
+});
+
+<span class="kw">const</span> message = <span class="kw">await</span> nojom.messages.<span class="fn">create</span>({
+  model: <span class="string">"claude-sonnet-4-5-20250929"</span>,
+  maxTokens: <span class="number">1024</span>,
+  messages: [
+    { role: <span class="string">"user"</span>, content: <span class="string">"Explain quantum computing in one sentence."</span> },
+  ],
+});
+
+console.<span class="fn">log</span>(message.content[<span class="number">0</span>].text);</pre>
+        </div>
+        <div class="run-row"><span>Run it with</span><code>npx tsx index.ts</code><button class="mini-copy copy" data-copy="npx tsx index.ts" aria-label="Copy run command">□</button></div>
+      </section>
+
+      <section id="pricing" class="pricing-section">
+        <div class="step-title no-step"><div><span class="small-label">PLAN BEFORE YOU SHIP</span><h2>Estimate your cost</h2><p>Claude Sonnet 4.5 is priced per token processed.</p></div></div>
+        <div class="pricing-card">
+          <div class="model-row"><div><span class="model-name">Claude Sonnet 4.5</span><span class="current">CURRENT</span><code>claude-sonnet-4-5-20250929</code></div><a href="#">View all models →</a></div>
+          <div class="price-grid">
+            <div><span>INPUT</span><strong>$3.00</strong><small>per 1M tokens</small></div>
+            <div><span>OUTPUT</span><strong>$15.00</strong><small>per 1M tokens</small></div>
+            <div class="example"><span>QUICK ESTIMATE</span><p>10K input + 2K output</p><strong>≈ $0.06</strong></div>
+          </div>
+          <p class="formula">Cost = (input tokens × $3 / 1M) + (output tokens × $15 / 1M)</p>
+        </div>
+        <p class="assumption"><strong>Assumptions:</strong> Examples use the stable Sonnet 4.5 snapshot and standard API pricing, excluding prompt-cache and batch discounts. Prices may change; check the pricing page before launch.</p>
+      </section>
+
+      <div class="next-card"><div><span>NEXT UP</span><strong>Stream a response</strong><p>Show output as it is generated.</p></div><b>→</b></div>
+      <footer><span>© 2026 Nojom</span><span><a href="#">Status</a><a href="#">Security</a><a href="#">Support</a></span></footer>
+    </main>
+
+    <aside class="toc" aria-label="On this page">
+      <div><p>ON THIS PAGE</p><a class="active" href="#install">Install the SDK</a><a href="#authenticate">Set your API key</a><a href="#request">Send your first request</a><a href="#pricing">Estimate your cost</a></div>
+    </aside>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowline Dispatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Flowline home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 4v8a4 4 0 0 0 4 4h8a4 4 0 0 1 4 4v8"/><path d="M4 8h8M20 24h8"/></svg></span>
+      <span>FLOWLINE <small>PLUMBING CO.</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="active" href="#">Dispatch</a><a href="#">Schedule</a><a href="#">Customers</a><a href="#">Team</a>
+    </nav>
+    <div class="user-area">
+      <button class="icon-btn" aria-label="Notifications"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><i></i></button>
+      <div class="avatar">AD</div><div class="user-copy"><strong>Alex Dawson</strong><span>Dispatcher</span></div>
+      <button class="chevron" aria-label="Open user menu">⌄</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div><p class="eyebrow">OPERATIONS OVERVIEW</p><h1>Good morning, Alex.</h1><p>Here’s what’s happening across your service team.</p></div>
+      <div class="head-actions"><div class="date"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span><small>TODAY</small>Friday, September 11</span></div><button class="primary" id="newJob">＋ <span>New job</span></button></div>
+    </section>
+
+    <section class="summary" aria-label="Job summary">
+      <article class="summary-card total"><div class="metric-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3" cy="6" r="1"/><circle cx="3" cy="12" r="1"/><circle cx="3" cy="18" r="1"/></svg></div><div><span>Total jobs</span><strong id="totalCount">—</strong><small>In current queue</small></div></article>
+      <article class="summary-card open"><div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><span>Needs assignment</span><strong id="openCount">—</strong><small><b></b> Action required</small></div></article>
+      <article class="summary-card assigned"><div class="metric-icon"><svg viewBox="0 0 24 24"><path d="m8 12 3 3 5-6"/><circle cx="12" cy="12" r="9"/></svg></div><div><span>Assigned</span><strong id="assignedCount">—</strong><small>Technician confirmed</small></div></article>
+      <article class="summary-card done"><div class="metric-icon"><svg viewBox="0 0 24 24"><path d="m7 12 3 3 7-7"/><circle cx="12" cy="12" r="9"/></svg></div><div><span>Completed</span><strong id="doneCount">—</strong><small>Jobs closed out</small></div></article>
+    </section>
+
+    <section class="queue-panel">
+      <div class="queue-head"><div><h2>Job queue</h2><p>Manage and track all scheduled service calls.</p></div><div class="tools"><label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Search jobs, addresses…" aria-label="Search jobs"></label><button class="filter-btn" id="sortBtn"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg> Sort <span>↕</span></button></div></div>
+      <div class="tabs" role="tablist"><button class="active" data-filter="all">All jobs <span id="tabAll">0</span></button><button data-filter="open">Needs assignment <span id="tabOpen">0</span></button><button data-filter="assigned">Assigned <span id="tabAssigned">0</span></button><button data-filter="done">Completed <span id="tabDone">0</span></button></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Job</th><th>Service address</th><th>Scheduled</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="jobRows"></tbody></table>
+        <div class="empty" id="empty" hidden><strong>No jobs found</strong><span>Try changing your search or selected filter.</span></div>
+      </div>
+      <footer class="table-footer"><span id="showing">Showing 0 jobs</span><div><button disabled aria-label="Previous page">←</button><b>1</b><button disabled aria-label="Next page">→</button></div></footer>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status">New job workflow ready</div>
+  <script src="app.js"></script>
+</body>
+</html>

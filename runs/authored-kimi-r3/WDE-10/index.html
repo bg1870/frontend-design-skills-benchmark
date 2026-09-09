@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your Loomwork account and simplify your physiotherapy clinic schedule." />
+  <title>Create your account · Loomwork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="signup" aria-labelledby="signup-title">
+      <a class="brand" href="#" aria-label="Loomwork home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Loomwork</span>
+      </a>
+
+      <div class="form-wrap">
+        <header>
+          <p class="eyebrow">GET STARTED FOR FREE</p>
+          <h1 id="signup-title">Create your account</h1>
+          <p class="intro">Bring calm to your clinic schedule. No credit card required.</p>
+        </header>
+
+        <button class="google-btn" type="button" id="google-signup">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1Z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.24 1.06-3.71 1.06-2.86 0-5.29-1.94-6.16-4.54H2.18v2.84A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.84 14.09A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.43.34-2.09V7.07H2.18A11 11 0 0 0 1 12c0 1.78.43 3.46 1.18 4.93l3.66-2.84Z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A10.55 10.55 0 0 0 12 1a11 11 0 0 0-9.82 6.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53Z"/></svg>
+          Continue with Google
+        </button>
+
+        <div class="divider"><span>or continue with email</span></div>
+
+        <form id="signup-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="first-name">First name</label>
+              <input id="first-name" name="firstName" autocomplete="given-name" placeholder="Jane" required />
+              <small class="error"></small>
+            </div>
+            <div class="field">
+              <label for="last-name">Last name</label>
+              <input id="last-name" name="lastName" autocomplete="family-name" placeholder="Miller" required />
+              <small class="error"></small>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="jane@yourclinic.com" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-box">
+              <input id="password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required />
+              <button class="show-password" type="button" aria-label="Show password" aria-pressed="false">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.8"/></svg>
+              </button>
+            </div>
+            <small class="hint">Use 8+ characters with a number</small>
+            <small class="error"></small>
+          </div>
+          <label class="terms">
+            <input id="terms" type="checkbox" required />
+            <span>I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>.</span>
+          </label>
+          <small class="error terms-error"></small>
+          <button class="submit-btn" type="submit">Create account <span aria-hidden="true">→</span></button>
+          <p class="signin">Already have an account? <a href="#login">Log in</a></p>
+          <p class="status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <p class="copyright">© 2026 Loomwork, Inc.</p>
+    </section>
+
+    <aside class="showcase" aria-label="Loomwork product preview">
+      <div class="showcase-copy">
+        <span class="pill"><b></b> Built for modern physio teams</span>
+        <h2>Your clinic,<br><em>in perfect rhythm.</em></h2>
+        <p>Spend less time coordinating calendars and more time helping people move better.</p>
+      </div>
+      <div class="dashboard" aria-hidden="true">
+        <div class="dash-side">
+          <div class="mini-logo"><span class="brand-mark"><i></i><i></i><i></i></span></div>
+          <span class="side-line active"></span><span class="side-line"></span><span class="side-line"></span><span class="side-line short"></span>
+        </div>
+        <div class="dash-main">
+          <div class="dash-head"><div><small>Tuesday, 14 May</small><strong>Good morning, Jane</strong></div><span class="avatar">JM</span></div>
+          <div class="stats"><div><span>Today's visits</span><b>12</b><small>↑ 8% this week</small></div><div><span>Open slots</span><b>3</b><small>Next at 2:30 PM</small></div><div><span>Clinicians</span><b>6</b><small>All available</small></div></div>
+          <div class="schedule"><div class="schedule-title"><b>Today’s schedule</b><span>May 14</span></div>
+            <div class="appt"><time>09:00</time><i class="coral"></i><div><b>Olivia Bennett</b><small>Initial assessment · 45 min</small></div><span>Dr. M. Cole</span></div>
+            <div class="appt"><time>10:00</time><i class="mint"></i><div><b>Daniel Kim</b><small>Follow-up · 30 min</small></div><span>Sarah Lee</span></div>
+            <div class="appt"><time>11:30</time><i class="blue"></i><div><b>Amelia Green</b><small>Sports rehab · 60 min</small></div><span>Dr. M. Cole</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="quote">“</div>
+        <blockquote>Loomwork gave our front desk hours back every week. The whole clinic finally feels in sync.</blockquote>
+        <div class="person"><span>SK</span><p><b>Dr. Sarah Kim</b><small>Clinic Director, Motion Health</small></p></div>
+      </div>
+      <span class="shape shape-one"></span><span class="shape shape-two"></span>
+    </aside>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

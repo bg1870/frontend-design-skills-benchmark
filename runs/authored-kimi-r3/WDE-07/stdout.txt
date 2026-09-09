@@ -1,0 +1,9 @@
+Delivered a complete responsive landing page for **Morrow**, an independent premium daily planner.
+
+### Files
+- `index.html` — accessible, semantic landing page
+- `styles.css` — responsive editorial design and product illustrations
+- `script.js` — scroll reveals and functional email signup feedback
+- `ASSUMPTIONS.md` — documented brand, product, audience, and launch decisions
+
+Static asset smoke test passed successfully.
