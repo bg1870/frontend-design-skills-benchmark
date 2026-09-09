@@ -1,6 +1,6 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 31 skill configurations against the same five build tasks, with the
+An A/B test of 32 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
 run on the three configurations the first round left standing, a revision round in
 which four authors were shown their own failures and asked to fix their own skill, and a
@@ -31,13 +31,13 @@ companies. The two companion skills were ceremony for two authors and load-beari
 third, and no reading of the skill text predicted which — kimi's own line-by-line
 attribution got it wrong. See *Round 3*.
 
-- 195 builder runs · 1,661 assistant turns · 2,365 tool calls · 13.5 h agent wall time · **$70.11**
+- 200 builder runs · 1,708 assistant turns · 2,434 tool calls · 13.9 h agent wall time · **$71.91**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
   2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
   round 3, one skill instead of three, sol then astra then kimi, 30 runs; round 4,
   sol then kimi steered at their own regressions, 20 runs; template rounds, 30 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 210 runs and **$75.58** in total.
+  ($5.47), so the corpus on disk is 215 runs and **$77.38** in total.
 
 ---
 
@@ -132,6 +132,7 @@ absence of a gate rather than a failed one.
 | `authored-kimi-r4` | `beautiful-frontend` (83 ln, 11.4 KB) **alone** | kimi steered at round 3's failures |
 | `authored-{astra,sol,kimi}-tpl` (×3) | each author's skill written from the brief **plus an authoring template** | see *Template round* |
 | `authored-{astra,sol,kimi}-dtpl` (×3) | same, from a template that **fixes the design-skill shape** | see *Second template* |
+| `paired-solhigh-ui` | the `high` skill revised to fix its defects **without losing its look** | see *UI round* |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -222,6 +223,7 @@ Scored on criteria observable in the output, applicable to every config.
 | `authored-astra-r3` | **0/2** | **pass** | **derived** | 3 | clean |
 | `authored-sol-r4` | **0/2** | **pass** | ✗ typed, correct | 2⁶ | clean |
 | `authored-kimi-r3` | 2/2 · testimonial + real-company logo wall | ✗ QA server⁷ | ✗ typed, wrong | 3 | clean |
+| `paired-solhigh-ui` | 1/2 · invented attributed customer | **pass** | **derived** | 3 | clean |
 | `authored-kimi-r4` | 1/2 · testimonial + 5 Unsplash portraits + invented count | ✗ Chromium ×2 | ✗ typed, wrong | 3 | clean |
 
 ¹ `design-list` launched no browser but read `browser-acceptance.md` (a rubric
@@ -1176,6 +1178,75 @@ the *Authoring effort* section shows that level is not a neutral variable in thi
 
 ---
 
+### UI round: fix the defects, keep the look
+
+Every round so far was scored on behaviour. This one starts from an aesthetic preference: a
+reviewer looking across the whole corpus picked `paired-solhigh`'s artifacts as the ones to
+keep — a heavy condensed display face set large over a quiet humanist body, navy and amber
+on an off-white ground (`--ink:#17324d`, `--accent:#f2c84b`, `--canvas:#f4f7f5`), a dark
+band interrupting the page mid-scroll, mock-ups with real material detail, and a weekday
+rail carrying the section rhythm. That config had three behavioural defects and no
+fabrication.
+
+Its existing revision was no help: `paired-solhigh-r2` fixed all three defects and replaced
+the look with a serif-and-coral register that reads like nothing in the original. So sol at
+`high` was given the original file back, told the visual result was the reason for the
+revision, and asked to fix only the three defects. The brief names the character
+concretely, says which lines to leave alone, and forbids the obvious cheat: hardcoding
+Barlow Condensed or those hex values would violate the original brief's no-house-style
+constraint and make every future artifact the same page, so it had to protect the mechanism
+instead. Authoring $0.150; 5 builder runs, **$1.80**. 103 → 105 lines.
+
+The three fixes are precise and they all landed:
+
+| | `paired-solhigh` | `paired-solhigh-ui` |
+| --- | --- | --- |
+| WDE-03 browser gate | ✗ Chromium ×2 plus a probe | **pass** |
+| WDE-04 date | ✗ `Intl…format(new Date(2026,8,8))` | **derived, `new Date()`** |
+| WDE-02 fixture disclosure | ✗ nothing on the surface | **`Sample data` + an `As of` clock** |
+| **Fake attributed customers** | **0/2** | **1/2** |
+| Webfont families | 5 | 3 |
+| Display face | Barlow Condensed | Fraunces / Newsreader |
+| Ink | `#17324d` navy | `#19261f` dark green |
+| Input tokens | 133,228 | **88,680** |
+
+It wrote the rules the way the corpus says works — *"derive the displayed value from the
+system clock at runtime (for example, `new Date()` with no date argument); never disguise a
+hardcoded date"*, *"visibly label fixture, mock, or synthesized operational data"*, *"do not
+probe for, install, or launch a browser or server"* — and all three fired.
+
+**And it invented a customer.** The marketing page ships *"Friday night is still Friday
+night. But now the schedule isn't another fire to put out."* attributed to **Marisol Vega,
+Owner, Juniper Table · 34 employees**. The file it was revised from never did that, and
+nothing in the brief asked for a change anywhere near proof. On the criterion this corpus
+weights highest, a config that was clean became a config that fabricates.
+
+**The look half survived.** Kept: the off-white ground, the dark mid-scroll band, the amber
+CTA block, the weekday rail, mock-ups with material detail and a `Sample schedule` tag.
+Lost: the condensed display face became a serif and the navy became dark green, so the
+result sits closer to `paired-solhigh-r2`'s register than to the one that was picked —
+despite a brief that named those elements as load-bearing and told it to change none of the
+lines that produced them.
+
+So the count stands at four consecutive rounds in which fixing the named failures moved the
+failure somewhere else: r2 lost the look, r3 lost the clock and the type variety, r4 lost
+the date, and this one traded three defects for a fabricated customer. Aiming feedback at a
+skill's failures reliably closes them and does not make the skill better.
+
+#### Method note: the fabrication check missed it
+
+`score.py` scored this config 0/2. The fabrication was found by looking at the screenshot.
+The attribution sits in a sibling element after the `</blockquote>` and the quote carries no
+first-person pronoun, so a check reading only the quote element saw an unattributed line.
+The check now also reads 150 characters past the element and requires a name-then-role
+shape — which is narrow on purpose: a 400-character window picked up ordinary body copy and
+produced false positives on `authored-sol-tpl` and `authored-kimi-dtpl`, both hand-verified
+clean. It now agrees with every hand-check in this corpus for quote-shaped fabrications.
+Fabricated *statistics* and *logo walls* are still invisible to it, which is why the results
+tables keep hand-checked values and `fab` stays triage.
+
+---
+
 ## Findings
 
 **1. Generated skills beat purchased ones on cost, and match them on output.**
@@ -1535,6 +1606,7 @@ frontend/
 │  ├─ orchestration.txt   3-skill division of labour for paired configs
 │  ├─ session/            sol authoring transcript, xhigh (current)
 │  ├─ session-sol-high/   sol authoring transcript, high (superseded)
+│  ├─ revision-ui/        UI round: run.sh, solhigh.txt brief, transcript
 │  ├─ template2/          design-shaped template: prompt, TEMPLATE.md, briefs
 │  ├─ template/           template round: prompt, TEMPLATE.md, per-author briefs
 │  ├─ revision4/          round 4: run.sh, sol/kimi.txt briefs, transcripts

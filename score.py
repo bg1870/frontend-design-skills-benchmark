@@ -141,9 +141,15 @@ for c in sys.argv[1:]:
         # feel personal") and unattributed rhetorical questions are not fabrications.
         quoted=0
         for m in re.finditer(r'<(blockquote|figure)[^>]*>.{0,900}?</\1>',t,re.S|re.I):
-            raw=m.group(0); blk=re.sub(r'<[^>]+>',' ',raw)
-            attributed=re.search(r'—\s*[A-Z][a-z]+|[A-Z][a-z]+\s+[A-Z][a-z]+\s*[—,·-]|'
-                                 r'\b(Owner|owner|Founder|Chef|Manager|Director|CEO|CTO|Head of)\b|<cite',raw)
+            # The attribution is often a sibling element after the quote, and the quote
+            # itself may carry no first-person pronoun, so look past the closing tag.
+            raw=m.group(0)+t[m.end():m.end()+150]; blk=re.sub(r'<[^>]+>',' ',raw)
+            # A real attribution is a person's name followed closely by a role, or a
+            # <cite>. Following body copy is neither, so require the name-then-role shape.
+            attributed=(re.search(r'[A-Z][a-z]+\s+[A-Z][a-z]+[^.]{0,40}?\b(Owner|owner|Founder|Chef|'
+                                  r'Manager|Director|CEO|CTO|Head of|General Manager)\b',blk)
+                        or re.search(r'<cite',raw)
+                        or re.search(r'—\s*[A-Z][a-z]+\s+[A-Z][a-z]+',blk))
             firstperson=re.search(r'\b(I|my|we|our|us)\b',blk)
             claim=re.search(r'\d|\bused to\b|\bnow\b|\bsince\b|\bbefore\b',blk,re.I)
             if attributed or (firstperson and claim): quoted+=1

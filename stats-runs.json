@@ -168,6 +168,18 @@
   "scenarios": 5
  },
  {
+  "tin": 88680,
+  "cr": 477952,
+  "out": 37349,
+  "rea": 1995,
+  "cost": 1.8028459999999995,
+  "turns": 47,
+  "tools": 69,
+  "cfg": "paired-solhigh-ui",
+  "secs": 1486,
+  "scenarios": 5
+ },
+ {
   "tin": 99326,
   "cr": 433792,
   "out": 36960,

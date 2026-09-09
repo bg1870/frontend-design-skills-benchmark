@@ -1,0 +1,18 @@
+Implemented the clickable React prototype.
+
+### Included
+- Today view with runtime date and greeting
+- Interactive habit completion and progress tracking
+- Detailed reading streak view
+- Four-week completion calendar and statistics
+- Add-habit bottom sheet with symbol selection
+- Responsive mobile/desktop phone presentation
+- Keyboard focus, touch targets, reduced-motion support, and safe-area handling
+- Material assumptions documented in `README.md`
+
+### Run
+```bash
+npm run dev
+```
+
+Production build passes successfully with `npm run build`.

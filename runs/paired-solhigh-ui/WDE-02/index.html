@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dispatcher job queue for a plumbing service team.">
+  <meta name="theme-color" content="#eef1f2">
+  <title>Dispatch board | Northline Plumbing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="topbar">
+    <a class="brand" href="#main" aria-label="Northline Plumbing dispatch home">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M8 5v10c0 8 4 12 9 12s9-4 9-12V9h-6v6c0 3-1 6-3 6s-3-3-3-6V5z"/><path d="M5 5h12M17 9h12"/></svg>
+      <span><strong>Northline</strong><small>Plumbing dispatch</small></span>
+    </a>
+    <div class="topbar__meta">
+      <span class="data-flag">Sample data</span>
+      <span id="asOf">As of —</span>
+      <button class="icon-button" id="refreshButton" type="button" aria-label="Refresh job data" title="Refresh job data">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5"/><path d="M18.5 9A7 7 0 0 0 6 7l-2 4m2 4a7 7 0 0 0 12.5-2l1.5-4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="summary" aria-labelledby="summaryHeading">
+      <div class="summary__heading">
+        <p class="date" id="todayLabel"></p>
+        <h1 id="summaryHeading">Dispatch board</h1>
+        <p>Field work at a glance</p>
+      </div>
+      <div class="metric metric--attention">
+        <span>Needs dispatch</span>
+        <strong id="openCount">0</strong>
+        <small id="openDetail">No open calls</small>
+      </div>
+      <div class="metric">
+        <span>Assigned</span>
+        <strong id="assignedCount">0</strong>
+        <small>Crews scheduled</small>
+      </div>
+      <div class="metric">
+        <span>Completed</span>
+        <strong id="doneCount">0</strong>
+        <small>In this queue</small>
+      </div>
+      <div class="metric metric--wide">
+        <span>Next unassigned visit</span>
+        <strong id="nextOpen">—</strong>
+        <small id="nextOpenAddress">Nothing waiting</small>
+      </div>
+    </section>
+
+    <section class="queue" aria-labelledby="queueHeading">
+      <div class="queue__header">
+        <div>
+          <h2 id="queueHeading">Job queue</h2>
+          <p id="resultCount" aria-live="polite">Loading work orders…</p>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span class="sr-only">Search jobs</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+            <input id="searchInput" name="job-search" type="search" autocomplete="off" placeholder="Search job, address, tech…">
+          </label>
+          <label class="select-wrap">
+            <span class="sr-only">Filter by status</span>
+            <select id="statusFilter" name="status">
+              <option value="all">All statuses</option>
+              <option value="open">Open</option>
+              <option value="assigned">Assigned</option>
+              <option value="done">Done</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="queue__legend" aria-hidden="true">
+        <span>Work order</span><span>Visit</span><span>Technician</span><span>Status</span><span></span>
+      </div>
+      <div id="jobList" class="job-list" aria-live="polite"></div>
+      <div id="emptyState" class="empty" hidden>
+        <h3>No work orders match</h3>
+        <p>Clear the search or choose another status.</p>
+        <button type="button" id="clearFilters">Clear filters</button>
+      </div>
+      <div id="errorState" class="empty empty--error" hidden>
+        <h3>Job data did not load</h3>
+        <p>Run this page from a local web server so it can read <code>fixtures/jobs.json</code>.</p>
+        <button type="button" id="retryButton">Try again</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="jobDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head">
+        <div><span id="dialogId"></span><h2 id="dialogTitle">Job details</h2></div>
+        <button class="icon-button" value="close" aria-label="Close details" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <dl id="dialogDetails"></dl>
+      <menu><button value="close" type="submit">Close</button></menu>
+    </form>
+  </dialog>
+
+  <template id="jobTemplate">
+    <article class="job-row">
+      <div class="job-main"><span class="job-id"></span><h3></h3><p class="address"></p></div>
+      <div class="visit"><strong></strong><span></span></div>
+      <div class="tech"></div>
+      <div class="status"></div>
+      <button class="row-action" type="button" aria-label="View job details">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+    </article>
+  </template>
+  <script src="app.js"></script>
+</body>
+</html>
