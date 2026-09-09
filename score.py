@@ -134,7 +134,23 @@ for c in sys.argv[1:]:
     if m: dw,mo,dd=m.group(1),m.group(2),m.group(3)
     elif m2: dw,mo,dd=m2.group(1),m2.group(3),m2.group(2)
     else: dw=None
-    if dw is None: date="derived"
+    if dw is None:
+        # A hardcoded date formatted through Intl leaves no typed weekday behind, so
+        # "no weekday string" is not the same as "read a clock" — and a Date.now() used
+        # as an id generator is not a clock either. Follow what feeds the formatter,
+        # through one variable hop.
+        def _fed(txt):
+            direct=re.findall(r'\.format\(\s*new Date\(([^)]*)\)|new Date\(([^)]*)\)\s*\.toLocale',txt)
+            args=[a or b for a,b in direct]
+            # allow a wrapper between the assignment and the Date: useMemo(()=>new Date(),[])
+            hop=re.findall(r'(?:const|let|var)\s+(\w+)\s*=[^;\n]*?new Date\(([^)]*)\)',txt)
+            used=lambda v: re.search(r'\.format\(\s*'+re.escape(v)+r'\s*\)|\b'+re.escape(v)+r'\s*\.toLocale',txt)
+            args+= [a for v,a in hop if used(v)]
+            return args
+        args=_fed(t)
+        if args and all(a.strip() for a in args): date="literal(new Date(%s))"%args[0].strip()
+        elif args: date="derived"
+        else: date="no-date"
     else:
         mon=next((v for k,v in MON.items() if k.startswith(mo.lower()[:3])),None)
         if not mon: date=f"typed({dw}day {mo} {dd})"

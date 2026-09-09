@@ -190,7 +190,7 @@ Scored on criteria observable in the output, applicable to every config.
 | Config | Fake attributed customers | WDE-03 browser gate | WDE-04 date | Font variety | WDE-05 contracts |
 | --- | --- | --- | --- | ---: | --- |
 | `base` | 2/2 · logo wall + 2 stock faces | partial (QA server) | ✗ Mon Sep 2 → Wed | 4 | clean |
-| `wde` | **0/2** | **pass** | **derived** | 2 | clean |
+| `wde` | **0/2** | **pass** | literal⁴ | 2 | clean |
 | `discovered` | 1/2 · fake stats | ✗ Chromium | ✓ typed, correct | 3 | clean |
 | `design-list` | 0/2 | no browser¹ | ✓ typed, correct | 3 | clean |
 | `taste` | 2/2 · real face + fake quote | ✗ Chromium | ✗ Fri Sep 10 → Thu | 5 | clean |
@@ -200,21 +200,36 @@ Scored on criteria observable in the output, applicable to every config.
 | `authored-opus` | 2/2 · fake logo wall | **pass** (wrote `verify.js`) | ✓ typed, correct | 3 | clean |
 | `authored-kimi` | 1/2 | ✗ Chromium | ✗ Mon Oct 7 → Wed | 4 | clean |
 | `authored-fable` | 2/2 | ✗ Chromium | **derived** | 6 | clean |
-| `paired-opus` | 1/2 | ✗ Chromium | **derived** | 6 | clean |
+| `paired-opus` | 1/2 | ✗ Chromium | ✗ literal³ | 6 | clean |
 | `paired-kimi` | 2/2 | **pass** | **derived** | 5 | clean |
-| `paired-fable` | 1/2 | ✗ Chromium | **derived** | 5 | clean |
+| `paired-fable` | 1/2 | ✗ Chromium | ✗ literal³ | 5 | clean |
 | `paired-sol` | **0/2** | **pass** | **derived** | 4 | clean |
-| `paired-astra` | **0/2** | **pass** | **derived** | 4 | clean |
+| `paired-astra` | **0/2** | **pass** | ✗ literal³ | 4 | clean |
 | `paired-kimi-r2` | **0/2** | **pass** | **derived** | 6 | clean |
 | `paired-opus-r2` | **0/2** | **pass** | **derived** | 4 | clean |
 | `paired-solhigh-r2` | **0/2** | **pass** | **derived** | 4 | clean |
 | `paired-sol-r2` | **0/2** | **pass** | **derived** | 2 | clean |
+| `authored-sol-r3` | **0/2** | **pass** | **derived** | 0⁵ | clean |
 
 ¹ `design-list` launched no browser but read `browser-acceptance.md` (a rubric
 `must_not`) and left 11 text blocks at `opacity: 0` behind an IntersectionObserver,
 invisible with JavaScript disabled.
 ² `taste-solo` loaded no webfonts in any scenario; every headline falls back to Arial
 or `system-ui`.
+³ **Corrected 2026-09-09.** These four rows read `derived` until round 3, when a sweep of
+every WDE-04 artifact found the displayed date is
+`new Intl.DateTimeFormat(…).format(new Date(2026,8,8))` — a typed literal laundered
+through a locale formatter, correct only on the day it was written. `score.py` called any
+run with no typed weekday string "derived", so a hardcoded `Date` passed as derived, and a
+`Date.now()` used elsewhere as an id generator reinforced it. The check now follows what
+actually feeds the formatter, through one variable hop. The four affected configs are
+`paired-opus`, `paired-fable`, `paired-astra` and `paired-solhigh`; every `-r2` config and
+`authored-sol-r3` read a real clock and are unaffected.
+⁴ `wde` bakes `new Date('2026-09-08T01:52:34+03:00')` into the artifact, but sourced it
+from a real `date -Iseconds` read at build time and labels the surface "fixed clock". A
+literal, and an honest one — the distinction ³ is about is provenance, not the type.
+⁵ Zero **webfont** families. It sets `ui-serif`/`system-ui`/`ui-rounded` deliberately
+rather than falling back into them; see *Round 3*.
 
 **WDE-02 sample-data label: 1 of 16 before the revision round, 5 of 20 after.** Only
 `wde` put an on-surface marker ("Demo workspace · sample jobs, fixed clock") on a
@@ -482,9 +497,9 @@ was used only for triage.
 | --- | ---: | ---: | --- | --- | --- | --- | ---: | --- |
 | `paired-kimi` | $1.79 | 1279 s | 2/2 | pass | derived | ✗ | 5 | clean |
 | **`paired-kimi-r2`** | $1.89 | 1129 s | **0/2** | pass | derived | **✓** | 6 | clean |
-| `paired-opus` | $1.82 | 1392 s | 1/2 | ✗ Chromium | derived | ✗ | 6 | clean |
+| `paired-opus` | $1.82 | 1392 s | 1/2 | ✗ Chromium | ✗ literal | ✗ | 6 | clean |
 | **`paired-opus-r2`** | $1.94 | 1295 s | **0/2** | **pass** | derived | **✓** | 4 | clean |
-| `paired-solhigh` | $2.05 | 1425 s | 0/2 | ✗ Chromium | derived | ✗ | 5 | clean |
+| `paired-solhigh` | $2.05 | 1425 s | 0/2 | ✗ Chromium | ✗ literal | ✗ | 5 | clean |
 | **`paired-solhigh-r2`** | $1.93 | 1178 s | 0/2 | **pass** | derived | **✓** | 4 | clean |
 | `paired-sol` | $2.08 | 1431 s | 0/2 | pass | derived | ✗ | 4 | clean |
 | **`paired-sol-r2`** | $1.90 | 1130 s | 0/2 | pass | derived | **✓** | 2 | clean |
@@ -820,7 +835,7 @@ marketing nouns.
 | Use case | Config | Cost |
 | --- | --- | --- |
 | Comps, pitches, visual exploration | `authored-opus` | $1.10 |
-| Anything customer-facing | `paired-astra` **or** `paired-sol` | $1.85 / $2.08 (core) · $3.82 / $3.85 (all 10) |
+| Anything customer-facing | `paired-sol` (reads a real clock) **or** `paired-astra` | $2.08 / $1.85 (core) · $3.85 / $3.82 (all 10) |
 | One skill, no orchestration | `authored-sol-r3` (sol, xhigh, revised twice) | $1.55 (core) · $3.00 (all 10) |
 | One skill, widest type range | `authored` (sol, xhigh, first draft) | $1.47 |
 | Building your own skill | write one, run it, feed it its own output | ≤$0.29 per revision pass |
@@ -834,9 +849,10 @@ Read its core-five row as fitted and its extension row as earned. On a corpus
 where twelve findings say the skill barely mattered, one feedback pass moved every
 metric it was aimed at, for less than the cost of a single builder run.
 
-`paired-astra` was the only config clean on fabrication, passing the verification gate
-and deriving its dates. Re-authored `paired-sol` now matches it on all three, and on
-every extension-set criterion the two are level: both name a direction, both keep deck
+`paired-astra` was clean on fabrication and passed the verification gate, but its date is
+a laundered literal (footnote 3), so `paired-sol` — clean on fabrication, gating, and the
+only one of the two reading a real clock — is now the stronger of the pair on the core
+five. On every extension-set criterion the two are level: both name a direction, both keep deck
 figures as labelled targets, both gate and fire correctly. They separate on details that
 cut in both directions — sol found the derived-figure defect astra missed and its
 acceptance harness needs nothing machine-specific, while astra's harness actually
