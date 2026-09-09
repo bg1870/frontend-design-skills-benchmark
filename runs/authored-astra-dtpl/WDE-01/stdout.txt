@@ -1,0 +1,10 @@
+Built the finished Ridgeline marketing site.
+
+- **Site:** `index.html`
+- **Assumptions and launch notes:** `README.md`
+- Responsive navigation and layouts
+- Accessible keyboard focus and reduced-motion support
+- No dependencies or build step required
+- HTML parsing validated successfully
+
+Open `index.html` in a browser to view it.

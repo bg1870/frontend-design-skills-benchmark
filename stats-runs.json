@@ -60,6 +60,18 @@
   "scenarios": 5
  },
  {
+  "tin": 75204,
+  "cr": 346752,
+  "out": 28225,
+  "rea": 1428,
+  "cost": 1.396146,
+  "turns": 50,
+  "tools": 67,
+  "cfg": "authored-kimi-dtpl",
+  "secs": 1201,
+  "scenarios": 5
+ },
+ {
   "tin": 74215,
   "cr": 184832,
   "out": 32298,
@@ -81,6 +93,30 @@
   "tools": 42,
   "cfg": "authored",
   "secs": 1070,
+  "scenarios": 5
+ },
+ {
+  "tin": 101049,
+  "cr": 213632,
+  "out": 31473,
+  "rea": 1145,
+  "cost": 1.5562509999999994,
+  "turns": 40,
+  "tools": 53,
+  "cfg": "authored-sol-dtpl",
+  "secs": 1198,
+  "scenarios": 5
+ },
+ {
+  "tin": 104933,
+  "cr": 278272,
+  "out": 30069,
+  "rea": 1159,
+  "cost": 1.5658709999999998,
+  "turns": 45,
+  "tools": 57,
+  "cfg": "authored-astra-dtpl",
+  "secs": 1155,
   "scenarios": 5
  },
  {

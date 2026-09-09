@@ -26,6 +26,8 @@ skill_args() {
     paired-fable) echo "--skill $AUTH/authored-fable/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-sol) echo "--skill $AUTH/authored/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-solhigh) echo "--skill $AUTH/authored-solhigh/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    # UI-preserving revision of the high skill: fix the three defects, keep the look
+    paired-solhigh-ui) echo "--skill $AUTH/authored-solhigh-ui/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-astra) echo "--skill $AUTH/authored6/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     # revision round: each skill re-authored after being shown its own failures
     paired-kimi-r2) echo "--skill $AUTH/authored-kimi-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;

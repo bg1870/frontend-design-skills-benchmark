@@ -1,0 +1,14 @@
+`SKILL.md` written — 72 lines, exactly one file, all ten template sections in order with template-supplied text verbatim and the [AUTHOR] slots filled.
+
+Key authored policies, aimed at actual autopilot failures:
+
+- **S2** — ranks focal dominance over tonal quiet, and names evenly distributed decoration (gradient headlines, pill badges, icon chips, shadowed cards) as the competing treatment to strip first.
+- **S3** — one strong emphasis per viewport-height region; a second only for a peer action, a third never.
+- **S4** — one alignment axis per screen (left-aligned columns or an asymmetric split); full-page centering restricted to single-message regions; dominant region gets ≥1.5× supporting area; spacing tiers at 1×/2×/4× with uniform spacing as a rejection signal; no cards inside cards.
+- **S5** — roles separated on at most three axes (size/weight/letterspacing, not color); ≤2 typefaces with a structural-contrast rule; font choice decided by content type (editorial→serif/humanist, data-dense→grotesque) rather than naming a house font; measure 45–75ch, truncation only with full value reachable.
+- **S6** — one neutral family + one accent hue; accent reserved for interactive/focal elements, never passive fills; luminance steps over reflexive borders/shadows (shadows only on floating elements); missing imagery falls back to typographic composition, with gradient meshes/blobs explicitly forbidden as stand-ins.
+- **S7** — a four-step ordered collapse (spacing → columns → disclosure → navigation), primary action never disclosed away.
+- **S8** — one filled primary style per view; disabled stays rendered with a reason; focus/pending/selection/outcome as four distinct keyboard-reachable treatments; motion bounded to 150–300ms state changes with a reduced-motion swap.
+- **S10** — three rejection tests on composition, text hierarchy, and surfaces/media, each naming the fix that passes.
+
+Per-artifact values (colors, fonts, spacing numbers, radii) stay open so artifacts don't converge on one look; only the selection rules are fixed.

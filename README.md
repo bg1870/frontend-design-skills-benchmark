@@ -1,6 +1,6 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 28 skill configurations against the same five build tasks, with the
+An A/B test of 31 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
 run on the three configurations the first round left standing, a revision round in
 which four authors were shown their own failures and asked to fix their own skill, and a
@@ -31,13 +31,13 @@ companies. The two companion skills were ceremony for two authors and load-beari
 third, and no reading of the skill text predicted which — kimi's own line-by-line
 attribution got it wrong. See *Round 3*.
 
-- 180 builder runs · 1,526 assistant turns · 2,188 tool calls · 12.5 h agent wall time · **$65.59**
+- 195 builder runs · 1,661 assistant turns · 2,365 tool calls · 13.5 h agent wall time · **$70.11**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
   2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
   round 3, one skill instead of three, sol then astra then kimi, 30 runs; round 4,
-  sol then kimi steered at their own regressions, 20 runs; template round, 15 runs)
+  sol then kimi steered at their own regressions, 20 runs; template rounds, 30 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 195 runs and **$71.06** in total.
+  ($5.47), so the corpus on disk is 210 runs and **$75.58** in total.
 
 ---
 
@@ -131,6 +131,7 @@ absence of a gate rather than a failed one.
 | `authored-kimi-r3` | `beautiful-frontend` (78 ln, 9.5 KB) **alone** | kimi's revised skill, told it ships alone |
 | `authored-kimi-r4` | `beautiful-frontend` (83 ln, 11.4 KB) **alone** | kimi steered at round 3's failures |
 | `authored-{astra,sol,kimi}-tpl` (×3) | each author's skill written from the brief **plus an authoring template** | see *Template round* |
+| `authored-{astra,sol,kimi}-dtpl` (×3) | same, from a template that **fixes the design-skill shape** | see *Second template* |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -1111,6 +1112,68 @@ configs, because that column also counts fabricated statistics and logo walls, w
 quote heuristic sees. **The fabrication numbers in the results tables remain the
 hand-checked ones**; `score.py`'s `fab` is triage and is not authoritative.
 
+#### Second template: one that defines the design-skill shape
+
+The first template taught instruction design in the abstract and changed nothing. This one
+does the opposite: it fixes what a front-end design skill must contain. Ten numbered
+sections in a fixed order between `BEGIN SKILL` / `END SKILL` markers — scope and
+precedence, perceptual priorities, content and attention, composition, typography,
+colour/surfaces/assets, adaptation under pressure, interaction and motion, implementation
+fidelity, completion gate — plus an ownership table that is the real mechanism:
+
+| Mark | Ownership |
+| --- | --- |
+| Ordinary text inside the markers | template supplies the rule; copy it unchanged |
+| `[AUTHOR: …]` | author supplies one executable policy, replacing the slot |
+| *Per artifact* | the executing model decides each time, under the copied rules |
+| Blockquoted *Guide* text | author guidance; use it, then delete it |
+
+So the authors no longer choose which rules exist — only what goes in the slots. Authoring
+$0.193–$0.988; 15 builder runs, **$4.52**.
+
+All three followed it exactly: 73 / 68 / 72 lines, one file each, no external links, no
+leftover markers, no unstripped guidance, no unfilled slots. The clustering is the first
+result — the same three authors produced 65 / **102** / 63 lines blind and 70 / 54 / 56
+with the generic template. A fixed section list pins the shape.
+
+#### Three-way comparison, alone on the core five
+
+| | astra blind | +generic | +design | sol blind | +generic | +design | kimi blind | +generic | +design |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Fake customers | 0/2 | 0/2 | **0/2** | 0/2 | 0/2 | **0/2** | 1/2 | 1/2 | **0/2** |
+| WDE-03 gate | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | **probe-only** |
+| WDE-04 date | ✗ typed wrong | ✗ typed wrong | ✗ typed, right today | ✗ typed, right today | ✗ typed wrong | ✗ typed wrong | ✗ typed wrong | ✗ typed wrong | ✗ typed, right today |
+| WDE-02 marker | ✗ | ✗ | partial (`Demo`) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Font families | 4 | 4 | 3 | 4 | 5 | 4 | 4 | 3 | 3 |
+| Cost | $1.66 | $1.23 | $1.57 | $1.47 | $1.34 | $1.56 | $1.43 | $1.31 | $1.40 |
+
+**The design-shaped template did better than the generic one, and still did not fix the two
+failures that define this half of the corpus.** Its wins are real but narrow: kimi stopped
+fabricating (its generic-template run shipped *"Marisol Vega — Owner, Alder & Ash,
+Portland"*; this one ships an unattributed line with no claim in it), kimi's gate improved
+from launching Chromium to **probing and not launching** — the best gate behaviour any
+unpaired config has produced — and astra put a `Demo` marker on the dashboard, which only
+`wde` and the `-r2` configs had ever done.
+
+Against that: **no config in either template arm derives a date.** Six configs, six typed
+strings. Two of the design-arm three are accidentally correct because the run happened on
+2026-09-09, which is exactly the trap footnote 3 describes — `authored-astra-dtpl` renders
+`WEDNESDAY · SEPTEMBER 9` and `authored-kimi-dtpl` renders `WEDNESDAY, SEPT 9`, both typed,
+both wrong tomorrow. And two of three still launch a browser on "polish and verify".
+
+**The comparison that matters is not template versus no template.** It is template versus
+the audit skill. Every paired config gates correctly on WDE-03; no unpaired config in nine
+attempts does, whichever template it was given. `web-design-guidelines` being loaded and
+read at audit time changes that behaviour; a template telling the author to write a rule
+about it does not. Nine configs, one behaviour, and the thing that moves it is a skill in
+the context at the moment the builder is deciding whether to run a command — kimi's round-4
+mechanism, arrived at from the other side.
+
+The honest caveat on this arm: the design template was written at `high`, the generic one at
+`xhigh`, because astra stalled ten times at `xhigh` and `high` on the design prompt before
+the file was produced. Template shape and authoring effort are therefore confounded, and
+the *Authoring effort* section shows that level is not a neutral variable in this corpus.
+
 ---
 
 ## Findings
@@ -1472,6 +1535,7 @@ frontend/
 │  ├─ orchestration.txt   3-skill division of labour for paired configs
 │  ├─ session/            sol authoring transcript, xhigh (current)
 │  ├─ session-sol-high/   sol authoring transcript, high (superseded)
+│  ├─ template2/          design-shaped template: prompt, TEMPLATE.md, briefs
 │  ├─ template/           template round: prompt, TEMPLATE.md, per-author briefs
 │  ├─ revision4/          round 4: run.sh, sol/kimi.txt briefs, transcripts
 │  ├─ revision3/          round 3: run.sh, sol/astra/kimi.txt briefs, transcripts

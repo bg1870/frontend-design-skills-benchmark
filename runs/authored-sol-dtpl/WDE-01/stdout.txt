@@ -1,0 +1,9 @@
+Completed the Ridgeline single-page marketing site.
+
+### Deliverables
+- `index.html` — semantic landing page
+- `styles.css` — responsive design and interactions
+- `script.js` — mobile navigation, calculator, and demo state
+- `README.md` — setup notes and material assumptions
+
+Validated static asset serving and JavaScript syntax. Browser-based visual inspection was not available.

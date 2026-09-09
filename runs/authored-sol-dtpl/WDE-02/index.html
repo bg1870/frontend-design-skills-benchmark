@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dispatcher job queue for Northline Plumbing" />
+  <title>Dispatch — Northline Plumbing</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Northline Plumbing dispatch home">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span><strong>Northline</strong><small>Plumbing dispatch</small></span>
+    </a>
+    <div class="topbar-meta">
+      <span class="sync"><i></i> Live queue</span>
+      <button class="icon-button" id="refreshButton" aria-label="Refresh jobs" title="Refresh jobs">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6.1 9a7 7 0 0 1 11.5-2.6L20 9M4 15l2.4 2.6A7 7 0 0 0 18 15"/></svg>
+      </button>
+      <div class="dispatcher"><span>BK</span><div><strong>Bailey Kim</strong><small>Dispatcher</small></div></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary-wrap" aria-labelledby="overview-title">
+      <div class="summary-heading">
+        <div><p class="eyebrow">Wednesday, September 9</p><h1 id="overview-title">Good afternoon, Bailey.</h1></div>
+        <p class="summary-note">One visit is scheduled today. Two jobs still need a technician.</p>
+      </div>
+      <div class="summary" aria-label="Job summary">
+        <button class="metric active" data-filter="all"><span class="metric-icon all-icon" aria-hidden="true">06</span><span><strong id="allCount">6</strong><small>All jobs</small></span></button>
+        <button class="metric" data-filter="open"><span class="metric-icon open-icon" aria-hidden="true">!</span><span><strong id="openCount">2</strong><small>Need assignment</small></span></button>
+        <button class="metric" data-filter="assigned"><span class="metric-icon assigned-icon" aria-hidden="true">→</span><span><strong id="assignedCount">2</strong><small>Assigned</small></span></button>
+        <button class="metric" data-filter="done"><span class="metric-icon done-icon" aria-hidden="true">✓</span><span><strong id="doneCount">2</strong><small>Completed</small></span></button>
+      </div>
+    </section>
+
+    <section class="queue" aria-labelledby="queue-title">
+      <div class="queue-head">
+        <div><h2 id="queue-title">Job queue</h2><p id="queueSubtitle">6 jobs across Sep 5–11</p></div>
+        <div class="tools">
+          <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><span class="sr-only">Search jobs</span><input id="searchInput" type="search" placeholder="Search jobs or addresses" /></label>
+          <label class="select-wrap"><span class="sr-only">Sort jobs</span><select id="sortSelect"><option value="soonest">Soonest first</option><option value="latest">Latest first</option><option value="status">By status</option></select></label>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Schedule</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+        <div class="empty" id="emptyState" hidden><div>⌕</div><h3>No jobs found</h3><p>Try another search or status filter.</p><button id="clearFilters">Clear filters</button></div>
+        <div class="loading" id="loadingState"><span></span> Loading dispatch queue…</div>
+        <div class="error" id="errorState" hidden><strong>We couldn’t load the queue.</strong><p>Check that <code>fixtures/jobs.json</code> is available, then try again.</p><button id="retryButton">Try again</button></div>
+      </div>
+      <p class="queue-footer"><span id="resultCount">Showing 6 jobs</span><span>Schedule timezone: Central</span></p>
+    </section>
+  </main>
+
+  <dialog id="assignDialog">
+    <form method="dialog" id="assignForm">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      <p class="eyebrow">Assign technician</p><h2 id="dialogTitle">Assign job</h2><p id="dialogAddress" class="dialog-address"></p>
+      <label>Technician<select id="technicianSelect" required><option value="">Select a technician</option><option>R. Okafor</option><option>M. Duarte</option><option>T. Blanchard</option></select></label>
+      <div class="dialog-actions"><button type="button" data-close-dialog class="secondary">Cancel</button><button type="submit" value="default" class="primary">Assign job</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

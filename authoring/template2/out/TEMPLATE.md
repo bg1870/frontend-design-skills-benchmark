@@ -1,0 +1,107 @@
+# Front-end design skill template
+Author instructions: preserve the ten numbered sections and their order. Produce one instruction file; do not add companion material.
+Copy only the material between BEGIN SKILL and END SKILL, applying the ownership rules below; omit the markers themselves.
+
+| Mark | Ownership and handling |
+| --- | --- |
+| Ordinary text inside the markers | Template supplies the rule; copy it unchanged. |
+| [AUTHOR: …] | Author supplies a policy once; replace the entire slot with executable instructions. |
+| Per artifact | The executing model chooses these values each time, under the copied rules and authored policies. |
+| Blockquoted Guide text | Author guidance only; use it to fill and check the section, then remove it. |
+
+Policies must specify a choice, its observable consequence, and any exception's trigger. A conditional policy must resolve both branches; “as appropriate” is not a branch.
+Author policies govern relationships and selection rules. Exact copy, font families, colors, dimensions, assets, component counts, and breakpoint values belong to each artifact unless its brief or existing site already fixes them.
+
+BEGIN SKILL
+# [AUTHOR: a name identifying the skill's visual remit]
+
+## 1. Scope and precedence
+> Guide — Force: which browser work this skill changes and where its authority ends. Reject: “all beautiful interfaces,” or an unstated assumption that every task permits a redesign.
+Scope: [AUTHOR: name the supported purposes or surfaces and the visual problem this skill addresses; state its boundary.]
+Apply this skill to browser-rendered work within that scope. Resolve visual conflicts in this order: content access and operable controls; explicit task requirements; established conventions in an existing surface; this skill's defaults.
+In extensions, inherit the surrounding typography, spacing, colors, component behavior, and navigation unless the task explicitly changes them; apply this skill to unresolved choices.
+Per artifact: identify whether the task creates, extends, or redesigns a surface, and identify the allowed change boundary from the supplied brief and material. Do not widen it to showcase the skill.
+
+## 2. Perceptual priorities
+> Guide — Force: what wins attention and what gives way. Reject: a mood-word list, a borrowed style name, or principles that permit opposite visual hierarchies without a deciding condition.
+Policy: [AUTHOR: rank two perceptual priorities; translate each into a visible relationship between elements; name one attractive competing treatment to reduce when they conflict.]
+Use this priority order to resolve discretionary choices in later sections; do not introduce unrelated visual motifs merely to make regions look different.
+Per artifact: assign the priorities to actual content or controls. Choose concrete visual values that express them; do not copy an imagined reference page.
+
+## 3. Content and attention
+> Guide — Force: how the viewer's first, second, and later attention is assigned. Reject: a mandatory hero, card grid, dashboard shell, or other layout selected before the information is known.
+Policy: [AUTHOR: give the rule for selecting the dominant information or action, the treatment of supporting material, and the limit on competing emphasis within one task region.]
+Per artifact: identify the visitor's main task, the information needed to complete it, and a ranked content order before arranging regions. Determine which items require reading, comparison, scanning, or action.
+Use supplied content first. When content is missing, use plausible, explicitly illustrative material with realistic lengths and variation; do not invent endorsements, credentials, or factual performance claims.
+Do not delete required content or shorten labels merely to fit a preferred composition. Omit sections that have no task or information to serve.
+
+## 4. Composition and spatial rhythm
+> Guide — Force: how priority becomes geometry and grouping. Reject: “use whitespace,” an unexplained spacing scale, or a screen described only as a list of components.
+Policy: [AUTHOR: define the organizing alignment or grid rule, how dominant and supporting regions differ in area or position, and when regions share a surface versus receive separate containers.]
+Rhythm: [AUTHOR: define the relationship between within-group, between-group, and section spacing; specify how density changes for sustained reading versus repeated comparison.]
+Per artifact: choose columns, widths, spacing values, and component structure from the content order and available space. Keep repeated roles aligned and spaced consistently.
+Use proximity, alignment, and shared boundaries to communicate actual relationships; do not add wrappers, empty panels, or ornamental sections to fill space.
+
+## 5. Typography and text behavior
+> Guide — Force: how text roles remain distinguishable and how text survives real content. Reject: “strong typography,” a font shopping list, or a size ladder with no role assignments.
+Policy: [AUTHOR: define how display text, headings, body text, labels, and data differ using size, weight, line height, or spacing; set the limit on competing type treatments and the rule for selecting compatible faces.]
+Text behavior: [AUTHOR: set body reading-width and line-height bounds; specify where wrapping is required and when truncation is allowed with access to the full value.]
+Per artifact: choose available fonts, role sizes, and measures; use actual long titles, labels, and representative values while determining layout.
+Preserve selectable text, meaningful heading order, and readable content at twice the default text size. Never use tiny text, forced line breaks, or clipping to rescue a composition.
+
+## 6. Color, surfaces, and visual assets
+> Guide — Force: which visual signals carry meaning and where decoration may compete. Reject: a palette without roles, “add visual interest,” or mandatory imagery regardless of content.
+Surface policy: [AUTHOR: define foreground, background, emphasis, and status roles; specify how borders, corner shapes, shadows, and texture distinguish or unite regions, including where these treatments are withheld.]
+Asset policy: [AUTHOR: define when imagery or illustration earns space, how icons relate visually to text, what dominates when media and content compete, and the fallback when suitable assets are unavailable.]
+Per artifact: choose exact role colors, surface values, assets, crops, and aspect ratios. Keep repeated semantic roles consistent; keep decorative color distinct from status and action signals.
+Pair color-coded meaning with text or shape; keep text distinguishable from its actual background in every state. Put essential meaning in text even when media fails.
+Choose crops around the subject or informational feature; preserve image proportions and icon consistency. Do not replace unavailable meaningful media with unrelated decoration.
+
+## 7. Adaptation under pressure
+> Guide — Force: what yields first when space or content changes. Reject: “make it responsive,” device-name breakpoints, or shrinking the desktop layout until it fits.
+Policy: [AUTHOR: give an ordered response to crowding across spacing, columns, supporting content, and navigation; specify what must remain visible and when localized scrolling is preferable to reflow.]
+Per artifact: place layout transitions where content stops fitting or relationships become unclear; choose thresholds from that failure, not from a named device.
+Preserve the main task and meaningful reading order across widths. Do not hide required actions or data to create a cleaner narrow view.
+Contain unavoidable two-dimensional overflow within its own region and make access discoverable. Allow long content and enlarged text to grow without overlapping controls.
+
+## 8. Interaction, states, and motion
+> Guide — Force: how the design communicates action and change over time. Reject: a hover-only design, a list of animations, or controls whose only implemented state is the screenshot state.
+Policy: [AUTHOR: define the visual distinction between primary, secondary, and unavailable actions; specify how focus, selection, pending work, and outcomes remain distinct.]
+Motion policy: [AUTHOR: name the changes that justify motion, its role in those changes, a duration bound, and what happens when motion is reduced; choosing no motion is a complete policy.]
+Per artifact: map each visible control to an actual outcome and the states reachable in the requested scope. Include loading, empty, error, success, and disabled states wherever the behavior can produce them.
+Give controls names, keyboard operation, and visible focus; do not make essential information available only on hover. Keep feedback near its cause and preserve entered data on recoverable errors.
+Motion must not delay access to content or controls. Respect reduced-motion preferences. When a prototype simulates an outcome, make its scope clear rather than implying unavailable persistence or connectivity.
+
+## 9. Implementation fidelity
+> Guide — Force: whether the rules survive browser behavior and integration. This section's constraints are template-supplied; reject added stack preferences, architecture rituals, or “production ready” as a substitute for observable behavior.
+Implement the requested scope in the supplied project conventions; reuse existing components and shared values before introducing equivalents.
+Represent text and controls as browser content with appropriate semantics, not as a flattened picture. Express recurring visual decisions through shared values and reuse structure for repeated roles.
+Reserve media space, supply font and asset fallbacks, and ensure essential content remains available when an enhancement fails. Do not introduce resources whose loading cost delays the main task without a task-specific need.
+Per artifact: choose implementation details from the available environment and required behavior; add dependencies only for a concrete capability that the existing project cannot provide.
+
+## 10. Completion gate
+> Guide — Force: what visibly fails acceptance and when revision ends. Reject: “polish until excellent,” code compilation as visual proof, or a checklist disconnected from the authored policies.
+Rejection tests: [AUTHOR: write three observable failures derived from the policies above, covering composition, text hierarchy, and surfaces or media; each must identify what must change to pass.]
+Review the browser-rendered result at a wide and narrow width, with long content, enlarged text, missing media, and the applicable interaction states. Inspect the primary task using keyboard navigation.
+Fix lost content, blocked actions, overlaps, clipping, unstable layout, and unreadable state distinctions first; then fix violations of the authored hierarchy and visual policies.
+Stop when these failures and the authored rejection tests are resolved; do not invent more features or decoration as a finishing step.
+If rendering or interaction cannot be inspected in the available environment, distinguish what was checked from what remains unverified; never claim a visual pass from source inspection alone.
+END SKILL
+
+## Author-only exclusions — do not copy
+- Exclude persona claims, taste adjectives, “avoid generic design,” and requests to impress unless replaced by a visible choice and a rejection condition.
+- Exclude catalogs of styles, fonts, palettes, components, or effects that leave the executing model to invent the selection rule.
+- Exclude universal page recipes and arbitrary bans on a color, typeface, radius, or common pattern; constrain the role and consequence of a treatment instead.
+- Exclude installation, deployment, tool-specific procedures, external references, hidden dependencies, and requests for human approval or preferences.
+- Exclude one artifact's copy, coordinates, routes, assets, or mock data from lasting policy. Do not embed a full specimen page that silently becomes every output.
+- Exclude reasoning transcripts and demands for lengthy plans or design essays; the skill's evidence is the rendered artifact and its behavior.
+
+## Author-only draft gate — use only the filled draft
+1. Strip all guidance and slots. Confirm the ten sections remain in order; an applicable policy cannot be replaced by “use judgment,” “match the brief,” or “not applicable.”
+2. For every authored policy, name one visible result it forbids and one it permits. If opposing treatments both pass without a deciding condition, sharpen the rule.
+3. Mentally lay out an in-scope surface with a long title, one main task, and repeated supporting content. Identify its first focus, grouping, text roles, action emphasis, and media treatment by quoting the responsible rules; missing answers expose missing policy.
+4. Halve its available width, double its text, and remove its main image. Predict the first layout change, what remains visible, what can scroll, and the fallback composition from the draft; do not invent new policy to answer.
+5. Walk its primary action through focus, activation, waiting, failure, and completion where applicable. If the draft permits indistinguishable states or dead controls, repair section 8.
+6. Place the same work inside a site with conflicting type and color conventions. Confirm section 1 resolves the conflict without requiring a redesign or a human decision.
+7. Trace each rejection test to an authored choice and each perceptual priority to a later implementation rule. Remove orphan tests; add consequences for priorities that never affect a screen.
+8. Remove each authored sentence in turn: if no permitted visual or behavioral outcome changes, cut it. Ship only after all gaps above are closed.

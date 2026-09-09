@@ -1,0 +1,5 @@
+Completed the Ridgeline single-page marketing site.
+
+- `index.html` — responsive, accessible, dependency-free site with demo form interaction and mobile navigation.
+- `README.md` — setup notes and material assumptions.
+- HTML parsing and Chromium rendering completed successfully at wide and narrow viewport sizes.

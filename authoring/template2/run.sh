@@ -13,7 +13,7 @@ rm -rf "$OUT"; mkdir -p "$OUT"
 # zero CPU and writes nothing, so a single long timeout just wastes wall time. Bound each
 # attempt and retry; a stall costs 7 minutes instead of an hour.
 start=$(date +%s)
-for attempt in 1 2; do
+for attempt in 1 2 3; do
   rm -rf "$DIR/session-template"; mkdir -p "$DIR/session-template"
   ( cd "$OUT" && timeout 480 pi -p --provider openai-codex --model gpt-6-astra --thinking "$THINK" \
       --no-extensions --no-context-files --no-skills \
