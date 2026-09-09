@@ -1,0 +1,100 @@
+/* Halcyon marketing site — v3, shipped. */
+:root {
+  --ink:      #23241f;
+  --muted:    #9aa3ad;
+  --paper:    #fbfaf7;
+  --surface:  #ffffff;
+  --line:     #e2e0d8;
+  --accent:   #6b7141;
+  --accent-2: #b2542f;
+  --radius:   10px;
+  --space:    8px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+p { color: var(--muted); max-width: 62ch; }
+
+a { color: var(--accent); }
+
+:focus { outline: none; }
+
+header.site {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space) * 4);
+  padding: calc(var(--space) * 2) calc(var(--space) * 5);
+  border-bottom: 1px solid var(--line);
+}
+.wordmark { font-family: "Lobster", cursive; font-size: 24px; color: var(--accent); }
+header.site nav { display: flex; gap: calc(var(--space) * 3); margin-left: auto; }
+header.site nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.nav-cta { color: var(--accent) !important; }
+
+main { max-width: 1080px; margin: 0 auto; padding: 0 calc(var(--space) * 5); }
+
+section { padding: calc(var(--space) * 8) 0; }
+
+h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 52px;
+  line-height: 1.08;
+  margin: 0 0 calc(var(--space) * 2);
+  max-width: 20ch;
+}
+h2 { font-family: "Playfair Display", Georgia, serif; font-size: 30px; margin: 0 0 calc(var(--space) * 3); }
+h3 { font-family: "Inter", sans-serif; font-size: 17px; margin: 0 0 var(--space); }
+
+.hero img { width: 100%; height: auto; margin-top: calc(var(--space) * 5); border-radius: var(--radius); border: 1px solid var(--line); }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--space) * 3); }
+.grid article { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: calc(var(--space) * 3); }
+
+.summary { font-family: "Roboto Mono", monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.integration-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.row { display: flex; align-items: center; gap: calc(var(--space) * 2); padding: calc(var(--space) * 2) calc(var(--space) * 3); border-bottom: 1px solid var(--line); cursor: pointer; }
+.row:last-child { border-bottom: none; }
+.row img { width: 24px; height: 24px; }
+.row .icon { margin-left: auto; }
+
+.icon { background: none; border: none; color: var(--muted); cursor: pointer; padding: var(--space); }
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: #5a5f37; }
+
+form { display: flex; gap: var(--space); margin-top: calc(var(--space) * 3); }
+form input { flex: 1; max-width: 320px; border: 1px solid var(--line); border-radius: var(--radius); padding: calc(var(--space) * 1.5); font-family: "Inter", sans-serif; font-size: 15px; }
+
+footer.site { border-top: 1px solid var(--line); margin-top: calc(var(--space) * 8); padding: calc(var(--space) * 4) calc(var(--space) * 5); }
+footer.site p { font-size: 13px; }
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  h1 { font-size: 32px; }
+  .btn { padding: 4px 10px; font-size: 13px; }
+  header.site nav a { font-size: 12px; }
+}

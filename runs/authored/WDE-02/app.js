@@ -1,121 +1,73 @@
-const state = { jobs: [], filter: 'all', query: '', ascending: true };
-const TODAY = '2026-09-08';
+const state = { jobs: [], filter: 'all', query: '', selectedId: null };
+const rows = document.querySelector('#jobRows');
+const empty = document.querySelector('#empty');
+const dialog = document.querySelector('#assignDialog');
+const form = document.querySelector('#assignForm');
 
-const $ = (selector) => document.querySelector(selector);
-const format = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'America/Chicago' });
-const timeFormat = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago' });
-const icons = {
-  pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>'
+const fallbackJobs = [
+  {id:'J-1041',title:'Water heater replacement',technician:'R. Okafor',address:'1188 Cedar Ln, Apt 3',scheduled_at:'2026-09-05T09:00:00-05:00',status:'done'},
+  {id:'J-1042',title:'Kitchen sink backup',technician:'M. Duarte',address:'44 Halstead Ave',scheduled_at:'2026-09-07T13:30:00-05:00',status:'done'},
+  {id:'J-1043',title:'Sump pump inspection',technician:'R. Okafor',address:'9 Wexford Ct',scheduled_at:'2026-09-08T08:15:00-05:00',status:'assigned'},
+  {id:'J-1044',title:'Burst supply line, basement',technician:null,address:'2210 Marbury Rd',scheduled_at:'2026-09-08T11:00:00-05:00',status:'open'},
+  {id:'J-1045',title:'Toilet reseat, unit 2B',technician:'T. Blanchard',address:'77 Iverson St',scheduled_at:'2026-09-09T15:45:00-05:00',status:'assigned'},
+  {id:'J-1046',title:'Annual backflow test',technician:null,address:'501 Quarry Industrial Pk',scheduled_at:'2026-09-11T10:00:00-05:00',status:'open'}
+];
+
+const escapeHTML = value => String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const initials = name => name.split(/\s+/).map(part => part[0]).join('').replace('.','');
+const dateParts = iso => {
+  const date = new Date(iso);
+  return {
+    day: new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/Chicago'}).format(date),
+    time: new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/Chicago'}).format(date)
+  };
 };
 
-function safe(value) {
-  const node = document.createElement('span');
-  node.textContent = value ?? '';
-  return node.innerHTML;
+function updateSummary(){
+  ['open','assigned','done'].forEach(status => document.querySelector(`#${status}Count`).textContent = state.jobs.filter(job => job.status === status).length);
 }
-
-function initials(name) {
-  return name ? name.split(/\s+/).map(part => part[0]).join('').slice(0, 2) : '—';
-}
-
-function localDateParts(iso) {
-  const datePart = iso.slice(0, 10);
-  const date = new Date(`${datePart}T12:00:00`);
-  return {
-    datePart,
-    day: date.toLocaleDateString('en-US', { day: '2-digit' }),
-    month: date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase(),
-    label: format.format(date),
-    time: timeFormat.format(new Date(iso))
-  };
-}
-
-function renderSummary() {
-  const open = state.jobs.filter(job => job.status === 'open').length;
-  const assigned = state.jobs.filter(job => job.status === 'assigned').length;
-  const done = state.jobs.filter(job => job.status === 'done').length;
-  const unassigned = state.jobs.filter(job => !job.technician).length;
-  const today = state.jobs.filter(job => job.scheduled_at.startsWith(TODAY)).length;
-  $('#active-count').textContent = open + assigned;
-  $('#active-note').textContent = `${today} scheduled today`;
-  $('#assigned-count').textContent = assigned;
-  $('#assigned-note').textContent = assigned === 1 ? 'Technician en route' : 'Technicians scheduled';
-  $('#unassigned-count').textContent = unassigned;
-  $('#unassigned-note').textContent = unassigned ? 'Needs attention' : 'Queue covered';
-  $('#done-count').textContent = done;
-  $('#all-filter-count').textContent = state.jobs.length;
-  $('#open-filter-count').textContent = open;
-  $('#assigned-filter-count').textContent = assigned;
-  $('#done-filter-count').textContent = done;
-}
-
-function visibleJobs() {
+function render(){
   const query = state.query.toLowerCase();
-  return state.jobs
-    .filter(job => state.filter === 'all' || job.status === state.filter)
-    .filter(job => [job.id, job.title, job.address, job.technician || 'unassigned'].some(value => value.toLowerCase().includes(query)))
-    .sort((a, b) => (a.scheduled_at.localeCompare(b.scheduled_at)) * (state.ascending ? 1 : -1));
+  const filtered = state.jobs.filter(job => (state.filter === 'all' || job.status === state.filter) && Object.values(job).join(' ').toLowerCase().includes(query));
+  document.querySelector('#resultCount').textContent = `${filtered.length} ${filtered.length === 1 ? 'job' : 'jobs'}`;
+  empty.hidden = filtered.length > 0;
+  rows.innerHTML = filtered.map(job => {
+    const when = dateParts(job.scheduled_at);
+    const tech = job.technician ? `<div class="tech"><span class="avatar">${escapeHTML(initials(job.technician))}</span><span>${escapeHTML(job.technician)}</span></div>` : '<span class="unassigned">Unassigned</span>';
+    const action = job.status === 'open' ? `<button class="action" data-assign="${escapeHTML(job.id)}">Assign</button>` : `<button class="action" data-view="${escapeHTML(job.id)}">View</button>`;
+    return `<tr class="row-${job.status}">
+      <td data-label="Job"><div class="job-cell"><i class="job-mark"></i><div><strong>${escapeHTML(job.title)}</strong><span class="job-id">${escapeHTML(job.id)}</span></div></div></td>
+      <td data-label="Schedule" class="when"><strong>${when.day}</strong><span class="sub">${when.time}</span></td>
+      <td data-label="Location">${escapeHTML(job.address)}</td><td data-label="Technician">${tech}</td>
+      <td data-label="Status"><span class="status status-${job.status}">${job.status}</span></td><td>${action}</td></tr>`;
+  }).join('');
 }
-
-function jobMarkup(job) {
-  const date = localDateParts(job.scheduled_at);
-  const today = date.datePart === TODAY;
-  const tech = job.technician
-    ? `<div class="technician"><span class="tech-mark">${safe(initials(job.technician))}</span><div><strong>${safe(job.technician)}</strong><p>Field technician</p></div></div>`
-    : '<div class="technician unassigned"><span class="tech-mark">!</span><div><strong>Unassigned</strong><p>Assign technician</p></div></div>';
-  return `<article class="job-row${today ? ' today' : ''}" data-id="${safe(job.id)}">
-    <div class="schedule" aria-label="${safe(date.label)}, ${safe(date.time)}">
-      <div class="date-tile">${date.month}<strong>${date.day}</strong></div>
-      <div class="time">${safe(date.time)}${today ? '<small>Today</small>' : ''}</div>
-    </div>
-    <div class="job-main"><h3>${safe(job.title)}</h3><p>${icons.pin}${safe(job.address)} · ${safe(job.id)}</p></div>
-    ${tech}
-    <span class="status status-${safe(job.status)}">${job.status === 'done' ? 'Completed' : safe(job.status)}</span>
-    <button class="row-menu" aria-label="More options for ${safe(job.id)}" title="More options">···</button>
-  </article>`;
+async function loadJobs(showNotice = false){
+  try { const response = await fetch('fixtures/jobs.json',{cache:'no-store'}); if(!response.ok) throw new Error(); state.jobs = await response.json(); }
+  catch { state.jobs = structuredClone(fallbackJobs); }
+  updateSummary(); render();
+  if(showNotice) toast('Job queue refreshed');
 }
+function toast(message){ const el = document.querySelector('#toast'); el.textContent = message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer = setTimeout(()=>el.classList.remove('show'),2400); }
 
-function renderJobs() {
-  const jobs = visibleJobs();
-  $('#job-list').innerHTML = jobs.map(jobMarkup).join('');
-  $('#empty-state').hidden = jobs.length !== 0;
-  $('#showing-count').textContent = `Showing ${jobs.length} of ${state.jobs.length} jobs`;
-  document.querySelectorAll('.row-menu').forEach(button => button.addEventListener('click', () => {
-    const job = state.jobs.find(item => item.id === button.closest('.job-row').dataset.id);
-    alert(`${job.id} · ${job.title}\n${job.technician || 'Unassigned'} · ${job.status}`);
-  }));
-}
-
-async function loadJobs() {
-  $('#error-state').hidden = true;
-  try {
-    const response = await fetch('fixtures/jobs.json');
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    state.jobs = await response.json();
-    renderSummary();
-    renderJobs();
-  } catch (error) {
-    console.error(error);
-    $('#job-list').innerHTML = '';
-    $('#empty-state').hidden = true;
-    $('#error-state').hidden = false;
-    $('#showing-count').textContent = 'Queue unavailable';
-  }
-}
-
-document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
+document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
   state.filter = button.dataset.filter;
-  document.querySelectorAll('.filter').forEach(item => item.classList.toggle('selected', item === button));
-  renderJobs();
+  document.querySelectorAll('[data-filter]').forEach(item => { const on = item === button; item.classList.toggle('active',on); item.setAttribute('aria-pressed',on); });
+  render();
 }));
-
-$('#search').addEventListener('input', event => { state.query = event.target.value.trim(); renderJobs(); });
-$('#sort-button').addEventListener('click', () => {
-  state.ascending = !state.ascending;
-  $('#sort-button').firstChild.textContent = state.ascending ? 'Scheduled time ' : 'Scheduled time (latest) ';
-  renderJobs();
+document.querySelector('#search').addEventListener('input', event => { state.query = event.target.value.trim(); render(); });
+rows.addEventListener('click', event => {
+  const assign = event.target.closest('[data-assign]');
+  const view = event.target.closest('[data-view]');
+  if(assign){ const job = state.jobs.find(item => item.id === assign.dataset.assign); state.selectedId = job.id; document.querySelector('#dialogTitle').textContent = job.title; document.querySelector('#dialogMeta').textContent = `${job.id} · ${job.address}`; dialog.showModal(); }
+  if(view){ const job = state.jobs.find(item => item.id === view.dataset.view); toast(`${job.id} is ${job.status}`); }
 });
-$('#new-job').addEventListener('click', () => $('#job-dialog').showModal());
-$('#retry').addEventListener('click', loadJobs);
-
+form.addEventListener('submit', event => {
+  if(event.submitter?.value === 'cancel') return;
+  event.preventDefault(); const select = document.querySelector('#technician');
+  if(!select.value){ select.focus(); return; }
+  const job = state.jobs.find(item => item.id === state.selectedId); job.technician = select.value; job.status = 'assigned';
+  dialog.close(); form.reset(); updateSummary(); render(); toast(`${job.id} assigned to ${job.technician}`);
+});
+document.querySelector('#refresh').addEventListener('click', async event => { event.currentTarget.classList.add('spinning'); await loadJobs(true); setTimeout(()=>event.currentTarget.classList.remove('spinning'),500); });
 loadJobs();

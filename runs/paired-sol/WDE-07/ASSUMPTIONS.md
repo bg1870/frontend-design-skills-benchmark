@@ -1,11 +1,10 @@
 # Material assumptions
 
-- **Business:** Sill is a small, founder-run UK seed subscription for renters and beginner city growers.
-- **Offer:** One seasonally suitable edible variety, seeds, and a printed growing note each month for £8; first dispatch is 14 October 2026.
-- **Audience:** UK city dwellers with a windowsill but little gardening experience.
-- **Primary goal:** Collect email reservations for the first 300 subscriptions. This static prototype validates and confirms the form locally; production should connect it to the chosen mailing-list service.
-- **Brand:** “Sill” was selected for brevity and a direct link to the growing context. The identity uses a hand-drawn sprout mark, a practical sans serif, and a botanical display serif.
-- **Art direction:** A seed-catalogue experience expressed through crisp packet graphics and seasonal field-note structure, with an oversized, slightly askew seed packet as the signature device.
-- **Palette:** canvas `#f5f7ef`, paper `#fffdf4`, ink `#17251c`, cobalt `#1746a2`, seed yellow `#f2c230`, leaf `#2f713d`.
-- **Type:** DM Serif Display for the botanical/editorial voice and DM Sans for clear practical instruction; system fallbacks are included.
-- **Scope:** Responsive single-page landing site with a no-backend email interaction, keyboard focus states, validation messaging, and reduced-motion handling.
+- **Concept:** Drift is a one-person, independent publisher of printed monthly city walking guides.
+- **Audience:** Curious city-dwellers who want screen-free weekend plans and value small-run print objects.
+- **Launch:** October 2026 (the month after the current September 2026 build date).
+- **Primary conversion:** Join a launch notification list; no payment is taken on this page.
+- **Fulfilment:** The prototype confirms signup locally. Production will need the form connected to an email platform and a privacy-policy URL.
+- **Content:** The first route is deliberately location-neutral because no operating city was supplied. Specific landmarks are editorial concepts, not claims about real businesses.
+- **Brand direction:** Calm, observant, tactile, and slightly playful. The repeated dotted red route is the signature device. Palette: sky `#dce9ed`, map paper `#f6f0d8`, ink `#172a2d`, route red `#e33d28`.
+- **Typography:** Newsreader for an expressive, literary map-guide voice; DM Sans for practical navigation and directions. Both load from Google Fonts with local fallbacks.

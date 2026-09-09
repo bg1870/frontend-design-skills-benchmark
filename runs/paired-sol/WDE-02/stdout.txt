@@ -1,17 +1,18 @@
-Built the responsive plumbing dispatcher dashboard.
+Built the plumbing dispatcher dashboard using `fixtures/jobs.json`.
 
 ### Delivered
-- `index.html` — accessible dashboard structure
-- `styles.css` — responsive field-service visual system
-- `app.js` — fixture loading, summaries, filtering, search, URL state, empty/error states
-- `README.md` — setup instructions and material assumptions
-- Uses `fixtures/jobs.json` directly
+- `index.html` — responsive dashboard structure
+- `styles.css` — plumbing-inspired operational design
+- `app.js` — data loading, search, status filters, summaries, and quick dispatch
+- `ASSUMPTIONS.md` — documented implementation assumptions
 
-### Run
-```bash
-python3 -m http.server 8000
-```
-
-Open `http://localhost:8000`.
+### Features
+- Dynamic summary bar
+- Chronological job queue
+- Search and URL-backed status filtering
+- Quick technician assignment dialog
+- Responsive mobile/tablet layouts
+- Keyboard focus, reduced-motion, and accessibility support
+- Runtime error and empty states
 
 Validation passed for JavaScript syntax and fixture JSON.

@@ -1,106 +1,50 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Clearframe pricing for product analytics teams—from first event to enterprise scale.">
-  <title>Pricing — Clearframe Analytics</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Clear, usage-based pricing for Northstar, the analytics workspace for product teams.">
+<title>Pricing — Northstar Analytics</title>
+<style>
+:root{--ink:#17211b;--muted:#617066;--paper:#f3f1e8;--white:#fffef8;--line:#cbd0c4;--green:#b9f06b;--deep:#183f2d;--focus:#1368e8;--sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--s1:4px;--s2:8px;--s3:12px;--s4:20px;--s5:32px;--s6:52px;--s7:84px;--s8:136px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}button,a{font:inherit}a{color:inherit}button{color:inherit}::selection{background:var(--green)}
+.skip{position:absolute;left:12px;top:-80px;background:var(--ink);color:white;padding:10px 14px;z-index:99}.skip:focus{top:12px}.wrap{width:min(1180px,calc(100% - 48px));margin:auto}.nav{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center}.nav .wrap{display:flex;align-items:center;justify-content:space-between}.brand{text-decoration:none;font-weight:800;letter-spacing:-.04em;font-size:21px}.brand i{display:inline-block;width:11px;height:11px;background:var(--green);border:2px solid var(--ink);margin-right:8px;transform:rotate(45deg)}.navlinks{display:flex;align-items:center;gap:28px}.navlinks a{text-decoration:none;font-size:14px;font-weight:650}.navlinks a:hover{text-decoration:underline;text-underline-offset:5px}.btn{display:inline-flex;justify-content:center;align-items:center;min-height:46px;padding:0 20px;background:var(--ink);color:var(--white);border:1px solid var(--ink);text-decoration:none;font-weight:750;cursor:pointer;transition:background .15s,transform .15s}.btn:hover{background:var(--deep);transform:translateY(-1px)}.btn.light{background:transparent;color:var(--ink)}.btn.light:hover{background:var(--white)}.btn.green{background:var(--green);color:var(--ink)}:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.menubtn{display:none;background:none;border:0;min-width:44px;min-height:44px;font-weight:700}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:var(--s7);padding:clamp(64px,9vw,120px) 0 var(--s7)}.kicker{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 var(--s4)}h1{font-size:clamp(52px,7vw,104px);line-height:.91;letter-spacing:-.065em;margin:0;max-width:900px}.hero-copy{align-self:end;border-left:1px solid var(--ink);padding-left:var(--s5);padding-bottom:8px}.hero-copy p{font-size:18px;max-width:32ch;margin:0 0 var(--s5)}.proof{font:600 13px var(--mono);color:var(--muted)}
+.controls{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:var(--s4) 0;display:flex;justify-content:space-between;align-items:center;gap:20px}.controls p{margin:0;font-weight:700}.toggle{display:flex;border:1px solid var(--ink);padding:3px;background:var(--white)}.toggle button{border:0;background:transparent;padding:10px 16px;min-height:44px;cursor:pointer;font-weight:700}.toggle button.active{background:var(--ink);color:var(--white)}.save{color:var(--deep);font:700 11px var(--mono);margin-left:5px}
+.plans{display:grid;grid-template-columns:repeat(12,1fr);border-bottom:1px solid var(--ink)}.plan{grid-column:span 4;padding:var(--s6) var(--s5) var(--s6) 0;display:flex;flex-direction:column;min-height:570px;border-right:1px solid var(--line)}.plan+.plan{padding-left:var(--s5)}.plan:last-child{border:0;padding-right:0}.plan.featured{background:var(--deep);color:var(--white);margin-top:-1px;padding-right:var(--s5);position:relative}.plan.featured:before{content:"RECOMMENDED";position:absolute;top:0;left:32px;background:var(--green);color:var(--ink);font:700 11px var(--mono);padding:7px 10px}.plan h2{font-size:28px;letter-spacing:-.035em;margin:16px 0 8px}.plan .desc{color:var(--muted);min-height:74px;margin:0}.featured .desc,.featured .meta{color:#bdc9c0}.price{font-size:52px;line-height:1;font-weight:800;letter-spacing:-.055em;margin:var(--s5) 0 2px;font-variant-numeric:tabular-nums}.price small{font-size:15px;letter-spacing:0;font-weight:500}.meta{font-size:13px;color:var(--muted);height:28px}.plan .btn{width:100%;margin:var(--s5) 0}.features{border-top:1px solid var(--line);padding-top:var(--s4);margin:0;list-style:none}.features li{margin:0 0 11px;padding-left:21px;position:relative;font-size:14px}.features li:before{content:"↳";position:absolute;left:0;font-family:var(--mono)}
+.usage{padding:var(--s7) 0;display:grid;grid-template-columns:1fr 1.7fr;gap:var(--s7);border-bottom:1px solid var(--ink)}.section-title{font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:-.05em;margin:0 0 var(--s4)}.usage-intro p{color:var(--muted);max-width:38ch}.calculator{background:var(--white);border:1px solid var(--ink);padding:var(--s5)}.calc-top{display:flex;justify-content:space-between;align-items:start;gap:20px}.calc-top label{font-weight:750}.calc-value{font:700 14px var(--mono);background:var(--green);padding:7px 10px}input[type=range]{width:100%;accent-color:var(--deep);margin:var(--s5) 0}.scale{display:flex;justify-content:space-between;color:var(--muted);font:12px var(--mono)}.estimate{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:var(--s5);padding-top:var(--s4);align-items:end}.estimate strong{font-size:30px;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.estimate span{color:var(--muted);font-size:13px}
+.compare{padding:var(--s7) 0}.compare-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:var(--s5)}.compare-head p{max-width:38ch;color:var(--muted);margin:0}.tablewrap{overflow:auto;border-top:2px solid var(--ink)}table{border-collapse:collapse;width:100%;min-width:720px}th,td{padding:16px 12px;border-bottom:1px solid var(--line);text-align:left}th{font:700 12px var(--mono);letter-spacing:.06em;text-transform:uppercase}th:not(:first-child),td:not(:first-child){text-align:center;width:19%}tbody th{font-family:var(--sans);font-size:14px;text-transform:none;letter-spacing:0}.yes{font-weight:800}.dash{color:#9aa39b}.group th{background:#e6e6dc;padding-top:10px;padding-bottom:10px}.group th:not(:first-child){font-size:0}
+.faq{background:var(--ink);color:var(--white);padding:var(--s7) 0}.faq-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:var(--s7)}.faq .section-title{position:sticky;top:30px}.questions{border-top:1px solid #506057}.question{border-bottom:1px solid #506057}.question button{width:100%;padding:22px 0;min-height:64px;color:white;background:none;border:0;text-align:left;font-weight:750;display:flex;justify-content:space-between;cursor:pointer}.question button span:last-child{font:20px var(--mono);color:var(--green)}.answer{display:none;color:#c2ccc5;max-width:62ch;padding:0 36px 22px 0}.question.open .answer{display:block}.question.open button span:last-child{transform:rotate(45deg)}
+.cta{background:var(--green);padding:var(--s7) 0}.cta .wrap{display:grid;grid-template-columns:1.5fr .5fr;align-items:end;gap:var(--s6)}.cta h2{font-size:clamp(44px,6vw,78px);line-height:.95;letter-spacing:-.055em;margin:0}.cta-actions{display:grid;gap:10px}.fine{font-size:12px;text-align:center;margin:0}.footer{padding:var(--s5) 0}.footer .wrap{display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.footer nav{display:flex;gap:20px}
+@media(max-width:800px){.wrap{width:min(100% - 32px,1180px)}.menubtn{display:block}.navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--paper);padding:20px 16px;border-bottom:1px solid var(--ink);z-index:5;flex-direction:column;align-items:stretch}.navlinks.open{display:flex}.navlinks .btn{width:100%}.hero{grid-template-columns:1fr;gap:40px;padding:64px 0 52px}.hero-copy{max-width:520px}.controls{align-items:flex-start;flex-direction:column}.plans{display:block}.plan,.plan+.plan{min-height:0;padding:44px 0;border-right:0;border-bottom:1px solid var(--line)}.plan.featured{margin:0 -16px;padding:52px 16px}.plan .desc{min-height:0}.usage,.faq-grid{grid-template-columns:1fr;gap:40px}.compare-head{display:block}.compare-head p{margin-top:12px}.cta .wrap{grid-template-columns:1fr}.footer .wrap{align-items:flex-start;flex-direction:column}.faq .section-title{position:static}}
+@media(max-width:430px){h1{font-size:52px}.hero-copy{padding-left:20px}.toggle{width:100%}.toggle button{flex:1;padding:8px}.save{display:block}.calculator{padding:20px}.estimate{align-items:flex-start;flex-direction:column;gap:6px}.cta h2{font-size:44px}.footer nav{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
 </head>
 <body>
-  <a class="skip" href="#pricing">Skip to pricing</a>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="Clearframe home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>clearframe</a>
-    <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="#platform">Platform</a><a href="#proof">Customers</a><a href="#compare">Resources</a><a aria-current="page" href="#pricing">Pricing</a>
-    </nav>
-    <div class="header-actions"><a class="login" href="#">Log in</a><a class="button compact" href="#contact">Book a demo <span aria-hidden="true">↗</span></a></div>
-    <button class="menu" type="button" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span><b class="sr-only">Open menu</b></button>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
-      <a href="#platform">Platform</a><a href="#proof">Customers</a><a href="#compare">Resources</a><a href="#pricing">Pricing</a><a href="#">Log in</a><a class="button" href="#contact">Book a demo</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="platform">
-      <div class="eyebrow"><span>Pricing / FY 2026</span><span class="live">Transparent by default</span></div>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1>One source of truth.<br><em>Priced to scale.</em></h1>
-          <p>Connect product, revenue, and customer data without paying a tax on every teammate who needs an answer.</p>
-        </div>
-        <div class="hero-proof" aria-label="Usage illustration">
-          <div class="proof-top"><span>EVENT VOLUME</span><strong>2.4M</strong><small>/ month</small></div>
-          <svg viewBox="0 0 500 180" role="img" aria-label="Steadily rising monthly event volume">
-            <path class="gridline" d="M0 35H500M0 90H500M0 145H500"/>
-            <path class="area" d="M0 144 C55 140 64 118 112 123 S186 103 225 106 S287 54 328 76 S397 55 432 38 S468 21 500 12 L500 180H0Z"/>
-            <path class="line" d="M0 144 C55 140 64 118 112 123 S186 103 225 106 S287 54 328 76 S397 55 432 38 S468 21 500 12"/>
-            <circle cx="500" cy="12" r="5"/>
-          </svg>
-          <div class="axis"><span>JAN</span><span>JUN</span><span>DEC</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pricing" id="pricing">
-      <div class="section-intro">
-        <div><span class="kicker">Choose your operating range</span><h2>Start lean. Keep the history.</h2></div>
-        <div class="billing-wrap">
-          <span class="saving">Save 20%</span>
-          <div class="billing" role="group" aria-label="Billing frequency">
-            <button type="button" data-period="monthly" aria-pressed="false">Monthly</button>
-            <button type="button" data-period="annual" aria-pressed="true">Annual</button>
-          </div>
-          <small>Billed annually</small>
-        </div>
-      </div>
-
-      <div class="plans" aria-label="Pricing plans">
-        <article class="plan">
-          <div class="plan-no">01</div><p class="plan-label">For teams finding signal</p><h3>Foundation</h3>
-          <div class="price"><span class="currency">$</span><strong data-monthly="49" data-annual="39">39</strong><span>/ mo</span></div><p class="terms">Up to 100k events each month</p>
-          <a class="button outline" href="#contact">Start free</a>
-          <ul><li>Unlimited teammates</li><li>12 months data history</li><li>Core funnels and cohorts</li><li>50+ native integrations</li><li>Email support</li></ul>
-        </article>
-        <article class="plan recommended">
-          <div class="plan-no">02 <span>Most selected</span></div><p class="plan-label">For teams building momentum</p><h3>Scale</h3>
-          <div class="price"><span class="currency">$</span><strong data-monthly="249" data-annual="199">199</strong><span>/ mo</span></div><p class="terms">Up to 1M events each month</p>
-          <a class="button" href="#contact">Start 14-day trial <span aria-hidden="true">→</span></a>
-          <ul><li>Everything in Foundation</li><li>Unlimited data history</li><li>Warehouse sync &amp; SQL access</li><li>Custom metrics and reports</li><li>Slack support</li></ul>
-        </article>
-        <article class="plan enterprise">
-          <div class="plan-no">03</div><p class="plan-label">For data-critical organizations</p><h3>Enterprise</h3>
-          <div class="price custom"><strong>Let’s scope it</strong></div><p class="terms">Volume pricing, shaped around you</p>
-          <a class="button dark" href="#contact">Talk to sales <span aria-hidden="true">↗</span></a>
-          <ul><li>Everything in Scale</li><li>Advanced governance &amp; SSO</li><li>Regional data residency</li><li>99.99% uptime SLA</li><li>Dedicated solutions engineer</li></ul>
-        </article>
-      </div>
-      <p class="fineprint">All plans include a 14-day trial. No credit card required. Prices exclude applicable tax.</p>
-    </section>
-
-    <section class="comparison" id="compare">
-      <div class="comparison-head"><span class="kicker">The complete picture</span><h2>Compare without the tab juggling.</h2><button class="text-button" type="button" aria-expanded="false" aria-controls="feature-table">Show full comparison <span aria-hidden="true">↓</span></button></div>
-      <div class="table-wrap" id="feature-table">
-        <table><caption class="sr-only">Plan feature comparison</caption><thead><tr><th scope="col">Capability</th><th scope="col">Foundation</th><th scope="col">Scale</th><th scope="col">Enterprise</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Monthly tracked events</th><td>100k</td><td>1 million</td><td>Custom</td></tr>
-          <tr><th scope="row">Team seats</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
-          <tr><th scope="row">Data history</th><td>12 months</td><td>Unlimited</td><td>Unlimited</td></tr>
-          <tr><th scope="row">Warehouse sync</th><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span class="yes">✓</span><span class="sr-only">Included</span></td><td><span class="yes">✓</span><span class="sr-only">Included</span></td></tr>
-          <tr class="extra"><th scope="row">Single sign-on (SSO)</th><td><span class="no">—</span></td><td>Add-on</td><td><span class="yes">✓</span></td></tr>
-          <tr class="extra"><th scope="row">Support response</th><td>2 business days</td><td>4 business hours</td><td>1 hour, 24/7</td></tr>
-        </tbody></table>
-      </div>
-    </section>
-
-    <section class="proof" id="proof">
-      <div class="proof-note"><span class="kicker">What changes after week one</span><blockquote>“We stopped debating whose dashboard was right. Clearframe gave product and revenue the same operating picture.”</blockquote><div class="person"><span>AN</span><p><strong>Asha N.</strong><br>VP Data, Northstar Labs</p></div></div>
-      <div class="proof-stats"><div><strong>11h</strong><span>saved per analyst / week</span></div><div><strong>3.2×</strong><span>faster experiment reads</span></div><p>Results reported by Northstar Labs after 90 days. Individual outcomes vary.</p></div>
-    </section>
-
-    <section class="contact" id="contact"><div><span class="kicker">Need a second opinion?</span><h2>Bring us the messy stack.</h2><p>We’ll map your sources, estimate volume, and recommend the smallest plan that does the job.</p></div><a class="button light" href="mailto:sales@clearframe.example">Book a 30-minute working session <span aria-hidden="true">↗</span></a></section>
-  </main>
-  <footer><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>clearframe</a><p>Analytics for people who have to explain the number.</p><div><a href="#">Security</a><a href="#">Privacy</a><span>© 2026 Clearframe</span></div></footer>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap"><a class="brand" href="#"><i aria-hidden="true"></i>northstar</a><button class="menubtn" aria-expanded="false" aria-controls="navlinks">Menu</button><nav class="navlinks" id="navlinks" aria-label="Main navigation"><a href="#compare">Compare</a><a href="#usage">Usage</a><a href="#faq">FAQ</a><a href="#contact">Sign in</a><a class="btn" href="#plans">Start free</a></nav></div></header>
+<main id="main">
+<section class="wrap hero"><div><p class="kicker">Pricing / built to scale</p><h1>Pay for signal.<br>Not shelfware.</h1></div><div class="hero-copy"><p>One analytics workspace for every product decision. Start free, then scale by monthly events—never by seats.</p><span class="proof">UNLIMITED TEAMMATES · ALL PLANS</span></div></section>
+<section class="wrap controls" aria-label="Billing frequency"><p>Plans that grow with your data, not your headcount.</p><div class="toggle" role="group" aria-label="Choose billing cycle"><button class="active" data-cycle="annual" aria-pressed="true">Annual <span class="save">SAVE 20%</span></button><button data-cycle="monthly" aria-pressed="false">Monthly</button></div></section>
+<section class="wrap plans" id="plans">
+<article class="plan"><h2>Explore</h2><p class="desc">For small teams proving what deserves to be built next.</p><div class="price">$0</div><div class="meta">No card required</div><a class="btn light" href="mailto:hello@northstar.example?subject=Explore%20plan">Start exploring</a><ul class="features"><li>Up to 100k events / month</li><li>3 saved dashboards</li><li>30-day data history</li><li>Community support</li></ul></article>
+<article class="plan featured"><h2>Scale</h2><p class="desc">For growing product teams turning behavior into decisions.</p><div class="price" data-price data-annual="240" data-monthly="300">$240 <small>/ mo</small></div><div class="meta billing-note">Billed annually · from 1M events</div><a class="btn green" href="mailto:hello@northstar.example?subject=Scale%20trial">Start 14-day trial</a><ul class="features"><li>Unlimited dashboards</li><li>3-year data history</li><li>Experiments &amp; cohorts</li><li>Slack and email alerts</li><li>Priority support</li></ul></article>
+<article class="plan"><h2>Enterprise</h2><p class="desc">For organizations requiring control, scale, and tailored support.</p><div class="price">Custom</div><div class="meta">Volume pricing available</div><a class="btn light" href="mailto:sales@northstar.example?subject=Enterprise%20pricing">Talk to sales</a><ul class="features"><li>Advanced permissions &amp; SSO</li><li>Data residency options</li><li>Warehouse export</li><li>Dedicated success manager</li><li>Custom retention &amp; SLA</li></ul></article>
+</section>
+<section class="wrap usage" id="usage"><div class="usage-intro"><p class="kicker">A fair meter</p><h2 class="section-title">Only events move the bill.</h2><p>Invite finance, design, support, and the whole product team. Seats stay unlimited. Estimates exclude taxes and annual discounts are already applied.</p></div><div class="calculator"><div class="calc-top"><label for="events">Monthly tracked events</label><output class="calc-value" id="event-output" for="events">1M</output></div><input id="events" type="range" min="1" max="10" step="1" value="1" aria-describedby="estimate-note"><div class="scale"><span>1M</span><span>5M</span><span>10M</span></div><div class="estimate"><div><span id="estimate-note">Estimated Scale plan</span><br><strong id="estimate-price">$240 / month</strong></div><span class="estimate-cycle">Billed annually</span></div></div></section>
+<section class="wrap compare" id="compare"><div class="compare-head"><h2 class="section-title">The details,<br>side by side.</h2><p>No hidden modules. Core analytics is included from day one; higher tiers add scale and governance.</p></div><div class="tablewrap" tabindex="0" aria-label="Scrollable plan comparison"><table><thead><tr><th scope="col">Capability</th><th scope="col">Explore</th><th scope="col">Scale</th><th scope="col">Enterprise</th></tr></thead><tbody><tr class="group"><th scope="rowgroup">Analyze</th><th></th><th></th><th></th></tr><tr><th scope="row">Funnels &amp; journeys</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr><tr><th scope="row">Cohorts &amp; retention</th><td class="dash">—</td><td class="yes">✓</td><td class="yes">✓</td></tr><tr><th scope="row">Experiment analysis</th><td class="dash">—</td><td class="yes">✓</td><td class="yes">✓</td></tr><tr class="group"><th scope="rowgroup">Operate</th><th></th><th></th><th></th></tr><tr><th scope="row">Unlimited teammates</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr><tr><th scope="row">Scheduled reports</th><td class="dash">—</td><td class="yes">✓</td><td class="yes">✓</td></tr><tr><th scope="row">SAML SSO &amp; SCIM</th><td class="dash">—</td><td class="dash">—</td><td class="yes">✓</td></tr><tr><th scope="row">Support</th><td>Community</td><td>Priority</td><td>Dedicated</td></tr></tbody></table></div></section>
+<section class="faq" id="faq"><div class="wrap faq-grid"><div><p class="kicker">Before you decide</p><h2 class="section-title">Straight<br>answers.</h2></div><div class="questions"><div class="question"><button aria-expanded="false"><span>What counts as an event?</span><span aria-hidden="true">+</span></button><div class="answer">An event is a tracked user action—such as a signup, search, or purchase—sent to Northstar. Duplicate and blocked events are not billed.</div></div><div class="question"><button aria-expanded="false"><span>Can I change plans later?</span><span aria-hidden="true">+</span></button><div class="answer">Yes. Upgrade at any time, or move to a lower tier at the next billing period. Your data stays intact within the retention window of the new plan.</div></div><div class="question"><button aria-expanded="false"><span>What happens if usage spikes?</span><span aria-hidden="true">+</span></button><div class="answer">We notify workspace owners before you cross a usage band. Service continues uninterrupted, and sustained increases move you to the appropriate band.</div></div><div class="question"><button aria-expanded="false"><span>Do you offer a trial?</span><span aria-hidden="true">+</span></button><div class="answer">The Scale plan includes a 14-day trial with no card required. Explore remains free for up to 100,000 events each month.</div></div></div></div></section>
+<section class="cta" id="contact"><div class="wrap"><h2>Find the decisions hiding in your data.</h2><div class="cta-actions"><a class="btn" href="mailto:hello@northstar.example?subject=Start%20Northstar">Start free</a><a class="btn light" href="mailto:sales@northstar.example?subject=Northstar%20demo">Book a demo</a><p class="fine">No card required · Setup in minutes</p></div></div></section>
+</main>
+<footer class="footer"><div class="wrap"><span>© 2026 Northstar Analytics</span><nav aria-label="Legal"><a href="mailto:privacy@northstar.example">Privacy</a><a href="mailto:legal@northstar.example">Terms</a><a href="mailto:security@northstar.example">Security</a></nav></div></footer>
+<script>
+const cycleButtons=[...document.querySelectorAll('[data-cycle]')],price=document.querySelector('[data-price]'),note=document.querySelector('.billing-note'),estimateCycle=document.querySelector('.estimate-cycle'),range=document.querySelector('#events'),eventOutput=document.querySelector('#event-output'),estimate=document.querySelector('#estimate-price');
+let cycle='annual';
+function updateEstimate(){const millions=Number(range.value),base=cycle==='annual'?240:300,extra=cycle==='annual'?38:48;eventOutput.value=millions+'M';estimate.textContent='$'+(base+(millions-1)*extra).toLocaleString()+' / month'}
+cycleButtons.forEach(btn=>btn.addEventListener('click',()=>{cycle=btn.dataset.cycle;cycleButtons.forEach(b=>{const on=b===btn;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on)});price.innerHTML='$'+price.dataset[cycle]+' <small>/ mo</small>';note.textContent=cycle==='annual'?'Billed annually · from 1M events':'Billed monthly · from 1M events';estimateCycle.textContent=cycle==='annual'?'Billed annually':'Billed monthly';updateEstimate()}));range.addEventListener('input',updateEstimate);
+document.querySelectorAll('.question button').forEach(btn=>btn.addEventListener('click',()=>{const parent=btn.parentElement,open=!parent.classList.contains('open');parent.classList.toggle('open',open);btn.setAttribute('aria-expanded',open)}));
+const menu=document.querySelector('.menubtn'),links=document.querySelector('.navlinks');menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',open)});links.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false')});
+</script>
 </body>
 </html>

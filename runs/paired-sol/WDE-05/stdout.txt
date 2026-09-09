@@ -1,8 +1,7 @@
 Implemented in `fixtures/app`:
 
-- Added responsive **In the box** section with a clearly labelled neutral image placeholder and pending inventory state.
-- Added **customer testimonials** section with an honest verification-pending state.
-- Added navigation links for both sections.
-- Improved accessibility with skip navigation, focus states, form autocomplete, reduced-motion support, and touch targets.
-- Recorded sourcing attempts and unresolved content requirements in `fixtures/app/CONTENT_BLOCKERS.md`.
-- Preserved the existing Kettell visual system without fabricating products, customers, testimonials, or box contents.
+- Added responsive **Owner Notes** testimonials section with an honest pending state.
+- Added **In the Box** section with labelled product-image and packing-list placeholders.
+- Added navigation links, contact CTA, accessibility improvements, mobile layouts, and focus states.
+- Documented sourcing attempts and unresolved assets/content in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Verified HTML parsing, unique IDs, internal anchors, and clean Git diff formatting.

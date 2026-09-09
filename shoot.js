@@ -5,13 +5,40 @@
 //   node shoot.js paired-astra WDE-09              # one cell
 //   node shoot.js --fixture                        # the WDE-06 subject page only
 //
-// Convention: <config>-<scenario>.png at the scenario viewport, plus -full.png at
-// fullPage. WDE-04 is a mobile prototype and shoots at 390x844; everything else
-// 1440x900. WDE-09 also gets -traction.png (slide 5, the scored slide). Chromium
-// --headless --virtual-time-budget freezes CSS animations mid-fade and produces false
-// contrast failures, which is why this goes through Playwright.
+// Layout mirrors runs/: one image per scenario at shots/<config>/<scenario>-full.png,
+// the fullPage capture, downscaled to 720px wide. WDE-04 is a mobile prototype and
+// renders at 390x844; everything else 1440x900. Decks are the exception — their slides
+// are the artifact, so WDE-09 gets -s1…-sN plus -traction.png (slide 5, the scored one)
+// at native resolution. The shared WDE-06 subject page lands in shots/fixture/.
+// Chromium --headless --virtual-time-budget freezes CSS animations mid-fade and
+// produces false contrast failures, which is why this goes through Playwright.
+//
+// Vite prototypes (WDE-04) are served from their built dist/ when one exists: the run
+// root's index.html is a dev shell pointing at /src/main.jsx, which a static server
+// cannot transpile, so serving the root yields a blank page.
+//
+// -full.png is downscaled to 720px wide via ffmpeg.
 const { chromium } = require('/home/basil/.local/opt/devin/resources/app/node_modules/playwright-core');
 const http = require('http'), fs = require('fs'), path = require('path');
+const { execFileSync } = require('child_process');
+
+// Full-page captures dominated the tree, so they are downscaled to half width after
+// capture. Measured on the worst offender: 1.15 MB -> 0.55 MB, headings and structure
+// still clear. Re-encoding losslessly saves nothing (Playwright's PNGs are already
+// tight) and ffmpeg's pal8 conversion nearly doubles the size, so scaling is the only
+// real lever.
+const FULL_SCALE_W = 720;
+function halveWidth(file) {
+  try {
+    const tmp = `${file}.tmp.png`;
+    // min(): WDE-04 renders at a 390px mobile viewport, and a bare scale=720 would
+    // upscale those captures instead of shrinking them.
+    execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', file,
+      '-vf', `scale='min(${FULL_SCALE_W},iw)':-1:flags=lanczos`,
+      '-compression_level', '100', tmp], { stdio: 'pipe' });
+    fs.renameSync(tmp, file);
+  } catch { /* no ffmpeg: keep the full-resolution capture rather than failing */ }
+}
 
 // playwright-core here is vendored by another app and expects a browser build that is
 // not in the cache; point it at whichever real chromium this machine has.
@@ -62,13 +89,22 @@ async function settle(page) {
   await page.waitForTimeout(300);
 }
 
+const ABSENT = Symbol('absent');
+
 async function shoot(browser, cfg, sc, spec) {
-  const dir = `${ROOT}/runs/${cfg}/${sc}`;
-  if (!fs.existsSync(dir)) return null;
+  const runDir = `${ROOT}/runs/${cfg}/${sc}`;
+  // ABSENT is distinct from success: most configs never ran the extension set, and
+  // returning null for both made those cells log as though they had been captured.
+  if (!fs.existsSync(runDir)) return ABSENT;
+  // A built dist/ is self-contained and its /assets/... paths only resolve when dist
+  // itself is the doc root. Prefer it over the Vite dev shell in the run root.
+  const dir = (!spec.entry && fs.existsSync(`${runDir}/dist/index.html`))
+    ? `${runDir}/dist` : runDir;
   const entry = spec.entry ||
     (fs.existsSync(`${dir}/index.html`) ? 'index.html'
       : (fs.readdirSync(dir).find(f => f.endsWith('.html')) || null));
   if (!entry) return `${cfg}/${sc}: no html`;
+  fs.mkdirSync(`${OUT}/${cfg}`, { recursive: true });
   const { srv, port } = await serve(dir);
   const page = await browser.newPage({ viewport: spec.vp, deviceScaleFactor: 1 });
   const errs = [];
@@ -76,16 +112,16 @@ async function shoot(browser, cfg, sc, spec) {
   try {
     await page.goto(`http://127.0.0.1:${port}/${entry}`, { waitUntil: 'networkidle', timeout: 30000 });
     await settle(page);
-    await page.screenshot({ path: `${OUT}/${cfg}-${sc}.png` });
     if (spec.deck) {
       // A deck's slides ARE the artifact: each is 100vh with scroll-snap, so a fullPage
       // shot is byte-identical to slide 1. Capture every slide instead, and label the
       // traction slide, which is the one WDE-09 scores.
       const n = await page.evaluate(() => document.querySelectorAll('section').length);
+      let tractionShot = false;
       for (let i = 1; i <= n; i++) {
         if (i > 1) { await page.keyboard.press('ArrowRight'); await page.waitForTimeout(240); }
         await page.waitForTimeout(360);
-        await page.screenshot({ path: `${OUT}/${cfg}-${sc}-s${i}.png` });
+        await page.screenshot({ path: `${OUT}/${cfg}/${sc}-s${i}.png` });
         const { label, isTraction } = await page.evaluate(i => {
           const s = document.querySelectorAll('section')[i - 1];
           const h = s && s.querySelector('h1,h2,h3,.section-name,.kicker');
@@ -93,11 +129,23 @@ async function shoot(browser, cfg, sc, spec) {
           return { label: (h ? h.textContent : all).trim().replace(/\s+/g, ' ').slice(0, 28),
                    isTraction: /traction/i.test(all) };
         }, i);
-        if (isTraction) await page.screenshot({ path: `${OUT}/${cfg}-${sc}-traction.png` });
+        // First match only: a later slide can mention "traction" in a disclosure note
+        // (e.g. "traction ... are illustrative management targets"), which used to
+        // overwrite this shot with the wrong slide.
+        if (isTraction && !tractionShot) {
+          await page.screenshot({ path: `${OUT}/${cfg}/${sc}-traction.png` });
+          tractionShot = true;
+        }
         process.stdout.write(`      s${i} ${label}\n`);
       }
     } else {
-      await page.screenshot({ path: `${OUT}/${cfg}-${sc}-full.png`, fullPage: true });
+      // One image per scenario: the fullPage capture. The viewport-clipped shot it used
+      // to sit beside was a crop of this same render, so it carried no information the
+      // full page does not — and for a page that fits 1440x900 the two were byte-
+      // identical. The viewport still governs layout; it just isn't saved separately.
+      const full = `${OUT}/${cfg}/${sc}-full.png`;
+      await page.screenshot({ path: full, fullPage: true });
+      halveWidth(full);
     }
   } catch (e) { srv.close(); await page.close(); return `${cfg}/${sc}: ${e.message.split('\n')[0]}`; }
   await page.close(); srv.close();
@@ -109,15 +157,16 @@ async function shoot(browser, cfg, sc, spec) {
 async function fixture(browser) {
   const dir = `${ROOT}/fixtures/wde06/fixtures/site`;
   const { srv, port } = await serve(dir);
-  for (const [name, js] of [['fixture-WDE-06', true], ['fixture-WDE-06-nojs', false]]) {
+  fs.mkdirSync(`${OUT}/fixture`, { recursive: true });
+  for (const [name, js] of [['fixture/WDE-06', true], ['fixture/WDE-06-nojs', false]]) {
     const ctx = await browser.newContext({ viewport: DESKTOP, javaScriptEnabled: js, deviceScaleFactor: 1 });
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'networkidle' });
     if (js) await settle(page); else await page.waitForTimeout(900);
-    await page.screenshot({ path: `${OUT}/${name}.png` });
     await page.screenshot({ path: `${OUT}/${name}-full.png`, fullPage: true });
+    halveWidth(`${OUT}/${name}-full.png`);
     await ctx.close();
-    process.stdout.write(`   ${name} (javaScriptEnabled=${js})\n`);
+    process.stdout.write(`   ${name}.png (javaScriptEnabled=${js})\n`);
   }
   srv.close();
 }
@@ -132,12 +181,16 @@ async function fixture(browser) {
   if (!args.includes('--fixture')) {
     const cfgs = only.filter(a => !/^WDE-/.test(a));
     const scs = only.filter(a => /^WDE-/.test(a));
-    for (const cfg of (cfgs.length ? cfgs : fs.readdirSync(`${ROOT}/runs`).filter(d => d.startsWith('paired-')))) {
+    // Default is every config with a runs/ directory, not just the paired ones.
+    const allCfgs = fs.readdirSync(`${ROOT}/runs`)
+      .filter(d => fs.statSync(`${ROOT}/runs/${d}`).isDirectory()).sort();
+    for (const cfg of (cfgs.length ? cfgs : allCfgs)) {
       for (const [sc, spec] of Object.entries(SCENARIOS)) {
         if (spec.skip || (scs.length && !scs.includes(sc))) continue;
         const p = await shoot(browser, cfg, sc, spec);
+        if (p === ABSENT) continue;
         if (p) problems.push(p);
-        else process.stdout.write(`   ${cfg}-${sc}.png ${spec.deck ? '+ per-slide' : '+ -full.png'}\n`);
+        else if (!spec.deck) process.stdout.write(`   ${cfg}/${sc}-full.png\n`);
       }
     }
   }

@@ -3,113 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sill sends one well-chosen edible plant to your letterbox each month, with seeds and a clear growing guide for small city windows.">
-  <meta name="theme-color" content="#f5f7ef">
-  <title>Sill — something good, growing</title>
+  <meta name="theme-color" content="#dce9ed">
+  <meta name="description" content="Drift makes beautifully researched, pocket-sized walking routes for curious weekends.">
+  <title>Drift — Better walks, made slowly</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=DM+Serif+Display&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Sill home">
-      <svg class="brand-mark" viewBox="0 0 34 30" aria-hidden="true"><path d="M4 24h26M8 18c7 0 10-4 10-12 6 4 8 10 4 16M18 14c-4-5-8-6-12-4 1 6 5 9 12 8"/></svg>
-      <span translate="no">Sill</span>
-    </a>
+    <a class="wordmark" href="#top" aria-label="Drift home">drift<span>.</span></a>
     <nav aria-label="Main navigation">
       <a href="#how">How it works</a>
-      <a href="#season">The season</a>
+      <a href="#first-walk">First walk</a>
     </nav>
-    <a class="header-cta" href="#join">Join the first sowing</a>
+    <a class="header-action" href="#join">Join the first drop</a>
   </header>
 
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
+    <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="launch-note">First envelopes post 14 October</p>
-        <h1 id="hero-title">Your smallest patch of earth is a windowsill.</h1>
-        <p class="hero-intro">One edible plant, chosen for the month. Proper seeds, a plain-English field note, and just enough know-how to get something growing.</p>
-        <a class="primary-button" href="#join">Reserve an October envelope</a>
-        <p class="button-note">£8 monthly · pause whenever you like</p>
+        <p class="launch-note">Independent walking guides · Arriving October</p>
+        <h1>Take the long<br>way around.</h1>
+        <p class="intro">Pocket-sized city walks for people who notice things. One thoughtful route, mailed to your door each month.</p>
+        <a class="button" href="#join">Get the first walk</a>
       </div>
 
-      <div class="packet-stage" aria-label="The October Sill seed envelope, featuring winter purslane">
-        <div class="sun-disc"></div>
-        <article class="seed-packet">
-          <div class="packet-top"><span>Sill / 01</span><span>Oct—Nov</span></div>
-          <div class="plant-illustration" aria-hidden="true">
-            <svg viewBox="0 0 360 360" role="img">
-              <g class="stems"><path d="M182 330C185 238 177 162 174 70M179 227c-45-31-75-69-94-111M179 263c50-38 79-83 94-132M176 174c-30-24-50-47-63-75M179 198c33-27 55-54 65-82"/></g>
-              <g class="leaves">
-                <ellipse cx="76" cy="103" rx="42" ry="25" transform="rotate(34 76 103)"/><ellipse cx="108" cy="142" rx="42" ry="26" transform="rotate(17 108 142)"/>
-                <ellipse cx="279" cy="119" rx="43" ry="26" transform="rotate(-35 279 119)"/><ellipse cx="249" cy="169" rx="43" ry="26" transform="rotate(-18 249 169)"/>
-                <ellipse cx="137" cy="84" rx="37" ry="23" transform="rotate(42 137 84)"/><ellipse cx="219" cy="91" rx="38" ry="23" transform="rotate(-40 219 91)"/>
-                <ellipse cx="126" cy="214" rx="45" ry="27" transform="rotate(18 126 214)"/><ellipse cx="232" cy="238" rx="45" ry="27" transform="rotate(-17 232 238)"/>
-                <ellipse cx="173" cy="57" rx="28" ry="20" transform="rotate(80 173 57)"/>
-              </g>
-            </svg>
-          </div>
-          <div class="packet-name"><h2>Winter<br>purslane</h2><p>Claytonia perfoliata</p></div>
-          <div class="packet-foot"><span>Cool-weather leaves</span><span>60 seeds</span></div>
-        </article>
-        <p class="packet-caption"><span>October’s pick</span> Tender leaves through the coldest months.</p>
+      <div class="map-stage" aria-label="Illustrated route map for the first Drift walk">
+        <div class="map-card">
+          <div class="map-topline"><span>Walk 001</span><span>6.4 km</span></div>
+          <svg class="route" viewBox="0 0 520 620" role="img" aria-labelledby="route-title route-desc">
+            <title id="route-title">A walking route beside the city river</title>
+            <desc id="route-desc">A red route line travels from the old market, past the canal garden and bookbinder, to sunset steps.</desc>
+            <path class="water" d="M-20 164 C98 106 122 241 238 186 S402 80 555 146"/>
+            <path class="street" d="M54 20L92 604M186 0l-12 620M310 0l40 620M444 0l-28 620M0 290l520 40M0 454l520-34"/>
+            <path class="walk" d="M88 544 C92 466 213 501 201 397 S117 289 219 250 S357 316 370 199 S438 132 452 67"/>
+            <g class="stops">
+              <circle cx="88" cy="544" r="10"/><circle cx="201" cy="397" r="10"/><circle cx="219" cy="250" r="10"/><circle cx="370" cy="199" r="10"/><circle cx="452" cy="67" r="10"/>
+            </g>
+            <g class="map-labels">
+              <text x="108" y="567">Old market</text><text x="220" y="420">Canal garden</text><text x="248" y="239">Bookbinder</text><text x="291" y="180">Quiet bench</text><text x="363" y="50">Sunset steps</text>
+            </g>
+          </svg>
+          <p class="map-caption">Riverside, backstreets &amp; a very good bun</p>
+        </div>
+        <div class="stamp" aria-hidden="true">GO<br>SLOW</div>
       </div>
     </section>
 
-    <section class="manifesto" aria-label="Our approach">
-      <p>Not a box of gardening clutter.</p>
-      <p>One good thing to grow, right now.</p>
+    <section class="promise" aria-labelledby="promise-title">
+      <p id="promise-title">Not a checklist. Not the quickest route.</p>
+      <blockquote>“A good walk leaves room for the place to interrupt you.”</blockquote>
+      <p class="founder-note">Drift is a tiny, independent project for curious weekends. Every route is walked, redrawn, and written by a person—not generated by an app.</p>
     </section>
 
-    <section class="process" id="how" aria-labelledby="how-title">
-      <div class="section-intro">
-        <h2 id="how-title">Small enough to begin.</h2>
-        <p>Made for renters, beginners, and anybody who thought growing food required a garden.</p>
+    <section class="how" id="how" aria-labelledby="how-title">
+      <div class="section-heading">
+        <h2 id="how-title">Made for wandering</h2>
+        <p>Everything you need. Nothing that buzzes.</p>
       </div>
       <ol class="steps">
-        <li><span class="step-number">1</span><div><h3>It lands</h3><p>A letterbox-sized envelope arrives near the start of each month. No missed-delivery card.</p></div></li>
-        <li><span class="step-number">2</span><div><h3>You sow</h3><p>The field note tells you which pot, where to put it, and how often to water—without the folklore.</p></div></li>
-        <li><span class="step-number">3</span><div><h3>You eat</h3><p>Every variety earns its place: leaves, herbs, shoots, and small fruits selected for limited space.</p></div></li>
+        <li><span class="step-mark">1</span><div><h3>A new place each month</h3><p>A researched half-day route through overlooked streets, green edges, and good stopping places.</p></div></li>
+        <li><span class="step-mark">2</span><div><h3>Printed to fold and keep</h3><p>A durable pocket map with clear directions and short stories worth reading on the way.</p></div></li>
+        <li><span class="step-mark">3</span><div><h3>Walk it your way</h3><p>Go alone, bring someone, skip a stop. There is no streak to keep and nothing to complete.</p></div></li>
       </ol>
     </section>
 
-    <section class="season" id="season" aria-labelledby="season-title">
-      <div class="season-copy">
-        <p class="season-kicker">The first three envelopes</p>
-        <h2 id="season-title">A season that fits on the ledge.</h2>
-        <p>We test each variety in ordinary pots on an east-facing London window. The first run is limited to 300 growers so we can answer every question ourselves.</p>
+    <section class="first-walk" id="first-walk" aria-labelledby="walk-title">
+      <div class="walk-index"><span>01</span><span>October 2026</span></div>
+      <div class="walk-copy">
+        <h2 id="walk-title">Along the water,<br>behind the warehouses</h2>
+        <p>The first route traces an old working river: a pocket garden, a family bookbindery, painted loading doors, and steps that catch the last light.</p>
+        <dl>
+          <div><dt>Distance</dt><dd>6.4 km</dd></div>
+          <div><dt>Time</dt><dd>About 3 hours</dd></div>
+          <div><dt>Terrain</dt><dd>Mostly level</dd></div>
+        </dl>
       </div>
-      <div class="calendar" role="list" aria-label="First three monthly plants">
-        <div class="calendar-row featured" role="listitem"><time datetime="2026-10">October</time><strong>Winter purslane</strong><span>cool, crisp leaves</span></div>
-        <div class="calendar-row" role="listitem"><time datetime="2026-11">November</time><strong>Pea shoots</strong><span>sweet green tips</span></div>
-        <div class="calendar-row" role="listitem"><time datetime="2026-12">December</time><strong>Greek cress</strong><span>peppery and quick</span></div>
-      </div>
+      <div class="route-fragment" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div>
     </section>
 
     <section class="join" id="join" aria-labelledby="join-title">
       <div>
-        <p class="join-mark" aria-hidden="true">S</p>
-        <h2 id="join-title">Put something living on the sill.</h2>
+        <p class="edition">First edition · 300 copies</p>
+        <h2 id="join-title">Start with walk one.</h2>
+        <p>Join the launch list for first access. No weekly newsletter, just one email when the first map is ready.</p>
       </div>
-      <form class="signup-form" novalidate>
+      <form id="signup-form" novalidate>
         <label for="email">Email address</label>
-        <div class="input-row">
-          <input id="email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com…" required aria-describedby="form-note form-status">
-          <button type="submit">Reserve my place</button>
+        <div class="form-row">
+          <input id="email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com…" required aria-describedby="form-message">
+          <button type="submit">Save my place</button>
         </div>
-        <p id="form-note">No payment today. We’ll email before the first envelope posts.</p>
-        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        <p id="form-message" class="form-message" aria-live="polite">No spam. Leave whenever you like.</p>
       </form>
     </section>
   </main>
 
   <footer>
-    <a class="brand footer-brand" href="#top" translate="no">Sill</a>
-    <p>Seeds for small city spaces. Packed by hand in South London.</p>
-    <p>© <span id="year"></span> Sill Growing Co.</p>
+    <a class="wordmark footer-mark" href="#top">drift<span>.</span></a>
+    <p>Walked and made independently.</p>
+    <p>© 2026 Drift</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>

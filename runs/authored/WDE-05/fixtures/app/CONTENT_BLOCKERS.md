@@ -1,13 +1,16 @@
-# Content blockers
+# Kettell content blockers
 
-## Customer testimonials
+Checked: 2026-03-27
 
-No testimonial source material or customer permissions were present in the repository. A web search for `"Kettell" "espresso machine"` on 2026-09-08 returned no usable public customer testimonials that could be verified as belonging to this product. The page therefore shows a clearly labelled pending state and contains no quote, customer name, portrait, rating, or logo.
+## Sourcing attempt
 
-**Needed to resolve:** approved first-hand quote, customer display name, and written permission to publish (plus portrait and rating only if explicitly supplied).
+- Searched the repository for Kettell testimonials, customer names, quotations, product photography, packing lists, box contents, portafilter references, and accessory details. No supporting content or assets were found.
+- Checked `https://kettell.com` and `https://www.kettell.com`. Both resolve to a domain-sale page and contain no information about the countertop espresso machine.
 
-## In-the-box contents
+## Unresolved
 
-No packing list, bill of materials, manual, product photography, or accessory inventory was present in the repository. The public-web search above also produced no verifiable packing list. Existing product copy mentions technical characteristics, but does not establish what ships in the box. The page therefore uses unassigned, clearly labelled placeholders rather than naming assumed accessories.
+1. **Customer testimonials:** No approved customer quotation, attribution, or publication consent is available.
+2. **In-the-box contents:** No approved packing manifest is available.
+3. **Product imagery:** No approved Kettell product or packaging photography is available.
 
-**Needed to resolve:** approved final shipping manifest, including exact item names, quantities, regional variations, and whether any pictured accessories are sold separately.
+The page uses clearly labelled neutral placeholders for these gaps. Replace them only with verified, approved source material; do not infer box contents from comparable espresso machines.

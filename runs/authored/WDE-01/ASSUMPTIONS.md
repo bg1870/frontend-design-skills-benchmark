@@ -1,10 +1,7 @@
 # Material assumptions
 
-- Ridgeline is a new fictional brand with no existing identity or product assets.
-- The primary conversion is a 20-minute sales demo requested by email.
-- The target buyer is an owner/operator of a single-location independent restaurant with roughly 15–60 employees.
-- The product includes scheduling, time tracking, payroll, tax filing, tip reporting, employee mobile access, and guided migration.
-- The displayed `$99/location/month + $8/paid employee` price is illustrative launch pricing and should be validated before publication.
-- “Bar Lucia” and Maria Santos are fictional demonstration content, not real customer claims.
-- Privacy and Terms footer destinations are placeholders until legal pages exist.
-- The page is intentionally dependency-free and uses system fonts so it can ship as a single static HTML file.
+- Ridgeline is an early-stage B2B product serving independent, single- and multi-location restaurants.
+- No verified customer metrics, testimonials, integrations, compliance claims, or public price points were provided, so the page intentionally makes none.
+- The primary conversion is a sales walkthrough rather than self-serve signup; pricing is provided after team-size discovery.
+- The sample restaurant, employees, shifts, and payroll values are clearly presented as product-demo data, not customer claims.
+- The artifact is dependency-free and can be opened directly as `index.html`; the walkthrough form demonstrates a success state but does not submit to a backend.

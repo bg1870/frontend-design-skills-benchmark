@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dispatcher job queue for Clearline Plumbing.">
+  <meta name="theme-color" content="#0b4f68">
+  <title>Clearline Dispatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to job queue</a>
+  <header class="summary-shell">
+    <div class="brand-row">
+      <a class="brand" href="#main" aria-label="Clearline dispatch home">
+        <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M7 4v9a9 9 0 0 0 18 0V9m-4 0v4a5 5 0 0 1-10 0V4M7 8h4M21 5h4"/></svg>
+        <span>Clearline <b>Dispatch</b></span>
+      </a>
+      <div class="shift">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span id="boardDate">Sep 8</span>
+        <span class="shift-time">Central time</span>
+      </div>
+    </div>
+
+    <section class="summary" aria-label="Job summary">
+      <div class="summary-intro">
+        <p>Morning board</p>
+        <h1>Keep the day moving.</h1>
+      </div>
+      <dl class="summary-metrics" id="summaryMetrics" aria-live="polite">
+        <div><dt>On today</dt><dd>—</dd></div>
+        <div><dt>Need assignment</dt><dd>—</dd></div>
+        <div><dt>Assigned</dt><dd>—</dd></div>
+        <div><dt>Completed</dt><dd>—</dd></div>
+      </dl>
+    </section>
+  </header>
+
+  <main id="main" class="workspace">
+    <section class="queue-heading" aria-labelledby="queueTitle">
+      <div>
+        <p class="section-kicker">Job queue</p>
+        <h2 id="queueTitle">Next calls</h2>
+        <p class="queue-note" id="queueCount">Loading scheduled work…</p>
+      </div>
+      <div class="queue-actions">
+        <label class="search">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+          <span class="sr-only">Search jobs</span>
+          <input id="searchInput" name="job-search" type="search" autocomplete="off" placeholder="Search ID, address…">
+        </label>
+        <div class="filters" role="group" aria-label="Filter jobs by status">
+          <button class="filter active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="open" aria-pressed="false">Open</button>
+          <button class="filter" type="button" data-filter="assigned" aria-pressed="false">Assigned</button>
+          <button class="filter" type="button" data-filter="done" aria-pressed="false">Done</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="queue-panel" aria-label="Scheduled jobs">
+      <div class="queue-columns" aria-hidden="true">
+        <span>Schedule</span><span>Service call</span><span>Technician</span><span>Status</span><span></span>
+      </div>
+      <div id="jobList" class="job-list" aria-live="polite" aria-busy="true"></div>
+      <div id="emptyState" class="empty-state" hidden>
+        <h3>No matching calls</h3>
+        <p>Try another search or status filter.</p>
+        <button id="clearFilters" type="button">Clear filters</button>
+      </div>
+      <div id="errorState" class="error-state" hidden role="alert">
+        <h3>The queue could not be loaded</h3>
+        <p>Check that <code>fixtures/jobs.json</code> is available, then reload the page.</p>
+        <button id="retryButton" type="button">Reload queue</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
