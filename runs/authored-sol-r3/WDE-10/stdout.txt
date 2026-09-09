@@ -1,0 +1,16 @@
+Implemented the responsive Loomwork signup page.
+
+### Deliverables
+- `index.html` — semantic signup experience and illustrative clinic schedule
+- `styles.css` — mobile, tablet, and laptop layouts
+- `script.js` — validation, password visibility, and success states
+- `assets/` — bundled Lato fonts
+- `ASSUMPTIONS.md` — material assumptions
+- `evidence/ACCEPTANCE.md` — browser acceptance report
+
+### Browser evidence
+- `evidence/mobile-360x800.png`
+- `evidence/tablet-768x1024.png`
+- `evidence/laptop-1440x900.png`
+
+All three responsive viewports passed after repairing the initial non-portable font references and regenerating the screenshots.

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3eedf">
+  <meta name="description" content="Sundial is a calm day planner built around one honest question: what is this hour for? Join the October launch list.">
+  <title>Sundial — Make room for the work that matters</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Sundial home">
+      <svg aria-hidden="true" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><path d="M20 8v12l9 6"/><path d="M7 20h4M29 20h4M20 7v4"/></svg>
+      <span>Sundial</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#approach">Approach</a>
+      <a href="#rhythm">A day in Sundial</a>
+    </nav>
+    <a class="header-cta" href="#join">Get launch notes</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="edition">Independent software · Arriving October 2026</p>
+        <h1>Make room for the work that <em>matters.</em></h1>
+        <p class="lede">Sundial is a calm day planner built around one honest question: what is this hour for?</p>
+        <a class="primary" href="#join">Join the launch list <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="dial-wrap" aria-hidden="true">
+        <div class="dial">
+          <span class="tick t1">06</span><span class="tick t2">09</span><span class="tick t3">12</span><span class="tick t4">15</span><span class="tick t5">18</span>
+          <div class="hand"></div>
+          <div class="dial-note">Your day<br>has edges.</div>
+        </div>
+      </div>
+      <p class="margin-note">No streaks. No productivity theatre. Just a clear shape for today.</p>
+    </section>
+
+    <section class="manifesto" id="approach">
+      <p class="section-no">01 / A quieter premise</p>
+      <div>
+        <h2>A plan should give your attention back.</h2>
+        <p>Most planners turn a day into a container to fill. Sundial starts with its natural limits. Choose what deserves protected time, leave breathing room around it, and let the rest stay out of sight until you need it.</p>
+      </div>
+    </section>
+
+    <section class="day-section" id="rhythm">
+      <div class="day-heading">
+        <p class="section-no">02 / A day in Sundial</p>
+        <h2>Three small rituals.<br>One day with a shape.</h2>
+      </div>
+      <ol class="rituals">
+        <li>
+          <span class="time">08:40</span>
+          <div><h3>Set the horizon</h3><p>Pick one meaningful outcome and mark the hours you want to protect.</p></div>
+          <span class="mark" aria-hidden="true">Ⅰ</span>
+        </li>
+        <li>
+          <span class="time">13:15</span>
+          <div><h3>Return to now</h3><p>A light-touch check-in helps you adjust without rewriting the whole day.</p></div>
+          <span class="mark" aria-hidden="true">Ⅱ</span>
+        </li>
+        <li>
+          <span class="time">17:30</span>
+          <div><h3>Close the loop</h3><p>Notice what moved, carry forward what still matters, then finish.</p></div>
+          <span class="mark" aria-hidden="true">Ⅲ</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="principles" aria-labelledby="principles-title">
+      <div class="principles-sticky">
+        <p class="section-no">03 / Designed with restraint</p>
+        <h2 id="principles-title">Less system.<br>More sense.</h2>
+      </div>
+      <dl>
+        <div><dt>Time, not tasks</dt><dd>See the day as a finite arc instead of an endless list.</dd></div>
+        <div><dt>Gentle by default</dt><dd>No scores, streaks, or red overdue counters competing for attention.</dd></div>
+        <div><dt>Finished means finished</dt><dd>End each day cleanly. Tomorrow can wait until tomorrow.</dd></div>
+      </dl>
+    </section>
+
+    <section class="join" id="join">
+      <div class="join-copy">
+        <p class="section-no">October 2026</p>
+        <h2>Be there at first light.</h2>
+        <p>Occasional build notes and one message when Sundial is ready. Nothing else.</p>
+      </div>
+      <form id="waitlist" novalidate>
+        <label for="email">Email address</label>
+        <div class="input-row">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="form-note form-status">
+          <button type="submit">Join the list <span aria-hidden="true">→</span></button>
+        </div>
+        <p id="form-note">No weekly newsletter. Unsubscribe whenever you like.</p>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="wordmark" href="#top"><svg aria-hidden="true" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><path d="M20 8v12l9 6"/></svg><span>Sundial</span></a>
+    <p>Small software for finite days.</p>
+    <p>© <span id="year"></span> Sundial</p>
+  </footer>
+</body>
+</html>

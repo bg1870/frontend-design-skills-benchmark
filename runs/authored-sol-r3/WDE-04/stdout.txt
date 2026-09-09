@@ -1,0 +1,21 @@
+Implemented a complete clickable React prototype for **Tend**, a mobile habit-tracking app.
+
+### Included
+- Today view with progress and interactive habit completion
+- Streak detail with activity heatmap
+- Add-habit bottom sheet with validation and controls
+- Responsive mobile-first presentation
+- Keyboard focus and reduced-motion support
+- Runtime-localized date
+- Sample-data labeling
+- Material assumptions documented in `ASSUMPTIONS.md`
+
+### Verification
+- Dependencies installed
+- Production build completed successfully with `npm run build`
+
+Run locally with:
+
+```bash
+npm run dev
+```

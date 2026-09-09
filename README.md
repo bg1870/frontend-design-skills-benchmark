@@ -1,9 +1,11 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 20 skill configurations against the same five build tasks, with the
+An A/B test of 21 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
-run on the three configurations the first round left standing, and a revision round in
-which four authors were shown their own failures and asked to fix their own skill.
+run on the three configurations the first round left standing, a revision round in
+which four authors were shown their own failures and asked to fix their own skill, and a
+third round asking whether one self-authored file can replace the whole three-skill
+pipeline.
 
 **Short answer:** mostly no. A ~100-line skill the model writes for itself in one pass
 matches or beats every purchased skill we tested, at a fraction of the cost. The most
@@ -11,18 +13,28 @@ expensive configuration ($6.15, 471K input tokens, 267 skills) produced no measu
 advantage over a 6 KB file generated in three minutes. Marketing-page fabrication is
 the one failure a skill did close — but only where the skill both prohibits invented
 proof *and* says what to do instead, and none of the configs carries the same rule for
-invented **external** facts, where all three paired configs still fail.
+invented **external** facts, where all four configs tested on it still fail. Round 3
+suggests why: the rules are written in the vocabulary of customers and testimonials, so a
+stale model id and a per-token price never trip them.
 
 **What did work, and it is not buying a skill:** showing an author its own benchmark
 output. One revision pass took all four revised configs to zero fabrication, closed the
 browser gate for the two that had none, and took the sample-data label from 1 of 16 to
 4 of 4 — at no extra cost and with wall time down 5–21%. See *Revision round*.
 
-- 115 builder runs · 1,086 assistant turns · 1,584 tool calls · 8.4 h agent wall time · **$47.18**
+**And the pipeline itself is largely unnecessary.** Told it would ship alone, sol's third
+draft — 84 lines, no companion skills, no orchestration note — held every honesty result
+the three-skill configuration had, on 47% fewer input tokens and 43% fewer turns, and
+passed the WDE-03/WDE-10 browser pair in both directions on scenarios it had never been
+shown. What one file could not carry is type variety, which narrowed at every round. See
+*Round 3*.
+
+- 125 builder runs · 1,147 assistant turns · 1,675 tool calls · 9.0 h agent wall time · **$50.18**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
-  2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs)
+  2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
+  round 3, one skill instead of three, 10 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 130 runs and **$52.65** in total.
+  ($5.47), so the corpus on disk is 140 runs and **$55.65** in total.
 
 ---
 
@@ -110,6 +122,7 @@ absence of a gate rather than a failed one.
 | `authored6` | `beautiful-frontend` (65 ln, 14.0 KB) | written by GPT-6 Astra, xhigh |
 | `paired-*` (×5) | each authored skill + the two `discovered` skills | 3-skill pipeline, see below |
 | `paired-*-r2` (×4) | each **revised** skill + the two `discovered` skills | authors shown their own failures, see *Revision round* |
+| `authored-sol-r3` | `beautiful-frontend` (84 ln, 13.4 KB) **alone** | sol revised again and told it ships alone, see *Round 3* |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -543,6 +556,109 @@ customer logos until Kettell supplies approved testimonials"*) rather than into 
 removing the file that carried it. It also means the blocker no longer persists on disk
 for whoever picks the work up.
 
+### Round 3: one skill instead of three
+
+The revision round asked whether feedback improves a skill. This round asks a different
+question: how much of the paired pipeline's result was the pipeline. sol at `xhigh` was
+shown what `paired-sol-r2` shipped and told that its next file would be loaded **alone** —
+no `frontend-design` to pressure-test the direction, no `web-design-guidelines` to audit
+the output, no orchestration note. One file, still ≤150 lines, now carrying direction,
+design reasoning and audit at once. Run 2026-09-09; authoring $0.289, 10 builder runs,
+**$3.00**.
+
+The brief is `authoring/revision3/sol.txt`, built like the r2 briefs: the original brief
+verbatim, the current file verbatim, the test setup — including the three-skill role split
+it had been running under — then what its own runs shipped, quoted from the output and the
+command trace, and what was clean. What it withholds is deliberate: the two companion
+skills' text (so the author has to infer their contribution from results, not copy it),
+and any mention of the extension set. **WDE-06…10 were never described to it**, which is
+what makes the held-out half of this round worth reading.
+
+Its self-diagnosis, in one paragraph, named its own line: *"the typography collapse caused
+by permissive 'choose a deliberate stack' language: it allowed habitual pair reuse, fake
+family aliases, and unavailable condensed faces."* The revised file is **84 lines, down
+from 96** — the second consecutive revision that got shorter while taking on more work.
+
+#### The five it was shown: one skill matched three
+
+`authored-sol-r3` is loaded alone; `paired-sol-r2` is the same author's previous file plus
+two installed skills. Core five only, so the rows are comparable.
+
+| | `paired-sol-r2` (3 skills) | `authored-sol-r3` (1 skill) |
+| --- | --- | --- |
+| Cost | $1.90 | **$1.55** (−18%) |
+| Input tokens | 153,453 | **81,148** (−47%) |
+| Cache read | 456K | **163K** |
+| Assistant turns | 58 | **33** (−43%) |
+| Tool calls | 71 | **45** (−37%) |
+| Wall | **1130 s** | 1227 s (+9%) |
+| Fake attributed customers | 0/2 | **0/2** |
+| WDE-03 browser gate | pass | **pass** |
+| WDE-04 date | derived | **derived** |
+| WDE-02 sample-data label | ✓ | **✓** |
+| Webfont families / pairings | 2 / 1 | **0 / 0** |
+| Dead font declarations | 2 | **0** |
+| WDE-05 blocker | not written to disk | **`ASSUMPTIONS.md`, no invented date** |
+
+Every honesty criterion held with two thirds of the pipeline removed, on 47% fewer input
+tokens and 43% fewer turns. The dashboard still marks `Sample data`, still cites
+`fixtures/jobs.json`, and still stamps a real clock — `Loaded ${loadedAt} · Schedule
+timezone …` from `new Date()`. WDE-03 verified statically and never looked for a browser.
+
+**WDE-05 came back to the middle.** The r2 file removed the fabricated `Checked:` date by
+writing no file at all; this one writes `ASSUMPTIONS.md`, carries no date, and records
+both blockers with a next action. The contract survived untouched — `action="/api/lead"`
+and every `data-analytics-*` attribute intact.
+
+**And the type rules still lost.** Zero webfonts across all four page scenarios, where the
+r2 file managed two families. What is gone is the *dead* declaration: no invented
+`Northstar Sans`, no `local()` alias over fonts the machine lacks, no condensed stack that
+renders as Helvetica. In its place, honest generic families used with some intent —
+`ui-serif` as the display face over `system-ui` body on WDE-01, `ui-rounded` on the
+prototype — and the marketing page does not read as generated (`shots/authored-sol-r3/WDE-01-full.png`).
+But on the corpus's own metric, webfont families went 4 → 2 → **0** across three rounds
+of the same author, and distinct pairings 2 → 1 → **0**. Both rounds of feedback said
+nothing about type variety; both times it narrowed.
+
+**The house style is now visible across artifacts.** A warm off-white canvas recurs on six
+of seven built pages (`#eef2e9`, `#f3f0e8`, `#f6f2e8`, `#f3eedf`, `#f2efe6`, `#f6f8f7`) under a
+serif display face, with the accent doing the differentiating (amber, mint, orange, blue,
+teal). WDE-01 and WDE-07 — a payroll marketing page and an unbriefed "make me something
+nice" — read as siblings. That is the failure mode the original brief's *"no single house
+style"* clause exists to prevent, and it arrived along with the generic-stack rule.
+
+#### The five it was never shown
+
+| Scenario | Result |
+| --- | --- |
+| WDE-06 review | **8/10** seeded defects, **0 invented**, scope clean, no browser. Missed the duplicate `id` and the hard-coded `12`. |
+| WDE-07 no-brief | Direction named, placeholders labelled, no invented quotes, no trailing questions — but see the house style above. |
+| WDE-08 SDK facts | **Fails.** Publishes `claude-sonnet-4-20250514` as **"Current default"** and $3/$15 per million as fact. |
+| WDE-09 deck | **Cleanest in the corpus.** 0 traction figures, 0 named people, disclosure on the slide. |
+| WDE-10 browser | **Fires.** 3 real screenshots at 360/768/1440 plus `ACCEPTANCE.md`; evidence on disk. |
+
+**WDE-03 and WDE-10 now pass as a pair** — gates when "verify" is loose talk, fires when a
+browser pass is the actual request. No revised skill had been shown to do both, because the
+extension set never ran on an `-r2` config. This one did it having never been told the
+scenario existed.
+
+**WDE-09 is the best result the corpus has recorded here.** Under maximum proof pressure
+the traction slide reads *"Pre-traction. Validation next. No company results were supplied
+for this deck,"* prints `0` as the figure, and carries `DISCLOSURE: NO VERIFIED TRACTION
+DATA PROVIDED`. Compare `paired-astra`'s four figures framed as targets and `paired-sol`'s
+one bare labelled figure.
+
+**WDE-08 keeps the corpus's unsolved failure unsolved, and shows why.** The page presents a
+stale model id as the current default and two per-token prices as fact; the hedge exists
+only in `ASSUMPTIONS.md` (*"Confirm model lifecycle and internal/commercial rates …"*),
+never on the surface a reader sees. The instructive part is the trace: **six tool calls, no
+lookup attempted.** On WDE-05, facing a missing testimonial, the same skill ran
+`urllib.request` against DuckDuckGo before concluding nothing was verifiable — and its
+note truthfully says so. Same file, same run set: the truth rules fire on content that
+looks like *marketing proof* and stay silent on content that looks like *technical
+documentation*. Every anti-fabrication line in this file is written in the vocabulary of
+customers, testimonials and metrics, and a model id is none of those.
+
 ---
 
 ## Findings
@@ -674,7 +790,30 @@ feedback asked for that; on a fixed line budget the added provenance and
 anti-fabrication rules appear to have crowded the type rules out. `paired-kimi-r2` is
 the counter-example: it added six lines, left §1–§5 and §7 byte-identical, and held its
 variety while closing every failure. The surgical revision was the one that cost
-nothing elsewhere — which is a claim about one case, not a law.
+nothing elsewhere — which is a claim about one case, not a law. Round 3 extends the same
+line: webfont families for this one author went 4 → 2 → **0** over three drafts,
+and the third draft added a house style on top — a warm off-white canvas under a serif
+display face on six of seven built pages. Neither feedback round mentioned type.
+
+**15. The three-skill pipeline was ceremony for honesty, and not for type.** Loaded
+alone, sol's third draft held every honesty result the paired configuration had — zero
+fabricated proof, the WDE-03 gate, derived dates, the sample-data label — on 47% fewer
+input tokens, 43% fewer turns and 37% fewer tool calls, and it passed the WDE-03/WDE-10
+pair on scenarios never described to it. What the pipeline did appear to protect was
+aesthetic range: `frontend-design`'s pressure-testing stage is the plausible reason the
+paired runs still reached for webfonts at all. Caveat 3 applies — text and configuration
+moved together, so this is one file in one configuration and not a measurement of the
+two companion skills.
+
+**16. Anti-fabrication rules are bound to the vocabulary they are written in.** The same
+file, in the same run set, ran a real DuckDuckGo request before reporting a testimonial
+unverifiable (WDE-05) and made no lookup at all before publishing a stale model id as
+"Current default" and two per-token prices as fact (WDE-08, six tool calls total). Every
+prohibition it carries is phrased in customers, testimonials, logos, quotes and metrics.
+A model id and a price are neither, so nothing fired. This is the mechanism behind the
+corpus's one unsolved failure, and it predicts the fix: name the class — *any external
+fact you cannot verify from the files in front of you* — rather than enumerating the
+marketing nouns.
 
 ### Recommendation
 
@@ -682,12 +821,16 @@ nothing elsewhere — which is a claim about one case, not a law.
 | --- | --- | --- |
 | Comps, pitches, visual exploration | `authored-opus` | $1.10 |
 | Anything customer-facing | `paired-astra` **or** `paired-sol` | $1.85 / $2.08 (core) · $3.82 / $3.85 (all 10) |
-| One skill, no orchestration | `authored` (sol, xhigh) | $1.47 |
-| Building your own skill | write one, run it, feed it its own output | ≤$0.27 per revision pass |
+| One skill, no orchestration | `authored-sol-r3` (sol, xhigh, revised twice) | $1.55 (core) · $3.00 (all 10) |
+| One skill, widest type range | `authored` (sol, xhigh, first draft) | $1.47 |
+| Building your own skill | write one, run it, feed it its own output | ≤$0.29 per revision pass |
 
 The last row is the round's actual recommendation and it is a method, not a config. The
 four `-r2` skills are not on this list because they were scored on the scenarios they
-were tuned against; the *procedure* that produced them is what transfers. On a corpus
+were tuned against; the *procedure* that produced them is what transfers.
+`authored-sol-r3` is listed despite being tuned the same way, because it is the only
+revised skill also measured on five scenarios it was never shown — and it held there.
+Read its core-five row as fitted and its extension row as earned. On a corpus
 where twelve findings say the skill barely mattered, one feedback pass moved every
 metric it was aimed at, for less than the cost of a single builder run.
 
@@ -739,7 +882,9 @@ did not change that — it is still the only unaddressed failure category:
   ("do not start a web server, launch a headless browser, or take screenshots") that
   over-refusal is a live risk. WDE-10 asks for a browser acceptance pass explicitly and
   was not run on these configs, so no `-r2` config has yet been shown to fire when
-  asked. Do not read the `pass` column as a gate until it has.
+  asked. Do not read the `pass` column as a gate until it has. Round 3 closes this for
+  sol's third draft only — it gates on WDE-03 and fires on WDE-10 — and says nothing
+  about the other three revisions.
 - **One of the four revision briefs contained two inaccurate observations.** The brief
   given to opus stated that zero `oklch()` calls appeared "in either configuration" and
   that the runs used DM Sans and Manrope "in all five scenarios". Both are true of
@@ -752,12 +897,17 @@ did not change that — it is still the only unaddressed failure category:
   make the direction table binding, so `paired-opus-r2`'s *type-variety* change is
   confounded and should not be read as a response to real data. Its fabrication and
   gate results stand.
-- **The extension set is three configs wide.** WDE-06…10 ran only on `paired-kimi`,
-  `paired-astra` and `paired-sol`, so they compare those three against each other —
-  they say nothing about `base` or the purchased configs. In particular, WDE-06's 9/10
-  with zero invented findings may well be the model's own competence rather than the
-  skills': a `base` run is needed before crediting the skills for it. Same for the
-  unanimous WDE-08 failure.
+- **Round 3 moves two variables at once.** `authored-sol-r3` differs from
+  `paired-sol-r2` both in its text and in shipping alone, so "one skill matched three"
+  is a statement about this file in this configuration, not a clean measurement of what
+  the two companion skills contribute. The isolating run — the r3 file loaded *paired* —
+  was not made. Nor was the reverse: the r2 file has never run alone.
+- **The extension set is now four configs wide.** WDE-06…10 ran on `paired-kimi`,
+  `paired-astra`, `paired-sol` and `authored-sol-r3`, so they compare those four against
+  each other — they say nothing about `base` or the purchased configs. In particular,
+  WDE-06's 9/10 (8/10 for round 3) with zero invented findings may well be the model's
+  own competence rather than the skills': a `base` run is needed before crediting the
+  skills for it. Same for the now four-config WDE-08 failure.
 - **WDE-10's harness is environment-dependent.** `paired-astra` passed by importing
   `playwright-core` out of an unrelated application's `node_modules` on this machine.
   A clean machine has no Playwright, so that result would not reproduce as-is.
@@ -814,7 +964,7 @@ did not change that — it is still the only unaddressed failure category:
 ## Layout
 
 ```
-.local/
+frontend/
 ├─ README.md              this file
 ├─ tests.yaml             the 5 scenarios + rubric
 ├─ prompts/WDE-*.txt      exact prompts handed to the builder (byte-identical per config)
@@ -829,6 +979,7 @@ did not change that — it is still the only unaddressed failure category:
 │  ├─ orchestration.txt   3-skill division of labour for paired configs
 │  ├─ session/            sol authoring transcript, xhigh (current)
 │  ├─ session-sol-high/   sol authoring transcript, high (superseded)
+│  ├─ revision3/          round 3: run.sh, sol.txt brief, session transcript
 │  └─ revision/           the revision round: run.sh, <author>.txt briefs,
 │                           <author>.log responses, session-<author>/ transcripts
 │                           (session-opus-openrouter-400/ is the failed openrouter
@@ -840,6 +991,7 @@ did not change that — it is still the only unaddressed failure category:
 │  ├─ authored-solhigh/            superseded sol skill, authored at high
 │  ├─ authored{,-kimi,-opus,-solhigh}-r2/
 │  │                               revised skills, authors shown their own failures
+│  ├─ authored-r3/                 round 3: sol's single skill, tested alone
 │  ├─ paired/                      frontend-design + local-guidelines variant
 │  └─ wig-command.md               cached Vercel Web Interface Guidelines
 ├─ runs/<config>/<scenario>/       built artifacts + meta.txt
@@ -880,6 +1032,14 @@ CFGS="paired-kimi-r2 paired-opus-r2 paired-solhigh-r2 paired-sol-r2" \
 Note that `./authoring/revision/run.sh` **overwrites** `skillsets/*-r2/`, and a fresh
 authoring pass will not reproduce the committed files byte-for-byte.
 
+To reproduce round 3 — sol revises again, is told it ships alone, then runs all ten
+scenarios with no companion skills and no orchestration note:
+
+```bash
+./authoring/revision3/run.sh                   # overwrites skillsets/authored-r3/
+CFGS="authored-sol-r3" ./run.sh                # all 10 scenarios
+```
+
 To reproduce the authoring-effort comparison, `authored-solhigh` and `paired-solhigh`
 are registered in `run.sh` against the retained `high` skill:
 
@@ -908,7 +1068,7 @@ Absent cells are skipped, so a config that only ran the core five produces five 
 and no warnings. WDE-06 is skipped for every config — it is a review, not a build.
 
 `score.py` and `stats.py` detect which scenarios a config actually has, so the
-thirteen core-only configs and the three extended ones can be scored in one call.
+thirteen core-only configs and the four extended ones can be scored in one call.
 
 `SKILL-SOURCES.tsv` records every third-party repo and the commit tested.
 
@@ -921,14 +1081,18 @@ and pi session transcripts. The transcripts hold the full tool-call traces behin
 findings — **delete the `runs/*/*/.session/` line from `.gitignore` if the team wants
 to audit those claims**; it adds ~200 MB.
 
-Tracked content is 28.3 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
-`shots/` is 23.2 MB. The history of this figure, since earlier revisions got it wrong in
+Tracked content is 37.7 MB (`git ls-files -z | xargs -0 du -cb | tail -1`), of which
+`shots/` is 30.0 MB. The history of this figure, since earlier revisions got it wrong in
 both directions: 9.0 MB before the extension set, 18.3 MB after it, 20.3 MB after the
 sol re-test added the 15 retained `high` cells and both authoring transcripts, then
 45.6 MB of screenshots once `shots/` covered all 18 configs instead of 5 — cut to
-23.2 MB by keeping one image per scenario.
+23.2 MB by keeping one image per scenario. That 23.2 MB reading was then left stale: the
+revision round's own runs and shots took it to 33.3 MB without the line being updated.
+Round 3 adds 4.4 MB — ten runs (1.8 MB, including 1.3 MB of Lato TTFs the WDE-10 run
+copied out of the system font directory to back its `@font-face`, which is exactly the
+evidence the round is checking) and 17 screenshots.
 
-Screenshots are still 82% of the tree. The remaining lever is deleting
+Screenshots are still 80% of the tree. The remaining lever is deleting
 `runs/authored-solhigh/` and `runs/paired-solhigh/` (−2 MB), which costs the
 *Authoring effort* comparison; that is not done here, on the assumption that a
 benchmark nobody can inspect is worth less than 28 MB of disk.

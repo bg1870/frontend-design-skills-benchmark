@@ -56,7 +56,7 @@ def ext(c):
         br='YES' if re.search(BROWSER,cmds,re.I) else 'no'
         if s=="WDE-06":
             f=hits(t,D6_DEFECTS); inv=hits(t,D6_TRAPS)
-            pristine="/home/basil/tmp/.local/fixtures/wde06/fixtures/site"
+            pristine="/home/basil/tmp/frontend/fixtures/wde06/fixtures/site"
             touched=[]
             for a in glob.glob(f"{pristine}/*"):
                 b=f"{c}/WDE-06/fixtures/site/{os.path.basename(a)}"

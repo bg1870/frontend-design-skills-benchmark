@@ -1,0 +1,188 @@
+# Review: `fixtures/site`
+
+**Overall score: 38/100 — not production-ready.**
+
+The page has clear copy, valid heading order, a restrained palette, and a simple content flow. However, accessibility blockers, unsupported product claims, misleading assets, broken controls, and weak mobile handling outweigh those strengths.
+
+This is a **static source audit**; no browser or interaction testing was performed.
+
+## Fix first
+
+### 1. Restore keyboard focus indicators
+**Severity: Critical**
+
+- **Evidence:** `fixtures/site/styles.css:29` globally applies `:focus { outline: none; }` without a replacement.
+- **Impact:** Keyboard users cannot see which link, button, or field is focused.
+- **Rule:** WCAG 2.4.7 Focus Visible; the frontend audit rule requires a visible `:focus-visible` indicator at least 2px thick with offset.
+- **Fix:** Remove the global suppression and add a high-contrast `:focus-visible` treatment.
+
+### 2. Replace inaccessible integration rows with real links or buttons
+**Severity: Critical**
+
+- **Evidence:** `fixtures/site/index.html:43–62` puts navigation on `<li onclick="location.href='#signup'">`.
+- **Impact:** The rows are mouse-only: they are not naturally focusable, have no keyboard activation semantics, and are not announced as controls. Each row also contains an unlabeled button whose click only works accidentally through event bubbling.
+- **Rule:** WCAG 2.1.1 Keyboard and 4.1.2 Name, Role, Value; navigation must use links and actions must use buttons.
+- **Fix:** Make each row one properly named anchor or button and remove the nested, behaviorless button.
+
+### 3. Fix the signup field’s accessible name and input semantics
+**Severity: Critical**
+
+- **Evidence:** `fixtures/site/index.html:69–71` uses `<input type="text" placeholder="Work email">` with no `<label>`.
+- **Impact:** A placeholder is not a persistent accessible label, and `type="text"` misses email validation and mobile email-keyboard behavior.
+- **Rule:** WCAG 1.3.1 Info and Relationships and 3.3.2 Labels or Instructions.
+- **Fix:** Add a visible or properly associated label and use `type="email"` with appropriate validation/status handling.
+
+### 4. Remove or substantiate unsupported commercial claims
+**Severity: Critical**
+
+- **Evidence:**  
+  - `fixtures/site/index.html:25`: “two-minute structured handover”  
+  - `fixtures/site/index.html:33–35`: specific capture, escalation, and resurfacing behavior  
+  - `fixtures/site/index.html:41`: “Connects to 12 practice management systems”  
+  - `fixtures/site/index.html:68`: “Two clinics, unlimited handovers, no card”
+- **Impact:** No product data, pricing source, integration implementation, or substantiation exists in the fixture. These read as factual production claims.
+- **Rule:** Supplied facts must be separated from fixture/mock material; do not invent integrations, prices, performance claims, or product outcomes.
+- **Fix:** Verify each claim against an authoritative source or explicitly mark the page/data as sample and replace unsupported claims.
+
+### 5. Replace the fake integration logos
+**Severity: Critical**
+
+- **Evidence:** All five files—`logo-ezyvet.svg`, `logo-cornerstone.svg`, `logo-avimark.svg`, `logo-vetspire.svg`, and `logo-provet.svg`—contain the same gray rounded rectangle and bar, while `index.html:44–60` presents them as real branded logos.
+- **Impact:** This falsely implies branded assets and confirmed integrations.
+- **Rule:** Never invent logos or integrations; gray placeholders must not masquerade as production evidence.
+- **Fix:** Use authorized supplied logos only after verifying integrations, or remove the logo treatment and clearly label illustrative data.
+
+## High priority
+
+### 6. Correct widespread text contrast failures
+**Severity: High**
+
+- **Evidence:** `styles.css:4–6,25,40,70,90` uses `#9aa3ad` for paragraphs, navigation, icons, and footer text.
+- **Measured contrast:**  
+  - `#9aa3ad` on `#fbfaf7`: **2.45:1**  
+  - `#9aa3ad` on white: **2.56:1**
+- **Impact:** Most body copy and navigation fail normal-text contrast.
+- **Rule:** WCAG 1.4.3 requires **4.5:1** for normal text.
+- **Fix:** Darken the muted text token enough to reach 4.5:1 on both page and surface backgrounds.
+
+### 7. Give every icon button a name and sufficient target size
+**Severity: High**
+
+- **Evidence:** The menu button at `index.html:19` and arrow buttons at `index.html:45,49,53,57,61` have no text or `aria-label`.
+- **Measured size:** From `styles.css:70`, the header control is approximately **36×36px** and row controls approximately **32×32px**, below the required **44×44px** target.
+- **Impact:** Screen readers hear unnamed buttons, while touch users receive undersized targets.
+- **Rule:** WCAG 4.1.2 Name, Role, Value and the project’s 44×44px touch-target requirement.
+- **Fix:** Name each button, enlarge its interactive box, and remove buttons that have no independent action.
+
+### 8. Implement or remove the mobile menu button
+**Severity: High**
+
+- **Evidence:** `index.html:19` renders a hamburger button, but the script at `index.html:80–85` only handles reveal animations. No menu state or event handler exists.
+- **Impact:** It looks interactive but does nothing.
+- **Rule:** Every visible control must work and expose its state.
+- **Fix:** Connect it to a real menu with `aria-expanded`/`aria-controls`, or remove it.
+
+### 9. Repair the 360px header layout
+**Severity: High**
+
+- **Evidence:** `styles.css:31–40` keeps the wordmark, three navigation links, two 32px flex gaps, 40px side gutters, and hamburger in one row. The mobile rule at `styles.css:95–100` only reduces link text to 12px.
+- **Measurement:** At 360px, the header has only **280px** after its 40px left/right padding, before accounting for the wordmark, three links, gaps, and menu button. The content cannot fit reliably.
+- **Rule:** At 360px, navigation must remain usable without clipping or horizontal overflow; mobile gutters should be 16–24px.
+- **Fix:** Use a genuine mobile navigation pattern and reduce the 40px mobile gutters.
+
+### 10. Do not hide core content behind JavaScript
+**Severity: High**
+
+- **Evidence:** `styles.css:92` gives every `.reveal` section `opacity: 0`; only the IntersectionObserver at `index.html:80–85` reveals it.
+- **Impact:** If JavaScript fails or IntersectionObserver is unavailable, all content after the hero remains invisible.
+- **Rule:** Core content must remain available under progressive enhancement.
+- **Fix:** Default sections to visible and apply hidden animation state only after JavaScript establishes enhancement support.
+
+### 11. Add reduced-motion handling
+**Severity: High**
+
+- **Evidence:** `styles.css:92–93` animates opacity and 16px vertical travel over 500ms, with no `prefers-reduced-motion` query.
+- **Rule:** Under `prefers-reduced-motion`, remove reveal travel and nonessential animation; WCAG 2.3.3 supports user control over interaction-triggered motion.
+- **Fix:** Disable the transform and transition for reduced-motion users.
+
+## Medium priority
+
+### 12. Fix duplicate IDs
+**Severity: Medium**
+
+- **Evidence:** `id="cta"` appears at both `index.html:17` and `index.html:26`.
+- **Impact:** IDs must be unique; selectors, analytics, tests, and accessibility relationships can resolve unpredictably.
+- **Rule:** HTML IDs are document-unique.
+- **Fix:** Remove these IDs if unnecessary or assign distinct names.
+
+### 13. Correct mobile control typography and sizing
+**Severity: Medium**
+
+- **Evidence:** `styles.css:98` shrinks every `.btn` to 13px with 4px vertical padding; `styles.css:87` keeps the input at 15px.
+- **Measured button height:** Approximately **31px** at the inherited 1.6 line-height, below 44px.
+- **Impact:** Mobile buttons are hard to tap, and form text is below the project’s 16px mobile minimum.
+- **Rule:** Touch targets must be 44×44px; mobile body/control text should not drop below 16px.
+- **Fix:** Preserve at least 16px control text and a 44px minimum control height.
+
+### 14. The screenshot description overstates what the asset shows
+**Severity: Medium**
+
+- **Evidence:** `index.html:27` says the image shows “four patients grouped by escalation level,” but `screenshot.svg` contains only anonymous rectangles and one colored bar—no patient names, labels, or visible escalation groups.
+- **Impact:** The alt text claims information that is not actually perceivable in the image.
+- **Rule:** Alternative text must represent the image’s actual content and function; WCAG 1.1.1.
+- **Fix:** Either make the mockup genuinely communicate those details or describe it as an illustrative handover interface.
+
+### 15. Form outcomes and error handling are absent
+**Severity: Medium**
+
+- **Evidence:** `index.html:69–72` posts directly to `/api/signup`, with no described invalid, loading, error, or success state.
+- **Impact:** Users receive no in-page guidance or announced status, and the repository contains no implementation supporting the action.
+- **Rule:** Forms should provide relevant invalid, loading, error, and success behavior; errors/status must be conveyed in text.
+- **Fix:** Add native constraints plus explicit, accessible result states when the endpoint is implemented.
+
+### 16. Borders are too faint when relied on as component boundaries
+**Severity: Medium**
+
+- **Evidence:** `styles.css:7,57,60,64,87` uses `#e2e0d8` for card, list, image, and field boundaries.
+- **Measured contrast:**  
+  - Against white: **1.32:1**  
+  - Against the page background: **1.27:1**
+- **Impact:** The input and grouped surfaces may be difficult to distinguish.
+- **Rule:** WCAG 1.4.11 requires **3:1** for visual information needed to identify controls and states.
+- **Fix:** Strengthen essential control boundaries; decorative separators need not all reach 3:1.
+
+## Lower-priority visual and structural issues
+
+### 17. The typography is unnecessarily fragmented
+**Severity: Low**
+
+- **Evidence:** `index.html:8` loads Inter, Playfair Display, Roboto Mono, and Lobster; `styles.css:20,38,48,54,62` uses all four.
+- **Impact:** The script wordmark, editorial headings, technical summary, and neutral UI body compete rather than forming a coherent veterinary/operational voice. It also adds four network font families.
+- **Rule:** Use at most two families and three weights; pair contrasting roles rather than adding a face for each component.
+- **Fix:** Consolidate around the smallest defensible type system.
+
+### 18. The page falls into repetitive template patterns
+**Severity: Low**
+
+- **Evidence:** `styles.css:45` gives every section the same 64px vertical padding; `styles.css:59–60` uses an equal three-card feature grid; most groups repeat the same border, white fill, and 10px radius.
+- **Impact:** Hierarchy weakens after the hero, and the result could fit many unrelated SaaS products by changing the logo and copy.
+- **Rule:** Avoid automatic equal feature-card trios, repeated equal-height bands, and rounded containers unless content behavior justifies them.
+- **Fix:** Without redesigning, reduce redundant card styling and vary spacing according to content importance.
+
+### 19. The signup section has weak form-width discipline
+**Severity: Low**
+
+- **Evidence:** `styles.css:86–87` lays the field and button in a single flex row but provides no mobile stacking rule; the input is capped at 320px while the form itself has no 28–40rem measure.
+- **Impact:** Longer localized button labels or validation content could compress the field at narrow widths.
+- **Rule:** Forms should stay around 28–40rem and reflow intentionally at 360px.
+- **Fix:** Add an explicit narrow-screen stack or robust wrapping behavior.
+
+## Recommended order
+
+1. Focus visibility, semantic integration controls, signup labeling.
+2. Verify/remove unsupported claims and fake logos.
+3. Fix text contrast and component boundaries.
+4. Repair mobile navigation, target sizes, and typography.
+5. Make reveal behavior progressive and reduced-motion safe.
+6. Fix duplicate IDs, image description, and form states.
+7. Consolidate typography and reduce repetitive template styling.

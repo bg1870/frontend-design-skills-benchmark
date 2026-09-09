@@ -1,0 +1,9 @@
+Implemented the Kettell extension in `fixtures/app`:
+
+- Added a responsive **Customer testimonials** section with a clearly labelled verified-content placeholder.
+- Added an **In the box** hardware section without inventing accessories or imagery.
+- Updated primary navigation and accessibility states.
+- Added responsive styling for 360px, tablet, and desktop layouts.
+- Corrected the unavailable font declaration to use an honest system serif stack.
+- Documented sourcing attempts and unresolved content blockers in `ASSUMPTIONS.md`.
+- Static HTML and CSS checks pass.

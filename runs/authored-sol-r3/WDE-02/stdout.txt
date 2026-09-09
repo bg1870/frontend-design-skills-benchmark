@@ -1,0 +1,20 @@
+Built the plumbing dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- `index.html` — responsive dashboard structure
+- `styles.css` — operational, accessible desktop/mobile styling
+- `app.js` — data loading, summaries, search, filtering, sorting, and technician assignment
+- `ASSUMPTIONS.md` — documented material assumptions
+
+### Verification
+- JavaScript syntax passed
+- Fixture JSON validated
+- No external dependencies required
+
+Serve locally so the fixture can load:
+
+```bash
+python3 -m http.server
+```
+
+Then open `http://localhost:8000`.

@@ -5,8 +5,8 @@
 #   ./run.sh              — all four authors
 #   ./run.sh kimi         — one
 set -u
-REV=/home/basil/tmp/.local/authoring/revision
-SETS=/home/basil/tmp/.local/skillsets
+REV=/home/basil/tmp/frontend/authoring/revision
+SETS=/home/basil/tmp/frontend/skillsets
 
 # author | provider | model | thinking | output skillset dir
 spec() {

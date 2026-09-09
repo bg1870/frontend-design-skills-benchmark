@@ -1,0 +1,6 @@
+Delivered:
+
+- `index.html` — self-contained eight-slide, 16:9 investor deck with arrow-key, button, dot, and swipe navigation.
+- `ASSUMPTIONS.md` — documents all unsupported market, traction, team, business model, and fundraising assumptions.
+
+All speculative figures and claims are explicitly labeled as illustrative.

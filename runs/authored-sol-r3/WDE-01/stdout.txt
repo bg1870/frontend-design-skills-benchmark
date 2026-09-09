@@ -1,0 +1,9 @@
+Completed the responsive Ridgeline marketing site.
+
+### Files
+- `index.html` — Semantic single-page site
+- `styles.css` — Responsive visual system for 360px, tablet, and desktop
+- `script.js` — Mobile navigation, payroll-detail interaction, dynamic year
+- `ASSUMPTIONS.md` — Material product and implementation assumptions
+
+Static HTML and JavaScript checks pass. No dependencies or build step required.

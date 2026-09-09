@@ -23,7 +23,7 @@ Review files for compliance with Web Interface Guidelines.
 Read the cached guidelines before each review:
 
 ```
-/home/basil/tmp/.local/skillsets/wig-command.md
+/home/basil/tmp/frontend/skillsets/wig-command.md
 ```
 
 Read that local file to retrieve the rules (no network access). The fetched content contains all the rules and output format instructions.

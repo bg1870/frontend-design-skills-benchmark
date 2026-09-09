@@ -14,7 +14,7 @@ cfgs=sys.argv[1].split(",") if len(sys.argv)>1 else ["base","wde","design-list",
 scs=sys.argv[2].split(",") if len(sys.argv)>2 else ["WDE-01","WDE-02","WDE-03","WDE-04","WDE-05"]
 for c in cfgs:
     for s in scs:
-        g=glob.glob(f"/home/basil/tmp/.local/runs/{c}/{s}/.session/*.jsonl")
+        g=glob.glob(f"/home/basil/tmp/frontend/runs/{c}/{s}/.session/*.jsonl")
         if not g: continue
         cl=calls(g[0])
         print(f"===== {c}/{s} : {len(cl)} tool calls =====")
