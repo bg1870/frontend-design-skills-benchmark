@@ -1,0 +1,12 @@
+Written to `SKILL.md` — 78 lines (was 69; the growth is the audit and the existing-site section, nothing else).
+
+**What changed and why:**
+
+- **§1 Register** now requires naming the subject detail that implies the register, and names *both* reflexes — dark-mode-glow *and* pale-paper-under-near-black — as habits. This is the mechanism aimed at the four identical grounds.
+- **§4 Color** rewritten around the ground as an argued axis (lightness *and* hue), with the burden of proof on the paper default. Register anchors now deliberately span paper → white → cream → near-black → deep teal (new `nocturne` anchor), so "chosen per register" can no longer converge on one ground.
+- **§3 Type** hardened to protect the best result in the corpus: both faces loaded via real `<link>` tags, every family named in CSS must be one actually loaded — explicitly barring invented names and `local()` guessing, the two failure modes other files showed.
+- **§8** kept verbatim except the date rule now names `Intl.DateTimeFormat` and bans hand-typed weekday/month names — exactly what the clean prototype run did.
+- **New §9 (existing sites)** covers what was previously borrowed luck: tokens, form endpoints, analytics/data attributes are a binding contract; notes go to the handoff message or project root, never inside the delivered site's tree, never with invented dates.
+- **§10 audit** absorbed the missing companions' jobs: static re-read (kept the no-servers/browsers line verbatim), plus semantics, computed 4.5:1 contrast on actual grounds, 44px touch targets, aria handling for SVG, and a squint test for the self-critique `frontend-design` used to supply.
+
+Everything else — §2 banned defaults, §5 layout, §6 signature move, §7 motion, §8 honesty — is untouched, since the results show those sections were carrying the clean outcomes.

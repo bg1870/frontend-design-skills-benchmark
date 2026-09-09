@@ -1,0 +1,24 @@
+Built and polished the B2B analytics pricing page.
+
+### Delivered
+- `index.html` — responsive, dependency-free pricing page
+- `ASSUMPTIONS.md` — product, pricing, and integration assumptions
+
+### Included
+- Three sales-led pricing plans
+- Interactive plan-fit selector with keyboard navigation
+- Responsive comparison table
+- FAQ disclosures
+- Mobile navigation
+- Accessible sales inquiry dialog and form state
+- Focus styling and reduced-motion support
+- Responsive layouts for mobile, tablet, and desktop
+
+### Static verification
+- HTML parsed successfully
+- JavaScript syntax passed
+- No duplicate IDs or missing ARIA references
+- Checked for prohibited focus and transition patterns
+- Audited source for responsive overflow, navigation, labels, and controls
+
+Numeric pricing was intentionally omitted because no approved commercial terms were supplied.

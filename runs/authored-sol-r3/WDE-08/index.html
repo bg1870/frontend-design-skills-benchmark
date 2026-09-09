@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Install Nojom SDK, authenticate, and send your first Claude request." />
+  <title>Nojom SDK — Quickstart</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Nojom SDK home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+      <span>Nojom</span><span class="brand-product">SDK</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a class="active" href="#quickstart">Quickstart</a>
+      <a href="#request">API reference</a>
+      <a href="#cost">Pricing</a>
+    </nav>
+    <a class="repo-link" href="#request">TypeScript <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <aside class="rail" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+        <li><a href="#install"><span>01</span> Install</a></li>
+        <li><a href="#authenticate"><span>02</span> Authenticate</a></li>
+        <li><a href="#request"><span>03</span> First request</a></li>
+        <li><a href="#cost"><span>04</span> Estimate cost</a></li>
+      </ol>
+      <div class="rail-note">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div><strong>Claude Sonnet 4</strong><small>Default model</small></div>
+      </div>
+    </aside>
+
+    <article id="quickstart">
+      <section class="hero">
+        <div class="hero-meta"><span>QUICKSTART</span><span>≈ 5 MINUTES</span></div>
+        <h1>From install to first<br />Claude response.</h1>
+        <p>Nojom is our typed, lightweight wrapper around the Claude API. Add the package, set one environment variable, and make your first request.</p>
+        <a class="start-link" href="#install">Start building <span aria-hidden="true">↓</span></a>
+      </section>
+
+      <section class="step" id="install">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <p class="kicker">INSTALL</p>
+          <h2>Add the SDK</h2>
+          <p>Install Nojom with your project’s package manager. TypeScript types are included.</p>
+          <div class="code-block single-line">
+            <div class="code-top"><span>Terminal</span><button class="copy" data-copy="npm install @nojom/sdk" aria-label="Copy install command"><span>Copy</span></button></div>
+            <pre><code><span class="prompt">$</span> npm install <span class="code-accent">@nojom/sdk</span></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" id="authenticate">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <p class="kicker">AUTHENTICATE</p>
+          <h2>Set your API key</h2>
+          <p>Store the key in your environment. The client reads it automatically—never commit it to source control.</p>
+          <div class="callout"><span aria-hidden="true">i</span><p>Get an API key from the internal developer portal, then add it to <code>.env.local</code>.</p></div>
+          <div class="code-block single-line">
+            <div class="code-top"><span>.env.local</span><button class="copy" data-copy="NOJOM_API_KEY=your_api_key_here" aria-label="Copy environment variable"><span>Copy</span></button></div>
+            <pre><code><span class="code-key">NOJOM_API_KEY</span>=<span class="code-string">your_api_key_here</span></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" id="request">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <p class="kicker">FIRST REQUEST</p>
+          <h2>Send a message</h2>
+          <p>Create a client and pass a prompt. The response is fully typed, including content blocks and usage.</p>
+          <div class="code-block">
+            <div class="code-top"><span>index.ts</span><button class="copy" data-target="request-code" aria-label="Copy TypeScript example"><span>Copy</span></button></div>
+            <pre id="request-code"><code><span class="code-keyword">import</span> { Nojom } <span class="code-keyword">from</span> <span class="code-string">"@nojom/sdk"</span>;
+
+<span class="code-keyword">const</span> nojom = <span class="code-keyword">new</span> <span class="code-fn">Nojom</span>();
+
+<span class="code-keyword">const</span> response = <span class="code-keyword">await</span> nojom.messages.<span class="code-fn">create</span>({
+  model: <span class="code-string">"claude-sonnet-4-20250514"</span>,
+  maxTokens: <span class="code-number">1024</span>,
+  messages: [
+    { role: <span class="code-string">"user"</span>, content: <span class="code-string">"Explain what this code does."</span> }
+  ]
+});
+
+console.<span class="code-fn">log</span>(response.content[<span class="code-number">0</span>].text);</code></pre>
+          </div>
+          <p class="model-note"><span></span><strong>Current default:</strong> <code>claude-sonnet-4-20250514</code></p>
+        </div>
+      </section>
+
+      <section class="step cost-step" id="cost">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <p class="kicker">ESTIMATE COST</p>
+          <h2>Know the cost before you ship</h2>
+          <p>Claude Sonnet 4 usage is metered separately for input and output tokens.</p>
+          <div class="price-row">
+            <div><span>INPUT</span><strong>$3</strong><small>per 1M tokens</small></div>
+            <div><span>OUTPUT</span><strong>$15</strong><small>per 1M tokens</small></div>
+          </div>
+          <div class="formula"><code>(input tokens × $3 + output tokens × $15) ÷ 1,000,000</code></div>
+          <p class="example"><strong>Example:</strong> A request using 2,000 input tokens and 500 output tokens costs approximately <strong>$0.0135</strong>.</p>
+          <p class="fine-print">Standard API rates shown. Prompt caching, batch processing, and future pricing changes can affect actual spend.</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer><span>Nojom SDK</span><span>Internal developer documentation</span><a href="#top">Back to top ↑</a></footer>
+  <div class="toast" role="status" aria-live="polite">Copied to clipboard</div>
+</body>
+</html>

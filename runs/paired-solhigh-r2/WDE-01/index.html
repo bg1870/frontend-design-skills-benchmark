@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Ridgeline brings restaurant scheduling, time tracking, and payroll preparation into one clear weekly workflow.">
+  <meta name="theme-color" content="#f2f3ef">
+  <title>Ridgeline — From shift plan to payroll</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=DM+Serif+Display&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ridgeline home"><span aria-hidden="true">R/</span> RIDGELINE</a>
+    <nav aria-label="Main navigation" id="nav">
+      <a href="#workflow">Workflow</a><a href="#features">What it handles</a><a href="#fit">Who it’s for</a>
+    </nav>
+    <a class="button button-small header-cta" href="mailto:hello@ridgeline.example?subject=Ridgeline%20walkthrough">Book a walkthrough</a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span class="sr-only">Open menu</span><span></span><span></span></button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="kicker">Built for independent restaurants</p>
+        <h1>One weekly rhythm.<br>Schedule to payroll.</h1>
+        <p class="lede">Build the rota, catch timecard issues, and prepare payroll without copying the same week between tools.</p>
+        <div class="hero-actions"><a class="button" href="mailto:hello@ridgeline.example?subject=Ridgeline%20walkthrough">Book a walkthrough</a><a class="text-link" href="#workflow">See the weekly flow</a></div>
+      </div>
+      <div class="schedule" aria-label="Illustrative weekly shift schedule">
+        <div class="schedule-head"><div><b>Dining room</b><span>Illustrative schedule</span></div><div class="week">Week view</div></div>
+        <div class="schedule-grid">
+          <div class="times" aria-hidden="true"><span>3 PM</span><span>5 PM</span><span>7 PM</span><span>9 PM</span><span>11 PM</span></div>
+          <div class="day"><strong>THU</strong><div class="shift coral" style="--start:18%;--length:53%"><b>Maya</b><small>Server · 4:30–10</small></div><div class="shift blue" style="--start:31%;--length:43%"><b>Jon</b><small>Bar · 6–10:30</small></div></div>
+          <div class="day current"><strong>FRI</strong><div class="shift coral" style="--start:9%;--length:67%"><b>Maya</b><small>Server · 4–11</small></div><div class="shift blue" style="--start:24%;--length:57%"><b>Jon</b><small>Bar · 5:30–11:30</small></div><div class="shift gold" style="--start:18%;--length:48%"><b>Alex</b><small>Host · 4:30–9:30</small></div></div>
+          <div class="day"><strong>SAT</strong><div class="shift coral" style="--start:8%;--length:70%"><b>Nia</b><small>Server · 4–11:30</small></div><div class="shift blue" style="--start:28%;--length:50%"><b>Jon</b><small>Bar · 6–11:30</small></div></div>
+        </div>
+        <div class="schedule-foot"><span><i class="dot warning"></i> 2 timecards need review</span><button type="button" id="review">Review</button></div>
+      </div>
+    </section>
+
+    <section class="problem" id="workflow">
+      <div class="section-intro"><p class="kicker">The weekly handoff</p><h2>Stop rebuilding the week on payroll day.</h2></div>
+      <div class="flow" aria-label="Ridgeline workflow">
+        <article><span class="step">1</span><div><h3>Plan the floor</h3><p>Set shifts by role and see the whole service week in one view.</p></div></article>
+        <article><span class="step">2</span><div><h3>Work the shift</h3><p>Keep scheduled hours and recorded time together, where differences are easy to spot.</p></div></article>
+        <article><span class="step">3</span><div><h3>Review the exceptions</h3><p>Focus on missed punches and edits instead of checking every clean timecard.</p></div></article>
+        <article><span class="step">4</span><div><h3>Prepare payroll</h3><p>Bring approved hours forward without another round of manual re-entry.</p></div></article>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="feature-copy"><p class="kicker">Made for service</p><h2>The week stays legible, even when service isn’t.</h2><p>Ridgeline keeps the manager’s decisions close to the shift they affect—staffing, hours, and payroll preparation in one operating view.</p></div>
+      <div class="ledger">
+        <div class="ledger-row"><span>Schedule</span><div><h3>Build around roles, not spreadsheets</h3><p>Lay out coverage for servers, bar, host, and kitchen across the week.</p></div><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 3v3m14-3v3M4 9h16M5 5h14a1 1 0 011 1v14H4V6a1 1 0 011-1z"/></svg></div>
+        <div class="ledger-row"><span>Time</span><div><h3>Find what needs attention</h3><p>Review exceptions in context before hours move forward.</p></div><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg></div>
+        <div class="ledger-row"><span>Payroll</span><div><h3>Approve a clean week</h3><p>Keep reviewed hours together and make the payroll handoff deliberate.</p></div><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16v13H4zM4 10h16M8 15h4"/></svg></div>
+      </div>
+    </section>
+
+    <section class="fit" id="fit">
+      <div class="fit-main"><p class="kicker">A practical fit</p><h2>For owners who still know what happened on Friday night.</h2></div>
+      <div class="fit-note"><p>Ridgeline is designed for independent restaurant operators who manage the schedule, the team, and the payroll handoff closely.</p><ul><li>One clear weekly view</li><li>Role-based shift planning</li><li>Exception-led timecard review</li><li>Approved hours ready for the next step</li></ul></div>
+    </section>
+
+    <section class="closing">
+      <p class="kicker">Your next schedule</p><h2>Run the week from one place.</h2><p>See how Ridgeline can fit the way your restaurant already works.</p><a class="button light" href="mailto:hello@ridgeline.example?subject=Ridgeline%20walkthrough">Book a walkthrough</a>
+    </section>
+  </main>
+  <footer><a class="brand" href="#top"><span aria-hidden="true">R/</span> RIDGELINE</a><p>Payroll and scheduling for independent restaurants.</p><p>© <span id="year"></span> Ridgeline</p></footer>
+  <div class="toast" role="status" aria-live="polite" hidden>Review queue opened: 2 illustrative timecards.</div>
+  <script src="script.js"></script>
+</body>
+</html>

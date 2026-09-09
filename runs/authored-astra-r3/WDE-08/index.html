@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Install Nojom SDK, authenticate, and send your first Claude API request." />
+  <title>Nojom SDK — TypeScript quickstart</title>
+  <style>
+    :root {
+      --canvas: #f5f7fa;
+      --paper: #ffffff;
+      --ink: #172238;
+      --muted: #637087;
+      --rule: #dce2ea;
+      --navy: #14233d;
+      --accent: #e95532;
+      --accent-dark: #c93d20;
+      --code: #101827;
+      --code-rule: #293750;
+      --code-ink: #dfe7f3;
+      --cyan: #70d7dc;
+      --yellow: #f4cf74;
+      --green: #8bddae;
+      --radius: 10px;
+      --shadow: 0 18px 50px rgba(20, 35, 61, .11);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--canvas); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; }
+    button, code { font: inherit; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #2d73d2; outline-offset: 3px; }
+    .topbar { height: 64px; display: flex; align-items: center; border-bottom: 1px solid var(--rule); background: rgba(255,255,255,.94); }
+    .nav { width: min(1180px, calc(100% - 48px)); margin: auto; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 760; letter-spacing: -.02em; text-decoration: none; }
+    .mark { width: 27px; height: 27px; display: grid; place-items: center; color: white; background: var(--navy); border-radius: 7px; font-family: ui-monospace, monospace; font-size: 14px; }
+    .brand span:last-child { color: var(--muted); font-size: 13px; font-weight: 600; letter-spacing: .01em; padding-left: 11px; border-left: 1px solid var(--rule); }
+    .nav a:last-child { color: var(--muted); font-size: 14px; text-decoration: none; }
+    .nav a:last-child:hover { color: var(--ink); }
+    main { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .hero { padding: 72px 0 42px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(260px, 3fr); gap: 72px; align-items: end; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--accent-dark); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 800; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--accent); }
+    h1 { max-width: 760px; margin: 18px 0 20px; font-size: clamp(42px, 6.1vw, 78px); line-height: .99; letter-spacing: -.055em; font-weight: 780; }
+    .lede { max-width: 620px; margin: 0; color: var(--muted); font-size: 19px; line-height: 1.55; }
+    .hero-note { padding: 18px 0 3px 24px; border-left: 1px solid var(--rule); }
+    .hero-note strong { display: block; margin-bottom: 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+    .hero-note code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--accent-dark); font-size: 13px; overflow-wrap: anywhere; }
+    .quickstart { display: grid; grid-template-columns: 190px minmax(0, 1fr); border-top: 1px solid var(--rule); }
+    .rail { padding: 36px 28px 0 0; }
+    .rail-inner { position: sticky; top: 24px; }
+    .rail-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .13em; font-weight: 800; }
+    .rail ol { list-style: none; padding: 12px 0; margin: 0; counter-reset: steps; }
+    .rail li { counter-increment: steps; }
+    .rail a { display: flex; gap: 10px; align-items: center; padding: 8px 0; text-decoration: none; color: var(--muted); font-size: 14px; }
+    .rail a::before { content: "0" counter(steps); color: #9aa4b4; font-family: ui-monospace, monospace; font-size: 11px; }
+    .rail a:hover { color: var(--ink); }
+    .content { min-width: 0; border-left: 1px solid var(--rule); padding: 0 0 96px 48px; }
+    .step { padding: 44px 0 48px; border-bottom: 1px solid var(--rule); scroll-margin-top: 20px; }
+    .step-head { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; margin-bottom: 24px; }
+    .number { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; color: var(--muted); font-family: ui-monospace, monospace; font-size: 12px; }
+    h2 { margin: 0; font-size: 28px; letter-spacing: -.035em; line-height: 1.2; }
+    .step-head p { margin: 5px 0 0; color: var(--muted); }
+    .code-card { background: var(--code); color: var(--code-ink); border: 1px solid var(--code-rule); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .code-bar { min-height: 46px; padding: 0 10px 0 17px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--code-rule); color: #9ba9bd; font-size: 12px; }
+    .filename { display: flex; align-items: center; gap: 9px; }
+    .filename::before { content: ""; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    .copy { min-height: 34px; padding: 0 11px; border: 0; border-radius: 6px; color: #b9c5d5; background: transparent; cursor: pointer; font-size: 12px; }
+    .copy:hover { background: #1d2a40; color: white; }
+    pre { margin: 0; padding: 22px; overflow-x: auto; font: 13.5px/1.72 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; tab-size: 2; }
+    .kw { color: var(--cyan); } .str { color: var(--yellow); } .fn { color: var(--green); } .cm { color: #7f8ba0; }
+    .inline-note { margin: 16px 0 0 64px; color: var(--muted); font-size: 14px; }
+    .inline-note code { padding: 2px 5px; background: #e8ecf2; color: #38445a; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 12px; }
+    .cost { margin-top: 44px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start; }
+    .cost-copy p { color: var(--muted); max-width: 46ch; }
+    .pricing { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); }
+    .pricing-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: baseline; padding: 18px 20px; border-bottom: 1px solid var(--rule); }
+    .pricing-row:last-child { border: 0; }
+    .pricing-label { color: var(--muted); font-size: 14px; }
+    .price { font-size: 21px; font-weight: 750; font-variant-numeric: tabular-nums; }
+    .price small { color: var(--muted); font-size: 12px; font-weight: 500; }
+    .estimate { grid-column: 1 / -1; margin: -4px 20px 18px; padding-top: 14px; color: var(--muted); border-top: 1px dashed var(--rule); font-size: 13px; }
+    .assumption { margin-top: 24px; padding: 14px 16px; border-left: 3px solid #e8af32; background: #fff8e7; color: #65511f; font-size: 13px; }
+    footer { padding: 24px 0 48px; display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+    @media (max-width: 760px) {
+      .nav, main { width: min(100% - 32px, 1180px); }
+      .brand span:last-child { display: none; }
+      .hero { padding: 48px 0 32px; display: block; }
+      .hero-note { margin-top: 28px; }
+      .quickstart { display: block; }
+      .rail { display: none; }
+      .content { border-left: 0; padding: 0 0 64px; }
+      .step-head { grid-template-columns: 40px 1fr; gap: 10px; }
+      .inline-note { margin-left: 50px; }
+      .cost { grid-template-columns: 1fr; gap: 20px; }
+      pre { font-size: 12.5px; padding: 18px; }
+      footer { display: block; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top"><span class="mark">N/</span>Nojom <span>TypeScript SDK</span></a>
+      <a href="#cost">Pricing note ↓</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <div class="eyebrow">Quickstart · ~5 minutes</div>
+        <h1 id="page-title">From install to first response.</h1>
+        <p class="lede">Nojom is our typed wrapper around the Claude API. Add the package, provide your API key, and ship a working request in three small steps.</p>
+      </div>
+      <aside class="hero-note" aria-label="Current default model">
+        <strong>Current model</strong>
+        <code>claude-sonnet-4-5-20250929</code>
+      </aside>
+    </section>
+
+    <div class="quickstart">
+      <aside class="rail" aria-label="On this page"><div class="rail-inner">
+        <div class="rail-label">On this page</div>
+        <ol><li><a href="#install">Install</a></li><li><a href="#authenticate">Authenticate</a></li><li><a href="#request">First request</a></li><li><a href="#cost">Estimate cost</a></li></ol>
+      </div></aside>
+
+      <div class="content">
+        <section class="step" id="install">
+          <div class="step-head"><span class="number">01</span><div><h2>Install the SDK</h2><p>Add Nojom to your TypeScript project.</p></div></div>
+          <div class="code-card"><div class="code-bar"><span class="filename">Terminal</span><button class="copy" data-copy="npm install @nojom/sdk" aria-label="Copy install command">Copy</button></div><pre><code>npm install @nojom/sdk</code></pre></div>
+        </section>
+
+        <section class="step" id="authenticate">
+          <div class="step-head"><span class="number">02</span><div><h2>Set your API key</h2><p>Keep credentials in the environment—never commit them to source.</p></div></div>
+          <div class="code-card"><div class="code-bar"><span class="filename">.env</span><button class="copy" data-copy="NOJOM_API_KEY=your_api_key_here" aria-label="Copy environment variable">Copy</button></div><pre><code>NOJOM_API_KEY=<span class="str">your_api_key_here</span></code></pre></div>
+          <p class="inline-note">The client reads <code>NOJOM_API_KEY</code> automatically.</p>
+        </section>
+
+        <section class="step" id="request">
+          <div class="step-head"><span class="number">03</span><div><h2>Send your first request</h2><p>Create a client and ask Claude for a typed response.</p></div></div>
+          <div class="code-card"><div class="code-bar"><span class="filename">quickstart.ts</span><button class="copy" aria-label="Copy first request example" data-target="request-code">Copy</button></div><pre><code id="request-code"><span class="kw">import</span> { Nojom } <span class="kw">from</span> <span class="str">"@nojom/sdk"</span>;
+
+<span class="kw">const</span> nojom = <span class="kw">new</span> <span class="fn">Nojom</span>();
+
+<span class="kw">const</span> response = <span class="kw">await</span> nojom.messages.<span class="fn">create</span>({
+  model: <span class="str">"claude-sonnet-4-5-20250929"</span>,
+  maxTokens: 512,
+  messages: [
+    { role: <span class="str">"user"</span>, content: <span class="str">"Explain this SDK in one sentence."</span> },
+  ],
+});
+
+console.<span class="fn">log</span>(response.content[0].text);</code></pre></div>
+          <p class="inline-note">Run it with <code>npx tsx quickstart.ts</code>.</p>
+        </section>
+
+        <section class="cost" id="cost" aria-labelledby="cost-title">
+          <div class="cost-copy"><div class="eyebrow">Before you ship</div><h2 id="cost-title" style="margin-top:14px">Estimate request cost</h2><p>Claude Sonnet 4.5 standard API pricing is calculated separately for input and output tokens. Usage is returned with each response.</p></div>
+          <div>
+            <div class="pricing" aria-label="Token pricing">
+              <div class="pricing-row"><span class="pricing-label">Input tokens</span><span class="price">$3 <small>/ 1M tokens</small></span></div>
+              <div class="pricing-row"><span class="pricing-label">Output tokens</span><span class="price">$15 <small>/ 1M tokens</small></span></div>
+              <div class="estimate">Example: 10K input + 2K output ≈ <strong>$0.06</strong><br>($3 × 0.01) + ($15 × 0.002)</div>
+            </div>
+            <div class="assumption"><strong>Assumptions:</strong> Nojom mirrors the Messages API shape shown above; package name and environment variable follow internal naming conventions. Pricing shown is assumed standard Claude Sonnet 4.5 API pricing, excludes cache/batch discounts and should be checked against your internal billing terms before launch.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <footer><span>Nojom SDK · Internal developer quickstart</span><span>Keep keys server-side.</span></footer>
+  </main>
+  <script>
+    document.querySelectorAll('.copy').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const target = button.dataset.target && document.getElementById(button.dataset.target);
+        const text = button.dataset.copy || target?.innerText || '';
+        try {
+          await navigator.clipboard.writeText(text);
+          const previous = button.textContent;
+          button.textContent = 'Copied';
+          setTimeout(() => { button.textContent = previous; }, 1600);
+        } catch {
+          button.textContent = 'Select & copy';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

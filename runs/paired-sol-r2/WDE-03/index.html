@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clear, flexible pricing for Northstar analytics workspaces.">
+  <meta name="theme-color" content="#f4f7f8">
+  <title>Pricing — Northstar Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to pricing</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Northstar home">
+      <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M4 25V14l7 5 6-12 11 7v11H4Z"/><circle cx="25" cy="7" r="2.5"/></svg>
+      <span translate="no">Northstar</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#compare">Compare</a>
+      <a href="#questions">Questions</a>
+      <a class="nav-action" href="mailto:sales@northstar.example?subject=Northstar%20demo">Talk to sales</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="pricing-title">
+      <div class="hero-copy">
+        <p class="kicker">Workspace pricing</p>
+        <h1 id="pricing-title">One source of truth.<br>Priced for the team using it.</h1>
+        <p class="intro">Start with focused reporting, then add governance and scale when your analytics practice needs it.</p>
+      </div>
+      <div class="billing-control" aria-label="Billing period">
+        <span id="billing-label">Billing</span>
+        <button class="toggle" type="button" role="switch" aria-checked="false" aria-labelledby="billing-label billing-state">
+          <span aria-hidden="true"></span>
+        </button>
+        <strong id="billing-state" aria-live="polite">Monthly</strong>
+        <span class="saving">Save 15% yearly</span>
+      </div>
+    </section>
+
+    <section class="plans" aria-label="Pricing plans">
+      <article class="plan">
+        <div class="plan-heading">
+          <p class="plan-index">01</p>
+          <div><h2>Observe</h2><p>For teams building a shared reporting rhythm.</p></div>
+        </div>
+        <div class="price-wrap">
+          <p class="price"><span class="currency">$</span><span class="amount" data-monthly="49" data-yearly="42">49</span></p>
+          <p class="price-note">per workspace / month<br><span class="annual-note">billed monthly</span></p>
+        </div>
+        <a class="button button-secondary" href="mailto:sales@northstar.example?subject=Start%20Observe">Start with Observe</a>
+        <ul>
+          <li>5 editor seats</li><li>Unlimited dashboard viewers</li><li>10 data connections</li><li>Scheduled reports</li><li>Email support</li>
+        </ul>
+      </article>
+
+      <article class="plan plan-featured">
+        <div class="recommendation">Best for growing data teams</div>
+        <div class="plan-heading">
+          <p class="plan-index">02</p>
+          <div><h2>Align</h2><p>For teams managing metrics across departments.</p></div>
+        </div>
+        <div class="price-wrap">
+          <p class="price"><span class="currency">$</span><span class="amount" data-monthly="129" data-yearly="110">129</span></p>
+          <p class="price-note">per workspace / month<br><span class="annual-note">billed monthly</span></p>
+        </div>
+        <a class="button button-primary" href="mailto:sales@northstar.example?subject=Start%20Align">Start with Align</a>
+        <ul>
+          <li>Everything in Observe</li><li>20 editor seats</li><li>Unlimited data connections</li><li>Metric definitions and ownership</li><li>Priority support</li>
+        </ul>
+      </article>
+
+      <article class="plan">
+        <div class="plan-heading">
+          <p class="plan-index">03</p>
+          <div><h2>Govern</h2><p>For organizations operating analytics at scale.</p></div>
+        </div>
+        <div class="price-wrap custom-price">
+          <p>Custom</p>
+          <p class="price-note">Based on workspace needs<br>and deployment model</p>
+        </div>
+        <a class="button button-secondary" href="mailto:sales@northstar.example?subject=Northstar%20Govern">Discuss Govern</a>
+        <ul>
+          <li>Everything in Align</li><li>Unlimited editor seats</li><li>Single sign-on (SSO)</li><li>Audit logs and role controls</li><li>Dedicated success manager</li>
+        </ul>
+      </article>
+    </section>
+
+    <p class="pricing-footnote">Prices shown in USD. Taxes are not included.</p>
+
+    <section class="comparison" id="compare" aria-labelledby="compare-title">
+      <div class="section-intro">
+        <p class="kicker">Plan details</p>
+        <h2 id="compare-title">Compare where it matters.</h2>
+        <p>Every plan includes secure cloud hosting, dashboard sharing, and core visualization tools.</p>
+      </div>
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable plan comparison">
+        <table>
+          <thead><tr><th scope="col">Capability</th><th scope="col">Observe</th><th scope="col">Align</th><th scope="col">Govern</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Editor seats</th><td>5</td><td>20</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Dashboard viewers</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Data connections</th><td>10</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Metric governance</th><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span aria-label="Included">Yes</span></td><td><span aria-label="Included">Yes</span></td></tr>
+            <tr><th scope="row">Single sign-on</th><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span aria-label="Included">Yes</span></td></tr>
+            <tr><th scope="row">Support</th><td>Email</td><td>Priority</td><td>Dedicated</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="faq" id="questions" aria-labelledby="questions-title">
+      <div class="section-intro"><p class="kicker">Good to know</p><h2 id="questions-title">Questions before you choose.</h2></div>
+      <div class="accordion">
+        <details><summary>Can we change plans later?</summary><p>Yes. You can move to a different plan as your team and governance needs change. Billing adjusts at the next renewal.</p></details>
+        <details><summary>What counts as an editor?</summary><p>An editor can connect data, build dashboards, and manage metrics. View-only teammates do not count toward editor limits.</p></details>
+        <details><summary>Do you offer a trial?</summary><p>Contact our team to arrange a product evaluation matched to your data environment and use case.</p></details>
+        <details><summary>Can Govern run in our cloud?</summary><p>Deployment requirements vary. Talk with sales to review hosting, security, and procurement needs.</p></details>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div><p class="kicker">Next step</p><h2 id="closing-title">Make every metric answerable.</h2></div>
+      <a class="button button-light" href="mailto:sales@northstar.example?subject=Northstar%20pricing">Talk through your setup</a>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top"><span translate="no">Northstar</span></a><p>Analytics workspace pricing</p><p>© <span id="year"></span> Northstar</p></footer>
+</body>
+</html>

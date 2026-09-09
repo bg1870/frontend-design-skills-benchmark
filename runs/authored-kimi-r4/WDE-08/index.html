@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get started with the Nojom TypeScript SDK in minutes." />
+  <title>Quickstart — Nojom SDK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Nojom docs home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Nojom</span><span class="brand-divider"></span><span class="docs-label">Docs</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a class="active" href="#quickstart">Documentation</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#api">API reference</a>
+    </nav>
+    <div class="header-actions">
+      <button class="search" aria-label="Search documentation"><span>⌕</span><span>Search docs</span><kbd>⌘ K</kbd></button>
+      <a class="console-link" href="#">Console <span>↗</span></a>
+      <button class="menu" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-section">
+        <p>GET STARTED</p>
+        <a class="selected" href="#quickstart"><span></span>Quickstart</a>
+        <a href="#authentication">Authentication</a>
+        <a href="#first-request">Your first request</a>
+      </div>
+      <div class="side-section">
+        <p>SDK</p>
+        <a href="#">TypeScript</a>
+        <a href="#">Streaming</a>
+        <a href="#">Error handling</a>
+        <a href="#">Retries &amp; timeouts</a>
+      </div>
+      <div class="side-section">
+        <p>RESOURCES</p>
+        <a href="#api">API reference <span>↗</span></a>
+        <a href="#">Changelog</a>
+        <a href="#">Status <b class="status-dot"></b></a>
+      </div>
+      <div class="side-footer">
+        <span>SDK v1.8.0</span>
+        <a href="#">npm ↗</a>
+      </div>
+    </aside>
+
+    <main id="quickstart">
+      <div class="eyebrow"><span>QUICKSTART</span><span class="dot">•</span><span>5 MIN READ</span></div>
+      <h1>Build your first<br><em>AI-powered</em> feature.</h1>
+      <p class="lead">Install the Nojom SDK, authenticate, and make your first request to Claude—all in a few lines of TypeScript.</p>
+
+      <div class="requirements">
+        <span>Before you begin</span>
+        <div><b>Node.js 18+</b><i></i><b>A Nojom API key</b></div>
+      </div>
+
+      <section id="install">
+        <div class="section-heading"><span>01</span><div><h2>Install the SDK</h2><p>Add Nojom to your existing TypeScript or JavaScript project.</p></div></div>
+        <div class="code-card single-line">
+          <div class="code-top"><span>Terminal</span><button class="copy" data-copy="npm install @nojom/sdk"><span>▢</span> Copy</button></div>
+          <pre><code><span class="prompt">$</span> npm install @nojom/sdk</code></pre>
+        </div>
+      </section>
+
+      <section id="authentication">
+        <div class="section-heading"><span>02</span><div><h2>Set your API key</h2><p>Create a key in the <a href="#">Nojom Console ↗</a>, then make it available as an environment variable.</p></div></div>
+        <div class="callout warning"><span class="callout-icon">!</span><p><b>Keep your key secret.</b> Never expose it in client-side code or commit it to version control.</p></div>
+        <div class="code-card single-line">
+          <div class="code-top"><span>.env</span><button class="copy" data-copy="NOJOM_API_KEY=nj_live_your_key_here"><span>▢</span> Copy</button></div>
+          <pre><code><span class="key">NOJOM_API_KEY</span>=<span class="string">nj_live_your_key_here</span></code></pre>
+        </div>
+        <p class="hint">The SDK reads <code>NOJOM_API_KEY</code> automatically. You can also pass <code>apiKey</code> when creating the client.</p>
+      </section>
+
+      <section id="first-request">
+        <div class="section-heading"><span>03</span><div><h2>Make your first request</h2><p>Create a client and send a message. The response is fully typed.</p></div></div>
+        <div class="code-card">
+          <div class="code-top"><span>index.ts</span><button class="copy" data-copy-target="request-code"><span>▢</span> Copy</button></div>
+          <pre id="request-code"><code><span class="keyword">import</span> { Nojom } <span class="keyword">from</span> <span class="string">"@nojom/sdk"</span>;
+
+<span class="keyword">const</span> nojom = <span class="keyword">new</span> <span class="type">Nojom</span>();
+
+<span class="keyword">const</span> response = <span class="keyword">await</span> nojom.messages.<span class="fn">create</span>({
+  model: <span class="string">"claude-sonnet-4-20250514"</span>,
+  maxTokens: <span class="number">1024</span>,
+  messages: [
+    { role: <span class="string">"user"</span>, content: <span class="string">"Explain quantum computing in one sentence."</span> }
+  ]
+});
+
+console.<span class="fn">log</span>(response.content[<span class="number">0</span>].text);</code></pre>
+        </div>
+        <div class="run-row"><span>Run it with</span><code>npx tsx index.ts</code><button class="copy mini" data-copy="npx tsx index.ts">▢</button></div>
+      </section>
+
+      <section id="pricing" class="pricing-section">
+        <div class="section-heading"><span>04</span><div><h2>Estimate your cost</h2><p>You only pay for the tokens you use. Claude Sonnet 4 pricing:</p></div></div>
+        <div class="price-grid">
+          <div class="price-card"><span>INPUT TOKENS</span><strong>$3.00</strong><p>per 1 million tokens</p></div>
+          <div class="price-card accent"><span>OUTPUT TOKENS</span><strong>$15.00</strong><p>per 1 million tokens</p></div>
+          <div class="estimate"><div><span>Example request</span><span>1K input + 500 output tokens</span></div><strong>≈ $0.0105</strong></div>
+        </div>
+        <p class="price-note"><span>i</span> Costs are calculated separately for input and output tokens. Cached inputs and batch requests may qualify for lower rates. <a href="#">View full pricing ↗</a></p>
+      </section>
+
+      <div class="next-card"><div><span>NEXT UP</span><h3>Stream a response</h3><p>Render output as it’s generated for faster-feeling experiences.</p></div><span class="arrow">→</span></div>
+      <footer><span>© 2025 Nojom</span><div><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Security</a></div></footer>
+    </main>
+
+    <aside class="toc"><p>ON THIS PAGE</p><a class="current" href="#install">Install the SDK</a><a href="#authentication">Set your API key</a><a href="#first-request">Make your first request</a><a href="#pricing">Estimate your cost</a><div class="toc-help"><span>?</span><p><b>Need help?</b><br><a href="#">Talk to an engineer ↗</a></p></div></aside>
+  </div>
+  <div class="toast" role="status">Copied to clipboard</div>
+  <script src="script.js"></script>
+</body>
+</html>

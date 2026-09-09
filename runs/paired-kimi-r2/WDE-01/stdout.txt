@@ -1,0 +1,9 @@
+Built the finished Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — responsive page structure and product mockups
+- `styles.css` — art-directed restaurant operations aesthetic
+- `script.js` — runtime-localized schedule date
+- `ASSUMPTIONS.md` — material assumptions and launch notes
+
+Includes responsive layouts, accessible navigation, keyboard focus states, reduced-motion support, labeled sample data, and no fabricated customer claims.

@@ -1,0 +1,9 @@
+Delivered a complete responsive landing page for **Sundial**, an independent day-planning application launching October 2026.
+
+### Files
+- `index.html` — Semantic page structure and final copy
+- `styles.css` — Responsive visual system for 360px, 768px, and desktop
+- `script.js` — Form validation and confirmation behavior
+- `ASSUMPTIONS.md` — Product, launch, deployment, and signup assumptions
+
+Static HTML and JavaScript syntax checks pass. The signup form requires an email-service integration before production deployment.

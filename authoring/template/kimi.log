@@ -1,0 +1,10 @@
+Written to `SKILL.md` — 56 lines, one self-contained file, nothing else.
+
+Design decisions behind the skill:
+
+- **Center (R1):** the targeted failure is the "SaaS default" — Inter-only type, indigo 135° gradients, centered hero, three rounded icon cards, gray-600 text. The replacement behavior is *commit to an explicit direction before writing markup*, enforced by requiring tokens-first encoding.
+- **Anti-house-style mechanism:** a 6-row direction table (Editorial print, Raw brutalist, Terminal data, Soft product, Dark cinematic, Heritage luxe), each with concrete fonts/palettes/signature moves, with selection keyed deterministically on artifact type then domain — so two runs on different briefs diverge by rule, not by chance. The boundary example exists to prove that: same brand, different artifact type ⇒ different row.
+- **Every rule carries inspectable values:** clamp ranges, −0.02 to −0.04em tracking, 2.5× dominance ratio, ≤10% accent coverage, 45–70ch measure, named cubic-beziers, 150–500ms durations, 3-font cap — no "use good typography"-class lines.
+- **Substance rules, not just format:** R6 (copy must carry specific claims/numbers; invented facts allowed, placeholders banned) and R7 (visuals built in code; stock URLs and emoji banned) govern *what* gets shipped, not how it's arranged.
+- **No human in the loop:** fallbacks cover missing brand info (default rows), offline fonts (fallback stacks preserve the pairing), contrast failure (shift shade, keep hue), and rule collisions (written precedence: R1/R6/R7 > R2 > R3/R9 > R4/R5/R8, plus a specific R2-vs-R4 clause).
+- **Pre-return gate:** grep-able banned-string scan plus countable predicates (font count, signature-moment count, overflow at 360/1440px), each paired with its repair rule.

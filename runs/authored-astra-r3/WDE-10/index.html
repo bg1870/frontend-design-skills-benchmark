@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183c37">
+  <title>Create your clinic workspace — Loomwork</title>
+  <style>
+    @font-face{font-family:Lato;src:url('/usr/share/fonts/truetype/lato/Lato-Regular.ttf')}@font-face{font-family:Lato;src:url('/usr/share/fonts/truetype/lato/Lato-Bold.ttf');font-weight:700}
+    :root{--ink:#17312e;--muted:#63716f;--green:#175e54;--deep:#183c37;--mint:#d9eee8;--lime:#dcec8c;--paper:#fbfcf8;--rule:#d8e0dc;--error:#a5322c}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Lato,Arial,sans-serif;color:var(--ink);background:var(--paper)}body{min-height:100vh}
+    .shell{min-height:100vh;display:grid;grid-template-columns:minmax(430px,1.03fr) minmax(520px,.97fr)}
+    .story{background:var(--deep);color:#fff;padding:36px clamp(36px,5vw,76px) 44px;display:flex;flex-direction:column;overflow:hidden;position:relative}.story:after{content:"";position:absolute;width:300px;height:300px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-180px;top:-120px}
+    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.02em;color:inherit;text-decoration:none;width:max-content}.mark{width:31px;height:31px;border-radius:9px;background:var(--lime);display:grid;place-items:center}.mark svg{width:19px}.story-copy{margin:auto 0 34px;max-width:600px;padding-top:52px}.eyebrow{display:flex;align-items:center;gap:10px;color:#b8d6d0;font-size:13px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}.eyebrow:before{content:"";width:28px;height:1px;background:var(--lime)}h1{font-size:clamp(42px,5vw,68px);line-height:1.03;letter-spacing:-.045em;margin:20px 0 20px;max-width:650px}h1 em{font-style:normal;color:var(--lime)}.intro{font-size:18px;line-height:1.55;color:#d4e3df;max-width:540px;margin:0}
+    .schedule{background:#f6f8f3;color:var(--ink);border-radius:16px;padding:20px;box-shadow:0 22px 55px rgba(3,22,19,.28);max-width:610px;transform:rotate(-1deg);transform-origin:left bottom}.schedule-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}.schedule-head strong{font-size:15px}.schedule-head span{display:block;font-size:12px;color:var(--muted);margin-top:3px}.legend{font-size:11px!important;background:#e4eee9;padding:5px 8px;border-radius:20px;color:var(--green)!important}.timeline{display:grid;grid-template-columns:40px repeat(3,1fr);gap:7px;align-items:stretch}.time{font-size:10px;color:#77827f;text-align:right;padding:8px 3px 0 0}.practitioner{font-size:11px;font-weight:700;padding:0 4px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.blank{height:0}.appointment{border-left:3px solid;padding:8px 9px;border-radius:5px;background:#fff;font-size:10px;min-height:46px;line-height:1.35}.appointment b{display:block;font-size:11px}.a1{border-color:#3b8c7e;background:#e4f0ec}.a2{border-color:#e2a74b;background:#fff2da}.a3{border-color:#758bc4;background:#e9edf8}.a4{border-color:#ca7168;background:#f8e8e5}.span2{grid-row:span 2;min-height:99px}.route{display:flex;gap:12px;align-items:center;color:#bdd2cd;font-size:12px;margin-top:22px}.route i{height:1px;background:#6f918a;flex:1}.route b{color:#fff}
+    .signup{padding:34px clamp(38px,5.2vw,84px);display:flex;flex-direction:column;background:var(--paper)}.topline{display:flex;justify-content:flex-end;align-items:center;color:var(--muted);font-size:14px;min-height:32px}.topline a{color:var(--green);font-weight:700;margin-left:6px;text-underline-offset:3px}.form-wrap{width:100%;max-width:480px;margin:auto}.step{font-size:12px;color:var(--green);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin:0 0 12px}.signup h2{font-size:34px;line-height:1.12;letter-spacing:-.035em;margin:0 0 9px}.sub{color:var(--muted);font-size:16px;line-height:1.5;margin:0 0 27px}.fields{display:grid;gap:17px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.input-wrap{position:relative}.field input{width:100%;height:50px;border:1px solid #bdc9c5;border-radius:8px;background:#fff;padding:0 14px;font:inherit;font-size:15px;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}.field input::placeholder{color:#98a29f}.field input:hover{border-color:#7d918c}.field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(23,94,84,.15)}.field input[aria-invalid=true]{border-color:var(--error);box-shadow:0 0 0 3px rgba(165,50,44,.10)}.error{font-size:12px;color:var(--error);margin:6px 0 0;display:none}.error.show{display:block}.password-toggle{position:absolute;right:3px;top:3px;height:44px;padding:0 10px;border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;border-radius:6px}.password-toggle:focus-visible,.primary:focus-visible,a:focus-visible{outline:2px solid #26786c;outline-offset:3px}.field.password input{padding-right:72px}.hint{font-size:12px;color:var(--muted);margin:6px 0 0}.terms{font-size:12px;line-height:1.5;color:var(--muted);margin:0}.terms a{color:var(--ink);text-underline-offset:2px}.primary{width:100%;height:52px;border:0;border-radius:8px;background:var(--green);color:#fff;font:700 15px Lato,Arial,sans-serif;cursor:pointer;box-shadow:0 7px 18px rgba(23,94,84,.18);transition:background .15s,transform .15s}.primary:hover{background:#104c44}.primary:active{transform:translateY(1px)}.primary[disabled]{opacity:.65;cursor:wait}.success{display:none;padding:24px;border:1px solid #b6d3ca;background:#eaf5f0;border-radius:12px}.success.show{display:block}.success .tick{width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:14px}.success h3{font-size:24px;margin:0 0 8px}.success p{color:var(--muted);line-height:1.5;margin:0}.fineprint{text-align:center;color:#82908c;font-size:11px;margin-top:18px}
+    @media(max-width:900px){.shell{grid-template-columns:1fr}.story{padding:28px 32px 34px;min-height:auto}.story-copy{margin:55px 0 30px;padding:0;max-width:700px}.story h1{font-size:50px;max-width:630px}.schedule{max-width:700px;transform:none}.route{display:none}.signup{padding:28px 32px 56px}.topline{position:absolute;right:32px;top:28px;color:#d5e3e0}.topline a{color:var(--lime)}.form-wrap{margin:34px auto 0;max-width:590px}}
+    @media(max-width:560px){.story{padding:22px 20px 25px}.topline{position:static;justify-content:flex-start;order:2;margin-top:28px;color:var(--muted)}.topline a{color:var(--green)}.story-copy{margin:46px 0 24px}.story h1{font-size:38px;line-height:1.05}.intro{font-size:16px}.schedule{padding:14px;border-radius:12px}.timeline{grid-template-columns:32px repeat(2,1fr);gap:5px}.timeline>*:nth-child(4n){display:none}.schedule-head{margin-bottom:12px}.signup{padding:28px 20px 38px}.form-wrap{margin:0;max-width:none}.signup h2{font-size:29px}.sub{margin-bottom:23px}.field input,.primary{height:50px}.route{display:none}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <section class="story" aria-labelledby="story-title">
+    <a class="brand" href="#" aria-label="Loomwork home"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#183c37" stroke-width="2.4"><path d="M5 5v14h14M9 15l3-3 3 2 4-5"/></svg></span>Loomwork</a>
+    <div class="story-copy"><div class="eyebrow">Built around the treatment day</div><h1 id="story-title">Make room for <em>better care.</em></h1><p class="intro">One calm schedule for practitioners, rooms and every patient visit—so your team can see the day at a glance.</p></div>
+    <div class="schedule" aria-label="Sample clinic schedule preview">
+      <div class="schedule-head"><div><strong>Tuesday schedule</strong><span>Sample clinic view</span></div><span class="legend">6 appointments</span></div>
+      <div class="timeline">
+        <div></div><div class="practitioner">Maya · Physio</div><div class="practitioner">Noah · Physio</div><div class="practitioner">Studio 1</div>
+        <div class="time">9:00</div><div class="appointment a1"><b>J. Bennett</b>Initial assessment</div><div class="appointment a2 span2"><b>A. Clarke</b>Post-op rehab<br>60 min</div><div class="appointment a3"><b>Group session</b>Mobility</div>
+        <div class="time">10:00</div><div class="appointment a4"><b>S. Taylor</b>Follow-up</div><div class="appointment a1"><b>Available</b>Room ready</div>
+      </div>
+    </div>
+    <div class="route"><span><b>01</b> Create workspace</span><i></i><span>02 Add your team</span><i></i><span>03 Open the diary</span></div>
+  </section>
+  <section class="signup" aria-labelledby="form-title">
+    <div class="topline">Already use Loomwork? <a href="#signin">Sign in</a></div>
+    <div class="form-wrap">
+      <div id="form-panel"><p class="step">Your clinic · Step 1 of 3</p><h2 id="form-title">Create your workspace</h2><p class="sub">Start with the basics. You can invite your team next.</p>
+        <form id="signup-form" novalidate>
+          <div class="fields">
+            <div class="field"><label for="clinic">Clinic name</label><input id="clinic" name="clinic" autocomplete="organization" placeholder="e.g. Northside Physiotherapy" required><p class="error" id="clinic-error">Enter your clinic name.</p></div>
+            <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@yourclinic.com" required><p class="error" id="email-error">Enter a valid work email.</p></div>
+            <div class="field password"><label for="password">Create a password</label><div class="input-wrap"><input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="password-hint"><button class="password-toggle" type="button" aria-controls="password" aria-pressed="false">Show</button></div><p class="hint" id="password-hint">Use at least 8 characters.</p><p class="error" id="password-error">Password must be at least 8 characters.</p></div>
+            <button class="primary" type="submit">Continue to team setup <span aria-hidden="true">→</span></button>
+            <p class="terms">By continuing, you agree to Loomwork’s <a href="#terms">Terms</a> and acknowledge the <a href="#privacy">Privacy Policy</a>.</p>
+          </div>
+        </form>
+      </div>
+      <div class="success" id="success" role="status" tabindex="-1"><div class="tick">✓</div><h3>Workspace details saved</h3><p>Your clinic workspace is ready for team setup. This prototype keeps your information only in this browser session.</p></div>
+      <p class="fineprint">Patient information is never requested during setup.</p>
+    </div>
+  </section>
+</main>
+<script>
+const form=document.querySelector('#signup-form');
+const fields=[['clinic',v=>v.trim().length>1],['email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],['password',v=>v.length>=8]];
+function validate(id,test){const input=document.getElementById(id),error=document.getElementById(id+'-error'),ok=test(input.value);input.setAttribute('aria-invalid',String(!ok));input.setAttribute('aria-describedby',id==='password'?'password-hint '+id+'-error':id+'-error');error.classList.toggle('show',!ok);return ok}
+fields.forEach(([id,test])=>document.getElementById(id).addEventListener('blur',()=>validate(id,test)));
+document.querySelector('.password-toggle').addEventListener('click',e=>{const input=document.getElementById('password'),show=input.type==='password';input.type=show?'text':'password';e.currentTarget.textContent=show?'Hide':'Show';e.currentTarget.setAttribute('aria-pressed',String(show));input.focus()});
+form.addEventListener('submit',e=>{e.preventDefault();const results=fields.map(([id,test])=>validate(id,test));if(results.some(ok=>!ok)){document.getElementById(fields[results.indexOf(false)][0]).focus();return}document.getElementById('form-panel').hidden=true;const success=document.getElementById('success');success.classList.add('show');success.focus()});
+</script>
+</body>
+</html>

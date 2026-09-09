@@ -1,0 +1,9 @@
+Built the responsive plumbing dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- `index.html` — semantic dashboard structure
+- `styles.css` — responsive, accessible visual design
+- `app.js` — data loading, counts, filtering, search, sorting, refresh, and modal interactions
+- `ASSUMPTIONS.md` — documented material assumptions
+
+Validated JavaScript syntax, local serving, and fixture loading.

@@ -1,0 +1,11 @@
+Built the finished Nojom SDK quickstart page in `index.html`.
+
+Includes:
+- SDK installation
+- API key authentication
+- TypeScript request using `claude-sonnet-4-5-20250929`
+- Input/output token pricing and example cost calculation
+- Clearly documented assumptions
+- Responsive layout, accessible navigation, focus states, and copy buttons
+
+Validation: HTML parsed successfully and all required content is present. Browser rendering was not launched.

@@ -47,7 +47,7 @@ const CHROMIUM = [
   '/usr/bin/chromium', '/usr/bin/chromium-browser', '/usr/bin/google-chrome',
 ].find(p => fs.existsSync(p));
 
-const ROOT = '/home/basil/tmp/.local';
+const ROOT = '/home/basil/tmp/frontend';
 const OUT = `${ROOT}/shots`;
 const MOBILE = { width: 390, height: 844 };
 const DESKTOP = { width: 1440, height: 900 };

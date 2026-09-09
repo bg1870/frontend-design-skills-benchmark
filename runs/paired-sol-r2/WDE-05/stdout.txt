@@ -1,0 +1,11 @@
+Implemented in `fixtures/app`:
+
+- Added **Customer testimonials** section with a clearly labelled unavailable state.
+- Added **In the box** section with an unconfirmed packing-list notice and contact link.
+- Added navigation links for both sections.
+- Added responsive styling, keyboard focus states, skip navigation, and form autocomplete metadata.
+- Preserved the existing Kettell visual system.
+
+Sourcing attempt: searched all available project files; no verified testimonials, customers, product imagery, or box contents were found. These remain explicitly identified as unresolved in the interface.
+
+Static HTML parsing and diff checks passed.

@@ -1,0 +1,9 @@
+Built the finished Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — Semantic, responsive landing page
+- `styles.css` — Custom restaurant-inspired visual system and layouts
+- `script.js` — Mobile navigation, dynamic year, and sample review interaction
+- `ASSUMPTIONS.md` — Material product and implementation assumptions
+
+Static validation completed successfully; JavaScript syntax is valid. Replace `hello@ridgeline.example` with the production sales address before launch.

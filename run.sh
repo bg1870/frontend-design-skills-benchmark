@@ -4,14 +4,14 @@
 # SCENARIOS="WDE-06 WDE-07" ./run.sh     — subset (WDE-06..10 are the extension set)
 # ./run.sh <cfg> <scenario>              — one cell
 set -u
-ROOT=/home/basil/tmp/.local
+ROOT=/home/basil/tmp/frontend
 RUNS=$ROOT/runs
 MODEL_ARGS="--provider openai-codex --model gpt-5.6-sol --thinking low"
 COMMON="--no-extensions --no-context-files --no-skills"
 
-ORCH=/home/basil/tmp/.local/authoring/orchestration.txt
-PAIR=/home/basil/tmp/.local/skillsets/paired
-AUTH=/home/basil/tmp/.local/skillsets
+ORCH=/home/basil/tmp/frontend/authoring/orchestration.txt
+PAIR=/home/basil/tmp/frontend/skillsets/paired
+AUTH=/home/basil/tmp/frontend/skillsets
 
 extra_args() {
   case "$1" in
@@ -26,18 +26,39 @@ skill_args() {
     paired-fable) echo "--skill $AUTH/authored-fable/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-sol) echo "--skill $AUTH/authored/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-solhigh) echo "--skill $AUTH/authored-solhigh/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    # UI-preserving revision of the high skill: fix the three defects, keep the look
+    paired-solhigh-ui) echo "--skill $AUTH/authored-solhigh-ui/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-astra) echo "--skill $AUTH/authored6/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    # revision round: each skill re-authored after being shown its own failures
+    paired-kimi-r2) echo "--skill $AUTH/authored-kimi-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    paired-opus-r2) echo "--skill $AUTH/authored-opus-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    paired-solhigh-r2) echo "--skill $AUTH/authored-solhigh-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    paired-sol-r2) echo "--skill $AUTH/authored-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    # round 3: sol re-authored as a single self-contained skill, tested alone
+    authored-sol-r3) echo "--skill $AUTH/authored-r3/beautiful-frontend/SKILL.md" ;;
+    authored-astra-r3) echo "--skill $AUTH/authored6-r3/beautiful-frontend/SKILL.md" ;;
+    authored-sol-r4) echo "--skill $AUTH/authored-r4/beautiful-frontend/SKILL.md" ;;
+    authored-kimi-r3) echo "--skill $AUTH/authored-kimi-r3/beautiful-frontend/SKILL.md" ;;
+    authored-kimi-r4) echo "--skill $AUTH/authored-kimi-r4/beautiful-frontend/SKILL.md" ;;
+    # template experiment: authored from the original brief + astra's TEMPLATE.md
+    authored-astra-tpl) echo "--skill $AUTH/authored6-tpl/beautiful-frontend/SKILL.md" ;;
+    authored-sol-tpl) echo "--skill $AUTH/authored-tpl/beautiful-frontend/SKILL.md" ;;
+    authored-kimi-tpl) echo "--skill $AUTH/authored-kimi-tpl/beautiful-frontend/SKILL.md" ;;
+    # design-shaped template variant
+    authored-astra-dtpl) echo "--skill $AUTH/authored6-dtpl/beautiful-frontend/SKILL.md" ;;
+    authored-sol-dtpl) echo "--skill $AUTH/authored-dtpl/beautiful-frontend/SKILL.md" ;;
+    authored-kimi-dtpl) echo "--skill $AUTH/authored-kimi-dtpl/beautiful-frontend/SKILL.md" ;;
     base)        echo "" ;;
     wde)         echo "--skill /home/basil/tmp/skills/wde-fixed/SKILL.md" ;;
     design-list) for d in $ROOT/skillsets/design-list/*/; do printf -- "--skill %s " "$d"; done ;;
-    authored-opus) echo "--skill /home/basil/tmp/.local/skillsets/authored-opus/beautiful-frontend/SKILL.md" ;;
-    authored-fable) echo "--skill /home/basil/tmp/.local/skillsets/authored-fable/beautiful-frontend/SKILL.md" ;;
-    authored-kimi) echo "--skill /home/basil/tmp/.local/skillsets/authored-kimi/beautiful-frontend/SKILL.md" ;;
-    authored6)   echo "--skill /home/basil/tmp/.local/skillsets/authored6/beautiful-frontend/SKILL.md" ;;
-    authored)    echo "--skill /home/basil/tmp/.local/skillsets/authored/beautiful-frontend/SKILL.md" ;;
-    authored-solhigh) echo "--skill /home/basil/tmp/.local/skillsets/authored-solhigh/beautiful-frontend/SKILL.md" ;;
-    taste-solo)  echo "--skill /home/basil/tmp/.local/skillsets/taste/taste-skill/skills/taste-skill" ;;
-    taste)       echo "--skill /home/basil/tmp/.local/skillsets/taste/taste-skill/skills" ;;
+    authored-opus) echo "--skill /home/basil/tmp/frontend/skillsets/authored-opus/beautiful-frontend/SKILL.md" ;;
+    authored-fable) echo "--skill /home/basil/tmp/frontend/skillsets/authored-fable/beautiful-frontend/SKILL.md" ;;
+    authored-kimi) echo "--skill /home/basil/tmp/frontend/skillsets/authored-kimi/beautiful-frontend/SKILL.md" ;;
+    authored6)   echo "--skill /home/basil/tmp/frontend/skillsets/authored6/beautiful-frontend/SKILL.md" ;;
+    authored)    echo "--skill /home/basil/tmp/frontend/skillsets/authored/beautiful-frontend/SKILL.md" ;;
+    authored-solhigh) echo "--skill /home/basil/tmp/frontend/skillsets/authored-solhigh/beautiful-frontend/SKILL.md" ;;
+    taste-solo)  echo "--skill /home/basil/tmp/frontend/skillsets/taste/taste-skill/skills/taste-skill" ;;
+    taste)       echo "--skill /home/basil/tmp/frontend/skillsets/taste/taste-skill/skills" ;;
     discovered)  echo "--skill $ROOT/skillsets/discovered/.agents/skills/frontend-design --skill $ROOT/skillsets/discovered/.agents/skills/web-design-guidelines" ;;
   esac
 }

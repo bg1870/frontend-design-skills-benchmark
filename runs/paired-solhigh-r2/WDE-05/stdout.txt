@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added customer testimonials section with an honest unavailable-content state.
+- Added “In the box” section with pending manufacturer confirmation and contact link.
+- Added responsive navigation and layouts.
+- Improved accessibility: skip link, focus states, autocomplete, reduced-motion support, touch targets, and anchor offsets.
+- Recorded sourcing attempts and unresolved blockers in `fixtures/app/SOURCING.md`.
+- Verified HTML parsing and whitespace checks.

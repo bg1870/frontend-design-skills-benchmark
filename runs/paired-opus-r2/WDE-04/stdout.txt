@@ -1,0 +1,23 @@
+Implemented a complete clickable React prototype for **Tempo**, including:
+
+- Today view with interactive habit completion
+- Dynamic progress dial and streak count
+- Four-week streak detail view
+- Add-habit bottom sheet with validation
+- URL-backed navigation state
+- Responsive mobile presentation
+- Keyboard focus, reduced-motion, semantic controls, and live announcements
+- Runtime-localized dates
+- Material assumptions documented in `ASSUMPTIONS.md`
+
+Validation completed successfully:
+
+```bash
+npm run build
+```
+
+Run locally with:
+
+```bash
+npm run dev
+```

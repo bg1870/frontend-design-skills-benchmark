@@ -1,0 +1,20 @@
+Implemented the responsive Loomwork signup page.
+
+### Delivered
+- `index.html` — complete dependency-free signup experience
+- `README.md` — setup notes and material assumptions
+- `evidence/` — browser acceptance evidence:
+  - `mobile-390x844.png`
+  - `tablet-768x1024.png`
+  - `laptop-1440x1000.png`
+  - `acceptance-results.json`
+
+### Acceptance results
+- No horizontal overflow at mobile, tablet, or laptop widths
+- Form controls maintain 44–52px interaction heights
+- Invalid submission displays all errors and focuses the first invalid field
+- Password visibility toggle works
+- Valid submission transitions to the success state with managed focus
+- Responsive review identified and repaired the undersized password-toggle target
+
+Open `index.html` directly in a browser.

@@ -1,0 +1,9 @@
+Created the complete eight-slide investor deck:
+
+- **File:** `index.html`
+- Self-contained HTML/CSS/JavaScript
+- 16:9, one-slide-per-screen presentation
+- Arrow-key, Space, Home, End, and button navigation
+- Includes all requested sections
+- Material assumptions available via the **Assumptions** button or `A` key
+- Responsive layout with no external dependencies

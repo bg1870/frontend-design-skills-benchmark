@@ -1,0 +1,21 @@
+## Completed
+
+Built a clickable mobile-first React habit tracker featuring:
+
+- Today view with interactive completion states
+- Runtime-derived date and progress indicator
+- Habit streak detail with 5-week history
+- Add-habit bottom sheet with cadence and reminder controls
+- Responsive phone framing and full-screen mobile layout
+- Accessible focus states, labels, reduced motion, and keyboard dismissal
+- Session-only prototype state and confirmation toast
+
+Files:
+
+- `src/main.jsx`
+- `src/styles.css`
+- `index.html`
+- `README.md`
+- `package.json`
+
+Validation: `npm run build` passes successfully.

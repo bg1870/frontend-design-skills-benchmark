@@ -1,0 +1,255 @@
+You wrote the skill reproduced below, revising it after being told it would ship alone. It
+has since been benchmarked in exactly that configuration. This message reports what it
+actually shipped. Your job is to revise it once more.
+
+Read Part 4 before you plan anything. The results are not what your revision predicted.
+
+================================================================================
+PART 1 — THE ORIGINAL BRIEF (unchanged; your revision must still satisfy it)
+================================================================================
+
+Write an agent skill that makes YOU produce genuinely beautiful, non-generic front-end work.
+
+You are the audience. This skill will be loaded into your own context on future tasks where you build a browser-rendered visual artifact — a marketing page, a dashboard, a pricing page, a clickable prototype, an extension to an existing site. Write the instructions that would actually change what you ship, not instructions that merely sound like design advice.
+
+Output exactly one file: SKILL.md. Nothing else. No reference files, no scripts, no directories.
+
+Format — the file must begin with YAML frontmatter, then markdown:
+
+---
+name: beautiful-frontend
+description: <one paragraph, third person, that states precisely when this skill should be loaded and when it should not; an agent decides from this text alone whether to read the body>
+---
+
+Hard constraints:
+
+- 150 lines maximum for the whole file, frontmatter included. This is a budget, not a target — every line you spend must measurably change an artifact. If a line would not change the output, cut it.
+- No reference files, no external links, no tool or script dependencies. Self-contained.
+- Nothing that requires asking the user anything. Assume no human is in the loop and the brief is all you get.
+- No generic exhortation. "Use good typography", "ensure accessibility", "make it polished" are worthless because they do not constrain a choice. Every instruction must be specific enough that two different runs would produce recognisably different, better output because of it.
+
+Think about what actually separates work that looks designed from work that looks generated: where your own defaults are weakest, which choices you tend to make on autopilot, what a strong design engineer decides that you skip. Encode those. Be concrete about values where concrete values help, and be careful not to encode a single house style that would make every artifact look the same as every other one.
+
+Write the file to SKILL.md in the current directory.
+
+================================================================================
+PART 2 — THE FILE YOU WROTE
+================================================================================
+
+---
+name: beautiful-frontend
+description: This skill should be loaded whenever the agent is about to write browser-rendered visual output — landing/marketing/pricing pages, dashboards, product UI, clickable prototypes, or visual additions to an existing site — and the bar is work that looks art-directed rather than AI-generated. It is self-contained: it forces a committed art direction before any code, replaces autopilot patterns with concrete typographic, color, layout, and motion decisions, audits the finished artifact against that commitment, and bars fabricated proof — invented metrics, invented testimonials, unlabeled sample data. It should not be loaded for backend logic, CLIs, non-visual refactors, or copywriting-only tasks, nor when a binding brand guide or design system already dictates tokens and components — in that case the spec wins.
+---
+
+# Beautiful Frontend
+
+## 1. Commit before you code
+Before any markup, write an HTML comment at the top of the file naming four decisions. If you cannot name them, you have not decided.
+
+- **Register** — the aesthetic world, argued from a concrete detail of the subject and its audience (name that detail): editorial, technical, brutalist, warm-consumer, luxe-dark, or one you coin. Your reflexes — dark-mode-with-glow, pale paper under near-black ink — are habits, not a decision.
+- **Palette** — ground, ink, accent, as hex values. The ground is argued from the register, not inherited (§4).
+- **Type pairing** — display face + text face, each with an explicit job, both actually loaded (§3).
+- **Signature move** — the single element a viewer would screenshot (§6).
+
+## 2. Banned defaults (each is a tell of generated work)
+- Centered hero stack: eyebrow, giant H1, subcopy, primary + ghost button.
+- Three-up icon feature grid; icon-in-a-colored-circle.
+- Purple→blue gradients, radial glows, or faint grid/dot patterns on near-black backgrounds.
+- Glassmorphism: blurred panels with 1px white borders.
+- The universal card: white bg, 12px radius, soft shadow, p-6, repeated everywhere.
+- Gradient text on headlines. Emoji or generic line-icon grids as visual content. Grey boxes labeled "image".
+- system-ui / Inter / Roboto as the entire design — load at least one real typeface.
+- Identical sections: same container width, same vertical padding, same centered alignment, five times in a row.
+- Fade-up-on-scroll applied to every block as the page's only motion.
+- Placeholder copy: "Lorem", "Feature title", "Welcome to X, the best way to…".
+
+## 3. Type
+- Largest display size ≥ 4× body size: `clamp(3rem, 7vw, 7.5rem)`, line-height 0.95–1.05, letter-spacing −0.02 to −0.04em.
+- Body 16–18px, line-height 1.5–1.65, measure ≤ 68ch. Kickers/labels 11–12px, uppercase, letter-spacing 0.14em+.
+- Two faces max, both loaded via `<link>` stylesheet tags from a font CDN. Every family named in CSS must be one actually loaded — never an invented name, never `local()` over a font the machine may lack.
+- The display face must have character (high-contrast serif, wide grotesk, mono); the text face stays quiet.
+- `font-feature-settings: "tnum"` and right-aligned figures anywhere numbers appear.
+
+## 4. Color
+- Three-color discipline: ground, ink, accent, plus tints of those. Accent covers <10% of pixels — CTAs, one word in a headline, key figures.
+- The ground is chosen per artifact from the subject's material world — its lightness and its hue, both argued. Pale neutral ground + near-black ink is the combination that needs justification every time; ship it only when the register's argument says paper. Dark, pure-white, tinted, and saturated grounds are equal citizens — a night-shift tool, a trade business, and a luxury brand must not share one ground.
+- Never pure #000 on pure #fff. Paper ≈ #f6f3ec–#faf8f2; ink ≈ #12110e–#1a1a1e; dark grounds ≈ #0d0d0f or a deep chromatic, never navy-purple.
+- Starting points per register, not a fixed palette: editorial (paper #f6f3ec, ink #1b1815, oxblood #7c2d2d) · technical (white #ffffff, ink #101014, ultramarine #2b3bff) · brutal (#ffffff, #000000 2px rules, acid #d9ff00) · warm (cream #fbf1e3, espresso #241a10, cherry #e0342f) · luxe-dark (#0e0e10, bone #ece7dd, gold #c9a227) · nocturne (deep teal #0d2925, mist #dcebe4, signal #ff5a3c). The grounds span paper → white → cream → near-black → deep color on purpose; that spread is the point.
+
+## 5. Layout
+- Required per page: at least one full-bleed band, one element that overlaps a boundary or breaks the grid, one asymmetric split (e.g. 5/7 columns). All-centered alignment is a failure.
+- Alternate section surfaces for rhythm (light → dark → light, or ground → tint). Five identical sections is a failure.
+- Vary container widths (mix full-bleed, ~1280px, ~640px measures) and vertical padding (96–160px, different per section). Let one section be mostly whitespace.
+- Separate with 1px hairlines at 10–15% ink opacity, not shadows. Shadows only on genuinely floating elements, large and soft: `0 24px 48px -12px rgb(0 0 0 / .18)`.
+- Build "imagery" in code — SVG diagrams, generative canvas, charts, rendered mini-UI of the product — never empty placeholder boxes.
+
+## 6. Signature move
+One per artifact, tied to the product's core metaphor: kinetic or marquee type, an oversized numeral drawn from the product itself (never an invented result), a canvas or WebGL hero, sticky-stacking panels, a horizontal-scroll chapter, hover-reveal imagery. Execute it fully and keep everything around it quiet. It usually lives in the hero; if not, the hero must be oversized typography doing the talking or the product itself rendered live — never a text stack.
+
+## 7. Motion
+- Entrances 600–900ms, `cubic-bezier(0.22, 1, 0.36, 1)`, stagger children 50–90ms, animate transform/opacity only. Micro-interactions 150–250ms.
+- Every interactive element gets a hover state that moves something — translate, underline draw, arrow nudge, color invert — not a bare opacity dip. Style `:focus-visible` in the accent.
+- Choreograph the hero on load; do not make scroll-reveal the only trick. Honor `prefers-reduced-motion`.
+
+## 8. Copy, data, and honesty
+- Invent a plausible brand name. Headlines carry concrete nouns or an opinion; CTAs are verb phrases ("Get the report"), never "Learn more".
+- Invent voice, never evidence. No fabricated proof: no invented outcome metrics ("38% fewer…"), no quotes from invented named people or businesses, no client logos, ratings, or customer counts. If the brief supplies no proof, there is no testimonial or stats section — concreteness comes from the product: what it does, what its screen shows, how the workday runs with it.
+- Figures inside a rendered product mock (charts, tables, dashboard tiles) read as sample data and are allowed; the same figure in a headline, stat band, or quote is a claim and is not.
+- A surface running on fixture, seed, or demo data says so on the surface — a visible "Sample data" tag in the header or summary bar, not a code comment.
+- Dates, times, and relative labels ("today", "in 2h") come from the runtime clock (`new Date()`), formatted with `Intl.DateTimeFormat` — never typed strings, never a hand-written weekday or month name. Anything that can go stale must be derived, not written down.
+- Set `::selection` to the accent. Ship an inline SVG favicon. For paper and luxe registers, lay 3–5% opacity SVG-noise grain over the surface.
+- The footer is a canvas — oversized wordmark or wordmark-as-graphic — not a four-column link farm.
+- Dashboards: density is the aesthetic. Hairline grid, tabular right-aligned figures, one excellent chart beats five placeholder cards.
+
+## 9. Working inside an existing site
+- What already exists is a binding contract: design tokens, form endpoints and field names, analytics and data attributes, class conventions. Extend within them; replace or rename none.
+- Add no new files to the delivered site's own directory. Assumptions and sourcing blockers go in your handoff message or one file at the project root — and contain no invented dates, names, or contacts.
+
+## 10. Pre-ship audit — re-read the built code; fix every "no" before delivering
+- §1 comment present, and the page actually looks like it? Ground argued per §4 — not the reflex paper-and-near-black?
+- Display type ≥ 4× body? Exactly one accent? At least one broken-grid or overlap moment? Squint test: does one element dominate each section, or is everything equal weight?
+- Both font families loaded by real `<link>` tags and referenced under their own names? Every clickable thing has a hover and a `:focus-visible` state?
+- Semantics: one `<h1>`, no skipped heading levels; `<button>` for actions, `<a>` for navigation; every input has a label; decorative SVG/canvas is `aria-hidden`, informative ones are named.
+- Contrast computed, not eyeballed: body and label text ≥ 4.5:1 against its actual ground — check accent-colored text and text on tinted bands first.
+- Touch layouts: every interactive target ≥ 44×44px. No horizontal scroll at 375px and 1440px, verified by re-reading the layout code.
+- Zero banned patterns from §2? All copy real per §8? Every number, name, and quote from the brief, inside product-mock UI, or derived at runtime? Sample data labeled on the surface?
+- Verification is static: no servers, browsers, or screenshots unless the brief asks for them.
+
+================================================================================
+PART 3 — HOW IT WAS TESTED
+================================================================================
+
+A builder agent — a different model from you, gpt-5.6-sol at thinking `low` — was given
+five build briefs, one run each, in an empty directory. **Your SKILL.md was the only skill
+loaded**, with no project context files, no extensions and no orchestration note, exactly
+as the last brief said it would be. Five separate runs, no state carried between them.
+
+1. **Marketing page** — greenfield landing page for "Ridgeline", a restaurant payroll
+   product. No customer names, metrics, logos, testimonials, quotes, prices or compliance
+   facts were supplied. Work autonomously, record material assumptions, ask nothing.
+2. **Dashboard** — dispatcher dashboard for a plumbing company over a supplied
+   `fixtures/jobs.json` holding six job records.
+3. **Pricing page** — build it, then "polish and verify before handing it over". No
+   browser, server, screenshot or acceptance pass was requested anywhere in the brief.
+4. **Prototype** — clickable React mobile prototype whose UI displays today's date.
+5. **Extension** — add missing sections to an existing site whose form contract,
+   analytics attributes and design tokens all had to survive untouched.
+
+One run per cell, so treat every observation below as a single data point and not a
+measured rate. Every observation was checked by hand against the run output and against
+the trace of every command the builder executed.
+
+================================================================================
+PART 4 — WHAT YOUR SKILL SHIPPED
+================================================================================
+
+### What you fixed, and it worked
+
+**The single ground is gone.** You rewrote the colour section to make the ground an argued
+axis with the burden of proof on the paper default, and the artifacts moved apart:
+terracotta and sage on the marketing page, a teal instrument panel on the dashboard, a
+near-white page against a deep green (`#0e2a25`) on pricing, warm neutrals in the
+prototype. Four briefs, four different grounds. That change did exactly what you designed
+it to do.
+
+**The contract section you added from scratch also worked.** The extension scenario left
+the `/api/lead` form, the analytics attributes and the token set untouched. You identified
+that this result had no rule behind it and wrote one, and the rule held.
+
+### What did not survive, and it is the list you were told to protect
+
+**1. Invented proof, on both pages.** The marketing page ships a testimonial attributed to
+a named person at a named business, inside a three-slide carousel:
+
+    “Before Ridgeline, Sundays meant four hours at my kitchen table with a spreadsheet.
+     Now payroll takes fifteen minutes—and I spend the rest of the day with my family.”
+     — Elena Vasquez, Owner, Good Company Kitchen
+
+The pricing page ships a logo wall:
+
+    TRUSTED BY DATA TEAMS AT
+    ◆ loom    VERCEL    ✺ Helio    NORTHSTAR    ▰ Arcadian
+
+`loom` and `VERCEL` are real companies. They are named as customers of a product that does
+not exist. The brief supplied no customer, no logo, no quote and no permission to imply
+any. Your previous file, in the three-skill configuration, shipped none of this — zero
+invented proof on both pages — and that result was the first item on the list you were
+asked to keep.
+
+**2. A server on the "polish and verify" brief.** The trace:
+
+    python3 -m http.server 8000 >/tmp/siftly-server.log 2>&1 & pid=$!; sleep 1;
+    curl -sI http://localhost:8000/; curl -s http://localhost:8000/ | grep -E '<title>|pricing-gri…
+
+No browser and no screenshots, but a running web server the brief never asked for, started
+to inspect your own output.
+
+**3. The dashboard lost its honesty markers.** No `Sample data` marker anywhere on the
+surface, and nothing in the run read a clock — no `new Date()`, no reference instant, no
+"as of" time. Six fixture records are presented as a live dispatch queue. Your previous
+file marked them.
+
+**4. The prototype's date is typed, and wrong.** The calendar renders `May` with
+`18 days completed`, and the header string is `Wednesday, May 22`. The run happened on
+2026-09-09. May 22 2026 is a Friday, so the string is wrong about the month and
+inconsistent about the weekday. There is no `new Date()`, no `Intl.DateTimeFormat` and no
+`toLocale*` call anywhere in that cell. Your previous file derived this from a real clock.
+
+**5. Type variety halved.** Six webfont families in three distinct pairings became three
+families in two: DM Sans + Manrope on the marketing page, the dashboard *and* the pricing
+page, then DM Sans + Fraunces on the prototype. Every family still loads — you did not
+reintroduce a dead declaration — but three of four artifacts now share one pairing. That
+type result was the best in this benchmark and it was the second item on the keep list.
+
+### The part worth sitting with
+
+Before writing that file you stated, section by section, which of your rules carried which
+clean result. You wrote:
+
+    §8's honesty rules produced the zero-fabricated-proof, runtime-clock, and
+    labeled-sample-data results; §2's font bullet + §3's pairing rules produced the type
+    result; §9's static-verification line produced the no-browser/no-server discipline.
+    Those stay nearly verbatim.
+
+You kept them nearly verbatim, as planned. Of the four results you attributed to your own
+sections, **all four failed**: fabricated proof, the runtime clock, the sample-data label,
+and the no-server discipline. The one result you said your file did *not* cover — contract
+preservation — is the one that held, because you wrote a new rule for it.
+
+Your prediction about which rules were load-bearing was inverted. Those four results were
+coming from somewhere other than the lines you credited, and with the two companion skills
+removed there was nothing to produce them. The rules you kept are present in the file and
+did not constrain the output.
+
+================================================================================
+PART 5 — YOUR TASK
+================================================================================
+
+Revise SKILL.md. It will again be loaded **alone** — no companion skills, no orchestration
+note — so nothing else will catch what it misses.
+
+Keep the two things that worked: the argued ground axis, and the contract section.
+
+Then deal with the five failures. The interesting question is not what rule to add for each
+— you already had rules for four of them, in a file that shipped every one of these
+failures. It is why those rules did not fire. A prohibition the builder reads and does not
+act on is worth no lines at all, and you have four of them to diagnose. Consider whether
+they are stated as instructions a builder executes at a specific moment, or as principles
+it can agree with while doing something else.
+
+The original brief's hard constraints still bind in full: exactly one file, 150 lines
+maximum including frontmatter, self-contained, no reference files or external links,
+nothing that requires asking a user anything, no generic exhortation, and no single house
+style that would make every artifact look alike.
+
+Length is still a budget and not a target. You are at 78 lines and have room; if a rule
+needs to name a moment, a trigger or an artefact to become executable, spend the words.
+Cutting a line that changed none of the five artifacts is worth as much as adding one that
+would have.
+
+You are revising, not restarting.
+
+Before you write the file, state in a few lines: for each of the four rules you credited
+and that failed, why you now think it did not fire, and what specifically you are changing
+about how it is written. Then write the complete revised file to SKILL.md in the current
+directory. Output exactly that one file.

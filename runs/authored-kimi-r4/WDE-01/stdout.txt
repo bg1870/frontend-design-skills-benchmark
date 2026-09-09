@@ -1,0 +1,9 @@
+Built the complete responsive Ridgeline marketing site.
+
+### Files
+- `index.html` — Single-page website
+- `styles.css` — Responsive visual design and animations
+- `script.js` — Mobile navigation and form interactions
+- `README.md` — Setup instructions and material assumptions
+
+Verified locally with an HTTP server and received a successful `200 OK` response.

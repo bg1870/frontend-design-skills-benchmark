@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Metriclane pricing for B2B analytics teams. Start free, scale by tracked accounts, and keep every dashboard.">
+  <title>Pricing — Metriclane</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230C0E12'/%3E%3Cpath d='M7 23V14m6 9V8m6 15v-6m6 6V11' stroke='%237EE787' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav shell">
+    <a class="brand" href="#" aria-label="Metriclane home"><span class="brand-mark" aria-hidden="true"></span>metriclane</a>
+    <nav aria-label="Primary navigation">
+      <a href="#plans">Plans</a><a href="#compare">Compare</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="login" href="#contact">Log in <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="eyebrow"><span class="pulse" aria-hidden="true"></span> PRICING / V2.4</div>
+      <h1 id="hero-title">Know the number.<br><span>Pay for the signal.</span></h1>
+      <div class="hero-aside">
+        <p>One source of truth for revenue, retention, and product usage. Every plan includes unlimited dashboards and no query tax.</p>
+        <div class="billing" role="group" aria-label="Billing period">
+          <button class="period active" data-period="monthly" aria-pressed="true">Monthly</button>
+          <button class="period" data-period="annual" aria-pressed="false">Annual <span>−20%</span></button>
+        </div>
+      </div>
+      <div class="proof" aria-label="Usage statistics">
+        <div><strong>2.1B</strong><small>events / day</small></div>
+        <div><strong>99.99%</strong><small>pipeline uptime</small></div>
+        <div><strong>&lt;38ms</strong><small>median query</small></div>
+      </div>
+    </section>
+
+    <section class="plans shell" id="plans" aria-label="Pricing plans">
+      <article class="plan">
+        <div class="plan-head"><span>01 / START</span><span>UP TO 5 SEATS</span></div>
+        <h2>Observe</h2>
+        <p class="plan-copy">For a team replacing weekly spreadsheets with live operating metrics.</p>
+        <div class="price"><span class="currency">$</span><strong data-monthly="0" data-annual="0">0</strong><span>/ mo</span></div>
+        <a class="button secondary" href="#contact">Start with sample data <span aria-hidden="true">→</span></a>
+        <ul>
+          <li>250k events each month</li><li>Unlimited dashboards</li><li>30-day data history</li><li>CSV + warehouse sync</li>
+        </ul>
+      </article>
+
+      <article class="plan featured">
+        <div class="plan-head"><span>02 / SCALE</span><span class="status">MOST CHOSEN</span></div>
+        <h2>Operate</h2>
+        <p class="plan-copy">For revenue and product teams making decisions in the same room.</p>
+        <div class="price"><span class="currency">$</span><strong data-monthly="399" data-annual="319">399</strong><span>/ mo</span></div>
+        <a class="button primary" href="#contact">Run your first report <span aria-hidden="true">→</span></a>
+        <ul>
+          <li>10m events each month</li><li>25 seats, unlimited viewers</li><li>2-year data history</li><li>Slack alerts + CRM enrichment</li><li>4-hour support response</li>
+        </ul>
+      </article>
+
+      <article class="plan enterprise">
+        <div class="plan-head"><span>03 / CONTROL</span><span>ANNUAL AGREEMENT</span></div>
+        <h2>Govern</h2>
+        <p class="plan-copy">For companies that need regional controls, audit trails, and a human on call.</p>
+        <div class="price custom"><strong>Custom</strong><span>from 50m events</span></div>
+        <a class="button secondary" href="#contact">Design your plan <span aria-hidden="true">→</span></a>
+        <ul>
+          <li>Volume-priced events</li><li>SAML, SCIM + audit log</li><li>Private cloud region</li><li>Named solutions engineer</li><li>Custom data retention</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="compare shell" id="compare" aria-labelledby="compare-title">
+      <div class="section-index">[ 04 ]</div>
+      <div class="compare-intro"><p class="eyebrow">THE COST OF CLARITY</p><h2 id="compare-title">All the infrastructure.<br><span>None of the metering games.</span></h2></div>
+      <div class="comparison" role="table" aria-label="Included in every plan">
+        <div class="table-row table-head" role="row"><span role="columnheader">Every workspace gets</span><span role="columnheader">Included</span></div>
+        <div class="table-row" role="row"><span role="cell">Dashboard & report count</span><strong role="cell">UNLIMITED</strong></div>
+        <div class="table-row" role="row"><span role="cell">SQL queries</span><strong role="cell">UNMETERED</strong></div>
+        <div class="table-row" role="row"><span role="cell">Scheduled exports</span><strong role="cell">INCLUDED</strong></div>
+        <div class="table-row" role="row"><span role="cell">Data egress fees</span><strong role="cell">$0</strong></div>
+      </div>
+    </section>
+
+    <section class="faq shell" id="faq" aria-labelledby="faq-title">
+      <div><p class="eyebrow">FAQ / 05</p><h2 id="faq-title">Before you<br>run the numbers.</h2></div>
+      <div class="questions">
+        <details><summary>What counts as an event?<span>+</span></summary><p>An event is one row ingested from your sources, such as an invoice paid, account created, or feature used. Reprocessing is never counted twice.</p></details>
+        <details><summary>Can we change plans mid-cycle?<span>+</span></summary><p>Yes. Upgrades apply immediately and are prorated. Downgrades take effect at your next billing date, with your data preserved.</p></details>
+        <details><summary>Is there a trial for Operate?<span>+</span></summary><p>Every new workspace gets Operate features for 21 days. No card is required, and sample datasets are ready on day one.</p></details>
+        <details><summary>Do you offer startup pricing?<span>+</span></summary><p>Venture-backed companies under two years old can receive 50% off Operate for their first year.</p></details>
+      </div>
+    </section>
+
+    <section class="cta shell" id="contact">
+      <p class="eyebrow">PIPELINE READY</p>
+      <h2>Your next board report<br>can build itself.</h2>
+      <a class="button primary" href="mailto:hello@metriclane.example">Talk to an analytics engineer <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="footer shell"><a class="brand" href="#"><span class="brand-mark"></span>metriclane</a><p>© 2026 METRICLANE, INC.</p><div><a href="#">Security</a><a href="#">Terms</a><a href="#">Privacy</a></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>

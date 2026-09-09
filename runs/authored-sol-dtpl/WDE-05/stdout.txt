@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added responsive **Customer stories** section with an honest verified-content notice.
+- Added **In the box** hardware section with neutral placeholders for unavailable imagery and packing details.
+- Extended navigation for both sections.
+- Added responsive styling consistent with the existing Kettell design.
+- Documented sourcing attempts and unresolved assets/content in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Validated HTML parsing and required section IDs.

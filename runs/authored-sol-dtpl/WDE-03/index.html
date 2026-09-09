@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Compare Signalist analytics plans for growing data teams." />
+  <title>Pricing — Signalist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Signalist home">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M5 24.5 12 17l5 4 12-13"/><path d="M21 8h8v8"/></svg>
+      <span>signalist</span>
+    </a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav-links"><span class="sr-only">Open navigation</span><i></i><i></i></button>
+    <nav id="nav-links" aria-label="Main navigation">
+      <a href="#platform">Platform</a><a href="#solutions">Solutions</a><a href="#resources">Resources</a><a href="#pricing" aria-current="page">Pricing</a>
+      <span class="nav-actions"><a href="#login">Log in</a><a class="button button-dark button-small" href="#trial">Start free</a></span>
+    </nav>
+  </header>
+
+  <main id="pricing">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow"><span></span> Straightforward pricing</div>
+      <h1 id="page-title">Turn data into decisions,<br><em>not invoices.</em></h1>
+      <p>One analytics workspace for your whole team. Start with the essentials, then scale without rebuilding your stack.</p>
+      <div class="billing" role="group" aria-label="Billing frequency">
+        <button type="button" data-period="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-period="annual" aria-pressed="false">Annual <span>Save 20%</span></button>
+      </div>
+    </section>
+
+    <section class="plans" aria-label="Pricing plans">
+      <article class="plan">
+        <div><p class="plan-label">For early teams</p><h2>Launch</h2><p class="plan-copy">Get reliable answers without adding another specialist.</p></div>
+        <div class="price"><span class="currency">$</span><strong data-monthly="49" data-annual="39">49</strong><span>/ month</span><small>per workspace, billed <b>monthly</b></small></div>
+        <a class="button button-outline" href="#trial">Start 14-day trial</a>
+        <div class="rule"></div>
+        <h3>Everything you need to launch</h3>
+        <ul><li>Up to 5 team members</li><li>10 data sources</li><li>Unlimited dashboards</li><li>Daily data refresh</li><li>Email support</li></ul>
+      </article>
+
+      <article class="plan featured">
+        <div class="recommended">MOST POPULAR</div>
+        <div><p class="plan-label">For growing companies</p><h2>Scale</h2><p class="plan-copy">Move faster with shared metrics, automation, and control.</p></div>
+        <div class="price"><span class="currency">$</span><strong data-monthly="149" data-annual="119">149</strong><span>/ month</span><small>per workspace, billed <b>monthly</b></small></div>
+        <a class="button button-lime" href="#trial">Start 14-day trial <span aria-hidden="true">→</span></a>
+        <div class="rule"></div>
+        <h3>Everything in Launch, plus</h3>
+        <ul><li>Up to 25 team members</li><li>Unlimited data sources</li><li>Hourly data refresh</li><li>Custom metrics layer</li><li>Slack alerts & priority support</li></ul>
+      </article>
+
+      <article class="plan">
+        <div><p class="plan-label">For complex organizations</p><h2>Enterprise</h2><p class="plan-copy">Security, governance, and service for data at scale.</p></div>
+        <div class="price custom"><strong>Let’s talk</strong><small>Tailored to your data environment</small></div>
+        <a class="button button-outline" href="mailto:sales@signalist.example">Contact sales</a>
+        <div class="rule"></div>
+        <h3>Everything in Scale, plus</h3>
+        <ul><li>Unlimited team members</li><li>Real-time data refresh</li><li>SAML SSO & SCIM</li><li>Audit logs & custom roles</li><li>Dedicated success manager</li></ul>
+      </article>
+    </section>
+
+    <section class="included" aria-labelledby="included-title">
+      <div><div class="eyebrow"><span></span> Built into every plan</div><h2 id="included-title">No surprise add-ons.</h2><p>Your fundamentals stay included as you grow.</p></div>
+      <div class="included-grid">
+        <article><span>01</span><h3>Governed metrics</h3><p>Keep definitions consistent from dashboard to boardroom.</p></article>
+        <article><span>02</span><h3>Embedded AI analyst</h3><p>Ask questions in plain language and see the query behind every answer.</p></article>
+        <article><span>03</span><h3>Secure by default</h3><p>Encryption in transit and at rest, with granular workspace permissions.</p></article>
+      </div>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <div><div class="eyebrow"><span></span> Good to know</div><h2 id="faq-title">Questions,<br>answered.</h2><p>Can’t find what you need? <a href="mailto:hello@signalist.example">Talk to our team.</a></p></div>
+      <div class="questions">
+        <details><summary>Can I try Signalist before paying?<span>+</span></summary><p>Yes. Launch and Scale include a 14-day trial. No credit card is required, and you can invite your team during the trial.</p></details>
+        <details><summary>What counts as a data source?<span>+</span></summary><p>Each connected database, warehouse, spreadsheet, or supported third-party application counts as one data source.</p></details>
+        <details><summary>Can I change plans later?<span>+</span></summary><p>Yes. You can upgrade at any time. Downgrades take effect at the start of your next billing period.</p></details>
+        <details><summary>Do you offer discounts for startups?<span>+</span></summary><p>Eligible early-stage companies can contact our team to discuss startup pricing.</p></details>
+      </div>
+    </section>
+
+    <section class="cta" id="trial">
+      <div><div class="eyebrow light"><span></span> Your data is ready</div><h2>See what your business<br>has been trying to tell you.</h2></div>
+      <div><a class="button button-lime" href="mailto:hello@signalist.example">Start your free trial <span aria-hidden="true">→</span></a><p>14 days free · No credit card</p></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M5 24.5 12 17l5 4 12-13"/><path d="M21 8h8v8"/></svg><span>signalist</span></a><p>Analytics that gets to the point.</p><p>© 2026 Signalist</p></footer>
+</body>
+</html>

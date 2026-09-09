@@ -1,0 +1,19 @@
+Implemented the dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- Responsive summary bar with queue counts and Central-time timestamp
+- Search and status filters
+- Scheduled job queue with status indicators
+- Interactive job details and sample status updates
+- Fixture reload control and error/empty states
+- Accessible keyboard focus, dialog, labels, and reduced-motion support
+- Persistent “Sample data” labeling
+- Material assumptions documented in `ASSUMPTIONS.md`
+
+### Files
+- `index.html`
+- `styles.css`
+- `app.js`
+- `ASSUMPTIONS.md`
+
+Static JavaScript and JSON checks pass. Serve over HTTP so the fixture can load, e.g. `python3 -m http.server`.

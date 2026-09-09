@@ -1,0 +1,16 @@
+Implemented the clickable React habit-tracking prototype.
+
+### Included
+- Today view with interactive habit completion
+- Streak detail with two-week history
+- Add-habit bottom sheet with working form
+- Responsive mobile layout and desktop presentation
+- Accessible focus states, labels, reduced-motion support, and runtime dates
+- Material assumptions documented in `ASSUMPTIONS.md`
+
+### Run
+```bash
+npm run dev
+```
+
+Production build verified successfully with `npm run build`.

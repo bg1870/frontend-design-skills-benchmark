@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halcyon — shift handover for veterinary clinics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&family=Roboto+Mono&family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site">
+    <span class="wordmark">Halcyon</span>
+    <nav aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#signup" id="cta" class="nav-cta">Start free</a>
+    </nav>
+    <button class="icon"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>The handover note your night shift actually reads.</h1>
+      <p>Halcyon turns the end-of-shift scramble into a two-minute structured handover, so the vet coming on at 10pm knows which cage to check first.</p>
+      <a class="btn" href="#signup" id="cta">Start free</a>
+      <img src="screenshot.svg" alt="Halcyon handover screen showing four patients grouped by escalation level" width="880" height="440">
+    </section>
+
+    <section id="how" class="reveal">
+      <h2>How it works</h2>
+      <div class="grid">
+        <article><h3>Capture</h3><p>Outgoing staff dictate or type one line per patient. Fields are fixed, so nothing gets skipped.</p></article>
+        <article><h3>Escalate</h3><p>Anything flagged unstable moves to the top of the incoming shift's list automatically.</p></article>
+        <article><h3>Close the loop</h3><p>The next shift marks each item seen. Unseen items resurface at the following handover.</p></article>
+      </div>
+    </section>
+
+    <section id="integrations" class="reveal">
+      <h2>Integrations</h2>
+      <p class="summary">Connects to 12 practice management systems.</p>
+      <ul class="integration-list">
+        <li class="row" onclick="location.href='#signup'">
+          <img src="logo-ezyvet.svg" alt="ezyVet logo"> ezyVet
+          <button class="icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+        </li>
+        <li class="row" onclick="location.href='#signup'">
+          <img src="logo-cornerstone.svg" alt="Cornerstone logo"> Cornerstone
+          <button class="icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+        </li>
+        <li class="row" onclick="location.href='#signup'">
+          <img src="logo-avimark.svg" alt="AVImark logo"> AVImark
+          <button class="icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+        </li>
+        <li class="row" onclick="location.href='#signup'">
+          <img src="logo-vetspire.svg" alt="Vetspire logo"> Vetspire
+          <button class="icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+        </li>
+        <li class="row" onclick="location.href='#signup'">
+          <img src="logo-provet.svg" alt="Provet Cloud logo"> Provet Cloud
+          <button class="icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+        </li>
+      </ul>
+    </section>
+
+    <section id="signup" class="reveal">
+      <h2>Start free</h2>
+      <p>Two clinics, unlimited handovers, no card.</p>
+      <form action="/api/signup" method="post">
+        <input name="email" type="text" placeholder="Work email">
+        <button class="btn" type="submit">Create workspace</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site">
+    <p>© Halcyon Veterinary Software. <a href="/privacy">Privacy</a></p>
+  </footer>
+
+  <script>
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  </script>
+</body>
+</html>

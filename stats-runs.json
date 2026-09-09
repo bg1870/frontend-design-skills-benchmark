@@ -24,6 +24,54 @@
   "scenarios": 5
  },
  {
+  "tin": 67850,
+  "cr": 167168,
+  "out": 26834,
+  "rea": 1156,
+  "cost": 1.2278540000000002,
+  "turns": 31,
+  "tools": 44,
+  "cfg": "authored-astra-tpl",
+  "secs": 1073,
+  "scenarios": 5
+ },
+ {
+  "tin": 76205,
+  "cr": 212864,
+  "out": 27561,
+  "rea": 1127,
+  "cost": 1.314287,
+  "turns": 40,
+  "tools": 49,
+  "cfg": "authored-kimi-tpl",
+  "secs": 1130,
+  "scenarios": 5
+ },
+ {
+  "tin": 65671,
+  "cr": 262016,
+  "out": 29193,
+  "rea": 1197,
+  "cost": 1.3351529999999998,
+  "turns": 44,
+  "tools": 62,
+  "cfg": "authored-sol-tpl",
+  "secs": 1191,
+  "scenarios": 5
+ },
+ {
+  "tin": 75204,
+  "cr": 346752,
+  "out": 28225,
+  "rea": 1428,
+  "cost": 1.396146,
+  "turns": 50,
+  "tools": 67,
+  "cfg": "authored-kimi-dtpl",
+  "secs": 1201,
+  "scenarios": 5
+ },
+ {
   "tin": 74215,
   "cr": 184832,
   "out": 32298,
@@ -45,6 +93,30 @@
   "tools": 42,
   "cfg": "authored",
   "secs": 1070,
+  "scenarios": 5
+ },
+ {
+  "tin": 101049,
+  "cr": 213632,
+  "out": 31473,
+  "rea": 1145,
+  "cost": 1.5562509999999994,
+  "turns": 40,
+  "tools": 53,
+  "cfg": "authored-sol-dtpl",
+  "secs": 1198,
+  "scenarios": 5
+ },
+ {
+  "tin": 104933,
+  "cr": 278272,
+  "out": 30069,
+  "rea": 1159,
+  "cost": 1.5658709999999998,
+  "turns": 45,
+  "tools": 57,
+  "cfg": "authored-astra-dtpl",
+  "secs": 1155,
   "scenarios": 5
  },
  {
@@ -96,6 +168,18 @@
   "scenarios": 5
  },
  {
+  "tin": 88680,
+  "cr": 477952,
+  "out": 37349,
+  "rea": 1995,
+  "cost": 1.8028459999999995,
+  "turns": 47,
+  "tools": 69,
+  "cfg": "paired-solhigh-ui",
+  "secs": 1486,
+  "scenarios": 5
+ },
+ {
   "tin": 99326,
   "cr": 433792,
   "out": 36960,
@@ -105,6 +189,54 @@
   "tools": 81,
   "cfg": "paired-opus",
   "secs": 1392,
+  "scenarios": 5
+ },
+ {
+  "tin": 154410,
+  "cr": 410240,
+  "out": 30569,
+  "rea": 1687,
+  "cost": 1.8942400000000001,
+  "turns": 53,
+  "tools": 73,
+  "cfg": "paired-kimi-r2",
+  "secs": 1129,
+  "scenarios": 5
+ },
+ {
+  "tin": 153453,
+  "cr": 456192,
+  "out": 30158,
+  "rea": 1865,
+  "cost": 1.9001010000000003,
+  "turns": 58,
+  "tools": 71,
+  "cfg": "paired-sol-r2",
+  "secs": 1130,
+  "scenarios": 5
+ },
+ {
+  "tin": 147363,
+  "cr": 406528,
+  "out": 32951,
+  "rea": 2137,
+  "cost": 1.9286090000000005,
+  "turns": 49,
+  "tools": 75,
+  "cfg": "paired-solhigh-r2",
+  "secs": 1178,
+  "scenarios": 5
+ },
+ {
+  "tin": 131263,
+  "cr": 372352,
+  "out": 36722,
+  "rea": 2440,
+  "cost": 1.944151,
+  "turns": 40,
+  "tools": 72,
+  "cfg": "paired-opus-r2",
+  "secs": 1295,
   "scenarios": 5
  },
  {
@@ -132,6 +264,30 @@
   "scenarios": 5
  },
  {
+  "tin": 147197,
+  "cr": 225152,
+  "out": 58076,
+  "rea": 2756,
+  "cost": 2.590841,
+  "turns": 61,
+  "tools": 85,
+  "cfg": "authored-kimi-r3",
+  "secs": 2322,
+  "scenarios": 10
+ },
+ {
+  "tin": 155918,
+  "cr": 180352,
+  "out": 60176,
+  "rea": 2701,
+  "cost": 2.675046,
+  "turns": 62,
+  "tools": 83,
+  "cfg": "authored-kimi-r4",
+  "secs": 2290,
+  "scenarios": 10
+ },
+ {
   "tin": 223444,
   "cr": 1145856,
   "out": 33879,
@@ -154,6 +310,42 @@
   "cfg": "taste-solo",
   "secs": 1488,
   "scenarios": 5
+ },
+ {
+  "tin": 177013,
+  "cr": 290048,
+  "out": 65742,
+  "rea": 3929,
+  "cost": 3.0023489999999993,
+  "turns": 61,
+  "tools": 91,
+  "cfg": "authored-sol-r3",
+  "secs": 2295,
+  "scenarios": 10
+ },
+ {
+  "tin": 224327,
+  "cr": 334080,
+  "out": 59628,
+  "rea": 3771,
+  "cost": 3.077515000000001,
+  "turns": 65,
+  "tools": 87,
+  "cfg": "authored-astra-r3",
+  "secs": 2157,
+  "scenarios": 10
+ },
+ {
+  "tin": 222576,
+  "cr": 405888,
+  "out": 62367,
+  "rea": 3316,
+  "cost": 3.186834,
+  "turns": 76,
+  "tools": 103,
+  "cfg": "authored-sol-r4",
+  "secs": 2366,
+  "scenarios": 10
  },
  {
   "tin": 207222,

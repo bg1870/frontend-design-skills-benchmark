@@ -1,0 +1,140 @@
+/* Kettell marketing site — established token set. Do not modernize. */
+:root {
+  --k-ink:        #1c1a17;
+  --k-ink-soft:   #55504a;
+  --k-paper:      #f4f1ec;
+  --k-surface:    #ffffff;
+  --k-line:       #d8d2c8;
+  --k-accent:     #8a4b2a;
+  --k-radius:     6px;
+  --k-space:      8px;
+  --k-measure:    64ch;
+  --k-display:    "Bitter", Georgia, serif;
+  --k-text:       "Bitter", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--k-paper);
+  color: var(--k-ink);
+  font-family: var(--k-text);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 calc(var(--k-space) * 3); }
+
+header.site {
+  border-bottom: 1px solid var(--k-line);
+  padding: calc(var(--k-space) * 2) 0;
+}
+header.site .wordmark { font-family: var(--k-display); font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; }
+header.site nav a { color: var(--k-ink-soft); text-decoration: none; margin-left: calc(var(--k-space) * 3); }
+header.site nav a:hover { color: var(--k-ink); }
+
+h1 { font-family: var(--k-display); font-size: 44px; line-height: 1.1; margin: calc(var(--k-space) * 6) 0 var(--k-space); }
+h2 { font-family: var(--k-display); font-size: 28px; line-height: 1.2; margin: calc(var(--k-space) * 6) 0 calc(var(--k-space) * 2); }
+p  { max-width: var(--k-measure); color: var(--k-ink-soft); }
+
+section { padding: calc(var(--k-space) * 5) 0; border-top: 1px solid var(--k-line); scroll-margin-top: calc(var(--k-space) * 3); }
+
+.section-intro { display: grid; grid-template-columns: minmax(150px, 1fr) 2fr; column-gap: calc(var(--k-space) * 4); align-items: baseline; }
+.section-intro .eyebrow { grid-row: 1 / span 2; }
+.section-intro h2 { margin-top: 0; }
+.section-intro p { margin-top: 0; }
+.eyebrow {
+  display: block;
+  color: var(--k-accent);
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.testimonial-pending {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: calc(var(--k-space) * 4);
+  margin-top: calc(var(--k-space) * 3);
+  padding: calc(var(--k-space) * 4) 0 calc(var(--k-space) * 2);
+  border-top: 1px solid var(--k-line);
+}
+.status-mark { color: var(--k-line); font-family: var(--k-display); font-size: 104px; line-height: 0.8; }
+.testimonial-pending h3 { margin: 0 0 var(--k-space); font-family: var(--k-display); font-size: 24px; }
+.testimonial-pending p { margin-top: 0; }
+.testimonial-pending a { color: var(--k-accent); font-weight: bold; text-underline-offset: 3px; }
+
+.box-section { display: grid; grid-template-columns: 5fr 7fr; gap: calc(var(--k-space) * 7); align-items: center; }
+.box-copy h2 { margin-top: var(--k-space); }
+.source-note { margin-top: calc(var(--k-space) * 3); font-size: 14px; }
+.source-note strong { color: var(--k-ink); }
+.packing-slip { background: var(--k-surface); border: 1px solid var(--k-line); border-radius: var(--k-radius); }
+.slip-head, .slip-foot { padding: calc(var(--k-space) * 2); color: var(--k-ink-soft); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; }
+.slip-head { display: flex; justify-content: space-between; gap: var(--k-space); border-bottom: 1px solid var(--k-line); }
+.slip-body { display: grid; grid-template-columns: auto 1fr auto; gap: calc(var(--k-space) * 2); align-items: center; padding: calc(var(--k-space) * 4) calc(var(--k-space) * 2); }
+.slip-number { color: var(--k-accent); font-size: 13px; font-variant-numeric: tabular-nums; }
+.slip-body h3 { margin: 0; font-family: var(--k-display); font-size: 20px; }
+.slip-body p { margin: calc(var(--k-space) / 2) 0 0; font-size: 14px; }
+.unchecked { width: 22px; height: 22px; border: 1px solid var(--k-line); }
+.slip-foot { border-top: 1px solid var(--k-line); text-transform: none; letter-spacing: 0; line-height: 1.45; }
+
+.card {
+  background: var(--k-surface);
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-radius);
+  padding: calc(var(--k-space) * 3);
+  box-shadow: none;
+}
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--k-space) * 3); }
+
+.btn {
+  display: inline-block;
+  background: var(--k-accent);
+  color: #fff;
+  border: 1px solid var(--k-accent);
+  border-radius: var(--k-radius);
+  padding: calc(var(--k-space) * 1.5) calc(var(--k-space) * 3);
+  font-family: var(--k-text);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+.btn:hover  { background: #73401f; border-color: #73401f; }
+.btn:focus-visible { outline: 2px solid var(--k-ink); outline-offset: 2px; }
+.btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+.btn-quiet { background: transparent; color: var(--k-ink); border: 1px solid var(--k-line); }
+
+form.lead label { display: block; font-size: 14px; color: var(--k-ink-soft); margin-bottom: var(--k-space); }
+form.lead input, form.lead textarea {
+  width: 100%;
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-radius);
+  background: var(--k-surface);
+  padding: calc(var(--k-space) * 1.5);
+  font-family: var(--k-text);
+  font-size: 16px;
+  margin-bottom: calc(var(--k-space) * 2);
+}
+
+footer.site { border-top: 1px solid var(--k-line); padding: calc(var(--k-space) * 4) 0; color: var(--k-ink-soft); font-size: 14px; }
+
+@media (max-width: 760px) {
+  header.site .wrap { align-items: flex-start !important; gap: calc(var(--k-space) * 2); }
+  header.site nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--k-space) calc(var(--k-space) * 2); }
+  header.site nav a { margin-left: 0; }
+  .grid-3, .section-intro, .testimonial-pending, .box-section { grid-template-columns: 1fr; }
+  .section-intro .eyebrow { grid-row: auto; margin-bottom: var(--k-space); }
+  .testimonial-pending, .box-section { gap: calc(var(--k-space) * 2); }
+  .status-mark { font-size: 72px; height: 42px; }
+  h1 { font-size: 34px; }
+}
+
+@media (max-width: 460px) {
+  header.site .wrap { display: block !important; }
+  header.site nav { justify-content: flex-start; margin-top: calc(var(--k-space) * 2); font-size: 14px; }
+  .slip-head { display: grid; }
+}

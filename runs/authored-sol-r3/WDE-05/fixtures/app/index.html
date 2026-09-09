@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kettell — countertop espresso</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="wordmark">Kettell</span>
+      <nav aria-label="Primary navigation">
+        <a href="#machine">The machine</a>
+        <a href="#testimonials">Customer stories</a>
+        <a href="#in-the-box">In the box</a>
+        <a href="#craft">Craft</a>
+        <a href="#contact" data-analytics-id="nav_contact" data-analytics-section="header">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>A countertop espresso machine built to be repaired, not replaced.</h1>
+    <p>Kettell is a single-boiler machine for people who pull two or three shots a day and would rather keep the same machine for fifteen years.</p>
+    <p>
+      <a class="btn" href="#contact" data-analytics-id="hero_primary_cta" data-analytics-section="hero">Request a demo</a>
+      <a class="btn btn-quiet" href="#machine" data-analytics-id="hero_secondary_cta" data-analytics-section="hero">See the machine</a>
+    </p>
+
+    <section id="machine">
+      <h2>The machine</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Single boiler</h3><p>Brass boiler, PID-held at your set temperature.</p></div>
+        <div class="card"><h3>Serviceable</h3><p>Every gasket and valve is reachable with a hex key.</p></div>
+        <div class="card"><h3>58mm</h3><p>Commercial portafilter size, so baskets are easy to find.</p></div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="evidence-section" aria-labelledby="testimonials-title">
+      <div class="section-heading">
+        <p class="section-number" aria-hidden="true">01</p>
+        <div>
+          <h2 id="testimonials-title">Customer testimonials</h2>
+          <p>Experiences from people who use Kettell at home belong here.</p>
+        </div>
+      </div>
+      <div class="source-note" role="note" aria-label="Testimonial availability">
+        <p class="source-note__label">Awaiting verified customer stories</p>
+        <p>No attributable customer testimonials were provided with this site. This space is intentionally unquoted until Kettell can supply approved words, names, and context.</p>
+      </div>
+    </section>
+
+    <section id="in-the-box" class="box-section" aria-labelledby="box-title">
+      <div class="section-heading">
+        <p class="section-number" aria-hidden="true">02</p>
+        <div>
+          <h2 id="box-title">In the box</h2>
+          <p>The packing list should make it clear what arrives with the machine and what must be sourced separately.</p>
+        </div>
+      </div>
+      <div class="packing-ledger" role="note" aria-label="Box contents availability">
+        <div class="packing-ledger__index" aria-hidden="true">
+          <span>01</span><span>02</span><span>03</span>
+        </div>
+        <div class="packing-ledger__copy">
+          <p class="source-note__label">Package inventory not yet documented</p>
+          <p>No confirmed box-contents list or product photography was available in the project. Items are not shown here to avoid implying that an accessory is included.</p>
+          <a href="#contact">Ask for the current packing list</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="craft">
+      <h2>Craft</h2>
+      <p>Assembled in small runs. Parts lists and service diagrams are published for every unit we have ever shipped.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Talk to us</h2>
+      <form class="lead" action="/api/lead" method="post">
+        <label for="lead-name">Name</label>
+        <input id="lead-name" name="name" type="text" required>
+        <label for="lead-email">Email</label>
+        <input id="lead-email" name="email" type="email" required>
+        <label for="lead-note">What are you hoping to brew?</label>
+        <textarea id="lead-note" name="note" rows="4"></textarea>
+        <button class="btn" type="submit" data-analytics-id="lead_form_submit" data-analytics-section="contact">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">© Kettell. Service diagrams available on request.</div>
+  </footer>
+</body>
+</html>

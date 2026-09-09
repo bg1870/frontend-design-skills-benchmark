@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added responsive **Customer testimonials** section with clearly labelled verified-content placeholder.
+- Added responsive hardware **In the box** section with neutral product-image and packing-list placeholders.
+- Added navigation links for both sections.
+- Extended existing visual styles without changing the established design system.
+- Documented sourcing attempts and unresolved blockers in `fixtures/app/SOURCING.md`.
+- Validated HTML IDs and fragment links.

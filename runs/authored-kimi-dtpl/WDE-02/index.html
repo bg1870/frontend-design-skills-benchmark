@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Clearflow Plumbing dispatcher job queue" />
+  <title>Dispatch — Clearflow Plumbing</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Clearflow Plumbing dispatch home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5s6.5 7.2 6.5 12a6.5 6.5 0 1 1-13 0c0-4.8 6.5-12 6.5-12Z"/><path d="M9.2 16.2c.5 1.1 1.5 1.7 2.8 1.7"/></svg></span>
+      <span><strong>Clearflow</strong><small>PLUMBING CO.</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a class="active" href="#queue">Dispatch</a><a href="#schedule">Schedule</a><a href="#customers">Customers</a>
+    </nav>
+    <div class="user"><span class="user-copy"><strong>Alex Morgan</strong><small>Dispatcher</small></span><span class="avatar" aria-hidden="true">AM</span></div>
+  </header>
+
+  <main>
+    <section class="page-head" aria-labelledby="page-title">
+      <div><p class="eyebrow">OPERATIONS / DISPATCH</p><h1 id="page-title">Job queue</h1><p class="subtitle" id="date-range">September 5–11, 2026</p></div>
+      <p class="timezone"><span></span> Times shown in Central Time</p>
+    </section>
+
+    <section class="summary" aria-label="Job summary">
+      <div class="summary-lead"><span class="summary-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z"/></svg></span><div><span class="metric" id="total-count">0</span><span class="metric-label">jobs this period</span></div></div>
+      <div class="summary-stat"><span class="status-dot open"></span><div><span class="metric" id="open-count">0</span><span class="metric-label">Unassigned</span></div></div>
+      <div class="summary-stat"><span class="status-dot assigned"></span><div><span class="metric" id="assigned-count">0</span><span class="metric-label">Assigned</span></div></div>
+      <div class="summary-stat"><span class="status-dot done"></span><div><span class="metric" id="done-count">0</span><span class="metric-label">Completed</span></div></div>
+      <div class="completion"><div class="completion-label"><span>Completion</span><strong id="completion-value">0%</strong></div><div class="track"><span id="completion-bar"></span></div></div>
+    </section>
+
+    <section class="queue" id="queue" aria-labelledby="queue-title">
+      <div class="queue-head"><div><h2 id="queue-title">All jobs</h2><p id="result-count" aria-live="polite">Loading jobs…</p></div><div class="queue-tools">
+        <label class="search"><span class="sr-only">Search jobs</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="Search jobs or addresses" /></label>
+        <label class="sort"><span class="sr-only">Sort jobs</span><select id="sort"><option value="scheduled">Scheduled time</option><option value="status">Status</option><option value="technician">Technician</option></select></label>
+      </div></div>
+      <div class="filters" role="group" aria-label="Filter jobs by status">
+        <button class="filter active" data-status="all">All <span id="filter-all">0</span></button>
+        <button class="filter" data-status="open">Unassigned <span id="filter-open">0</span></button>
+        <button class="filter" data-status="assigned">Assigned <span id="filter-assigned">0</span></button>
+        <button class="filter" data-status="done">Completed <span id="filter-done">0</span></button>
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th scope="col">Job</th><th scope="col">Scheduled</th><th scope="col">Technician</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody id="jobs-body"></tbody></table>
+        <div class="empty" id="empty" hidden><strong>No jobs found</strong><span>Try changing your search or status filter.</span></div>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

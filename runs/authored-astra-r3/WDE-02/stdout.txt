@@ -1,0 +1,19 @@
+Implemented the plumbing dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- Responsive summary bar with computed job metrics
+- Search, status filtering, and schedule sorting
+- Overdue and due-today calculations using UTC−05:00
+- Interactive technician assignment dialog
+- Accessible keyboard focus, semantic controls, empty/error states
+- Visible sample-data disclosure
+- Mobile-responsive job queue
+- Material assumptions documented in `README.md`
+
+### Files
+- `index.html`
+- `styles.css`
+- `app.js`
+- `README.md`
+
+Validation completed with JavaScript syntax and fixture JSON checks. Browser-rendered verification was not performed.

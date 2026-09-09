@@ -1,0 +1,20 @@
+
+================================================================================
+PART 3 — HOW TO USE THE TEMPLATE
+================================================================================
+
+The template above is the authoring method you are to follow. Use its structure and apply
+its discipline to the brief in Part 1.
+
+Two things to keep straight:
+
+- The template's scaffolding is for you to fill in with content specific to the brief. Its
+  guidance about how to write and check instructions is for you to act on, not to copy into
+  your file. Do not ship the template's own explanatory prose.
+- Where the template and the brief in Part 1 disagree, the brief wins. Its hard constraints
+  are binding: exactly one file named SKILL.md, 150 lines maximum including frontmatter,
+  self-contained, no reference files or external links, nothing that requires asking a user
+  anything, no generic exhortation, and no single house style that would make every
+  artifact look the same as every other one.
+
+Write the file to SKILL.md in the current directory. Output exactly that one file.

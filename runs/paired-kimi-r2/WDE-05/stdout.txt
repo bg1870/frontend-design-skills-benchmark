@@ -1,0 +1,7 @@
+Implemented in `fixtures/app/`:
+
+- Added customer testimonials section with an explicitly labelled verified-content empty state.
+- Added full-bleed “In the box” section with neutral, unverified packing placeholders.
+- Added responsive layouts, navigation links, hover/focus states, and accessibility improvements.
+- Documented sourcing attempts and unresolved content blockers in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Verified formatting with `git diff --check`.

@@ -1,0 +1,90 @@
+<!--
+DIRECTION
+Register: utilitarian neighborhood-diner — the order rail, grease-pencil marks, and calm precision behind a good service.
+Palette: surface #E9EAD8, ink #18201C, accent #E9472E.
+Type pairing: Archivo Black for compressed, practical display; IBM Plex Sans for lucid operating copy and product UI.
+Signature move: an oversized live shift rail cuts through the hero like tickets clipped above a restaurant pass.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ridgeline brings restaurant scheduling, time tracking, and payroll into one clear weekly rhythm.">
+  <meta name="theme-color" content="#E9EAD8">
+  <title>Ridgeline — Payroll that knows the schedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23e9472e' d='M8 48 26 16h12l18 32H42L32 29 22 48z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Ridgeline home" translate="no"><span class="ridge-mark" aria-hidden="true"></span>RIDGELINE</a>
+    <nav aria-label="Main navigation">
+      <a href="#workweek">How it works</a><a href="#payroll">Payroll</a><a href="#pricing">Pricing</a>
+    </nav>
+    <a class="button button-small" href="mailto:hello@ridgeline.example?subject=Ridgeline%20demo">Book a walkthrough</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="kicker">Built for independent restaurants</p>
+        <h1>From first clock-in to final paycheck.</h1>
+        <p class="lede">Build the week, track the shift, and run payroll without re-entering the same hours in three different places.</p>
+        <div class="actions"><a class="button" href="mailto:hello@ridgeline.example?subject=Ridgeline%20demo">See Ridgeline in action</a><a class="text-link" href="#workweek">Follow a workweek <span aria-hidden="true">↓</span></a></div>
+      </div>
+
+      <div class="shift-rail" aria-label="Sample weekly schedule">
+        <div class="rail-head"><span>THIS WEEK</span><span class="sample">SAMPLE DATA</span><time id="today"></time></div>
+        <div class="days" role="list">
+          <article class="day" role="listitem"><header><b>MON</b><span>Prep</span></header><div class="ticket t1"><strong>Maya R.</strong><span>Kitchen · 8:00–4:00</span></div><div class="ticket"><strong>Jon B.</strong><span>Floor · 4:00–Close</span></div></article>
+          <article class="day active" role="listitem"><header><b>TUE</b><span>Service</span></header><div class="ticket accent-ticket"><strong>Ari K.</strong><span>Bar · 3:30–Close</span></div><div class="ticket"><strong>Devin S.</strong><span>Kitchen · 10:00–6:00</span></div></article>
+          <article class="day" role="listitem"><header><b>WED</b><span>Service</span></header><div class="ticket"><strong>Maya R.</strong><span>Kitchen · 10:00–6:00</span></div><div class="ticket"><strong>Nico P.</strong><span>Floor · 4:00–Close</span></div></article>
+          <article class="day" role="listitem"><header><b>THU</b><span>Service</span></header><div class="ticket"><strong>Jon B.</strong><span>Floor · 11:00–7:00</span></div><div class="ticket"><strong>Ari K.</strong><span>Bar · 4:00–Close</span></div></article>
+          <article class="day" role="listitem"><header><b>FRI</b><span>Full house</span></header><div class="ticket"><strong>Devin S.</strong><span>Kitchen · 2:00–Close</span></div><div class="ticket"><strong>Nico P.</strong><span>Floor · 4:00–Close</span></div></article>
+        </div>
+        <div class="now-line" aria-hidden="true"><i></i><span>NOW</span></div>
+      </div>
+    </section>
+
+    <section class="workweek" id="workweek">
+      <div class="section-intro"><p class="kicker">One connected workweek</p><h2>Hours move forward.<br>Not back and forth.</h2></div>
+      <ol class="steps">
+        <li><span class="step-no">1</span><div><h3>Build the schedule</h3><p>Set roles, stations, and recurring shifts. Staff see the current version without hunting through group texts.</p></div></li>
+        <li><span class="step-no">2</span><div><h3>Run the floor</h3><p>Clock-ins meet the schedule in real time. Managers can spot a late arrival or missed break while it still matters.</p></div></li>
+        <li><span class="step-no">3</span><div><h3>Approve and pay</h3><p>Review exceptions, approve hours, and move straight into payroll from the same record.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="payroll" id="payroll">
+      <div class="payroll-copy"><p class="kicker">Payroll, without the handoff</p><h2>The schedule already did the math.</h2><p>Ridgeline keeps regular hours, overtime, breaks, and role rates attached to the people who worked them. You review the exceptions—not every line.</p><ul><li>Multiple roles and pay rates</li><li>Tip and break records</li><li>Manager approvals before payroll</li></ul></div>
+      <div class="pay-slip" aria-label="Sample payroll review">
+        <div class="slip-top"><b>PAYROLL REVIEW</b><span>SAMPLE DATA</span></div>
+        <div class="slip-person"><span>Employee</span><strong>Maya R.</strong><small>Kitchen</small></div>
+        <dl><div><dt>Regular hours</dt><dd>32.00</dd></div><div><dt>Overtime hours</dt><dd>2.50</dd></div><div><dt>Approved tips</dt><dd>$184.00</dd></div></dl>
+        <div class="slip-total"><span>Ready to approve</span><b>✓</b></div>
+      </div>
+    </section>
+
+    <section class="clarity">
+      <h2>A restaurant week changes by the hour. Your payroll system should keep up.</h2>
+      <p>Ridgeline is designed around the actual sequence of restaurant work: plan it, work it, check it, pay it.</p>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div><p class="kicker">Straightforward pricing</p><h2>One system for the whole crew.</h2><p>Pricing is based on your restaurant and team size. No long menu of add-ons before you know what you need.</p></div>
+      <aside><p>Tell us how your restaurant runs. We’ll show you the workflow and prepare a clear quote.</p><a class="button" href="mailto:hello@ridgeline.example?subject=Ridgeline%20pricing">Get a tailored quote</a></aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top"><a class="brand light" href="#top" translate="no"><span class="ridge-mark" aria-hidden="true"></span>RIDGELINE</a><p>Scheduling and payroll for independent restaurants.</p><a href="mailto:hello@ridgeline.example">hello@ridgeline.example</a></div>
+    <div class="footer-word" aria-hidden="true">RIDGELINE</div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

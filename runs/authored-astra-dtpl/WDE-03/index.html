@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clear, scalable pricing for Northstar product analytics.">
+  <title>Pricing — Northstar Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#plans">Skip to plans</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Northstar home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 19.2 12.8 30 16l-10.8 3.2L16 30l-3.2-10.8L2 16l10.8-3.2L16 2Z"/><circle cx="16" cy="16" r="3.2"/></svg>
+      <span>northstar</span>
+    </a>
+    <button class="menu-button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Open navigation</span></button>
+    <nav id="main-nav" aria-label="Main navigation">
+      <a href="#product">Product</a><a href="#solutions">Solutions</a><a href="#resources">Resources</a><a class="active" href="#plans">Pricing</a>
+    </nav>
+    <div class="header-actions"><a href="#signin">Sign in</a><a class="button button-small" href="#plans">Start free</a></div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow"><span></span> PRICING THAT SCALES WITH YOU</div>
+      <h1 id="page-title">Turn product signals<br>into <em>clear decisions.</em></h1>
+      <p>Start free, measure what matters, and upgrade when your team is ready. Every plan includes trusted data, fast answers, and no surprise platform fees.</p>
+      <div class="proof-row" aria-label="Key plan benefits">
+        <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9"/></svg>14-day trial on paid plans</span>
+        <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9"/></svg>No credit card required</span>
+        <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9"/></svg>Cancel anytime</span>
+      </div>
+    </section>
+
+    <section class="pricing-section" id="plans" aria-labelledby="plans-title">
+      <div class="pricing-head">
+        <div><p class="kicker">PLANS</p><h2 id="plans-title">Choose your next stage</h2></div>
+        <fieldset class="billing-toggle"><legend class="sr-only">Billing period</legend>
+          <button type="button" data-period="monthly" aria-pressed="false">Monthly</button>
+          <button type="button" data-period="annual" aria-pressed="true">Annual <span>Save 20%</span></button>
+        </fieldset>
+      </div>
+
+      <div class="plans-grid">
+        <article class="plan">
+          <div class="plan-top"><p class="plan-name">Explore</p><p class="plan-desc">For small teams finding their product rhythm.</p>
+            <div class="price"><span class="currency">$</span><strong data-monthly="0" data-annual="0">0</strong><span class="term">/ month</span></div><p class="bill-note">Free forever</p>
+            <a class="button button-outline" href="#get-started" data-plan="Explore">Start exploring</a>
+          </div>
+          <div class="features"><p>Everything you need to begin:</p><ul><li>Up to 10k monthly events</li><li>3 team seats</li><li>Core reports &amp; dashboards</li><li>30-day data history</li><li>Community support</li></ul></div>
+        </article>
+
+        <article class="plan plan-featured">
+          <div class="recommendation">MOST POPULAR</div>
+          <div class="plan-top"><p class="plan-name">Scale</p><p class="plan-desc">For growing teams turning insight into action.</p>
+            <div class="price"><span class="currency">$</span><strong data-monthly="99" data-annual="79">79</strong><span class="term">/ month</span></div><p class="bill-note" data-bill-note>Billed $948 annually</p>
+            <a class="button" href="#get-started" data-plan="Scale">Start 14-day trial</a>
+          </div>
+          <div class="features"><p>Everything in Explore, plus:</p><ul><li>Up to 1M monthly events</li><li>Unlimited team seats</li><li>Funnels, paths &amp; cohorts</li><li>12-month data history</li><li>Slack &amp; email alerts</li><li>Priority support</li></ul></div>
+        </article>
+
+        <article class="plan">
+          <div class="plan-top"><p class="plan-name">Pro</p><p class="plan-desc">For data-led organizations with complex needs.</p>
+            <div class="price"><span class="currency">$</span><strong data-monthly="299" data-annual="239">239</strong><span class="term">/ month</span></div><p class="bill-note" data-bill-note>Billed $2,868 annually</p>
+            <a class="button button-outline" href="#get-started" data-plan="Pro">Start 14-day trial</a>
+          </div>
+          <div class="features"><p>Everything in Scale, plus:</p><ul><li>Up to 10M monthly events</li><li>Advanced permissions</li><li>Data warehouse sync</li><li>Unlimited data history</li><li>Custom retention policies</li><li>Dedicated success manager</li></ul></div>
+        </article>
+      </div>
+
+      <aside class="enterprise">
+        <div><p class="kicker">ENTERPRISE</p><h3>Your data. Your rules.</h3><p>Custom volume, SSO and SCIM, regional hosting, audit logs, and dedicated implementation support.</p></div>
+        <a class="button button-light" href="mailto:sales@northstar.example">Talk to sales <span aria-hidden="true">↗</span></a>
+      </aside>
+    </section>
+
+    <section class="comparison" aria-labelledby="compare-title">
+      <div class="section-intro"><p class="kicker">COMPARE</p><h2 id="compare-title">The details, side by side</h2><p>Every plan is built on the same reliable analytics foundation.</p></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable plan comparison">
+        <table><thead><tr><th scope="col">Capability</th><th scope="col">Explore</th><th scope="col">Scale</th><th scope="col">Pro</th></tr></thead>
+          <tbody><tr class="category"><th colspan="4" scope="colgroup">Usage &amp; reporting</th></tr>
+            <tr><th scope="row">Monthly events</th><td>10k</td><td>1M</td><td>10M</td></tr>
+            <tr><th scope="row">Saved reports</th><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Behavioral cohorts</th><td><span class="dash">—</span><span class="sr-only">Not included</span></td><td><span class="check">✓</span><span class="sr-only">Included</span></td><td><span class="check">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr class="category"><th colspan="4" scope="colgroup">Security &amp; support</th></tr>
+            <tr><th scope="row">Role-based access</th><td><span class="dash">—</span><span class="sr-only">Not included</span></td><td>Basic</td><td>Advanced</td></tr>
+            <tr><th scope="row">Support response</th><td>Community</td><td>1 business day</td><td>4 hours</td></tr>
+            <tr><th scope="row">SSO / SAML</th><td><span class="dash">—</span><span class="sr-only">Not included</span></td><td>Add-on</td><td><span class="check">✓</span><span class="sr-only">Included</span></td></tr>
+          </tbody></table>
+      </div>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <div><p class="kicker">GOOD TO KNOW</p><h2 id="faq-title">Questions, answered.</h2><p>Still deciding? <a href="mailto:hello@northstar.example">Talk with our team</a> for a recommendation.</p></div>
+      <div class="questions">
+        <details><summary>What counts as a monthly event?<span></span></summary><p>An event is a tracked user action, such as a signup, button click, or completed purchase. Duplicate and test events can be excluded.</p></details>
+        <details><summary>Can I change plans later?<span></span></summary><p>Yes. Upgrade at any time, or move to a lower tier at the end of your current billing period. Your historical data remains available within the new plan’s limits.</p></details>
+        <details><summary>Do you offer startup or nonprofit pricing?<span></span></summary><p>Eligible early-stage startups and registered nonprofits can receive discounted annual plans. Contact our team to check eligibility.</p></details>
+        <details><summary>Is my product data secure?<span></span></summary><p>Data is encrypted in transit and at rest. Advanced identity controls, audit logs, and regional hosting are available on Enterprise.</p></details>
+      </div>
+    </section>
+
+    <section class="cta"><p class="kicker">SEE THE SIGNAL</p><h2>Make your next product<br>decision with confidence.</h2><a class="button button-light" href="#plans">Start free today <span aria-hidden="true">→</span></a></section>
+  </main>
+  <footer><a class="brand brand-footer" href="#"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 19.2 12.8 30 16l-10.8 3.2L16 30l-3.2-10.8L2 16l10.8-3.2L16 2Z"/><circle cx="16" cy="16" r="3.2"/></svg><span>northstar</span></a><p>Product analytics for teams that want clarity.</p><p>© 2026 Northstar Analytics</p></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

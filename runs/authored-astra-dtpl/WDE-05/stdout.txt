@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added responsive **Customer testimonials** section with an honest pending-verification state.
+- Added responsive **In the box** hardware section with a labelled neutral illustration placeholder.
+- Added navigation links and accessible focus styles.
+- Recorded sourcing attempts and unresolved requirements in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Validated HTML parsing and CSS diff formatting.
+- Attempted Chromium wide/narrow rendering, but screenshots were unavailable outside Chromium’s environment.

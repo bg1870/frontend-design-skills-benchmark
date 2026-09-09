@@ -1,0 +1,24 @@
+Implemented the responsive Loomwork signup page.
+
+### Delivered
+- `index.html` — accessible signup structure
+- `styles.css` — mobile, tablet, and laptop layouts
+- `app.js` — validation, password visibility, and success state
+- `ASSUMPTIONS.md` — material product and integration assumptions
+- `acceptance.mjs` — automated browser acceptance test
+
+### Browser acceptance evidence
+- `evidence/mobile-360.png`
+- `evidence/tablet-768.png`
+- `evidence/laptop-1440.png`
+- `evidence/results.json`
+
+### Verified
+- No horizontal overflow at 360px, 768px, or 1440px
+- No browser console errors
+- Required-field validation works
+- Password visibility control works
+- Successful form state works
+- Responsive composition inspected at all requested widths
+
+The acceptance pass identified a missing favicon request; this was repaired with an embedded favicon and the suite was rerun successfully.

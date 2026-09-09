@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added responsive customer testimonials section with an honest verification-pending state.
+- Added “In the box” hardware section without inventing unconfirmed contents.
+- Added navigation links and tracked CTA.
+- Extended responsive styling for desktop and mobile.
+- Recorded sourcing attempts and unresolved content blockers in `fixtures/app/SOURCING.md`.
+- Validated HTML parsing and confirmed no duplicate IDs.

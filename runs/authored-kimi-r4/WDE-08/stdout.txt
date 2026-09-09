@@ -1,0 +1,17 @@
+Implemented the finished Nojom SDK quickstart page.
+
+### Files
+- `index.html` — responsive documentation layout and content
+- `styles.css` — polished desktop/mobile styling
+- `script.js` — copy buttons and active section tracking
+- `README.md` — setup instructions and material assumptions
+
+Includes installation, authentication guidance, first TypeScript request, current model ID, token pricing, example cost calculation, and security notes.
+
+Run locally:
+
+```bash
+python3 -m http.server 8080
+```
+
+Open `http://localhost:8080`.

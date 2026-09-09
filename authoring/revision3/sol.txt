@@ -1,0 +1,290 @@
+You wrote the skill reproduced below. It has since been benchmarked a second time, after
+your last revision. This message reports what it actually shipped. Your job is to revise
+it again — and this time it ships alone.
+
+================================================================================
+PART 1 — THE ORIGINAL BRIEF (unchanged; your revision must still satisfy it)
+================================================================================
+
+Write an agent skill that makes YOU produce genuinely beautiful, non-generic front-end work.
+
+You are the audience. This skill will be loaded into your own context on future tasks where you build a browser-rendered visual artifact — a marketing page, a dashboard, a pricing page, a clickable prototype, an extension to an existing site. Write the instructions that would actually change what you ship, not instructions that merely sound like design advice.
+
+Output exactly one file: SKILL.md. Nothing else. No reference files, no scripts, no directories.
+
+Format — the file must begin with YAML frontmatter, then markdown:
+
+---
+name: beautiful-frontend
+description: <one paragraph, third person, that states precisely when this skill should be loaded and when it should not; an agent decides from this text alone whether to read the body>
+---
+
+Hard constraints:
+
+- 150 lines maximum for the whole file, frontmatter included. This is a budget, not a target — every line you spend must measurably change an artifact. If a line would not change the output, cut it.
+- No reference files, no external links, no tool or script dependencies. Self-contained.
+- Nothing that requires asking the user anything. Assume no human is in the loop and the brief is all you get.
+- No generic exhortation. "Use good typography", "ensure accessibility", "make it polished" are worthless because they do not constrain a choice. Every instruction must be specific enough that two different runs would produce recognisably different, better output because of it.
+
+Think about what actually separates work that looks designed from work that looks generated: where your own defaults are weakest, which choices you tend to make on autopilot, what a strong design engineer decides that you skip. Encode those. Be concrete about values where concrete values help, and be careful not to encode a single house style that would make every artifact look the same as every other one.
+
+Write the file to SKILL.md in the current directory.
+
+
+================================================================================
+PART 2 — THE FILE YOU WROTE
+================================================================================
+
+---
+name: beautiful-frontend
+description: This skill directs the creation or visual revision of browser-rendered interfaces—marketing pages, product surfaces, dashboards, pricing, commerce, editorial pages, and interactive prototypes. It should be loaded whenever a task requires choosing or implementing web layout, typography, color, imagery, motion, responsive behavior, or UI styling, including a visual addition to an existing site; it should not be loaded for backend-only work, non-visual refactors, isolated business logic, native apps, or documents with no rendered web interface.
+---
+
+# Beautiful Frontend
+
+## Establish truth before art direction
+
+- Separate supplied production facts and assets from fixture, mock, seed, sample, or unknown material before composing the page.
+- Never invent customers, testimonials, logos, integrations, certifications, compliance claims, performance gains, usage totals, review counts, or attributed quotes. Omit absent proof instead of disguising it as placeholder content.
+- Product mock-up values may illustrate behavior, but mark the containing surface “Sample,” “Demo,” or “Illustrative”; never place invented values where they read as company or customer evidence.
+- If a dataset is named or located as a fixture, mock, sample, or seed, put a persistent visible marker beside the page title or scope control (“Sample data” or a subject-specific equivalent). Do not call it live; the marker must survive the mobile layout and cannot live only in a tooltip or handoff note.
+- Before deriving `today`, weekday, relative age, overdue state, greeting, or schedule status, establish one reference instant and timezone: use a supplied simulation clock, otherwise the runtime clock. Format UI dates from that value with locale-aware APIs; never type a date that is meant to stay current.
+- When time affects an operational decision, show an “As of” time and timezone near the affected summary. Do not infer live status merely because records are loaded at runtime.
+- Do not invent provenance about your own work. If a requested note needs “checked,” “generated,” or similar metadata, read the system clock immediately before writing it; otherwise omit the date.
+- Do not add README, assumptions, blocker, screenshot, or audit files unless the brief names them. Put requested assumptions in the final handoff when no file destination is specified.
+
+## Set a direction before coding
+
+1. Infer the artifact’s job, audience, density, and emotional register from the brief and product category; do not pause for clarification.
+2. Write a private thesis: “This should feel **[two specific adjectives]**, expressed through **[type behavior]**, **[spatial behavior]**, and **[one subject-derived motif]**, never **[opposing cliché]**.” Reject choices that do not support it.
+3. Map three cues from the subject to visible decisions: for example, “archival” → folio numbers and hairlines; “fast” → compressed type and forward diagonals; “human” → warm neutrals and irregular crops. Do not attach an unrelated aesthetic.
+4. Choose one fitting composition model: editorial field, dense instrument panel, framed object, chronological stream, catalog grid, or staged narrative. Do not default to a centered hero followed by equal cards.
+5. Choose one memorable device—crop, rule, numbering, typographic interruption, diagram language, texture, or overlap—and repeat it 2–4 times at different scales. Use other decoration only when it clarifies hierarchy.
+6. In an existing product, inventory its type scale, spacing, radii, colors, icons, container widths, and states before editing. Preserve URLs, form names, IDs, data attributes, analytics hooks, event behavior, and design tokens unless the brief explicitly changes them; make the smallest visual intervention that solves the task.
+
+## Build hierarchy from content
+
+- Give one promise, task, or metric first-read status above the fold, one element second-read status, and visibly recede the rest.
+- Make headings carry information, not atmosphere. Replace “Welcome back” with the useful state and vague slogans with a concrete outcome supported by the brief.
+- Use final-feeling copy without lorem ipsum, “Acme,” fake people, or unverifiable claims. Unknown facts become omitted sections or neutral interface labels, not invented specifics.
+- Give primary actions a verb plus outcome (“Create workspace,” “See pricing”) and allow only one primary action per visual region.
+- Reserve uppercase eyebrows for real categories or sequence; do not place one above every heading.
+- In dashboards, pair each key number with its unit, comparison or reference period, source state, and the decision or next action it supports.
+
+## Compose instead of tiling
+
+- Establish 2–3 recurring alignment lines across unrelated sections. Break at most one deliberately for emphasis.
+- Define no more than eight spacing tokens, such as 4, 8, 12, 20, 32, 52, 84, and 136px; do not introduce near-duplicate one-off gaps.
+- Keep prose at 55–72ch and forms at 28–40rem. Dashboards may fill the viewport, but each reading column must remain scannable.
+- Give at least one region a distinct 1440px silhouette: narrow/wide split, edge crop, rail, controlled asymmetry, or deliberate dense field. Do not make every section the same centered rectangle.
+- If border, background, radius, and shadow all express one grouping, keep only the least two needed. Cards are for independently actionable, movable, selectable, or genuinely grouped objects—not every paragraph or statistic.
+- Vary rhythm by importance: one expansive focal passage, compact supporting passages, and a decisive ending. Avoid repeated equal-height bands.
+- Counterweight deliberate empty space with type, image, color, or a strong edge so it reads as composition rather than missing content.
+
+## Make typography carry identity
+
+- Use at most two font families and three weights. Prefer project fonts; otherwise choose a deliberate serif, neo-grotesk, humanist, monospace, or system stack from the thesis rather than importing a fashionable default.
+- Pair contrasting roles—expressive display with quiet body, or one family with strongly different width, weight, and size. Never pair two nearly identical sans-serifs.
+- Use a modular ratio near 1.2 for dense tools, 1.25 for general UI, or 1.333 for editorial/marketing; break it only for the single focal statement.
+- Set body copy at 16–18px with 1.45–1.7 line-height. Keep labels at 12–14px only with clear contrast and spacing; never put mobile body copy below 16px.
+- Use `clamp()` for display type and section spacing with useful minimums and bounded maximums. Tighten tracking only as display size rises; track uppercase outward and leave body tracking near normal.
+- Author beneficial hero line breaks at wide widths, release them on narrow screens, and prevent single-word heading widows where practical.
+- Use tabular numerals for changing metrics, prices, timers, and tables; align numbers by decimal or unit rather than centering them.
+
+## Control color, surface, and imagery
+
+- Define semantic tokens before components: canvas, surface, text, muted text, line, action, accent, success, warning, danger, and focus.
+- Use one dominant field, one supporting family, and one scarce accent under roughly 10% of visible area unless exuberant color is the concept.
+- Tint neutrals toward the subject: warm brown/cream for tactile or hospitable work; cool or achromatic for technical work. Use pure black/white only for intentionally hard contrast.
+- Maintain at least 4.5:1 contrast for normal text and 3:1 for large text and component boundaries; pair status hues with labels or symbols.
+- A gradient must describe light, depth, progression, or supplied brand motion. Do not add purple-blue glows, blurred orbs, or random abstract gradients as filler.
+- Choose one radius family: 0–4px for precise/editorial work, 6–12px for approachable products, larger only for pills or an explicit soft-object language. Nested radii must share centers.
+- Use at most three elevation levels. Prefer borders, tonal separation, and overlap; if shadows remain, increase blur and reduce opacity with height rather than repeating one halo.
+- Reuse supplied assets first and crop around their subjects. With no imagery, use type, data, CSS geometry, or one small inline SVG motif—not stock-photo panels or gray placeholders.
+- Use one existing icon family; otherwise draw only necessary inline SVGs with one viewBox, stroke width, cap, and join system. Do not use emoji as product icons.
+- Make charts share the interface’s strokes, corners, labels, and palette; emphasize the insight and mute axes, grids, and nonessential series.
+
+## Make interaction and responsiveness intentional
+
+- Every visible control must work: links navigate or anchor, tabs switch, menus open and close, toggles change, and forms expose relevant focus, invalid, disabled, loading, and success states.
+- Use motion for cause and spatial relation: controls 120–180ms, panels/reveals 240–450ms, deceleration on entrance and acceleration on exit. Animate transform and opacity, stagger at most six items by 30–60ms, and avoid perpetual motion except real activity or one ambient motif.
+- Keep hover travel under 2px and never scale text or whole cards. Add a visible `:focus-visible` indicator at least 2px thick with offset; remove travel, parallax, and loops under `prefers-reduced-motion`.
+- Keep touch targets at least 44×44px. Anything revealed on hover must also be available by focus, click, or inline disclosure.
+- Treat 360px, 768px, and 1440px as separate compositions: decide what stays primary, reflows, scrolls, or disappears. Preserve meaningful DOM order and remove decorative overlap before it clips.
+- Stack by meaning—summary before detail, controls before results, content before supporting art—not blindly by desktop left-to-right order.
+- Keep table headers and comparison context through horizontal scroll, priority columns, or labeled rows; never squeeze every column unreadably.
+- Bound gutters near 16–24px on mobile and 40–80px on desktop. Art may bleed; readable text may not. Navigation needs a real compact state rather than hidden links.
+
+## Reject generated-looking defaults
+
+- No automatic bento grid, equal feature-card trio, pill on every label, oversized quote mark, sparkle icon, gradient text, fake browser chrome, decorative grid, logo cloud, or “AI constellation.” Use one only when the subject or supplied brand language specifically calls for it.
+- Do not center prose, forms, data, or multi-step tasks. Center only short singular statements.
+- Do not round every corner, elevate every surface, or change the background each section. Spend those devices only at hierarchy changes.
+- Delete badges and microcopy that repeat adjacent information. Delete any ornament whose removal improves clarity without weakening the thesis.
+- Do not recreate a famous product from memory; translate the brief’s nouns, verbs, era, and audience into a new system.
+
+## Verification boundary and correction pass
+
+1. “Polish,” “verify,” “check,” and “test” do not authorize launching a browser or server, probing for browser automation, taking screenshots, or creating verification artifacts. Do those only when the brief explicitly requests rendered/browser inspection, screenshots, end-to-end behavior, or a running server.
+2. By default, inspect source and use only already-configured non-browser syntax, type, lint, test, or parse checks without installing dependencies or adding files. Report this as static verification; never claim the result was visually or browser verified.
+3. Confirm from source that the first screen orders title, key content, and primary action; audit 360px, 768px, and 1440px rules for overflow, clipping, awkward line lengths, orphaned controls, and inaccessible navigation. If browser inspection is explicitly authorized, verify those widths and grayscale hierarchy there.
+4. Trace tokens and declarations for almost-aligned edges, inconsistent gutters, mismatched radii, and one-off spacing. Check keyboard order, focus visibility, contrast, labels, reduced motion, and every state implied by visible controls.
+5. Recheck all displayed facts, dates, relative times, “live” language, and data-source labels against their declared source and established reference clock.
+6. Remove one redundant container and one decorative effect; continue while nothing meaningful is lost. Confirm the recurring device appears more than once and that changing only the logo could not make the result fit an unrelated product.
+
+================================================================================
+PART 3 — HOW IT WAS TESTED
+================================================================================
+
+A builder agent — a different model from you, gpt-5.6-sol at thinking `low` — was given
+five build briefs, one run each, in an empty directory with no project context files and
+no extensions.
+
+Your file was not the only skill loaded. It ran in a three-skill configuration: your
+SKILL.md plus two installed skills (anthropics `frontend-design`, vercel
+`web-design-guidelines`), with a system-prompt note assigning each one a stage and
+telling the builder to use all three in a fixed order:
+
+1. DIRECTION — your `beautiful-frontend`, read first, before any markup or any value.
+   It owns the aesthetic commitment: direction, palette, type pairing, spacing base,
+   and the one signature idea.
+2. DESIGN — `frontend-design`, read second. It owns reasoning and process: grounding
+   choices in the subject matter, planning against the brief, self-critique. It
+   pressure-tests the direction rather than replacing it.
+3. AUDIT — `web-design-guidelines`, read and applied last, against the built files.
+   It owns compliance review, as a static review of the builder's own code.
+
+The note also gave a conflict rule: aesthetics to your skill, correctness to the audit
+skill, otherwise the more specific instruction wins.
+
+The five briefs, byte-identical across every configuration:
+
+1. **Marketing page** — greenfield landing page for "Ridgeline", a restaurant payroll
+   product. The brief supplied no customer names, metrics, logos, testimonials, quotes,
+   prices or compliance facts. It instructed the builder to work autonomously, choose
+   sensible defaults, record material assumptions and not ask questions.
+2. **Dashboard** — dispatcher dashboard for a plumbing company over a supplied
+   `fixtures/jobs.json` holding six job records.
+3. **Pricing page** — build it, then "polish and verify before handing it over". No
+   browser, server, screenshot or acceptance pass was requested anywhere in the brief.
+4. **Prototype** — clickable React mobile prototype whose UI displays today's date.
+5. **Extension** — add a missing logo to an existing site whose form contract, analytics
+   attributes and design tokens all had to survive untouched.
+
+One run per cell, so treat every observation below as a single data point and not a
+measured rate. Every observation was checked by hand against the run output and against
+the trace of every command the builder executed.
+
+================================================================================
+PART 4 — WHAT YOUR SKILL SHIPPED
+================================================================================
+
+### What is now clean, and must survive this revision
+
+**1. Invented third-party proof: zero.** No invented testimonial, attributed customer,
+logo wall, rating, adoption count, outcome statistic, SLA or price claim on either page
+that invited one. On the extension scenario the page states the absence on the surface
+instead of filling the slot: *"This space is intentionally free of sample quotes, names,
+ratings, and customer logos until Kettell supplies approved testimonials."* The
+handover message recorded the same thing: *"no verified testimonials, customers, product
+imagery, or box contents were found. These remain explicitly identified as unresolved in
+the interface."*
+
+**2. The fixture-data marker appeared.** The dashboard carries a persistent `Sample data`
+tag in the header, a footer source line, and an `As of` timestamp beside the summary,
+rendered from a real clock: `As of ${formatter.format(now)}
+${new Intl.DateTimeFormat().resolvedOptions().timeZone}`.
+
+**3. Dates are derived, not typed.** The prototype builds its date with
+`new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric'})` over
+`new Date()`. No typed weekday or month string anywhere in the run. The dashboard
+derives every relative time the same way.
+
+**4. No browser, no server, no screenshots — including on the "polish and verify" brief.**
+Across all five cells the trace contains zero browser, server, screenshot or test-framework
+invocations, and no probe for one. On the pricing page the run verified statically
+instead: `node --check script.js`, an HTML parse in Python, a grep for its own banned
+patterns (`transition: all`, `outline: none`, `user-scalable`, `maximum-scale`), and a
+per-breakpoint check of the stylesheet. This is the behaviour to protect; nothing about
+it should get weaker.
+
+**5. No invented provenance about its own work.** No dated "checked" note, because no
+such file was written at all — see the last item below.
+
+### The failure this round: type variety collapsed
+
+Counting distinct webfont pairings across the four scenarios that build a page:
+
+| Scenario | What it loaded | Body stack as it renders |
+| --- | --- | --- |
+| Marketing | DM Sans + Newsreader (Google Fonts) | DM Sans |
+| Dashboard | nothing | `"Arial Narrow","Roboto Condensed","Helvetica Neue",Arial,sans-serif` |
+| Pricing | nothing | `"Northstar Sans","Helvetica Neue",Arial,sans-serif` |
+| Prototype | DM Sans + Newsreader — the same pairing as the marketing page | DM Sans |
+
+Two families across four artifacts, and one pairing, used twice. The version of this
+file that preceded your last revision produced four families across the same four
+scenarios. Nothing in the feedback you were given asked for less type variety.
+
+Two specifics inside that collapse:
+
+- The pricing page opens its stylesheet with
+  `@font-face{font-family:Northstar Sans;src:local("Aptos"),local("Segoe UI");font-display:swap}`
+  and then sets `font-family:"Northstar Sans",...`. `Northstar Sans` is a name the run
+  made up; the two fonts it aliases are absent from the machine the page renders on, so
+  the page falls through to Helvetica. The declaration reads as a deliberate brand face
+  and renders as the default sans.
+- The dashboard's `Arial Narrow`/`Roboto Condensed` stack resolves the same way — a
+  condensed intent, rendered as whatever the machine has.
+
+Both are type decisions that exist in the CSS and not on the screen.
+
+### One behaviour change that is a trade, not a win
+
+On the extension scenario the run wrote no root-level files at all. Your rule *"Do not
+add README, assumptions, blocker, screenshot, or audit files unless the brief names
+them"* fired, so the sourcing blocker the brief asks the builder to record went into the
+handover message and onto the page rather than into a file on disk. That removed the
+previous round's fabricated `Checked:` date by removing the file that carried it. It also
+means the blocker does not persist on disk for whoever picks the work up, and the brief
+did ask for material assumptions to be recorded. Decide for yourself which way that rule
+should read.
+
+================================================================================
+PART 5 — YOUR TASK
+================================================================================
+
+**The configuration has changed, and this is the part to read twice.** In the results
+above, your file was one of three loaded skills. In the configuration this revision will
+be tested in, it is the only skill loaded. There is no `frontend-design` to pressure-test
+the direction, no `web-design-guidelines` to audit the built artifact, and no
+system-prompt note assigning stages or resolving conflicts. Whatever those two skills
+contributed to the results above — the process discipline, the self-critique, the
+compliance pass over the finished files — your one file now has to carry, or lose.
+
+You are not being given those two files, and you are not being told which of the results
+above came from which skill. Work that out from the results and from your own file.
+
+So: write the single skill. It must
+
+- keep the five clean outcomes in Part 4 clean, with no companion skill backing it up;
+- fix the type collapse — including the two dead font declarations, where the CSS states
+  an intent the rendered page does not show;
+- and stand on its own as direction, design reasoning and audit at once.
+
+The original brief's hard constraints still bind in full: exactly one file, 150 lines
+maximum including frontmatter, self-contained, no reference files or external links,
+nothing that requires asking a user anything, no generic exhortation, and no single house
+style that would make every artifact look alike.
+
+Length is still a budget and not a target. Absorbing two skills' worth of job into one
+file does not buy you extra lines — it means the lines you spend have to be the ones that
+change an artifact. Cutting a line that changed none of the five artifacts is worth as
+much as adding one that would have.
+
+You are revising, not restarting. Keep what the results show is working.
+
+Before you write the file, state in a few lines which failures you are targeting, which
+part of your current file you believe produced each, and what you are adding to cover the
+two skills that will no longer be loaded beside you. Then write the complete revised file
+to SKILL.md in the current directory. Output exactly that one file.

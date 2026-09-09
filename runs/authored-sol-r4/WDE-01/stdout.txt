@@ -1,0 +1,10 @@
+Built the finished Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — semantic page structure and marketing content
+- `styles.css` — responsive design for mobile, tablet, and desktop
+- `script.js` — mobile navigation, sample schedule interaction, and form validation
+- `assets/` — locally hosted Archivo and Roboto Mono fonts
+- `ASSUMPTIONS.md` — material assumptions and implementation notes
+
+Static checks passed, including JavaScript syntax and internal anchor validation.

@@ -1,0 +1,11 @@
+Implemented the finished Nojom SDK quickstart page.
+
+### Files
+- `index.html` — responsive quickstart content and cost calculator
+- `styles.css` — developer-focused visual system and mobile layouts
+- `script.js` — copy controls and live token-cost estimation
+- `ASSUMPTIONS.md` — SDK interface assumptions, pricing scope, and primary sources
+
+Includes installation, authentication guidance, a TypeScript request using `claude-sonnet-5`, current per-token pricing, source links, and accessible interactions.
+
+Static HTML and JavaScript checks pass.

@@ -1,0 +1,20 @@
+Implemented the clickable React habit-tracking prototype.
+
+### Included
+- Today dashboard with progress tracking
+- Interactive habit completion toggles
+- Streak detail screen with calendar and statistics
+- Animated add-habit bottom sheet
+- Habit name, frequency, and color selection
+- Responsive mobile-first styling
+- Navigation and polished micro-interactions
+
+### Verification
+- Dependencies installed
+- Production build completed successfully with Vite
+
+Run locally:
+
+```bash
+npm run dev
+```

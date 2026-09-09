@@ -1,0 +1,13 @@
+Created the finished eight-slide, self-contained investor deck:
+
+**[tessellate-pitch.html](tessellate-pitch.html)**
+
+Includes:
+- 16:9 full-screen slide presentation
+- Arrow-key, Page Up/Down, Home/End, and button navigation
+- Responsive layouts
+- Eight requested sections
+- Accessible assumptions dialog
+- Clearly labeled projections and unverified assumptions
+- No external dependencies or assets
+- Reduced-motion support

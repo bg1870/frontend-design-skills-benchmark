@@ -1,0 +1,15 @@
+Built the complete responsive Nojom SDK quickstart page.
+
+### Files
+- `index.html` — documentation layout and content
+- `styles.css` — responsive, polished styling
+- `script.js` — package-manager tabs, copy actions, and section tracking
+
+### Included
+- SDK installation commands
+- API key authentication guidance
+- TypeScript request example using `claude-sonnet-4-5-20250929`
+- Input/output token pricing and cost formula
+- Worked cost estimate
+- Security note and documented pricing/model assumptions
+- Mobile-responsive navigation and content layout

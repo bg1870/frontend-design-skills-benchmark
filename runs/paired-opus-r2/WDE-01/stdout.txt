@@ -1,0 +1,9 @@
+Delivered the finished Ridgeline marketing site.
+
+### Files
+- `index.html` — Responsive single-page site
+- `styles.css` — Utility-brutalist restaurant operations design
+- `script.js` — Dynamic dates, form validation, and interactive timecard
+- `ASSUMPTIONS.md` — Material product and implementation assumptions
+
+Includes responsive layouts, accessible navigation and forms, keyboard focus states, reduced-motion support, sample-data labeling, and no fabricated customer proof or performance claims.

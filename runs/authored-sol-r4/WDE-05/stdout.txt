@@ -1,0 +1,8 @@
+Implemented in `fixtures/app`:
+
+- Added customer testimonials section with a clearly labelled verification placeholder.
+- Added “In the box” hardware section without implying unverified contents.
+- Added responsive layouts and accessible navigation/focus states.
+- Added navigation links for both sections.
+- Recorded sourcing attempt and unresolved content blockers in `fixtures/app/ASSUMPTIONS.md`.
+- Static HTML parsing and anchor validation pass successfully.

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sample plumbing dispatch job queue dashboard">
+  <title>Dispatch Board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#queue" aria-label="Dispatch Board home">
+      <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M7 4v8a5 5 0 0 0 5 5h8a5 5 0 0 1 5 5v6M3 8h8M21 24h8"/></svg>
+      <span>Dispatch Board</span>
+    </a>
+    <div class="source-stamp"><span>Sample data</span><small>fixtures/jobs.json</small></div>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="summary-lead">
+        <p class="eyebrow">Service operations</p>
+        <h1 id="summary-title"><span id="attentionCount">—</span> jobs need a technician</h1>
+        <p class="as-of" id="asOf">Schedule timezone UTC−05:00</p>
+      </div>
+      <dl class="metrics" aria-label="Queue summary">
+        <div><dt>Unassigned</dt><dd id="openCount">—</dd><span>Action needed</span></div>
+        <div><dt>Assigned</dt><dd id="assignedCount">—</dd><span>Technician set</span></div>
+        <div><dt>Completed</dt><dd id="doneCount">—</dd><span>In this dataset</span></div>
+        <div><dt>Total jobs</dt><dd id="totalCount">—</dd><span>All records</span></div>
+      </dl>
+    </section>
+
+    <section class="workspace" id="queue" aria-labelledby="queue-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Job queue</p>
+          <h2 id="queue-title">Schedule and assignment</h2>
+        </div>
+        <p class="result-count" id="resultCount" aria-live="polite">Loading jobs…</p>
+      </div>
+
+      <div class="tools" aria-label="Queue controls">
+        <label class="search">
+          <span class="sr-only">Search jobs</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+          <input id="searchInput" type="search" placeholder="Search job, address, or technician">
+        </label>
+        <fieldset class="filters">
+          <legend class="sr-only">Filter by status</legend>
+          <button class="filter active" type="button" data-status="all" aria-pressed="true">All <span id="allBadge">0</span></button>
+          <button class="filter" type="button" data-status="open" aria-pressed="false">Open</button>
+          <button class="filter" type="button" data-status="assigned" aria-pressed="false">Assigned</button>
+          <button class="filter" type="button" data-status="done" aria-pressed="false">Done</button>
+        </fieldset>
+        <label class="sort"><span>Order</span><select id="sortSelect"><option value="time">Scheduled time</option><option value="status">Needs attention</option><option value="id">Job ID</option></select></label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Job</th><th scope="col">Scheduled</th><th scope="col">Technician</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+        <div class="empty" id="emptyState" hidden><strong>No jobs match</strong><p>Try another status or clear your search.</p><button id="clearFilters" type="button">Clear filters</button></div>
+      </div>
+      <p class="source-note">Queue and totals are calculated from <code>fixtures/jobs.json</code>. Dates display in the schedule’s UTC−05:00 offset.</p>
+    </section>
+  </main>
+
+  <dialog id="assignDialog" aria-labelledby="dialogTitle">
+    <form method="dialog" id="assignForm">
+      <div class="dialog-head"><div><p class="eyebrow">Assign technician</p><h2 id="dialogTitle">Dispatch job</h2></div><button class="icon-button" value="cancel" aria-label="Close dialog" type="submit">×</button></div>
+      <div class="dialog-job" id="dialogJob"></div>
+      <label class="select-label">Technician<select id="technicianSelect" required><option value="">Select technician</option></select></label>
+      <div class="dialog-actions"><button class="secondary" value="cancel" type="submit">Cancel</button><button class="primary" id="confirmAssign" value="default" type="submit">Assign technician</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+Implemented the plumbing dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- Responsive summary bar with live job counts
+- Searchable and filterable job queue
+- Date sorting
+- Status, technician, address, and scheduling details
+- Desktop and mobile layouts
+- Loading/error and empty states
+- Material assumptions documented in `ASSUMPTIONS.md`
+
+### Files
+- `index.html`
+- `styles.css`
+- `app.js`
+- `ASSUMPTIONS.md`
+
+Run locally with:
+
+```bash
+python3 -m http.server
+```
+
+Then open `http://localhost:8000`. Validation passed for JavaScript syntax and fixture JSON.

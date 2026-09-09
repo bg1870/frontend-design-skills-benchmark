@@ -1,0 +1,13 @@
+Delivered a complete, responsive landing page for **Little Hours**—a planning kit for independent side projects.
+
+### Files
+- `index.html` — Self-contained landing page with responsive design, accessibility states, and functional email validation.
+- `README.md` — Material assumptions, launch notes, and implementation details.
+
+### Verification
+- HTML parsed successfully.
+- Source-reviewed responsive layouts, form behavior, focus states, and reduced-motion handling.
+- No external dependencies or build step required.
+- Browser-rendered verification was not performed.
+
+Replace the placeholder email address and connect the signup form to an email provider before launch.

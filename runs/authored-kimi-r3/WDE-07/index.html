@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Morrow is a quiet daily planner for making space, choosing well, and finishing the day clear." />
+  <meta name="theme-color" content="#eee9df" />
+  <title>Morrow — A quieter daily planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Morrow home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 29.5V11l12 12 12-12v18.5"/><path d="M8 11h24"/></svg>
+      <span>Morrow</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#inside">Inside</a>
+      <a href="#principles">Why Morrow</a>
+    </nav>
+    <a class="header-cta" href="#join">Join the first edition <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> The undated daily planner</div>
+        <h1 id="hero-title">Make room for<br><em>what matters.</em></h1>
+        <p class="hero-intro">A thoughtfully simple paper planner for calmer days, clearer priorities, and work you’re proud of.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#join">Reserve your copy <span>↗</span></a>
+          <span class="launch-note">First edition · October 2026</span>
+        </div>
+      </div>
+
+      <div class="product-stage" aria-label="Morrow planner product preview">
+        <div class="sun-shape"></div>
+        <div class="leaf leaf-one"></div><div class="leaf leaf-two"></div>
+        <div class="pencil"><span></span></div>
+        <div class="book-shadow"></div>
+        <div class="book">
+          <div class="book-spine"></div>
+          <div class="book-cover">
+            <svg class="cover-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 29.5V11l12 12 12-12v18.5"/><path d="M8 11h24"/></svg>
+            <div class="cover-type"><b>MORROW</b><small>THE DAILY EDITION</small></div>
+            <div class="edition">No. 01</div>
+          </div>
+        </div>
+        <div class="caption-tag"><i></i><span>Linen-bound<br><b>made to last</b></span></div>
+      </div>
+    </section>
+
+    <section class="manifesto reveal" id="principles">
+      <p class="section-number">01 / A SMALL PHILOSOPHY</p>
+      <div class="manifesto-text">
+        <h2>Not more productivity.<br><em>More intention.</em></h2>
+        <p>Morrow won’t ask you to optimise every hour. It helps you decide what deserves your attention—and let the rest wait.</p>
+      </div>
+      <div class="scribble" aria-hidden="true">take it<br><span>slow</span><svg viewBox="0 0 90 24"><path d="M3 15c23-9 46-10 83-6M18 20c18-7 38-8 58-6"/></svg></div>
+    </section>
+
+    <section class="inside" id="inside">
+      <div class="inside-heading reveal">
+        <p class="section-number">02 / INSIDE THE PAGES</p>
+        <h2>Just enough<br><em>structure.</em></h2>
+      </div>
+      <div class="features">
+        <article class="feature feature-sage reveal">
+          <span class="feature-no">01</span>
+          <div class="page-mock weekly">
+            <div class="paper-title">THIS WEEK</div><div class="paper-line wide"></div>
+            <div class="week-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <h3>Find your direction</h3><p>Begin each week with perspective, not a packed schedule.</p>
+        </article>
+        <article class="feature feature-clay reveal delay-1">
+          <span class="feature-no">02</span>
+          <div class="page-mock daily">
+            <div class="paper-title">TUESDAY <b>12</b></div>
+            <p>Today matters because…</p><div class="paper-line"></div>
+            <p>The one thing</p><div class="checkbox"></div><div class="paper-line short"></div>
+          </div>
+          <h3>Choose the essential</h3><p>One meaningful priority before the smaller things crowd in.</p>
+        </article>
+        <article class="feature feature-gold reveal delay-2">
+          <span class="feature-no">03</span>
+          <div class="page-mock reflect">
+            <div class="paper-title">CLOSE THE DAY</div>
+            <div class="moon">☾</div><p>Something worth remembering</p>
+            <div class="paper-line"></div><div class="paper-line"></div><div class="paper-line"></div>
+          </div>
+          <h3>Leave the day lighter</h3><p>A two-minute pause to notice, clear your mind, and close the loop.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="details reveal">
+      <div class="detail-quote"><span>“</span><blockquote>Plans should hold your days<br>gently, not squeeze them dry.</blockquote></div>
+      <div class="specs">
+        <div><b>192</b><span>undated pages</span></div><div><b>A5</b><span>roomy, still portable</span></div><div><b>100%</b><span>recycled paper</span></div>
+      </div>
+    </section>
+
+    <section class="signup" id="join">
+      <div class="signup-copy reveal">
+        <p class="section-number">FIRST EDITION · OCTOBER 2026</p>
+        <h2>Your days are<br><em>worth noticing.</em></h2>
+        <p>Join the early list for first access, a founder’s price of £28, and a small surprise tucked inside.</p>
+        <form class="signup-form" novalidate>
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" type="email" required placeholder="Your email address" autocomplete="email" />
+          <button type="submit">Keep me posted <span>↗</span></button>
+        </form>
+        <p class="form-note">One thoughtful email now and then. No noise.</p>
+      </div>
+      <div class="signup-art reveal delay-1" aria-hidden="true">
+        <div class="mini-book"><svg viewBox="0 0 40 40"><path d="M8 29.5V11l12 12 12-12v18.5"/><path d="M8 11h24"/></svg><b>MORROW</b></div>
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <span class="star">✦</span><span class="star star-two">✦</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#top"><svg class="brand-mark" viewBox="0 0 40 40"><path d="M8 29.5V11l12 12 12-12v18.5"/><path d="M8 11h24"/></svg><span>Morrow</span></a>
+    <p>Designed slowly in Brighton, England.</p>
+    <div><a href="mailto:hello@morrowpaper.co">Email</a><a href="#">Instagram</a><a href="#top">Back to top ↑</a></div>
+  </footer>
+</body>
+</html>

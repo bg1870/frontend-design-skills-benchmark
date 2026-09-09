@@ -1,0 +1,9 @@
+Created the complete eight-slide investor pitch deck:
+
+- **File:** `index.html`
+- Self-contained HTML/CSS/JavaScript
+- Responsive 16:9 presentation
+- Arrow-key, button, and swipe navigation
+- Eight required sections
+- Material assumptions panel accessible with **A**
+- No external dependencies

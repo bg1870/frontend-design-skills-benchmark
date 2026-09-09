@@ -1,0 +1,5 @@
+Delivered the finished Ridgeline marketing site in:
+
+- `index.html`
+
+Includes responsive layouts, interactive navigation, scroll reveals, accessible form validation, reduced-motion support, inline SVG assets, pricing, product features, and recorded assumptions.

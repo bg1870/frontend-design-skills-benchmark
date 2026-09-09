@@ -1,0 +1,12 @@
+`SKILL.md` written — 118 lines, one file, nothing else in the directory.
+
+**What changed**
+
+- **New step 2, placed above all craft sections: "Never invent third-party proof."** Bans the claim *class* — testimonials and their attributions, customer logos and wordmarks, star ratings, adoption counts, outcome statistics, press/awards/compliance — with the exact fabrications from the runs quoted as examples so the pattern is recognisable. Adds the test ("if I can't point to the line of the brief a number came from, it doesn't render"), a list of true things that fill the slot instead, permission to ship one section fewer, and an explicit precedence clause over other loaded skills' proof-band conventions.
+- **Step 7 now governs image sourcing**: no third-party image URLs at all, and specifically no photograph of a real person presented as a customer. The old "no gray placeholders" line survives alongside it.
+- **Step 10 gates the browser**: no server, headless Chromium or screenshots unless the brief asks — and holds when a paired audit skill asks, recording the check as not performed. This is the behaviour that held alone and broke paired.
+- **Step 8 covers provenance and clocks**: a `Sample data · 6 records` badge on fixture-backed surfaces, and any today/relative time computed at runtime, with `TUESDAY, SEP 8` named as the failure.
+- **Made the table binding**: the row's families and OKLCH triples are stated as mandatory, with an instruction to emit `oklch()` literally rather than converting to hex. DM Sans, Manrope, Poppins and Montserrat are added to the refuse list as off-table families — that's what all five runs actually used. Swapped DM Sans out of the Warm craft row (Karla) so the ban doesn't contradict the table.
+- **Removed the string-level "Trusted by 10,000+ teams" ban** that was routed around, and cut the "claims with actual numbers, plausible names, dates, prices" phrasing from the old step 7 that licensed the fabrication in the first place.
+
+Kept intact: the direction table and gesture mechanism, the token/type/layout/depth rules, the refuse list, and the terse imperative register that made this the fastest configuration.

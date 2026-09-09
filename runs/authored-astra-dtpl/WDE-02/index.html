@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipewell Dispatch</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Pipewell Dispatch home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M7 5v7a7 7 0 0 0 7 7h2"/><path d="M7 8h6V5H7M16 16h5v6h-5z"/></svg></span>
+      <span><strong>PIPEWELL</strong><small>Service & Repair</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="live"><i></i> Dispatch live</span>
+      <button class="icon-button" id="refreshButton" type="button" aria-label="Refresh jobs" title="Refresh jobs">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+      </button>
+      <div class="avatar" aria-label="Signed in as Alex Morgan">AM</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-heading" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Operations / Dispatch</p>
+        <h1 id="page-title">Job queue</h1>
+        <p class="subtitle" id="dateRange">Loading schedule…</p>
+      </div>
+      <button class="primary" id="newJobButton" type="button"><span aria-hidden="true">＋</span> New job</button>
+    </section>
+
+    <section class="summary" aria-label="Job summary">
+      <button class="metric active" type="button" data-filter="all" aria-pressed="true">
+        <span class="metric-icon all" aria-hidden="true">↗</span><span><strong id="totalCount">—</strong><small>All jobs</small></span>
+      </button>
+      <button class="metric" type="button" data-filter="open" aria-pressed="false">
+        <span class="metric-icon open" aria-hidden="true">!</span><span><strong id="openCount">—</strong><small>Needs assignment</small></span>
+      </button>
+      <button class="metric" type="button" data-filter="assigned" aria-pressed="false">
+        <span class="metric-icon assigned" aria-hidden="true">✓</span><span><strong id="assignedCount">—</strong><small>Assigned</small></span>
+      </button>
+      <button class="metric" type="button" data-filter="done" aria-pressed="false">
+        <span class="metric-icon done" aria-hidden="true">✓</span><span><strong id="doneCount">—</strong><small>Completed</small></span>
+      </button>
+    </section>
+
+    <section class="queue" aria-labelledby="queue-title">
+      <div class="queue-toolbar">
+        <div>
+          <h2 id="queue-title">Scheduled jobs</h2>
+          <p id="resultCount" aria-live="polite">Loading jobs…</p>
+        </div>
+        <div class="tools">
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <span class="sr-only">Search jobs</span>
+            <input id="searchInput" type="search" placeholder="Search jobs, people, places" autocomplete="off">
+          </label>
+          <select id="sortSelect" aria-label="Sort jobs">
+            <option value="date">Soonest first</option>
+            <option value="priority">Needs action first</option>
+            <option value="recent">Latest first</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Job</th><th>Schedule</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="emptyState" hidden>
+        <strong>No matching jobs</strong><p>Try another search or reset the current filter.</p><button type="button" id="clearFilters">Clear filters</button>
+      </div>
+      <div class="load-error" id="errorState" hidden role="alert">
+        <strong>Jobs could not be loaded.</strong><span>Check the data file and try again.</span><button type="button" id="retryButton">Retry</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="jobDialog">
+    <form method="dialog">
+      <div class="dialog-head"><div><p class="eyebrow">Create work order</p><h2>New job</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div>
+      <p class="dialog-note">Demo only — new jobs aren’t saved to the fixture.</p>
+      <label>Job title<input required placeholder="e.g. Leaking shutoff valve"></label>
+      <label>Service address<input required placeholder="Street address"></label>
+      <div class="dialog-actions"><button value="cancel">Cancel</button><button class="primary" value="create">Create job</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

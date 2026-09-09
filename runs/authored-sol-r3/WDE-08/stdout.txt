@@ -1,0 +1,9 @@
+Implemented the Nojom SDK quickstart page.
+
+### Files
+- `index.html` — responsive quickstart documentation
+- `styles.css` — complete desktop, tablet, mobile, accessibility, and reduced-motion styling
+- `script.js` — functional copy-to-clipboard controls
+- `ASSUMPTIONS.md` — records package, authentication, model, API shape, and pricing assumptions
+
+Includes installation, authentication, TypeScript request example using `claude-sonnet-4-20250514`, and per-token cost estimation.

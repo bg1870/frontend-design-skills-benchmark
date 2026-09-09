@@ -1,0 +1,12 @@
+Delivered the completed Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — Semantic page structure and marketing content
+- `styles.css` — Responsive visual system and restaurant scheduling interface
+- `script.js` — Mobile navigation, demo interactions, and form handling
+- `ASSUMPTIONS.md` — Material product and implementation assumptions
+- `README.md` — Usage instructions
+
+Includes responsive layouts, accessible navigation and forms, keyboard focus states, reduced-motion support, sample-data labeling, interactive product previews, and mobile optimization.
+
+Validation passed: HTML parsed successfully and JavaScript syntax is valid.

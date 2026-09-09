@@ -1,0 +1,14 @@
+Implemented the responsive Loomwork signup page.
+
+### Deliverables
+- `index.html` — semantic signup experience
+- `styles.css` — mobile, tablet, and laptop layouts
+- `script.js` — validation, password visibility, and status feedback
+- `evidence/acceptance.md` — acceptance results, repairs, and assumptions
+
+### Visual evidence
+- `evidence/mobile.png` — 390×844
+- `evidence/tablet.png` — 768×1024
+- `evidence/laptop.png` — 1440×900
+
+All three responsive acceptance targets passed without horizontal clipping, overlap, or unusable controls.

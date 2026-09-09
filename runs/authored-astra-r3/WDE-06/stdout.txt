@@ -1,0 +1,210 @@
+# Site review — **46/100**
+
+**Verdict:** The page has clear positioning, sensible structure, and restrained styling, but it is not ready to ship. Accessibility failures are severe, mobile behavior is under-specified, and the product evidence does not substantiate the marketing claims.
+
+This is a **static source audit** of `fixtures/site`; no browser rendering or endpoint testing was performed.
+
+## Scorecard
+
+| Area | Score | Assessment |
+|---|---:|---|
+| Accessibility | 8/25 | Critical keyboard, focus, labeling, and contrast failures |
+| Responsive usability | 8/20 | Likely narrow-screen overflow and undersized controls |
+| Content and credibility | 10/20 | Specific offer, but unsupported claims and weak product evidence |
+| Visual hierarchy and system | 13/20 | Good restraint and spacing base; weak text contrast and generic sections |
+| HTML and behavior | 7/15 | Primary anchors work, but invalid IDs and mouse-only interaction |
+| **Overall** | **46/100** | **Major remediation required** |
+
+---
+
+## Findings, in fix order
+
+### 1. Keyboard focus is deliberately removed
+**Severity: Critical**
+
+- `fixtures/site/styles.css:29` applies `:focus { outline: none; }`.
+- No replacement `:focus-visible` style exists.
+- This makes links, buttons, and the form field difficult or impossible to locate by keyboard.
+
+**Rule:** WCAG 2.4.7 Focus Visible and 2.4.11 Focus Not Obscured; focus indicators should also provide at least **3:1 contrast** under WCAG 1.4.11.
+
+**Fix first:** Restore a visible focus treatment for every interactive element, such as a 2px outline with offset. Never remove the browser outline without an equivalent replacement.
+
+---
+
+### 2. Integration rows are mouse-only pseudo-controls
+**Severity: Critical**
+
+- `fixtures/site/index.html:43–62` puts navigation behavior on `<li onclick="…">`.
+- `<li>` elements are not keyboard-focusable and do not activate with Enter or Space.
+- Each row also contains a button, creating confusing competing interaction semantics.
+
+**Rule:** WCAG 2.1.1 Keyboard and 4.1.2 Name, Role, Value. Interactive behavior must use semantic links/buttons and be keyboard operable.
+
+**Fix first:** Make the row’s destination a real `<a href="#signup">` or make a properly labeled button perform the action. Remove click behavior from the `<li>`.
+
+---
+
+### 3. Icon-only buttons have no accessible names
+**Severity: Critical**
+
+- The menu button at `fixtures/site/index.html:19` has no text, `aria-label`, or accessible SVG title.
+- The five arrow buttons at `fixtures/site/index.html:45,49,53,57,61` are likewise unnamed.
+- Their SVGs are not marked decorative, so assistive output may be inconsistent or empty.
+
+**Rule:** WCAG 4.1.2 Name, Role, Value and 2.5.3 Label in Name. Every control needs a programmatically determinable name.
+
+**Fix first:** Give each genuine control a meaningful accessible name and mark decorative SVGs `aria-hidden="true"`. Remove buttons that do not represent a separate action.
+
+---
+
+### 4. Most secondary text fails contrast by a wide margin
+**Severity: High**
+
+- `fixtures/site/styles.css:4,25,40,70,90` uses `#9aa3ad` for paragraphs, navigation, icons, and footer text.
+- Calculated contrast:
+  - On `#fbfaf7`: **2.45:1**
+  - On white: **2.56:1**
+- Required contrast is **4.5:1** for ordinary text.
+- This affects the hero explanation, all feature descriptions, navigation, signup terms, integration arrows, and footer.
+
+**Rule:** WCAG 1.4.3 Contrast (Minimum): **4.5:1** for normal text, **3:1** only for large text.
+
+**Fix first:** Darken the shared muted-text token until it reaches at least 4.5:1 on both actual backgrounds. Check icons separately against the 3:1 non-text threshold.
+
+---
+
+### 5. The email field has no label and uses the wrong input type
+**Severity: High**
+
+- `fixtures/site/index.html:70` relies solely on `placeholder="Work email"`.
+- Placeholders disappear during entry and are not a substitute for labels.
+- `type="text"` forfeits email validation and appropriate mobile keyboard behavior.
+- The field is not `required` and has no visible error contract.
+
+**Rule:** WCAG 1.3.1 Info and Relationships, 3.3.2 Labels or Instructions, and HTML form semantics.
+
+**Fix:** Add a persistent associated `<label>`, use `type="email"` and appropriate autocomplete, and define required/invalid/error behavior.
+
+---
+
+### 6. The mobile header is likely wider than a 390px viewport
+**Severity: High**
+
+- `fixtures/site/styles.css:31–40` keeps the wordmark, three navigation links, a 32px flex gap, 40px side padding, and a menu button on one row.
+- The only mobile adjustment at `fixtures/site/styles.css:95–100` reduces link text from 14px to 12px; it does not collapse, wrap, or hide either navigation system.
+- The page simultaneously presents full navigation and a hamburger button at all widths.
+
+**Measurement:** At 390px, fixed horizontal costs alone include **80px padding**, at least **64px of top-level gaps**, and approximately **36px** for the menu control—before the wordmark and three link widths.
+
+**Rule:** WCAG 1.4.10 Reflow requires content to work at **320 CSS px** without two-dimensional scrolling. Narrow layouts should preserve roughly **16–24px gutters**, not 40px per side.
+
+**Fix:** Establish one coherent narrow-screen navigation mode and reduce mobile gutters. Verify at 390px and 320px.
+
+---
+
+### 7. Mobile and icon controls miss the recommended touch size
+**Severity: High**
+
+- `fixtures/site/styles.css:98` reduces `.btn` to 13px text with only 4px vertical padding, producing roughly a **29px-high** target at the inherited 1.6 line height.
+- `.icon` at `fixtures/site/styles.css:70` produces approximately:
+  - 20px icon + 16px padding = **36×36px** in the header.
+  - 16px icon + 16px padding = **32×32px** in rows.
+- Navigation links have no target padding.
+
+**Rule:** WCAG 2.5.8 Target Size (Minimum) requires **24×24 CSS px** in applicable cases; established touch guidance recommends approximately **44×44px**.
+
+**Fix:** Preserve approximately 44px hit areas on mobile without visually enlarging every icon.
+
+---
+
+### 8. Hidden-on-load content depends on JavaScript and ignores reduced motion
+**Severity: High**
+
+- `fixtures/site/styles.css:92` sets every `.reveal` section to `opacity: 0`.
+- `fixtures/site/index.html:80–85` reveals it only through `IntersectionObserver`.
+- If JavaScript fails or the API is unavailable, all content after the hero remains invisible.
+- The 500ms motion has no `prefers-reduced-motion` override.
+
+**Rule:** WCAG 1.3.2 Meaningful Sequence/content robustness and 2.3.3 Animation from Interactions. Readable content should not be gated behind entrance animation, and reduced-motion preferences should be honored.
+
+**Fix:** Make visible content the baseline, add animation only after progressive enhancement is confirmed, and disable transitions under `prefers-reduced-motion: reduce`.
+
+---
+
+### 9. Duplicate `id="cta"` values make the document invalid
+**Severity: Medium**
+
+- `fixtures/site/index.html:17` and `:26` both use `id="cta"`.
+
+**Rule:** The HTML `id` global attribute must be unique within the document. Duplicate IDs cause ambiguous DOM selection and fragment/accessibility relationships.
+
+**Fix:** Remove the IDs if unused or assign unique identifiers.
+
+---
+
+### 10. The product image does not support what its alternative text claims
+**Severity: Medium–High**
+
+- `fixtures/site/index.html:27` describes “four patients grouped by escalation level.”
+- `fixtures/site/screenshot.svg:1–18` contains abstract rectangles and bars with no patient names, escalation labels, statuses, timestamps, or readable workflow.
+- The image therefore does not demonstrate the defining operation or provide meaningful evidence for the promise.
+
+**Rule:** WCAG 1.1.1 requires equivalent alternative text; product previews should contain readable, coherent UI and demonstrate the claimed operation.
+
+**Fix:** Keep the existing composition, but make the preview and its text agree. The preview should show credible handover fields and escalation state, or its alt text should accurately describe it as an abstract illustration.
+
+---
+
+### 11. Material marketing claims have no visible support
+**Severity: Medium–High**
+
+Claims include:
+
+- “two-minute structured handover” — `fixtures/site/index.html:25`
+- “Connects to 12 practice management systems” — `:41`, while only five are shown
+- “Two clinics, unlimited handovers, no card” — `:68`
+- “nothing gets skipped” — `:33`
+
+No supplied source, implementation detail, pricing/legal link, or evidence substantiates these statements.
+
+**Rule:** Marketing facts, integration counts, performance claims, and commercial terms should be traceable to supplied evidence rather than invented or implied proof.
+
+**Fix:** Verify each claim against product documentation. Qualify or remove anything that cannot be substantiated; expose the remaining seven integrations if the count of 12 is accurate.
+
+---
+
+### 12. Heading typography and section treatment are coherent but overly generic
+**Severity: Medium**
+
+- The hero establishes a clear hierarchy: 52px heading over 16px body (`fixtures/site/styles.css:47–53`), within the expected marketing range.
+- However, “How it works” is reduced to three interchangeable bordered cards (`:59–60`), while integrations use another bordered container (`:64–65`).
+- Four font families are downloaded at `fixtures/site/index.html:8`, including Lobster and Roboto Mono for isolated roles, weakening cohesion and adding unnecessary font cost.
+
+**Rule/measurement:** New work should generally stay within **two font families and three useful weights**; cards should represent independently actionable or bounded items rather than default grouping.
+
+**Fix later:** Consolidate typography and use hierarchy/spacing where card framing does not add meaning. This is polish, not the first priority.
+
+---
+
+## What is working
+
+- The headline is specific to veterinary shift handover rather than generic SaaS language (`index.html:24–25`).
+- The primary action is visible early and its anchor destination exists (`:26`, `:66`).
+- Body type is a readable 16px with 1.6 line height (`styles.css:20–22`).
+- Prose is constrained to 62 characters (`styles.css:25`), within the recommended **45–70ch** range.
+- The 1080px container is appropriate for a reading-led marketing page (`styles.css:43`).
+- Spacing is consistently derived from an 8px token (`styles.css:11`).
+- The three-column feature grid collapses at 640px (`styles.css:95–97`).
+- The main button’s white-on-olive contrast is **5.17:1**, passing WCAG AA for normal text.
+
+## Recommended order
+
+1. Restore keyboard focus and replace mouse-only integration rows.
+2. Name all controls and fix the email field.
+3. Correct the muted-text contrast token.
+4. Repair mobile header/reflow and touch target sizes.
+5. Make reveal animation progressive and reduced-motion safe.
+6. Remove duplicate IDs.
+7. Verify claims and align the product preview with its description.
+8. Only then address typography consolidation and excess card framing.

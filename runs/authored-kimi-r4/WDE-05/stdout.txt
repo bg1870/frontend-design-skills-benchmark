@@ -1,0 +1,7 @@
+Implemented in `fixtures/app`:
+
+- Added responsive **Customer testimonials** section with an honest verified-content placeholder.
+- Added responsive **In the box** hardware section with neutral imagery and unconfirmed-content labels.
+- Added navigation links, CTA analytics attributes, and accessible markup.
+- Documented sourcing attempts and unresolved blockers in `fixtures/app/SOURCING.md`.
+- Updated styling in `fixtures/app/styles.css` without inventing customers, testimonials, imagery, or box contents.

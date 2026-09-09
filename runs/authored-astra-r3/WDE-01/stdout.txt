@@ -1,0 +1,12 @@
+Built the finished Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — Responsive, dependency-free marketing page with product previews, pricing, FAQ, mobile navigation, and accessible walkthrough form.
+- `README.md` — Material assumptions and implementation notes.
+
+### Verification
+- HTML parsed successfully.
+- Checked for duplicate IDs and anchor destinations.
+- No build step or external dependencies required.
+
+Open `index.html` directly in a browser.

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dispatch board — Plumbing operations</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#queue" aria-label="Pipewise dispatch home">
+      <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M7 4v13a9 9 0 0 0 18 0V9M3 4h8M21 9h8"/><circle cx="25" cy="17" r="3"/></svg>
+      <span>PIPEWISE</span><small>DISPATCH</small>
+    </a>
+    <div class="shift"><span class="signal" aria-hidden="true"></span><span>Operations desk</span><strong id="clock">—</strong></div>
+  </header>
+
+  <main>
+    <section class="overview" aria-labelledby="page-title">
+      <div class="title-block">
+        <div class="title-line"><h1 id="page-title">Job queue</h1><span class="sample">Sample data</span></div>
+        <p>Route the work that needs attention, then keep the day moving.</p>
+      </div>
+      <div class="summary" aria-label="Queue summary">
+        <button class="metric urgent" data-filter="open"><span>Needs dispatch</span><strong id="count-open">—</strong><small>Assign next</small></button>
+        <button class="metric" data-filter="assigned"><span>Assigned</span><strong id="count-assigned">—</strong><small>Technician set</small></button>
+        <button class="metric" data-filter="done"><span>Complete</span><strong id="count-done">—</strong><small>Jobs closed</small></button>
+        <div class="metric date-metric"><span>Queue window</span><strong id="date-range">—</strong><small id="as-of">As of —</small></div>
+      </div>
+    </section>
+
+    <section class="workspace" id="queue" aria-labelledby="queue-heading">
+      <div class="queue-head">
+        <div><p class="eyebrow">Dispatch board / Central time</p><h2 id="queue-heading">All scheduled work</h2></div>
+        <div class="tools">
+          <label class="search"><span class="sr-only">Search jobs</span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="Search job, tech, address"></label>
+          <button class="icon-button" id="refresh" aria-label="Reload fixture data" title="Reload fixture data"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M18.5 9a7 7 0 0 0-12-2L4 12m16 0-2.5 5a7 7 0 0 1-12-2"/></svg></button>
+        </div>
+      </div>
+      <nav class="filters" aria-label="Filter jobs">
+        <button class="active" data-filter="all" aria-pressed="true">All <span id="filter-all">0</span></button>
+        <button data-filter="open" aria-pressed="false">Needs dispatch <span id="filter-open">0</span></button>
+        <button data-filter="assigned" aria-pressed="false">Assigned <span id="filter-assigned">0</span></button>
+        <button data-filter="done" aria-pressed="false">Complete <span id="filter-done">0</span></button>
+      </nav>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Schedule</th><th scope="col">Job</th><th scope="col">Location</th><th scope="col">Technician</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+          <tbody id="job-list"><tr><td colspan="6" class="state">Loading queue…</td></tr></tbody>
+        </table>
+      </div>
+      <div class="queue-foot"><span id="result-count">—</span><span>Source: <code>fixtures/jobs.json</code></span></div>
+    </section>
+  </main>
+
+  <dialog id="job-dialog">
+    <form method="dialog" class="dialog-shell">
+      <div class="dialog-head"><div><p class="eyebrow">Job details</p><h2 id="dialog-title">—</h2></div><button class="icon-button close" value="cancel" aria-label="Close details">×</button></div>
+      <div id="dialog-content"></div>
+      <div class="dialog-actions"><button class="secondary" value="cancel">Close</button><button id="status-action" value="default">—</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

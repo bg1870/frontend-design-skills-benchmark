@@ -1,0 +1,20 @@
+Completed the Ridgeline single-page marketing site.
+
+### Files
+- `index.html` — Responsive marketing page
+- `styles.css` — Full visual system and responsive layouts
+- `script.js` — Mobile navigation, sample interaction, form validation, and submission state
+
+### Included
+- Restaurant-specific visual direction
+- Responsive 360px, tablet, and desktop layouts
+- Accessible navigation, form labels, focus states, and reduced-motion support
+- Interactive mobile menu and walkthrough form
+- Illustrative product schedule clearly labeled
+- Static HTML parsing and JavaScript syntax checks passed
+
+### Material assumptions
+- Ridgeline has no supplied brand assets, customer claims, pricing, or integrations.
+- Pricing is consultation-based until confirmed.
+- The walkthrough form is a frontend demonstration and does not connect to a backend.
+- Illustrative schedule information is sample product content, not customer data.

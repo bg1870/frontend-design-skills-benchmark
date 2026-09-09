@@ -1,0 +1,6 @@
+Built the completed Ridgeline single-page marketing site.
+
+- `index.html` — Responsive, accessible, self-contained site with interactive navigation and walkthrough form.
+- `README.md` — Usage notes and material assumptions.
+
+No build step or external dependencies required. Open `index.html` in a modern browser.

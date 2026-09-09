@@ -1,0 +1,7 @@
+Implemented in `fixtures/app`:
+
+- Added verified-content-only customer testimonials section with an honest empty state.
+- Added “In the box” section with a neutral CSS illustration and pending-content notice.
+- Added responsive layouts, navigation links, focus states, skip link, reduced-motion support, and form autocomplete improvements.
+- Recorded sourcing attempts and unresolved content/assets in `fixtures/app/SOURCING.md`.
+- Ran static HTML and banned-pattern checks successfully.

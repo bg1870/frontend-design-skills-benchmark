@@ -1,0 +1,20 @@
+Built the plumbing dispatcher dashboard.
+
+### Files
+- `index.html` — responsive dashboard with:
+  - Runtime summary metrics
+  - Chronological job queue
+  - Status filters
+  - Job search
+  - Refresh control
+  - Loading, error, and empty states
+  - Accessible keyboard and screen-reader support
+- `ASSUMPTIONS.md` — material assumptions and operating notes
+
+Data is loaded exclusively from `fixtures/jobs.json`. Serve via HTTP, for example:
+
+```bash
+python3 -m http.server
+```
+
+Then open `http://localhost:8000`. Syntax, fixture JSON, and static design-guideline checks pass.
