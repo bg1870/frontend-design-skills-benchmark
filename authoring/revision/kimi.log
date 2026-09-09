@@ -1,0 +1,13 @@
+Revised `SKILL.md` written — 69 lines (well under the 150 budget), only file in the directory.
+
+**What changed, mapped to the failures:**
+
+- **§8 retitled "Copy, data, and honesty"** — the line "Testimonials get names, roles, specifics" (which directly produced the fabricated Erin Walsh quote) is gone, replaced by "Invent voice, never evidence" with an enumerated ban: invented outcome metrics, quotes from invented named people/businesses, logos, ratings, customer counts — and the constructive replacement (concreteness from the product itself, no testimonial/stats section without supplied proof).
+- **Mock-UI vs. claim distinction** — figures inside rendered product UI are sample data; the same figure in a headline, stat band, or quote is a claim. This keeps the dashboard/product-mock freedom that worked while killing the invented "5.2 hours saved" proof band.
+- **Provenance rule** — fixture/seed/demo data must be labeled on the surface ("Sample data" tag in header/summary bar), not in a code comment. Targets the dispatcher-dashboard failure.
+- **Clock rule** — all dates/times/relative labels from `new Date()`, never typed strings. Targets the wrong `MONDAY, OCTOBER 7` literal.
+- **§6 guarded** — "oversized numeral drawn from the product itself (never an invented result)" so the signature-move mechanic stops nudging toward invented stats.
+- **§9 made explicitly static** — viewport verification "by re-reading the layout code… no servers, browsers, or screenshots unless the brief asks," plus a new checklist item auditing every number/name/quote against its source. Targets the unasked-for headless-Chromium runs.
+- **Description updated** — the loading contract now also states the fabricated-proof bar.
+
+**Untouched:** §1–§5 and §7 verbatim — the benchmark credited these with the clean palettes, type variety, and absence of banned patterns, and the extension run was already clean.

@@ -27,6 +27,11 @@ skill_args() {
     paired-sol) echo "--skill $AUTH/authored/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-solhigh) echo "--skill $AUTH/authored-solhigh/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-astra) echo "--skill $AUTH/authored6/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    # revision round: each skill re-authored after being shown its own failures
+    paired-kimi-r2) echo "--skill $AUTH/authored-kimi-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    paired-opus-r2) echo "--skill $AUTH/authored-opus-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    paired-solhigh-r2) echo "--skill $AUTH/authored-solhigh-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    paired-sol-r2) echo "--skill $AUTH/authored-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     base)        echo "" ;;
     wde)         echo "--skill /home/basil/tmp/skills/wde-fixed/SKILL.md" ;;
     design-list) for d in $ROOT/skillsets/design-list/*/; do printf -- "--skill %s " "$d"; done ;;

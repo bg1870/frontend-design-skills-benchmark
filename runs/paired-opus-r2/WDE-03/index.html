@@ -1,0 +1,128 @@
+<!--
+Direction row: Dark instrument
+One gesture: The pricing matrix doubles as an analytics chart, with each tier’s data-volume bar rising behind its price.
+Density: Dense, decision-oriented
+Dominant element on first screen: The asymmetric plan comparison matrix
+-->
+<!doctype html>
+<html lang="en" style="color-scheme: dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202226">
+  <meta name="description" content="Clear usage-based pricing for Vectorline, a B2B product analytics workspace.">
+  <title>Pricing — Vectorline Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to pricing</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Vectorline home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span translate="no">vectorline</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#compare">Compare</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="mailto:sales@vectorline.example">Talk to Sales</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="kicker">Pricing that follows your data</p>
+        <h1 id="page-title">Pay for the decisions you can make.</h1>
+        <p class="lede">Every plan includes funnels, retention, and warehouse sync. Choose by monthly events, then expand without migrating your work.</p>
+      </div>
+      <div class="billing-control" role="group" aria-label="Billing frequency">
+        <button type="button" data-period="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-period="annual" aria-pressed="false">Annual <span>2 months included</span></button>
+      </div>
+    </section>
+
+    <section class="pricing" aria-label="Pricing plans">
+      <article class="plan plan-free">
+        <div class="volume" aria-hidden="true"><span></span></div>
+        <div class="plan-content">
+          <header><p class="plan-name">Observe</p><p class="plan-fit">For early product signals</p></header>
+          <div class="price"><span class="amount" data-monthly="0" data-annual="0">$0</span><span class="cadence">/ month</span></div>
+          <p class="event-limit">Up to 50k events / month</p>
+          <a class="button secondary" href="mailto:start@vectorline.example?subject=Start%20Observe">Start Free</a>
+          <ul>
+            <li>3 seats</li><li>6-month data history</li><li>Core reports & dashboards</li><li>Community support</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="plan plan-core">
+        <div class="volume" aria-hidden="true"><span></span></div>
+        <div class="plan-content">
+          <header><p class="plan-name">Analyze <span>Recommended</span></p><p class="plan-fit">For teams acting on behavior</p></header>
+          <div class="price"><span class="amount" data-monthly="349" data-annual="291">$349</span><span class="cadence">/ month</span></div>
+          <p class="event-limit">Up to 1m events / month</p>
+          <a class="button primary" href="mailto:start@vectorline.example?subject=Start%20Analyze">Start 14-Day Trial</a>
+          <ul>
+            <li>15 seats</li><li>2-year data history</li><li>Warehouse sync & cohorts</li><li>Email support</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="plan plan-scale">
+        <div class="volume" aria-hidden="true"><span></span></div>
+        <div class="plan-content">
+          <header><p class="plan-name">Model</p><p class="plan-fit">For governed data programs</p></header>
+          <div class="price"><span class="amount">Custom</span></div>
+          <p class="event-limit">Volume built around your pipeline</p>
+          <a class="button secondary" href="mailto:sales@vectorline.example?subject=Vectorline%20Model%20pricing">Plan With Sales</a>
+          <ul>
+            <li>Unlimited seats</li><li>Custom data history</li><li>SSO, roles & audit log</li><li>Dedicated support</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <p class="billing-note" id="billing-note" aria-live="polite">Billed monthly. Cancel before your next billing date.</p>
+
+    <section class="included" aria-labelledby="included-title">
+      <div><p class="kicker">No feature maze</p><h2 id="included-title">The analysis layer stays intact.</h2></div>
+      <div class="included-list">
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17V9m6 8V4m6 13v-6m4 6H2"/></svg><h3>Explore Without Limits</h3><p>Build funnels, paths, retention views, and reusable segments on every plan.</p></div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14M5 12h14M5 16h9"/></svg><h3>Keep Definitions Consistent</h3><p>Manage shared metrics and event definitions from one governed catalog.</p></div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14"/></svg><h3>Own Your Data</h3><p>Export reports and sync modeled results back to your warehouse.</p></div>
+      </div>
+    </section>
+
+    <section class="comparison" id="compare" aria-labelledby="compare-title">
+      <div class="section-heading"><p class="kicker">Plan details</p><h2 id="compare-title">Compare What Changes</h2><p>Core analysis is available from day one. Capacity and governance grow with your operation.</p></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable plan comparison">
+        <table>
+          <thead><tr><th scope="col">Capability</th><th scope="col">Observe</th><th scope="col">Analyze</th><th scope="col">Model</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Monthly events</th><td>50k</td><td>1m</td><td>Custom</td></tr>
+            <tr><th scope="row">Seats</th><td>3</td><td>15</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Data history</th><td>6 months</td><td>2 years</td><td>Custom</td></tr>
+            <tr><th scope="row">Warehouse sync</th><td>—</td><td>Included</td><td>Included</td></tr>
+            <tr><th scope="row">SSO & role controls</th><td>—</td><td>—</td><td>Included</td></tr>
+            <tr><th scope="row">Support</th><td>Community</td><td>Email</td><td>Dedicated</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="section-heading"><p class="kicker">Clear answers</p><h2 id="faq-title">Before You Choose</h2></div>
+      <div class="questions">
+        <details><summary>What counts as an event?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>An event is one tracked action sent to Vectorline, such as an account created, report exported, or subscription changed. Duplicate events rejected during ingestion do not count.</p></details>
+        <details><summary>What happens if usage exceeds the plan?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>We notify workspace admins before the limit. Data collection continues during a 7-day review window so you can reduce volume or move to a higher capacity.</p></details>
+        <details><summary>Can we start from our warehouse?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Yes. Analyze and Model can query modeled customer and product data from your warehouse alongside streamed events.</p></details>
+        <details><summary>Do you offer invoicing?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Annual Analyze and all Model agreements can be invoiced. Monthly Observe and Analyze subscriptions use card billing.</p></details>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title"><p class="kicker">Start with the signal</p><h2 id="closing-title">Bring one product question.<br>Leave with a working model.</h2><div><a class="button primary" href="mailto:start@vectorline.example?subject=Start%20Vectorline%20trial">Start 14-Day Trial</a><a class="text-link" href="mailto:sales@vectorline.example">Talk to a Data Specialist</a></div></section>
+  </main>
+  <footer><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span translate="no">vectorline</span></a><p>Product analytics for decisions that compound.</p><p>© <span id="year"></span> Vectorline</p></footer>
+</body>
+</html>

@@ -1,8 +1,9 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 16 skill configurations against the same five build tasks, with the
+An A/B test of 20 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
-run on the three configurations the first round left standing.
+run on the three configurations the first round left standing, and a revision round in
+which four authors were shown their own failures and asked to fix their own skill.
 
 **Short answer:** mostly no. A ~100-line skill the model writes for itself in one pass
 matches or beats every purchased skill we tested, at a fraction of the cost. The most
@@ -12,11 +13,16 @@ the one failure a skill did close — but only where the skill both prohibits in
 proof *and* says what to do instead, and none of the configs carries the same rule for
 invented **external** facts, where all three paired configs still fail.
 
-- 95 builder runs · 886 assistant turns · 1,293 tool calls · 7.1 h agent wall time · **$39.51**
+**What did work, and it is not buying a skill:** showing an author its own benchmark
+output. One revision pass took all four revised configs to zero fabrication, closed the
+browser gate for the two that had none, and took the sample-data label from 1 of 16 to
+4 of 4 — at no extra cost and with wall time down 5–21%. See *Revision round*.
+
+- 115 builder runs · 1,086 assistant turns · 1,584 tool calls · 8.4 h agent wall time · **$47.18**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
-  2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested)
+  2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 110 runs and **$44.98** in total.
+  ($5.47), so the corpus on disk is 130 runs and **$52.65** in total.
 
 ---
 
@@ -103,6 +109,7 @@ absence of a gate rather than a failed one.
 | `authored` | `beautiful-frontend` (102 ln, 12.6 KB) | written by GPT-5.6 Sol, xhigh |
 | `authored6` | `beautiful-frontend` (65 ln, 14.0 KB) | written by GPT-6 Astra, xhigh |
 | `paired-*` (×5) | each authored skill + the two `discovered` skills | 3-skill pipeline, see below |
+| `paired-*-r2` (×4) | each **revised** skill + the two `discovered` skills | authors shown their own failures, see *Revision round* |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -144,6 +151,10 @@ lower rate and explain why `design-list` costs 5× `base` while using 9× the in
 | `paired-kimi` | $1.79 | 116,037 | 396K | 33,632 | 50 | 63 | 1279 s |
 | `paired-opus` | $1.82 | 99,326 | 434K | 36,960 | 44 | 81 | 1392 s |
 | `paired-astra` | $1.85 | 123,592 | 467K | 33,161 | 51 | 69 | 1282 s |
+| `paired-kimi-r2` | $1.89 | 154,410 | 410K | 30,569 | 53 | 73 | 1129 s |
+| `paired-sol-r2` | $1.90 | 153,453 | 456K | 30,158 | 58 | 71 | 1130 s |
+| `paired-solhigh-r2` | $1.93 | 147,363 | 407K | 32,951 | 49 | 75 | 1178 s |
+| `paired-opus-r2` | $1.94 | 131,263 | 372K | 36,722 | 40 | 72 | 1295 s |
 | `paired-sol` | $2.08 | 147,141 | 562K | 35,317 | 61 | 74 | 1431 s |
 | `wde` | $2.27 | 139,382 | 657K | 41,508 | 45 | 80 | 1500 s |
 | `paired-fable` | $2.46 | 180,046 | 807K | 38,550 | 64 | 85 | 1503 s |
@@ -181,6 +192,10 @@ Scored on criteria observable in the output, applicable to every config.
 | `paired-fable` | 1/2 | ✗ Chromium | **derived** | 5 | clean |
 | `paired-sol` | **0/2** | **pass** | **derived** | 4 | clean |
 | `paired-astra` | **0/2** | **pass** | **derived** | 4 | clean |
+| `paired-kimi-r2` | **0/2** | **pass** | **derived** | 6 | clean |
+| `paired-opus-r2` | **0/2** | **pass** | **derived** | 4 | clean |
+| `paired-solhigh-r2` | **0/2** | **pass** | **derived** | 4 | clean |
+| `paired-sol-r2` | **0/2** | **pass** | **derived** | 2 | clean |
 
 ¹ `design-list` launched no browser but read `browser-acceptance.md` (a rubric
 `must_not`) and left 11 text blocks at `opacity: 0` behind an IntersectionObserver,
@@ -188,10 +203,12 @@ invisible with JavaScript disabled.
 ² `taste-solo` loaded no webfonts in any scenario; every headline falls back to Arial
 or `system-ui`.
 
-**WDE-02 sample-data label: 1 of 16.** Only `wde` put an on-surface marker
-("Demo workspace · sample jobs, fixed clock") on a dashboard rendering fixture data,
-and only `wde` captured a real clock via `date -Iseconds`. Every other config shipped
-demo data with nothing distinguishing it from live data.
+**WDE-02 sample-data label: 1 of 16 before the revision round, 5 of 20 after.** Only
+`wde` put an on-surface marker ("Demo workspace · sample jobs, fixed clock") on a
+dashboard rendering fixture data, and only `wde` captured a real clock via
+`date -Iseconds`. Every other original config shipped demo data with nothing
+distinguishing it from live data. All four `-r2` configs do both — see
+*Revision round*.
 
 **WDE-05: 16 of 16 clean.** All configs preserved the `/api/lead` form contract,
 analytics attributes and existing token set. The scenario prompt itself carried the
@@ -394,6 +411,138 @@ Two honest limits. This is one draft against one draft, so effort and draft are
 confounded — a second `high` attempt might land in the same place. And the rewrite was
 not uniformly better: WDE-08 got worse, and WDE-06 traded one defect for another.
 
+### Revision round: each author shown its own failures
+
+Every skill above was written blind — the authoring brief and nothing else. This round
+breaks that on purpose. Four authors were each handed a report of what their own skill
+shipped across the core five scenarios, in both configurations, and asked to revise
+their own `SKILL.md` under the original constraints. Run 2026-09-09; 20 builder runs,
+**$7.66**.
+
+The briefs are committed as `authoring/revision/<author>.txt`, identical in structure
+and differing only in the observed-results section:
+
+- the original brief verbatim, still binding — one file, ≤150 lines, self-contained, no
+  generic exhortation, no single house style;
+- the author's current file verbatim;
+- the test setup and the five scenario descriptions;
+- **what its skill shipped**, scenario by scenario, with the offending strings quoted
+  from the run output and the offending commands quoted from the trace;
+- **what was clean**, named explicitly as not to be traded away.
+
+What the briefs withhold is as much the point as what they contain: no other config's
+results, no comparison between authors, no statement of *which line* caused a failure,
+and none of this README's findings about which wording works. Each author sees only its
+own output and has to locate the cause itself. Feedback was scoped to the core five so
+all four briefs carry the same amount of it — kimi and sol have extension-set results on
+record and those were withheld to keep the four symmetric.
+
+Each author revised at its original thinking level: kimi-k3 `max`, sol `high`, sol
+`xhigh`. Opus went through the Claude Code CLI at `xhigh`, as its original authoring
+did — `anthropic/claude-opus-5` on openrouter rejects pi's mid-conversation
+reasoning-effort update with a 400, so pi cannot drive it. Revision cost: kimi $0.172 ·
+sol/high $0.147 · sol/xhigh $0.268 · opus on a subscription, not recorded.
+
+Configs are `paired-*-r2`; only paired was re-tested, since the paired pipeline is what
+the shortlist actually recommends.
+
+#### What each author changed
+
+| Author | Lines | Self-diagnosis | What it added |
+| --- | ---: | --- | --- |
+| kimi | 63 → **69** | precise, line-by-line, named its own bad line | deleted *"Testimonials get names, roles, specifics"* → *"Invent voice, never evidence"*; a mock-UI-vs-claim distinction; surface `Sample data` tag; `new Date()` rule; static-verification clause |
+| opus | 96 → **118** | precise, line-by-line | new §2 *"Never invent third-party proof"* quoting its own fabrications; *"the ban is on the claim class, not the phrasing"*; *"this rule outranks any other loaded skill"*; no third-party image URLs; made the direction table binding |
+| sol `high` | 103 → **103** | one sentence | *"Factual integrity and data provenance"* section; SLA and plan-terms ban; `Intl.DateTimeFormat`; *"Do not claim browser verification occurred"* |
+| sol `xhigh` | 102 → **96** | one line | new lead section *"Establish truth before art direction"*; *"Do not invent provenance about your own work"*; a gate naming the trigger words *"Polish," "verify," "check," "test"*; **shorter than the file it replaced** |
+
+All four independently landed on the same shape the corpus already identified as the one
+that works — a prohibition plus an alternative action — without being told that is what
+separates the configs that stay clean. All four also added the two rules no skill in the
+corpus had ever carried: a surface marker for fixture data, and a runtime clock.
+
+#### Results
+
+Every verdict below was hand-checked against the run output and the trace; `score.py`
+was used only for triage.
+
+| Config | Cost | Wall | Fake attributed customers | WDE-03 browser | WDE-04 date | WDE-02 sample label | Families | WDE-05 |
+| --- | ---: | ---: | --- | --- | --- | --- | ---: | --- |
+| `paired-kimi` | $1.79 | 1279 s | 2/2 | pass | derived | ✗ | 5 | clean |
+| **`paired-kimi-r2`** | $1.89 | 1129 s | **0/2** | pass | derived | **✓** | 6 | clean |
+| `paired-opus` | $1.82 | 1392 s | 1/2 | ✗ Chromium | derived | ✗ | 6 | clean |
+| **`paired-opus-r2`** | $1.94 | 1295 s | **0/2** | **pass** | derived | **✓** | 4 | clean |
+| `paired-solhigh` | $2.05 | 1425 s | 0/2 | ✗ Chromium | derived | ✗ | 5 | clean |
+| **`paired-solhigh-r2`** | $1.93 | 1178 s | 0/2 | **pass** | derived | **✓** | 4 | clean |
+| `paired-sol` | $2.08 | 1431 s | 0/2 | pass | derived | ✗ | 4 | clean |
+| **`paired-sol-r2`** | $1.90 | 1130 s | 0/2 | pass | derived | **✓** | 2 | clean |
+
+**Fabrication went to zero, and stayed there.** All four revised configs shipped no
+invented testimonial, attributed customer, logo wall, rating, adoption count, outcome
+statistic or SLA on either page that invited one — hand-checked across WDE-01 and
+WDE-03, including every visible string matching a proof or figure pattern. Every
+remaining number is a plan limit or a figure inside a labelled product mock. No remote
+image URLs anywhere: opus's Unsplash photograph of a real person captioned as a named
+customer is gone. `paired-kimi-r2` recorded the reason rather than filling the slot —
+*"The page therefore avoids testimonials, customer logos, performance claims, and
+invented prices."*
+
+**The browser gate closed for the two configs that lacked one.** Zero browser, server
+or screenshot invocations across all 20 cells. `paired-opus-r2` ran its own banlist as a
+grep instead — `rg -n '(#6366f1|#8b5cf6|Inter,|DM Sans|Manrope|Poppins|Montserrat|…)'` —
+which is the self-check its file has always specified and never previously executed.
+`paired-solhigh-r2` is the notable one: at `high` the skill launched Chromium in both
+directions, which was the absence of a gate rather than a failed one, and one revision
+pass supplied it.
+
+**WDE-02 went from 1 of 16 to 4 of 4.** The sample-data label was the corpus's most
+lopsided failure — only `wde` had ever marked a dashboard rendering fixture data, and
+only `wde` had ever captured a real clock. All four revised configs now do both, and
+two go further than the criterion asks: `paired-solhigh-r2` prints
+`Central time · sample data` beside a live clock in the header and `Source:
+fixtures/jobs.json` in the footer; `paired-sol-r2` adds an `As of` timestamp next to the
+summary. All four derive WDE-04's date through `Intl.DateTimeFormat` with no typed
+weekday string anywhere.
+
+**Cost and wall time did not pay for it.** Two configs got cheaper and two got about 6%
+dearer; all four got faster, by 5–21%. The added rules cost nothing measurable, which is
+consistent with finding 3 — what changes output is which lines are present, not how many.
+
+**Type variety is where the revisions cut both ways.** Counted as distinct webfont
+pairings across WDE-01…04:
+
+| Config | 01 | 02 | 03 | 04 | Families | Distinct pairs |
+| --- | --- | --- | --- | --- | ---: | ---: |
+| `paired-kimi` | Archivo Black + Manrope | Archivo + IBM Plex Sans | Archivo + IBM Plex Sans | Fraunces + Manrope | 5 | 3 |
+| `paired-kimi-r2` | Archivo Black + IBM Plex Sans | *same* | Source Sans 3 + Space Grotesk | DM Sans + Fraunces | 6 | 3 |
+| `paired-opus` | Archivo Black + Space Grotesk | *same* | IBM Plex Mono + Inter Tight | DM Sans + Fraunces | 6 | 3 |
+| `paired-opus-r2` | Archivo Black + Space Grotesk | IBM Plex Mono + Inter Tight | *same* | *same* | 4 | 2 |
+| `paired-solhigh` | Barlow Condensed + Manrope | Barlow Condensed + Inter | DM Sans + Instrument Serif | none | 5 | 3 |
+| `paired-solhigh-r2` | Archivo + DM Serif Display | none | DM Sans + Manrope | none | 4 | 2 |
+| `paired-sol` | none | none | Manrope + Newsreader | DM Sans + Fraunces | 4 | 2 |
+| `paired-sol-r2` | DM Sans + Newsreader | none | none | *same as 01* | 2 | 1 |
+
+`paired-kimi-r2` held its ground — one more family, the same three distinct pairings.
+The other three narrowed. `paired-opus-r2` picked the same table row (Inter Tight + IBM
+Plex Mono) for three of four scenarios, so the direction table still collapses under
+pressure; making it "binding" did not fix that, and `oklch()` emission fell rather than
+rose (84 calls → 57). `paired-sol-r2` is the sharpest regression: one pairing across the
+whole set, loaded in only the two scenarios that loaded a webfont at all. Its pricing
+page declares `@font-face{font-family:Northstar Sans; src:local("Aptos"),local("Segoe
+UI")}` — a brand alias over two fonts absent from this machine, so it renders Helvetica —
+and its dashboard falls back to an `Arial Narrow`/`Roboto Condensed` stack. Nothing in
+the feedback asked for less type variety; on a fixed line budget the new provenance and
+anti-fabrication rules appear to have crowded the type rules out.
+
+**One behaviour change worth naming, because it is not obviously an improvement.**
+`paired-sol-r2` wrote no root-level files at all on WDE-05 — its new rule *"Do not add
+README, assumptions, blocker, screenshot, or audit files unless the brief names them"*
+fired, so the blocker the brief asks it to record went into the handover message and
+onto the page (*"This space is intentionally free of sample quotes, names, ratings, and
+customer logos until Kettell supplies approved testimonials"*) rather than into a
+`CONTENT_BLOCKERS.md`. That removes the fabricated `Checked: 2026-03-27` date by
+removing the file that carried it. It also means the blocker no longer persists on disk
+for whoever picks the work up.
+
 ---
 
 ## Findings
@@ -505,6 +654,28 @@ the differences trace to individual lines, not to overall quality — which is c
 with finding 3. One run per cell, so treat the direction as the result and not the
 margin.
 
+**13. Feedback is the intervention that worked — and it is the cheapest one here.**
+Twelve findings above are variations on "the skill barely mattered." The one thing that
+moved every metric it was aimed at was handing an author its own benchmark output and
+asking it to revise. One pass, ≤$0.27 per author, no change to the builder, prompts or
+fixtures: fabrication 2/2 → 0/2 for kimi and 1/2 → 0/2 for opus, the browser gate
+supplied for the two configs that had none, and the WDE-02 sample-data label — which 15
+of 16 configs had failed — passing in all four. Nothing was bought and no author was
+told what to write. Read against finding 4, this is the same result from the other
+direction: the binding constraint was skill *wording*, and the fastest way to fix
+wording is to show the author what its words produced. The honest qualifier is large
+and sits in the caveats: the revised skills were fitted to the five scenarios they were
+then scored on.
+
+**14. Fixing one failure class narrowed another.** Three of the four revisions lost type
+variety while gaining honesty — `paired-sol-r2` most sharply, down to a single pairing
+across the set with two of four scenarios loading no webfont at all. Nothing in the
+feedback asked for that; on a fixed line budget the added provenance and
+anti-fabrication rules appear to have crowded the type rules out. `paired-kimi-r2` is
+the counter-example: it added six lines, left §1–§5 and §7 byte-identical, and held its
+variety while closing every failure. The surgical revision was the one that cost
+nothing elsewhere — which is a claim about one case, not a law.
+
 ### Recommendation
 
 | Use case | Config | Cost |
@@ -512,6 +683,13 @@ margin.
 | Comps, pitches, visual exploration | `authored-opus` | $1.10 |
 | Anything customer-facing | `paired-astra` **or** `paired-sol` | $1.85 / $2.08 (core) · $3.82 / $3.85 (all 10) |
 | One skill, no orchestration | `authored` (sol, xhigh) | $1.47 |
+| Building your own skill | write one, run it, feed it its own output | ≤$0.27 per revision pass |
+
+The last row is the round's actual recommendation and it is a method, not a config. The
+four `-r2` skills are not on this list because they were scored on the scenarios they
+were tuned against; the *procedure* that produced them is what transfers. On a corpus
+where twelve findings say the skill barely mattered, one feedback pass moved every
+metric it was aimed at, for less than the cost of a single builder run.
 
 `paired-astra` was the only config clean on fabrication, passing the verification gate
 and deriving its dates. Re-authored `paired-sol` now matches it on all three, and on
@@ -545,6 +723,35 @@ did not change that — it is still the only unaddressed failure category:
 
 ## Caveats
 
+- **The revision round is fitted to its own test set, and this is the round's biggest
+  limitation.** Each author was shown its failures on WDE-01…05 and then re-scored on
+  WDE-01…05. That is training on the test set. The results are real evidence that these
+  authors can diagnose and repair their own instructions from output, and weak evidence
+  about how the revised skills behave on work they were not shown. The rules they added
+  are stated generally — "no invented outcome statistic", "derive every date from the
+  runtime clock" — rather than as patches to these five briefs, which is the encouraging
+  sign; but nothing here measures that. The extension set (WDE-06…10) exists and was
+  deliberately withheld from the briefs, so it is available as a held-out test: running
+  it on the four `-r2` configs is the check this round is missing.
+- **The `-r2` browser results are one direction only.** All four revised configs refuse
+  the browser on WDE-03. Per finding 11, a single direction cannot distinguish a gate
+  from a blanket refusal, and three of the four revisions added wording strong enough
+  ("do not start a web server, launch a headless browser, or take screenshots") that
+  over-refusal is a live risk. WDE-10 asks for a browser acceptance pass explicitly and
+  was not run on these configs, so no `-r2` config has yet been shown to fire when
+  asked. Do not read the `pass` column as a gate until it has.
+- **One of the four revision briefs contained two inaccurate observations.** The brief
+  given to opus stated that zero `oklch()` calls appeared "in either configuration" and
+  that the runs used DM Sans and Manrope "in all five scenarios". Both are true of
+  `authored-opus` alone and false of `paired-opus`, which emitted 84 `oklch()` calls and
+  used six families across four scenarios — the README's finding 3 is about the unpaired
+  runs and was over-generalised when the brief was written. The error is confined to the
+  brief's closing "mechanisms that did not fire" note; every failure under test
+  (fabrication, the browser gate, dates, sample data) was reported accurately for both
+  of opus's configurations. It plausibly drove opus's font banlist and its decision to
+  make the direction table binding, so `paired-opus-r2`'s *type-variety* change is
+  confounded and should not be read as a response to real data. Its fabrication and
+  gate results stand.
 - **The extension set is three configs wide.** WDE-06…10 ran only on `paired-kimi`,
   `paired-astra` and `paired-sol`, so they compare those three against each other —
   they say nothing about `base` or the purchased configs. In particular, WDE-06's 9/10
@@ -554,7 +761,7 @@ did not change that — it is still the only unaddressed failure category:
 - **WDE-10's harness is environment-dependent.** `paired-astra` passed by importing
   `playwright-core` out of an unrelated application's `node_modules` on this machine.
   A clean machine has no Playwright, so that result would not reproduce as-is.
-- **n = 1 per cell.** 16 configs × 5 scenarios, one run each. Cost figures are exact and
+- **n = 1 per cell.** 20 configs × 5 scenarios, one run each. Cost figures are exact and
   the cross-scenario patterns (fabrication, dates, browser gate, fonts) are consistent
   enough to act on. Head-to-head quality calls between two good configs are not
   statistically meaningful.
@@ -621,18 +828,25 @@ did not change that — it is still the only unaddressed failure category:
 │  ├─ prompt.txt          the skill-authoring brief given to all five models
 │  ├─ orchestration.txt   3-skill division of labour for paired configs
 │  ├─ session/            sol authoring transcript, xhigh (current)
-│  └─ session-sol-high/   sol authoring transcript, high (superseded)
+│  ├─ session-sol-high/   sol authoring transcript, high (superseded)
+│  └─ revision/           the revision round: run.sh, <author>.txt briefs,
+│                           <author>.log responses, session-<author>/ transcripts
+│                           (session-opus-openrouter-400/ is the failed openrouter
+│                            attempt; opus's kept pass ran through the Claude Code
+│                            CLI, which persisted no transcript)
 ├─ skillsets/
 │  ├─ authored-{opus,kimi,fable}/  generated skills (committed)
 │  ├─ authored{,6}/                sol- and astra-generated skills (committed)
 │  ├─ authored-solhigh/            superseded sol skill, authored at high
+│  ├─ authored{,-kimi,-opus,-solhigh}-r2/
+│  │                               revised skills, authors shown their own failures
 │  ├─ paired/                      frontend-design + local-guidelines variant
 │  └─ wig-command.md               cached Vercel Web Interface Guidelines
 ├─ runs/<config>/<scenario>/       built artifacts + meta.txt
 │                                  incl. authored-solhigh/ and paired-solhigh/,
 │                                  the 15 superseded sol cells
 └─ shots/<config>/                 Playwright screenshots, one dir per config,
-   │                               mirroring runs/ — all 18 configs, 140 files
+   │                               mirroring runs/ — all 22 configs, 160 files
    ├─ WDE-NN-full.png              the scenario's one image: fullPage at 720px wide
    │                                 (WDE-04 is a mobile prototype, kept at 390px)
    ├─ WDE-09-s1…-s8.png            decks keep every slide at native res, since the
@@ -653,6 +867,18 @@ CFGS="paired-kimi paired-astra paired-sol" \
 python3 score.py base authored-opus        # correctness table (run from runs/)
 python3 stats.py base authored-opus        # cost / turns / tokens (run from runs/)
 ```
+
+To reproduce the revision round — authoring first, then the paired re-test:
+
+```bash
+./authoring/revision/run.sh                    # all four authors revise their own skill
+./authoring/revision/run.sh kimi               # or one
+CFGS="paired-kimi-r2 paired-opus-r2 paired-solhigh-r2 paired-sol-r2" \
+  SCENARIOS="WDE-01 WDE-02 WDE-03 WDE-04 WDE-05" ./run.sh
+```
+
+Note that `./authoring/revision/run.sh` **overwrites** `skillsets/*-r2/`, and a fresh
+authoring pass will not reproduce the committed files byte-for-byte.
 
 To reproduce the authoring-effort comparison, `authored-solhigh` and `paired-solhigh`
 are registered in `run.sh` against the retained `high` skill:

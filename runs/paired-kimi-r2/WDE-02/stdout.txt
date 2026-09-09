@@ -1,0 +1,5 @@
+Built the dispatcher dashboard.
+
+- `index.html` — responsive job queue, summary metrics, search, status filters, accessible interactions, and fixture-backed data.
+- `ASSUMPTIONS.md` — records implementation and data assumptions.
+- Verified embedded records exactly match `fixtures/jobs.json`.

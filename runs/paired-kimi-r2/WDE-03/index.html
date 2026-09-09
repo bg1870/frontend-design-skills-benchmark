@@ -1,0 +1,124 @@
+<!--
+Direction: Technical instrument panel for operations teams—precise, quiet, and confident.
+Palette: surface #F2F5F0, ink #17211B, accent #FF5A36.
+Type pairing: Space Grotesk for display and figures; Source Sans 3 for body and controls.
+Signature move: A full-width “cost ruler” makes pricing feel measurable, with the recommended plan breaking its baseline.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clear pricing for Foldline, a B2B analytics workspace built for revenue teams.">
+  <meta name="theme-color" content="#F2F5F0">
+  <title>Pricing — Foldline analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317211B'/%3E%3Cpath d='M8 23V9h16M8 17h11M8 12h7' stroke='%23FF5A36' stroke-width='2.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <a class="brand" href="#main-content" aria-label="Foldline home"><span class="brand-mark" aria-hidden="true"></span>Foldline</a>
+    <nav aria-label="Main navigation">
+      <a href="#compare">Compare</a><a href="#questions">Questions</a>
+      <a class="nav-action" href="mailto:sales@foldline.example">Talk to sales</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="kicker">Pricing for working data</p>
+        <h1 id="page-title">Pay for answers,<br>not <span class="strike">access.</span></h1>
+      </div>
+      <div class="hero-note">
+        <p>Every plan includes unlimited viewers. Choose by the number of people building reports and the depth of governance your team needs.</p>
+        <div class="billing-control" aria-label="Billing period">
+          <button type="button" class="billing-option is-active" data-period="monthly" aria-pressed="true">Monthly</button>
+          <button type="button" class="billing-option" data-period="annual" aria-pressed="false">Annual <span>Save 20%</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" aria-label="Plans">
+      <div class="ruler" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <article class="plan">
+        <div class="plan-head"><h2>Launch</h2><p>For a small team replacing recurring spreadsheets.</p></div>
+        <div class="price"><span class="currency">$</span><strong data-monthly="49" data-annual="39">49</strong><span>/ builder<br>per month</span></div>
+        <a class="button button-dark" href="mailto:hello@foldline.example?subject=Start%20Launch">Start with Launch</a>
+        <ul>
+          <li>5 builders</li><li>Unlimited viewers</li><li>10 data connections</li><li>Scheduled reports</li><li>Email support</li>
+        </ul>
+      </article>
+
+      <article class="plan featured">
+        <p class="recommendation">Best for growing teams</p>
+        <div class="plan-head"><h2>Scale</h2><p>For revenue teams standardizing metrics across the company.</p></div>
+        <div class="price"><span class="currency">$</span><strong data-monthly="99" data-annual="79">99</strong><span>/ builder<br>per month</span></div>
+        <a class="button button-accent" href="mailto:hello@foldline.example?subject=Start%20Scale">Start with Scale</a>
+        <ul>
+          <li>Everything in Launch</li><li>Unlimited connections</li><li>Metric definitions</li><li>Role-based access</li><li>Slack alerts</li><li>Priority support</li>
+        </ul>
+      </article>
+
+      <article class="plan">
+        <div class="plan-head"><h2>Control</h2><p>For organizations with advanced security and deployment needs.</p></div>
+        <div class="price custom"><strong>Custom</strong><span>Annual agreement</span></div>
+        <a class="button button-dark" href="mailto:sales@foldline.example?subject=Foldline%20Control">Plan your rollout</a>
+        <ul>
+          <li>Everything in Scale</li><li>Single sign-on and SCIM</li><li>Audit logs</li><li>Private network options</li><li>Dedicated success manager</li>
+        </ul>
+      </article>
+      <p class="price-note">Prices in USD. Taxes may apply. Annual plans are billed once per year.</p>
+    </section>
+
+    <section class="included" aria-labelledby="included-title">
+      <div><p class="kicker">Included throughout</p><h2 id="included-title">The essentials don’t become add-ons.</h2></div>
+      <dl>
+        <div><dt>Unlimited viewers</dt><dd>Share dashboards without rationing who can see the work.</dd></div>
+        <div><dt>Data history</dt><dd>Keep a continuous record of the metrics behind every decision.</dd></div>
+        <div><dt>Exportable data</dt><dd>Download results as CSV whenever another workflow needs them.</dd></div>
+        <div><dt>Secure by default</dt><dd>Encryption in transit and at rest across every plan.</dd></div>
+      </dl>
+    </section>
+
+    <section class="comparison" id="compare" aria-labelledby="compare-title">
+      <div class="comparison-intro"><p class="kicker">Plan comparison</p><h2 id="compare-title">See what changes as your analytics practice matures.</h2></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable plan comparison">
+        <table>
+          <thead><tr><th scope="col">Capability</th><th scope="col">Launch</th><th scope="col">Scale</th><th scope="col">Control</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Builders</th><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Data connections</th><td>10</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Metric definitions</th><td>—</td><td>Included</td><td>Included</td></tr>
+            <tr><th scope="row">Role-based access</th><td>—</td><td>Included</td><td>Included</td></tr>
+            <tr><th scope="row">Single sign-on</th><td>—</td><td>—</td><td>Included</td></tr>
+            <tr><th scope="row">Support</th><td>Email</td><td>Priority</td><td>Dedicated</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="questions" id="questions" aria-labelledby="questions-title">
+      <h2 id="questions-title">Before you choose</h2>
+      <div class="faq-list">
+        <details><summary>Who counts as a builder?</summary><p>A builder can connect data, define metrics, and create or edit reports. Anyone who only views and filters reports is a viewer and does not need a paid seat.</p></details>
+        <details><summary>Can we change plans later?</summary><p>Yes. Monthly plans can change at the next billing cycle. Annual plan changes are applied to the remainder of your term.</p></details>
+        <details><summary>Is there a trial?</summary><p>Yes. Start with a 14-day Scale trial. No card is required, and you can choose a plan when the trial ends.</p></details>
+        <details><summary>What happens if we add builders?</summary><p>Monthly plans are adjusted on your next invoice. Annual plans are prorated for the remaining term.</p></details>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <p class="kicker">A clear next step</p><h2 id="closing-title">Bring one messy report.<br>Leave with a shared metric.</h2>
+      <a class="button button-accent" href="mailto:hello@foldline.example?subject=Start%20a%20Foldline%20trial">Start your 14-day trial</a>
+    </section>
+  </main>
+
+  <footer><div class="footer-meta"><span>Analytics without access tax.</span><a href="mailto:hello@foldline.example">hello@foldline.example</a></div><div class="footer-word">Foldline<span>.</span></div></footer>
+</body>
+</html>

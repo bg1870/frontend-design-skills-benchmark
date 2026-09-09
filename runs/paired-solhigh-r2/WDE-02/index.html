@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dispatcher job queue for a plumbing service team.">
+  <meta name="theme-color" content="#123d4a">
+  <title>PipeLine Dispatch</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#queue">Skip to job queue</a>
+  <header class="topbar">
+    <div class="brand" aria-label="PipeLine Dispatch" translate="no">
+      <svg aria-hidden="true" viewBox="0 0 44 44"><path d="M8 5v16a7 7 0 0 0 7 7h14a7 7 0 0 1 7 7v4"/><path d="M3 10h10M31 34h10"/></svg>
+      <div><strong>PipeLine</strong><span>Dispatch desk</span></div>
+    </div>
+    <div class="clock"><span id="day-label">Dispatch board</span><time id="current-time">—</time><small>Central time · sample data</small></div>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="summary-intro">
+        <p id="summary-title">Queue overview</p>
+        <strong id="total-count">—</strong><span>jobs on the board</span>
+      </div>
+      <dl class="summary-stats">
+        <div><dt><i class="signal signal-open"></i>Unassigned</dt><dd id="open-count">—</dd></div>
+        <div><dt><i class="signal signal-assigned"></i>Assigned</dt><dd id="assigned-count">—</dd></div>
+        <div><dt><i class="signal signal-done"></i>Complete</dt><dd id="done-count">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="queue-shell" id="queue" aria-labelledby="queue-heading">
+      <div class="queue-head">
+        <div>
+          <h1 id="queue-heading">Job Queue</h1>
+          <p>Scheduled work, earliest first</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter jobs">
+          <button class="filter active" type="button" data-filter="all" aria-pressed="true">All <span id="filter-all">0</span></button>
+          <button class="filter" type="button" data-filter="open" aria-pressed="false">Unassigned</button>
+          <button class="filter" type="button" data-filter="assigned" aria-pressed="false">Assigned</button>
+          <button class="filter" type="button" data-filter="done" aria-pressed="false">Complete</button>
+        </div>
+      </div>
+
+      <div class="column-labels" aria-hidden="true"><span>Schedule</span><span>Job / location</span><span>Technician</span><span>Status</span></div>
+      <div id="job-list" class="job-list" aria-live="polite" aria-busy="true">
+        <div class="loading">Loading dispatch queue…</div>
+      </div>
+      <div id="empty-state" class="empty" hidden><strong>No jobs in this view</strong><span>Choose another queue filter.</span></div>
+    </section>
+  </main>
+
+  <footer><span>Fixture-backed dispatch view</span><span id="data-note">Source: fixtures/jobs.json</span></footer>
+</body>
+</html>

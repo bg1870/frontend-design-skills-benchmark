@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dispatcher job queue for a plumbing service team.">
+  <meta name="theme-color" content="#123b46">
+  <title>Flowline Dispatch</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#queue">Skip to job queue</a>
+  <header class="summary-shell">
+    <div class="brand-row">
+      <a class="brand" href="#queue" aria-label="Flowline Dispatch home">
+        <svg aria-hidden="true" viewBox="0 0 40 40"><path d="M8 7v12a7 7 0 0 0 7 7h10a7 7 0 0 1 7 7v1"/><path d="M4 7h8M28 34h8"/></svg>
+        <span><strong>Flowline</strong><small>Dispatch</small></span>
+      </a>
+      <div class="source-note"><span>Sample data</span><time id="as-of">As of —</time></div>
+    </div>
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="summary-lead">
+        <p id="summary-title">Service board</p>
+        <strong id="attention-count">—</strong>
+        <span>jobs need attention</span>
+      </div>
+      <dl class="summary-stats">
+        <div><dt>Open</dt><dd id="open-count">—</dd></div>
+        <div><dt>Assigned</dt><dd id="assigned-count">—</dd></div>
+        <div><dt>Completed</dt><dd id="done-count">—</dd></div>
+        <div><dt>Total</dt><dd id="total-count">—</dd></div>
+      </dl>
+    </section>
+  </header>
+
+  <main id="queue">
+    <div class="queue-heading">
+      <div>
+        <h1>Job queue</h1>
+        <p id="queue-description">Unresolved work first, ordered by appointment.</p>
+      </div>
+      <div class="view-note" id="result-count" aria-live="polite">Loading jobs…</div>
+    </div>
+
+    <section class="controls" aria-label="Queue controls">
+      <label class="search-field">
+        <span class="sr-only">Search jobs</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input id="search" name="job-search" type="search" placeholder="Search by job, address, or technician…" autocomplete="off">
+      </label>
+      <div class="status-filters" role="group" aria-label="Filter by status">
+        <button type="button" class="filter active" data-status="all" aria-pressed="true">All</button>
+        <button type="button" class="filter" data-status="open" aria-pressed="false">Open</button>
+        <button type="button" class="filter" data-status="assigned" aria-pressed="false">Assigned</button>
+        <button type="button" class="filter" data-status="done" aria-pressed="false">Completed</button>
+      </div>
+    </section>
+
+    <section class="queue-panel" aria-label="Jobs">
+      <div class="table-head" aria-hidden="true">
+        <span>Appointment</span><span>Job</span><span>Location</span><span>Technician</span><span>Status</span>
+      </div>
+      <div id="job-list" class="job-list" aria-live="polite"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <strong>No jobs match this view</strong>
+        <p>Clear the search or choose another status.</p>
+        <button id="clear-filters" type="button">Show all jobs</button>
+      </div>
+    </section>
+    <p id="load-error" class="load-error" role="alert" hidden>Jobs could not be loaded. Serve this folder from a local web server and reload.</p>
+  </main>
+</body>
+</html>

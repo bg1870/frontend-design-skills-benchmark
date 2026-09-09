@@ -1,0 +1,86 @@
+<!--
+  Register: technical field-service ledger — dense, practical, built for a dispatcher at a glance.
+  Palette: surface #F3F5F2, ink #14231E, accent #E14B2D.
+  Type pairing: Archivo Black for the operational headline; IBM Plex Sans for compact UI and data.
+  Signature move: the queue is threaded by a copper-pipe timeline whose valve nodes encode job status.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F3F5F2">
+  <title>Pipeworks Dispatch Board</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314231e'/%3E%3Cpath d='M18 16v18c0 8 6 14 14 14s14-6 14-14V22' fill='none' stroke='%23e14b2d' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--surface:#f3f5f2;--ink:#14231e;--accent:#e14b2d;--muted:#66716c;--line:rgba(20,35,30,.16);--wash:#e6ebe7;--white:#fff;--base:8px}
+    *{box-sizing:border-box}html{background:var(--surface);color:var(--ink);font-family:"IBM Plex Sans",sans-serif}body{margin:0;min-width:320px;overflow-x:hidden}button,input{font:inherit}button{color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:rgba(225,75,45,.2)}::selection{background:var(--accent);color:white}.skip-link{position:fixed;left:16px;top:0;z-index:10;background:var(--accent);color:white;padding:10px 14px;transform:translateY(-120%)}.skip-link:focus{transform:translateY(12px)}h1{text-wrap:balance}
+    .summary{background:var(--ink);color:var(--surface);padding:24px clamp(20px,4vw,64px) 54px;position:relative;overflow:hidden}
+    .summary::after{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .masthead,.summary-grid{position:relative;z-index:1;max-width:1440px;margin:auto}.masthead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(243,245,242,.2);padding-bottom:18px;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:600}.brand-mark{width:28px;height:28px;border:6px solid var(--accent);border-top-color:transparent;border-radius:50%;transform:rotate(-45deg)}.sample{font-size:12px;border:1px solid rgba(243,245,242,.28);padding:5px 9px;border-radius:2px}.today{color:#b8c1bc;font-size:14px;text-align:right}
+    .summary-grid{display:grid;grid-template-columns:minmax(270px,1.55fr) repeat(3,minmax(110px,.55fr));gap:clamp(20px,4vw,64px);align-items:end;padding-top:42px}.title-wrap{display:flex;align-items:flex-end;gap:20px}.total{font:400 clamp(4rem,8vw,7rem)/.8 "Archivo Black",sans-serif;letter-spacing:-.05em;color:var(--accent);font-feature-settings:"tnum"}.title-wrap h1{font:400 clamp(2rem,4vw,4.5rem)/.9 "Archivo Black",sans-serif;letter-spacing:-.04em;margin:0;max-width:8ch}.metric{border-left:1px solid rgba(243,245,242,.2);padding-left:20px}.metric strong{font:400 clamp(2rem,4vw,3.75rem)/1 "Archivo Black";display:block;font-feature-settings:"tnum"}.metric span{display:block;margin-top:8px;color:#b8c1bc;font-size:13px}
+    main{max-width:1440px;margin:-28px auto 0;padding:0 clamp(20px,4vw,64px) 64px;position:relative;z-index:2}.controls{background:var(--white);border:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:24px;padding:16px 18px;align-items:center}.search-wrap{display:flex;align-items:center;gap:12px}.search-wrap svg{flex:none;color:var(--muted)}.search-wrap:focus-within{outline:3px solid var(--accent);outline-offset:3px}#search{border:0;outline:0;width:100%;min-height:36px;color:var(--ink);background:transparent}#search::placeholder{color:#7d8882}.filters{display:flex;gap:6px}.filter{background:transparent;border:1px solid var(--line);padding:8px 13px;cursor:pointer;border-radius:2px;transition:transform .18s}.filter:hover{transform:translateY(-2px)}.filter[aria-pressed="true"]{background:var(--ink);color:white;border-color:var(--ink)}button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+    .queue-head{display:grid;grid-template-columns:150px minmax(240px,1.3fr) minmax(210px,1fr) 120px;gap:24px;padding:32px 24px 12px 58px;color:var(--muted);font-size:12px;border-bottom:1px solid var(--line)}.queue{position:relative}.queue::before{content:"";position:absolute;left:31px;top:0;bottom:0;width:4px;background:var(--accent)}.job{position:relative;display:grid;grid-template-columns:150px minmax(240px,1.3fr) minmax(210px,1fr) 120px;gap:24px;align-items:center;padding:22px 24px 22px 58px;border-bottom:1px solid var(--line);min-height:108px;transition:transform .2s}.job:hover{background:var(--white);transform:translateX(4px)}.node{position:absolute;left:22px;width:22px;height:22px;border:4px solid var(--surface);background:var(--accent);border-radius:50%;box-shadow:0 0 0 2px var(--accent)}.job[data-status="done"] .node{background:var(--ink);box-shadow:0 0 0 2px var(--ink)}.job[data-status="assigned"] .node{background:var(--surface)}.when time{display:block;font-size:16px;font-weight:600;font-feature-settings:"tnum"}.when span,.address{font-size:13px;color:var(--muted);margin-top:4px}.work strong{font-size:18px;display:block;overflow-wrap:anywhere}.job-id{font-size:12px;color:var(--muted);margin-top:5px}.tech{font-weight:500}.unassigned{color:var(--accent)}.status{justify-self:end;border:1px solid currentColor;padding:5px 9px;border-radius:2px;font-size:12px;text-transform:capitalize}.status.open{color:var(--accent)}.empty{padding:72px 24px 72px 58px;border-bottom:1px solid var(--line);font-size:18px}.footer{display:flex;justify-content:space-between;gap:20px;padding:28px 0;color:var(--muted);font-size:12px}.footer p{margin:0}
+    @media(max-width:800px){.summary{padding-bottom:48px}.summary-grid{grid-template-columns:repeat(3,1fr)}.title-wrap{grid-column:1/-1}.metric{padding-left:12px}.controls{grid-template-columns:1fr}.filters{overflow-x:auto;padding-bottom:2px}.queue-head{display:none}.queue{margin-top:20px}.job{grid-template-columns:1fr auto;padding:18px 8px 18px 50px;gap:12px}.when{grid-column:1}.work{grid-column:1/-1}.tech{grid-column:1}.status{grid-column:2;grid-row:1}.queue::before{left:23px}.node{left:14px}.footer{flex-direction:column}}
+    @media(max-width:470px){.summary{padding-inline:18px}.today{display:none}.summary-grid{gap:22px 10px}.title-wrap{gap:14px}.title-wrap h1{font-size:2rem}.total{font-size:4rem}.metric strong{font-size:2rem}.metric span{font-size:11px}main{padding-inline:14px}.controls{padding:12px}.filter{padding:8px 10px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to Job Queue</a>
+  <header class="summary">
+    <div class="masthead">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span>Pipeworks Dispatch</div>
+      <div><span class="sample">Sample data</span> <span class="today" id="today"></span></div>
+    </div>
+    <div class="summary-grid">
+      <div class="title-wrap"><strong class="total" id="total">00</strong><h1>Jobs on the board</h1></div>
+      <div class="metric"><strong id="openCount">0</strong><span>Need assignment</span></div>
+      <div class="metric"><strong id="assignedCount">0</strong><span>Assigned</span></div>
+      <div class="metric"><strong id="doneCount">0</strong><span>Completed</span></div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="controls" aria-label="Queue controls">
+      <label class="search-wrap" for="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2"/></svg><input id="search" name="job-search" type="search" autocomplete="off" placeholder="Search job, address, or technician…"></label>
+      <div class="filters" role="group" aria-label="Filter by status">
+        <button class="filter" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" data-filter="open" aria-pressed="false">Open</button>
+        <button class="filter" data-filter="assigned" aria-pressed="false">Assigned</button>
+        <button class="filter" data-filter="done" aria-pressed="false">Done</button>
+      </div>
+    </section>
+    <div class="queue-head" aria-hidden="true"><span>Schedule</span><span>Job</span><span>Technician / location</span><span style="text-align:right">Status</span></div>
+    <section class="queue" id="queue" aria-label="Job queue" aria-live="polite"></section>
+    <footer class="footer"><p>Times shown in the job’s local timezone.</p><p id="visibleCount"></p></footer>
+  </main>
+  <script>
+    const JOBS = [
+      {"id":"J-1041","title":"Water heater replacement","technician":"R. Okafor","address":"1188 Cedar Ln, Apt 3","scheduled_at":"2026-09-05T09:00:00-05:00","status":"done"},
+      {"id":"J-1042","title":"Kitchen sink backup","technician":"M. Duarte","address":"44 Halstead Ave","scheduled_at":"2026-09-07T13:30:00-05:00","status":"done"},
+      {"id":"J-1043","title":"Sump pump inspection","technician":"R. Okafor","address":"9 Wexford Ct","scheduled_at":"2026-09-08T08:15:00-05:00","status":"assigned"},
+      {"id":"J-1044","title":"Burst supply line, basement","technician":null,"address":"2210 Marbury Rd","scheduled_at":"2026-09-08T11:00:00-05:00","status":"open"},
+      {"id":"J-1045","title":"Toilet reseat, unit 2B","technician":"T. Blanchard","address":"77 Iverson St","scheduled_at":"2026-09-09T15:45:00-05:00","status":"assigned"},
+      {"id":"J-1046","title":"Annual backflow test","technician":null,"address":"501 Quarry Industrial Pk","scheduled_at":"2026-09-11T10:00:00-05:00","status":"open"}
+    ];
+    const state={filter:'all',query:''};
+    const dateFmt=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'});
+    const timeFmt=new Intl.DateTimeFormat(undefined,{hour:'numeric',minute:'2-digit'});
+    const escapeHtml=value=>String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    function render(){
+      const items=JOBS.filter(j=>(state.filter==='all'||j.status===state.filter)&&Object.values(j).some(v=>String(v??'').toLowerCase().includes(state.query)));
+      document.querySelector('#queue').innerHTML=items.length?items.map(j=>{const d=new Date(j.scheduled_at);return `<article class="job" data-status="${j.status}"><span class="node" aria-hidden="true"></span><div class="when"><time datetime="${j.scheduled_at}">${dateFmt.format(d)}</time><span>${timeFmt.format(d)}</span></div><div class="work"><strong>${escapeHtml(j.title)}</strong><div class="job-id">${j.id}</div></div><div><div class="tech ${j.technician?'':'unassigned'}">${escapeHtml(j.technician||'Unassigned')}</div><div class="address">${escapeHtml(j.address)}</div></div><span class="status ${j.status}">${j.status}</span></article>`}).join(''):'<div class="empty">No jobs match this view.</div>';
+      document.querySelector('#visibleCount').textContent=`Showing ${items.length} of ${JOBS.length} jobs`;
+    }
+    document.querySelector('#today').textContent=new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric'}).format(new Date());
+    document.querySelector('#total').textContent=String(JOBS.length).padStart(2,'0');
+    ['open','assigned','done'].forEach(s=>document.querySelector(`#${s}Count`).textContent=JOBS.filter(j=>j.status===s).length);
+    document.querySelector('#search').addEventListener('input',e=>{state.query=e.target.value.trim().toLowerCase();render()});
+    document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{state.filter=button.dataset.filter;document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));render()}));
+    render();
+  </script>
+</body>
+</html>

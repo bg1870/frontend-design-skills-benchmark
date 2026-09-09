@@ -1,0 +1,18 @@
+Built the dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- `index.html` — responsive dashboard structure
+- `styles.css` — plumbing-inspired dispatch rail design
+- `app.js` — fixture loading, live Central Time clock, summaries, sorting, and URL-backed filters
+- `ASSUMPTIONS.md` — documented material assumptions
+
+### Features
+- Summary bar with total, unassigned, assigned, and completed counts
+- Chronological job queue
+- Status filtering
+- Responsive mobile/tablet layouts
+- Accessible semantics, focus states, skip link, and live regions
+- Clearly labeled sample data
+- Loading, empty, and error states
+
+Validation passed for JavaScript syntax and fixture JSON. Serve the directory over HTTP so the browser can fetch the fixture.

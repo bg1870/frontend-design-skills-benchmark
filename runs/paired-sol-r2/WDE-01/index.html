@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ridgeline brings restaurant shift scheduling, time tracking, and payroll preparation into one straightforward workflow.">
+  <meta name="theme-color" content="#f2f0e9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Ridgeline — Payroll and scheduling for independent restaurants</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ridgeline home">
+      <svg aria-hidden="true" viewBox="0 0 32 24"><path d="M2 20 10 8l5 6 5-10 10 16"/></svg>
+      <span>Ridgeline</span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span>Menu</span><i></i></button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="#workflow">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a class="nav-cta" href="#demo">Book a walkthrough</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="kicker">Built for independent restaurants</p>
+        <h1>One clean handoff from shift to payroll.</h1>
+        <p class="hero-lede">Build the week, track the hours, and prepare payroll without stitching together schedules, texts, and spreadsheets.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#demo">Book a walkthrough</a>
+          <a class="text-link" href="#workflow">See the workflow</a>
+        </div>
+      </div>
+
+      <div class="shift-board" aria-label="Illustrative weekly shift schedule">
+        <div class="board-head">
+          <div><span>Week of May 18</span><strong>Evening service</strong></div>
+          <span class="sample-tag">Illustrative</span>
+        </div>
+        <div class="shift-line shift-line-head" aria-hidden="true"><span>Station</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div>
+        <div class="shift-line"><strong>Kitchen</strong><span>4–11</span><span>4–11</span><span>4–11</span><span class="busy">3–12</span></div>
+        <div class="shift-line"><strong>Floor</strong><span>5–10</span><span>5–10</span><span>5–11</span><span class="busy">4–12</span></div>
+        <div class="shift-line"><strong>Bar</strong><span>5–11</span><span>5–11</span><span>5–11</span><span class="busy">4–12</span></div>
+        <div class="board-foot">
+          <span><i class="status-dot"></i>Schedule ready to share</span>
+          <button type="button" id="share-sample">Preview share</button>
+        </div>
+        <div class="ticket-stub" aria-hidden="true">86 hours scheduled</div>
+      </div>
+    </section>
+
+    <section class="workflow" id="workflow">
+      <header class="section-heading">
+        <p class="kicker">The weekly rhythm</p>
+        <h2>Run the people side of service in one place.</h2>
+      </header>
+      <ol class="steps">
+        <li><span class="step-no">1</span><div><h3>Set the schedule</h3><p>Build shifts around roles and service hours, then share the plan with your team.</p></div></li>
+        <li><span class="step-no">2</span><div><h3>Capture hours</h3><p>Keep worked time beside the schedule, so changes do not disappear into a text thread.</p></div></li>
+        <li><span class="step-no">3</span><div><h3>Prepare payroll</h3><p>Review hours and pay details in one pass before moving payroll forward.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="feature-field" id="features">
+      <div class="feature-intro">
+        <p class="kicker">Made for a working restaurant</p>
+        <h2>Clear enough for the rush. Complete enough for Monday.</h2>
+        <p>Ridgeline keeps everyday staff operations legible for owners, managers, and employees—without turning the restaurant into an HR department.</p>
+      </div>
+      <div class="feature-list">
+        <article><span>Schedule</span><h3>See coverage before you publish</h3><p>Organize shifts by day and role, spot open coverage, and keep the current schedule easy to find.</p></article>
+        <article><span>Time</span><h3>Keep actual hours next to the plan</h3><p>Review worked time with the context needed to resolve missed punches and shift changes.</p></article>
+        <article><span>Payroll</span><h3>Move from review to payroll without re-entry</h3><p>Bring approved hours and employee pay details together for a calmer payroll run.</p></article>
+        <article><span>Team</span><h3>Give everyone one source of truth</h3><p>Share schedules and updates in a consistent place instead of chasing the latest message.</p></article>
+      </div>
+    </section>
+
+    <section class="owner-note">
+      <p>Service changes fast.</p>
+      <h2>Your back office shouldn’t make you choose between staying on the floor and staying on top of payroll.</h2>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="price-copy">
+        <p class="kicker">Straightforward pricing</p>
+        <h2>Start with your restaurant, not a maze of plans.</h2>
+        <p>Tell us how your team works. We’ll show you the relevant setup and provide pricing for your restaurant during the walkthrough.</p>
+      </div>
+      <a class="button button-light" href="#demo">Discuss pricing</a>
+    </section>
+
+    <section class="demo" id="demo">
+      <div>
+        <p class="kicker">A practical walkthrough</p>
+        <h2>Bring next week’s schedule. See how Ridgeline fits.</h2>
+        <p>Share a few details and we’ll prepare a product walkthrough around the way your restaurant operates.</p>
+      </div>
+      <form id="demo-form" novalidate>
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="restaurant">Restaurant name</label><input id="restaurant" name="restaurant" autocomplete="organization" required></div>
+        <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" spellcheck="false" required></div>
+        <button class="button button-primary" type="submit">Request a walkthrough</button>
+        <p class="form-note">No commitment. We’ll use these details only to respond to your request.</p>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><svg aria-hidden="true" viewBox="0 0 32 24"><path d="M2 20 10 8l5 6 5-10 10 16"/></svg><span>Ridgeline</span></a>
+    <p>Payroll and scheduling for independent restaurants.</p>
+    <p>© <span id="year"></span> Ridgeline</p>
+  </footer>
+</body>
+</html>

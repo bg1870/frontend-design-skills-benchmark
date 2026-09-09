@@ -108,6 +108,54 @@
   "scenarios": 5
  },
  {
+  "tin": 154410,
+  "cr": 410240,
+  "out": 30569,
+  "rea": 1687,
+  "cost": 1.8942400000000001,
+  "turns": 53,
+  "tools": 73,
+  "cfg": "paired-kimi-r2",
+  "secs": 1129,
+  "scenarios": 5
+ },
+ {
+  "tin": 153453,
+  "cr": 456192,
+  "out": 30158,
+  "rea": 1865,
+  "cost": 1.9001010000000003,
+  "turns": 58,
+  "tools": 71,
+  "cfg": "paired-sol-r2",
+  "secs": 1130,
+  "scenarios": 5
+ },
+ {
+  "tin": 147363,
+  "cr": 406528,
+  "out": 32951,
+  "rea": 2137,
+  "cost": 1.9286090000000005,
+  "turns": 49,
+  "tools": 75,
+  "cfg": "paired-solhigh-r2",
+  "secs": 1178,
+  "scenarios": 5
+ },
+ {
+  "tin": 131263,
+  "cr": 372352,
+  "out": 36722,
+  "rea": 2440,
+  "cost": 1.944151,
+  "turns": 40,
+  "tools": 72,
+  "cfg": "paired-opus-r2",
+  "secs": 1295,
+  "scenarios": 5
+ },
+ {
   "tin": 139382,
   "cr": 656896,
   "out": 41508,

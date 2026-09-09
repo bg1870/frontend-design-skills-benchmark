@@ -1,0 +1,14 @@
+Built the responsive plumbing dispatcher dashboard using `fixtures/jobs.json`.
+
+### Delivered
+- `index.html` — accessible dashboard structure
+- `styles.css` — responsive industrial service-board design
+- `app.js` — data loading, summaries, search, status filters, URL state, and empty/error states
+
+### Assumptions
+- Open and assigned jobs require attention.
+- Queue prioritizes open, then assigned, then completed jobs; appointments sort chronologically within each status.
+- Dates display in the dispatcher’s browser locale and timezone.
+- Fixture data is visibly labeled as sample data.
+
+Static HTML, JavaScript, and JSON checks passed.
