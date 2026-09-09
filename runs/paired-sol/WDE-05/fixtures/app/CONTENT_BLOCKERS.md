@@ -1,9 +1,11 @@
-# Unresolved content blockers
+# Kettell content blockers
 
-Checked on 2026-09-08.
+Checked on 2026-09-09 before adding the testimonials and “In the box” sections.
 
-- **Customer testimonials:** No quotes, customer names, permissions, or source references are present in the repository. A public web search for `"Kettell" espresso machine` returned no usable, attributable customer material. The page therefore shows a clearly labelled neutral pending state.
-- **In-the-box inventory:** No verified packing list, bill of materials, or accessory list is present in the repository or discoverable from the public search. No box contents have been asserted.
-- **Product and packaging imagery:** No approved product or packaging images are present in the repository or discoverable from the public search. The interface uses a clearly labelled generic line-drawing placeholder; it is not a representation of the Kettell machine.
+- Searched the repository for Kettell testimonials, customer names, portraits, product photography, and a packing list. No source material was present.
+- Checked `https://kettell.com` as a likely public source. It currently resolves to a domain-sale page and contains no information about the espresso machine.
+- **Testimonials:** unresolved. Verified, approved customer quotes and attribution are needed.
+- **Product image:** unresolved. An approved photograph or render is needed.
+- **Box contents:** unresolved. A current, product-specific packing list is needed.
 
-Replace the pending states only after manufacturer confirmation and, for testimonials, documented customer permission and source attribution.
+The page uses clearly labelled neutral placeholders for these gaps. No customer, quote, image, or box item has been invented.

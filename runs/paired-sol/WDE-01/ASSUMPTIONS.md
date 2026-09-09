@@ -1,8 +1,7 @@
 # Material assumptions
 
-- Ridgeline is a fictional US-focused product for independent restaurants.
-- The core offer combines scheduling, time tracking, payroll calculation, tax filing, direct deposit, and employee documents.
-- Pricing shown ($8/person/month plus a $49 base fee) is positioning copy, not a binding quote.
-- The walkthrough form is a front-end prototype and confirms locally; production delivery requires a CRM or form endpoint.
-- `hello@ridgelinepay.com` is placeholder contact information.
-- Google Fonts are used for the intended art direction, with local system fallbacks if unavailable.
+- Ridgeline is an early-stage US-focused product for independent restaurant owners and managers.
+- The core offer combines shift scheduling, time tracking, tip records, and payroll; no pricing, integrations, customer names, compliance claims, or performance metrics were supplied, so none are invented.
+- The primary conversion is a booked product walkthrough. The placeholder `hello@ridgeline.example` address should be replaced before launch.
+- This is delivered as a dependency-free static single page (`index.html`) so it can be previewed or deployed anywhere.
+- Product figures shown in the interface are clearly illustrative examples, not customer results.

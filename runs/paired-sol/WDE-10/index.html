@@ -3,228 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Create a Loomwork account and bring your physiotherapy clinic schedule into one calm workspace.">
-  <meta name="theme-color" content="#17352f">
-  <title>Create your account — Loomwork</title>
-  <style>
-    :root {
-      --canvas: #f5f7f4;
-      --paper: #fbfcfa;
-      --ink: #17352f;
-      --muted: #60716d;
-      --line: #d7dfda;
-      --accent: #126b5b;
-      --accent-deep: #0b4f43;
-      --accent-soft: #dcece7;
-      --appointment: #f2c879;
-      --danger: #a43737;
-      --focus: #086bba;
-      --radius: 10px;
-      --space: 4px;
-    }
-    * { box-sizing: border-box; }
-    html { color-scheme: light; }
-    body {
-      margin: 0;
-      min-width: 320px;
-      min-height: 100svh;
-      color: var(--ink);
-      background: var(--canvas);
-      font-family: "Aptos", "Segoe UI", sans-serif;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-    button, input { font: inherit; }
-    button, a { touch-action: manipulation; -webkit-tap-highlight-color: rgba(18, 107, 91, .12); }
-    .skip-link { position: fixed; top: 8px; left: 8px; z-index: 10; padding: 10px 14px; color: #fff; background: var(--accent-deep); border-radius: 6px; transform: translateY(-150%); }
-    .skip-link:focus { transform: translateY(0); }
-    .shell { min-height: 100svh; display: grid; grid-template-columns: minmax(350px, 44%) minmax(500px, 56%); }
-    .story {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100svh;
-      padding: clamp(28px, 4vw, 60px);
-      color: #edf6f2;
-      background: var(--ink);
-    }
-    .brand { display: inline-flex; align-items: center; gap: 11px; width: fit-content; color: inherit; text-decoration: none; font-weight: 720; letter-spacing: -.02em; }
-    .brand-mark { width: 27px; height: 27px; flex: none; }
-    .story-copy { position: relative; z-index: 1; max-width: 510px; margin-top: clamp(72px, 15vh, 160px); }
-    .story h1 { margin: 0; max-width: 10ch; font-family: Georgia, "Times New Roman", serif; font-size: clamp(42px, 4.8vw, 70px); font-weight: 400; line-height: 1.02; letter-spacing: -.045em; text-wrap: balance; }
-    .story-copy > p { max-width: 40ch; margin: 24px 0 0; color: #bfd0ca; font-size: 17px; }
-    .daybook { position: relative; z-index: 1; width: min(100%, 510px); margin-top: auto; padding-top: clamp(52px, 8vh, 92px); }
-    .daybook-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; color: #bfd0ca; font-size: 13px; }
-    .daybook-head strong { color: #edf6f2; font-size: 15px; font-weight: 650; }
-    .schedule { display: grid; grid-template-columns: 48px 1fr; font-size: 13px; }
-    .time { padding: 11px 10px 0 0; color: #90aaa2; text-align: right; border-top: 1px solid #37544d; }
-    .slot { position: relative; min-height: 48px; border-top: 1px solid #37544d; }
-    .booking { position: absolute; inset: 7px 7% auto 5%; display: flex; align-items: center; gap: 8px; min-height: 34px; padding: 7px 10px; color: var(--ink); background: var(--appointment); border-radius: 6px; font-weight: 650; }
-    .booking.alt { left: 30%; right: 2%; background: var(--accent-soft); }
-    .booking svg { width: 14px; height: 14px; flex: none; }
-    .form-side { display: flex; flex-direction: column; min-height: 100svh; padding: 28px clamp(28px, 6vw, 96px) 24px; background: var(--paper); }
-    .topline { display: flex; justify-content: flex-end; align-items: center; min-height: 32px; color: var(--muted); font-size: 14px; }
-    .text-link { color: var(--accent-deep); font-weight: 700; text-underline-offset: 3px; }
-    .form-wrap { width: 100%; max-width: 450px; margin: auto; padding: 42px 0; }
-    .form-wrap h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(34px, 3vw, 45px); font-weight: 400; line-height: 1.12; letter-spacing: -.035em; }
-    .intro { margin: 12px 0 28px; color: var(--muted); }
-    .sso { width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 11px; color: var(--ink); background: var(--paper); border: 1px solid #bfcac5; border-radius: var(--radius); font-weight: 700; cursor: pointer; transition: background .15s, border-color .15s; }
-    .sso:hover { background: #f2f5f2; border-color: #8fa09a; }
-    .sso svg { width: 19px; height: 19px; }
-    .divider { display: flex; align-items: center; gap: 14px; margin: 23px 0; color: #74827e; font-size: 13px; }
-    .divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: var(--line); }
-    .fields { display: grid; gap: 18px; }
-    label { display: block; margin-bottom: 7px; font-size: 14px; font-weight: 700; }
-    .input-wrap { position: relative; border-radius: var(--radius); }
-    .input-wrap:focus-within { box-shadow: 0 0 0 3px rgba(8, 107, 186, .16); }
-    .input-wrap:focus-within input { box-shadow: none; }
-    input { width: 100%; min-height: 48px; padding: 11px 13px; color: var(--ink); background: #fff; border: 1px solid #bfcac5; border-radius: var(--radius); outline: none; transition: border-color .15s, box-shadow .15s; }
-    input::placeholder { color: #84918d; }
-    input:hover { border-color: #8fa09a; }
-    input:focus { border-color: var(--focus); box-shadow: 0 0 0 3px rgba(8, 107, 186, .16); }
-    input[aria-invalid="true"] { border-color: var(--danger); }
-    .password-input { padding-right: 52px; }
-    .reveal { position: absolute; top: 2px; right: 2px; width: 44px; height: 44px; display: grid; place-items: center; padding: 0; color: var(--muted); background: transparent; border: 0; border-radius: 8px; cursor: pointer; }
-    .reveal:hover { color: var(--ink); background: #eef2ef; }
-    .reveal svg { width: 19px; height: 19px; }
-    .hint, .error { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
-    .error { display: none; color: var(--danger); }
-    .error.show { display: block; }
-    .primary { width: 100%; min-height: 50px; margin-top: 24px; padding: 12px 18px; color: #fff; background: var(--accent); border: 0; border-radius: var(--radius); font-weight: 750; cursor: pointer; box-shadow: 0 2px 0 var(--accent-deep); transition: background .15s, transform .15s; }
-    .primary:hover { background: var(--accent-deep); }
-    .primary:active { transform: translateY(1px); box-shadow: none; }
-    .primary[disabled] { opacity: .68; cursor: wait; }
-    .terms { margin: 18px 0 0; color: var(--muted); font-size: 13px; text-align: center; }
-    .footer-note { color: #7b8985; font-size: 12px; text-align: center; }
-    button:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-    @media (max-width: 900px) {
-      .shell { grid-template-columns: minmax(280px, 38%) minmax(430px, 62%); }
-      .story { padding: 32px; }
-      .story-copy { margin-top: 84px; }
-      .story h1 { font-size: 46px; }
-      .daybook { padding-top: 54px; }
-      .form-side { padding-inline: 40px; }
-    }
-    @media (max-width: 680px) {
-      .shell { display: block; }
-      .story { min-height: auto; padding: calc(24px + env(safe-area-inset-top)) calc(22px + env(safe-area-inset-right)) 30px calc(22px + env(safe-area-inset-left)); }
-      .story-copy { margin-top: 38px; }
-      .story h1 { max-width: 11ch; font-size: clamp(36px, 11vw, 48px); }
-      .story-copy > p { margin-top: 14px; font-size: 15px; }
-      .daybook { display: none; }
-      .form-side { min-height: auto; padding: 20px calc(22px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(22px + env(safe-area-inset-left)); }
-      .topline { justify-content: flex-start; order: 2; margin: 4px auto 0; }
-      .form-wrap { margin: 0 auto; padding: 30px 0 22px; }
-      .footer-note { order: 3; }
-    }
-    @media (max-width: 380px) {
-      .story { padding-inline: 18px; }
-      .form-side { padding-inline: 18px; }
-      .form-wrap h2 { font-size: 32px; }
-    }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
-  </style>
+  <meta name="description" content="Create a Loomwork account for your physiotherapy clinic.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Create your clinic account — Loomwork</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#signup-title">Skip to account form</a>
-  <main class="shell">
-    <section class="story" aria-labelledby="story-title">
-      <a class="brand" href="#" aria-label="Loomwork home">
-        <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><path d="M5 3v22M11 3v22M17 3v22M23 3v22M3 8h22M3 14h22M3 20h22" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 14h22" stroke="#f2c879" stroke-width="3"/></svg>
-        <span translate="no">Loomwork</span>
+  <main class="page">
+    <section class="signup" aria-labelledby="signup-title">
+      <a class="brand" href="./" aria-label="Loomwork home">
+        <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M7 5v22M13 5v22M19 5v22M25 5v22M4 10h24M4 16h24M4 22h24"/></svg>
+        <span>Loomwork</span>
       </a>
-      <div class="story-copy">
-        <h1 id="story-title">Make room for better care.</h1>
-        <p>Keep practitioners, rooms and patient appointments working together—without the diary juggling.</p>
-      </div>
-      <div class="daybook" aria-label="Example clinic schedule">
-        <div class="daybook-head"><strong>Today at Northbank Physio</strong><span>3 practitioners</span></div>
-        <div class="schedule">
-          <span class="time">9:00</span><div class="slot"><div class="booking"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Initial assessment · Room 2</div></div>
-          <span class="time">10:00</span><div class="slot"></div>
-          <span class="time">11:00</span><div class="slot"><div class="booking alt">Follow-up · Studio</div></div>
-        </div>
+
+      <div class="form-wrap">
+        <header>
+          <p class="step">Set up your clinic workspace</p>
+          <h1 id="signup-title">Less diary work.<br>More patient time.</h1>
+          <p class="intro">Create your account and get your clinic schedule ready in a few minutes.</p>
+        </header>
+
+        <button class="google" type="button" id="googleButton">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.2c0-.7-.1-1.5-.2-2.2H12v4.3h6a5.1 5.1 0 0 1-2.2 3.3v2.8h3.6c2.1-1.9 3.2-4.8 3.2-8.2z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.6l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11.2 11.2 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.7 14.1a6.8 6.8 0 0 1 0-4.2V7H2a11.1 11.1 0 0 0 0 10l3.7-2.9z"/><path fill="#EA4335" d="M12 5.3c1.6 0 3.1.6 4.3 1.7l3.2-3.2A10.8 10.8 0 0 0 2 7l3.7 2.9c.9-2.7 3.4-4.6 6.3-4.6z"/></svg>
+          Continue with Google
+        </button>
+
+        <div class="divider"><span>or use your work email</span></div>
+
+        <form id="signupForm" novalidate>
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" autocomplete="name" required placeholder="e.g. Alex Morgan">
+            <p class="error" id="name-error"></p>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" required placeholder="e.g. you@clinic.com">
+            <p class="error" id="email-error"></p>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-row">
+              <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="password-hint password-error" placeholder="At least 8 characters">
+              <button type="button" class="show-password" id="showPassword" aria-label="Show password">Show</button>
+            </div>
+            <p class="hint" id="password-hint">Use 8 or more characters</p>
+            <p class="error" id="password-error"></p>
+          </div>
+          <label class="check">
+            <input type="checkbox" id="terms" required>
+            <span>I agree to the <a href="#terms">Terms</a> and <a href="#privacy">Privacy Policy</a>.</span>
+          </label>
+          <p class="error terms-error" id="terms-error"></p>
+          <button class="primary" type="submit">Create clinic workspace</button>
+          <div class="success" id="success" role="status" aria-live="polite" tabindex="-1">Workspace created. Check your email to continue.</div>
+        </form>
+        <p class="login">Already use Loomwork? <a href="#login">Log in</a></p>
       </div>
     </section>
 
-    <section class="form-side" aria-labelledby="signup-title">
-      <div class="topline">Already use Loomwork?&nbsp; <a class="text-link" href="#">Sign in</a></div>
-      <div class="form-wrap">
-        <h2 id="signup-title">Create your clinic workspace</h2>
-        <p class="intro">Start with a 14-day trial. No card needed.</p>
-        <button class="sso" type="button" id="google-button">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.6h3.3c1.9-1.8 2.9-4.4 2.9-7.5z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.7-2.3l-3.3-2.6c-.9.6-2.1 1-3.4 1a5.9 5.9 0 0 1-5.5-4.1H3.1v2.7A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.5 14a6 6 0 0 1 0-3.8V7.5H3.1a10 10 0 0 0 0 9.2L6.5 14z"/><path fill="#EA4335" d="M12 6.1c1.5 0 2.8.5 3.8 1.5l2.9-2.8A9.7 9.7 0 0 0 3.1 7.5l3.4 2.7A5.9 5.9 0 0 1 12 6.1z"/></svg>
-          Continue with Google
-        </button>
-        <div class="divider">or use your work email</div>
-        <form id="signup-form" novalidate>
-          <div class="fields">
-            <div>
-              <label for="name">Your name</label>
-              <input id="name" name="name" autocomplete="name" placeholder="Alex Morgan" required>
-              <p class="error" id="name-error" aria-live="polite">Enter your name.</p>
-            </div>
-            <div>
-              <label for="email">Work email</label>
-              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="alex@northbankphysio.com" required>
-              <p class="error" id="email-error" aria-live="polite">Enter a valid work email.</p>
-            </div>
-            <div>
-              <label for="password">Create a password</label>
-              <div class="input-wrap">
-                <input class="password-input" id="password" name="password" type="password" autocomplete="new-password" minlength="8" aria-describedby="password-hint password-error" required>
-                <button class="reveal" type="button" aria-label="Show password" aria-pressed="false">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.5"/></svg>
-                </button>
-              </div>
-              <p class="hint" id="password-hint">Use at least 8 characters.</p>
-              <p class="error" id="password-error" aria-live="polite">Password must be at least 8 characters.</p>
-            </div>
-          </div>
-          <button class="primary" type="submit">Create my workspace</button>
-          <p class="terms">By creating an account, you agree to the <a class="text-link" href="#">Terms</a> and <a class="text-link" href="#">Privacy Policy</a>.</p>
-        </form>
+    <aside class="schedule" aria-label="A sample clinic schedule">
+      <div class="schedule-copy">
+        <p class="schedule-kicker">Tomorrow at a glance</p>
+        <h2>A calmer clinic starts with a clear day.</h2>
       </div>
-      <div class="footer-note">Patient data stays private and protected.</div>
-    </section>
+      <div class="day" aria-hidden="true">
+        <div class="day-head"><span>Tuesday, 14 May</span><strong>5 appointments</strong></div>
+        <div class="time"><span>08:00</span><i></i></div>
+        <article class="appointment first"><time>08:30</time><div><strong>Marina S.</strong><span>Initial assessment · Room 2</span></div><b>45m</b></article>
+        <div class="time"><span>10:00</span><i></i></div>
+        <article class="appointment second"><time>10:15</time><div><strong>Hugh D.</strong><span>Follow-up · Room 1</span></div><b>30m</b></article>
+        <div class="time"><span>12:00</span><i></i></div>
+        <div class="break"><span>Team lunch</span><i></i></div>
+        <div class="time"><span>14:00</span><i></i></div>
+        <article class="appointment third"><time>14:00</time><div><strong>Sofia N.</strong><span>Rehabilitation · Room 3</span></div><b>45m</b></article>
+      </div>
+      <p class="privacy-note"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v10H5z"/></svg> Patient data stays protected and private.</p>
+    </aside>
   </main>
-  <script>
-    const form = document.querySelector('#signup-form');
-    const reveal = document.querySelector('.reveal');
-    const password = document.querySelector('#password');
-    reveal.addEventListener('click', () => {
-      const showing = password.type === 'text';
-      password.type = showing ? 'password' : 'text';
-      reveal.setAttribute('aria-pressed', String(!showing));
-      reveal.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
-    });
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      let valid = true;
-      for (const field of form.querySelectorAll('input')) {
-        const error = document.querySelector(`#${field.id}-error`);
-        const failed = !field.checkValidity();
-        field.setAttribute('aria-invalid', String(failed));
-        error.classList.toggle('show', failed);
-        if (failed) valid = false;
-      }
-      if (!valid) {
-        form.querySelector('[aria-invalid="true"]').focus();
-        return;
-      }
-      const button = form.querySelector('.primary');
-      button.disabled = true;
-      button.textContent = 'Creating workspace…';
-      window.setTimeout(() => { button.disabled = false; button.textContent = 'Create my workspace'; }, 1200);
-    });
-    form.querySelectorAll('input').forEach(field => field.addEventListener('input', () => {
-      if (field.getAttribute('aria-invalid') === 'true') {
-        const failed = !field.checkValidity();
-        field.setAttribute('aria-invalid', String(failed));
-        document.querySelector(`#${field.id}-error`).classList.toggle('show', failed);
-      }
-    }));
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>

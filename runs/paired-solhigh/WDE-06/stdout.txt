@@ -1,0 +1,105 @@
+# Site review — 46/100
+
+| Area | Score | Main concern |
+|---|---:|---|
+| Accessibility | 26/100 | Keyboard navigation and focus are substantially broken |
+| Responsive UX | 42/100 | Header likely overflows; mobile targets become too small |
+| Forms | 38/100 | Signup field lacks essential semantics and browser assistance |
+| Visual design | 68/100 | Clear hierarchy, but weak contrast and generic treatment |
+| Performance/resilience | 58/100 | Motion lacks safeguards; font loading is excessive |
+
+## Fix first
+
+1. **Restore keyboard focus and replace clickable `<li>` elements with links.**
+2. **Fix the signup field:** label, `type="email"`, autocomplete, spellcheck.
+3. **Raise muted-text contrast from 2.45:1 to at least 4.5:1.**
+4. **Repair the mobile header and 44×44px touch targets.**
+5. **Respect reduced motion and make content visible without JavaScript.**
+6. **Resolve duplicate IDs and missing image dimensions.**
+
+## `fixtures/site/styles.css`
+
+### Critical
+
+`fixtures/site/styles.css:29` — **Critical:** `:focus { outline: none; }` removes focus from every interactive element without a replacement. Violates “never remove outline without focus replacement” and the requirement for a visible, ≥2px `:focus-visible` indicator.
+
+`fixtures/site/styles.css:25` — **High:** muted body text is `#9aa3ad` on `#fbfaf7`, only **2.45:1** contrast; on white cards it is **2.56:1**. WCAG requires **4.5:1** for normal text. This affects hero copy, feature descriptions, signup copy, and footer text.
+
+`fixtures/site/styles.css:92` — **High:** reveal animation has no `prefers-reduced-motion` override. Rule: nonessential motion must be disabled or reduced for users requesting reduced motion.
+
+### High
+
+`fixtures/site/styles.css:38-40,95-100` — **High:** the mobile header never collapses or hides its full navigation. At 360px, horizontal padding alone consumes 80px, while the wordmark, 3 links, menu button, and declared gaps require substantially more than the remaining 280px. Rule: inspect around 360px and avoid unwanted horizontal overflow; mobile navigation must be recomposed.
+
+`fixtures/site/styles.css:98` — **High:** mobile buttons shrink to approximately **29px high** (`13px × 1.6 + 8px padding`), below the **44×44px** touch-target minimum.
+
+`fixtures/site/styles.css:70` — **Medium:** icon buttons lack hover, active, and focus-visible treatments. Rule: interactive states must be visually more prominent than rest state.
+
+`fixtures/site/styles.css:40` — **Medium:** navigation links have no hover or focus-visible feedback. Rule: buttons and links need visible hover and keyboard-focus states.
+
+`fixtures/site/styles.css:65` — **Medium:** integration rows look interactive via `cursor: pointer`, but have no hover/active styling. Rule: interactive controls require visual feedback.
+
+### Medium/low
+
+`fixtures/site/styles.css:92` — **Medium:** `.reveal` starts at `opacity: 0`; if JavaScript fails or `IntersectionObserver` is unavailable, every section after the hero remains invisible. Progressive enhancement rule: core content must remain usable without animation scripting.
+
+`fixtures/site/styles.css:47-55` — **Low:** headings have no `text-wrap: balance` or `text-wrap: pretty`; the guideline specifically requires balanced wrapping to reduce heading widows.
+
+`fixtures/site/styles.css:45,30,39,66` — **Low:** anchor targets have no `scroll-margin-top`. Guideline: heading/section anchors should provide scroll margin so navigation does not place content against or beneath page chrome.
+
+`fixtures/site/styles.css:38,48,62` — **Low:** 4 unrelated webfont families are active—Lobster, Playfair Display, Inter, and Roboto Mono. The design-system guidance recommends no more than 2 families; this weakens cohesion and increases font requests.
+
+`fixtures/site/styles.css:59-60` — **Low:** 3 equal rounded feature cards use the generic “equal-thirds SaaS card” pattern. Design rule: cards should represent independently actionable/movable content; otherwise prefer alignment, whitespace, or rules. These articles are static explanatory steps.
+
+## `fixtures/site/index.html`
+
+### Critical
+
+`fixtures/site/index.html:43-61` — **Critical:** navigation is implemented with `onclick` on non-interactive `<li>` elements. The rows cannot be focused or activated by keyboard and do not support Cmd/Ctrl-click. Rules: use `<a>` for navigation; never use `<div>/<span>`-style click handlers in place of semantic controls; interactive elements require keyboard access.
+
+`fixtures/site/index.html:45,49,53,57,61` — **Critical:** all integration icon-only buttons lack accessible names. Rule: icon-only buttons require `aria-label`.
+
+`fixtures/site/index.html:70` — **Critical:** the email field has no `<label>` or `aria-label`. Placeholder text is not a label. Rule: every form control requires an accessible, clickable label.
+
+### High
+
+`fixtures/site/index.html:70` — **High:** email uses `type="text"` rather than `type="email"`. Rule: use the correct input type and input mode so browsers can validate and show an appropriate keyboard.
+
+`fixtures/site/index.html:70` — **High:** missing `autocomplete="email"` and `spellcheck="false"`. Rules: inputs need meaningful autocomplete; disable spellcheck for email addresses.
+
+`fixtures/site/index.html:19` — **High:** header menu button has no `aria-label`; its SVG is not hidden from assistive technology. It also has no scripted behavior, so it appears to be an inoperative control.
+
+`fixtures/site/index.html:17,26` — **High:** duplicate `id="cta"` values violate HTML ID uniqueness and make DOM targeting ambiguous. Use a unique ID or remove these IDs.
+
+`fixtures/site/index.html:12-22` — **High:** no skip link before repeated navigation. Guideline: include a keyboard-accessible “Skip to main content” link and a matching main-content target.
+
+`fixtures/site/index.html:43-61` — **High:** each row contains a button inside a separately clickable parent. This creates conflicting interaction targets: mouse activation on either navigates, while keyboard activation on the button does nothing. One semantic link should own the complete row.
+
+### Medium
+
+`fixtures/site/index.html:44,48,52,56,60` — **Medium:** integration images lack explicit HTML `width` and `height`. CSS dimensions do not satisfy the guideline requiring image attributes to reserve aspect-ratio space and prevent layout shift.
+
+`fixtures/site/index.html:45,49,53,57,61` — **Medium:** decorative chevron SVGs lack `aria-hidden="true"`. Rule: decorative icons should be hidden from assistive technology.
+
+`fixtures/site/index.html:19` — **Medium:** hamburger SVG also lacks `aria-hidden="true"` once the button itself receives an accessible name.
+
+`fixtures/site/index.html:70` — **Medium:** placeholder should show an example pattern and end in an ellipsis, such as `name@clinic.com…`, under the form-placeholder guideline.
+
+`fixtures/site/index.html:7-8` — **Medium:** Google Fonts ultimately serves font files from `fonts.gstatic.com`, but only `fonts.googleapis.com` is preconnected. Performance rule: preconnect to asset/CDN origins; add the `fonts.gstatic.com` cross-origin preconnect or reduce external font usage.
+
+`fixtures/site/index.html:80-85` — **Medium:** animation setup assumes `IntersectionObserver` exists and offers no fallback. Failure leaves `.reveal` content permanently hidden because of `styles.css:92`.
+
+`fixtures/site/index.html:31,34,67,71` — **Low:** “How it works,” “Start free,” and “Create workspace” use sentence case, while the supplied interface guideline requires Chicago-style Title Case for headings and buttons.
+
+## `fixtures/site/screenshot.svg`
+
+`fixtures/site/screenshot.svg:1` — **Low:** the embedded SVG declares `role="img"` and an `aria-label`, while the outer `<img>` already supplies meaningful `alt`. In an external SVG loaded via `<img>`, the outer alternative text is sufficient; maintaining both creates duplicate, potentially divergent descriptions.
+
+## What is working
+
+- One clear `<h1>` followed by orderly `<h2>`/`<h3>` hierarchy.
+- Hero image has useful alt text and explicit dimensions.
+- Main CTA contrast is **5.17:1**, passing the 4.5:1 normal-text threshold.
+- Content frame, spacing scale, and radius usage are consistent.
+- Desktop reading order and primary action are clear.
+- Animation uses compositor-friendly `opacity` and `transform`, not layout properties.

@@ -1,9 +1,9 @@
-Delivered a complete responsive landing page for **Sill**, an independent monthly seed subscription.
+Delivered a complete responsive landing page for **Drift**, an independent printed walking-guide subscription.
 
 ### Files
-- `index.html` — semantic landing page
-- `styles.css` — responsive visual system and accessibility states
-- `script.js` — email validation and reservation interaction
-- `ASSUMPTIONS.md` — business, brand, audience, offer, and design assumptions
+- `index.html` — Semantic landing page
+- `styles.css` — Responsive brand system and layout
+- `script.js` — Accessible signup validation and confirmation
+- `ASSUMPTIONS.md` — Product, audience, launch, and brand assumptions
 
-Includes responsive layouts, original branding and product artwork, accessible navigation and forms, reduced-motion support, and keyboard focus states. Syntax and HTML parsing checks pass.
+Includes mobile layouts, keyboard focus states, reduced-motion support, accessible SVG artwork, and a functional signup prototype.

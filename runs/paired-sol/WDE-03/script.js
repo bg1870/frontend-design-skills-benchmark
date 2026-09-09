@@ -1,32 +1,44 @@
-const controls = document.querySelectorAll('.billing-option');
-const prices = document.querySelectorAll('[data-monthly]');
-const note = document.querySelector('#billing-note');
-const formatter = new Intl.NumberFormat(document.documentElement.lang || 'en');
+const cycleButtons = document.querySelectorAll('[data-cycle]');
+const pricedPlans = document.querySelectorAll('[data-monthly]');
+const billingNotes = document.querySelectorAll('[data-billing-note]');
+const numberFormat = new Intl.NumberFormat(document.documentElement.lang);
+const currencyFormat = new Intl.NumberFormat(document.documentElement.lang, {
+  style: 'currency', currency: 'USD', maximumFractionDigits: 0
+});
 
-function setPeriod(period, updateUrl = true) {
-  const selectedPeriod = period === 'annual' ? 'annual' : 'monthly';
-  controls.forEach((item) => {
-    const selected = item.dataset.period === selectedPeriod;
-    item.classList.toggle('active', selected);
-    item.setAttribute('aria-pressed', String(selected));
+function setBillingCycle(cycle, updateUrl = true) {
+  const validCycle = cycle === 'annual' ? 'annual' : 'monthly';
+  cycleButtons.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.cycle === validCycle)));
+  pricedPlans.forEach((price) => { price.textContent = numberFormat.format(Number(price.dataset[validCycle])); });
+  billingNotes.forEach((note) => {
+    note.textContent = validCycle === 'annual'
+      ? `Billed ${currencyFormat.format(119 * 12)} annually`
+      : 'Paid monthly';
   });
-  prices.forEach((price) => {
-    price.textContent = formatter.format(Number(price.dataset[selectedPeriod]));
-  });
-  note.textContent = selectedPeriod === 'annual'
-    ? 'Prices shown per month and billed once per year. Taxes excluded. No setup fees.'
-    : 'Prices billed monthly. Taxes excluded. Cancel or change plans at any time.';
-
   if (updateUrl) {
     const url = new URL(window.location.href);
-    if (selectedPeriod === 'annual') url.searchParams.set('billing', 'annual');
-    else url.searchParams.delete('billing');
+    url.searchParams.set('billing', validCycle);
     window.history.replaceState({}, '', url);
   }
 }
 
-controls.forEach((control) => {
-  control.addEventListener('click', () => setPeriod(control.dataset.period));
+cycleButtons.forEach((button) => {
+  button.addEventListener('click', () => setBillingCycle(button.dataset.cycle));
 });
 
-setPeriod(new URLSearchParams(window.location.search).get('billing'), false);
+setBillingCycle(new URLSearchParams(window.location.search).get('billing'), false);
+
+const menuButton = document.querySelector('.menu-button');
+const mobileMenu = document.querySelector('#mobile-menu');
+menuButton.addEventListener('click', () => {
+  const opening = menuButton.getAttribute('aria-expanded') === 'false';
+  menuButton.setAttribute('aria-expanded', String(opening));
+  menuButton.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+  mobileMenu.hidden = !opening;
+});
+
+mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Open menu');
+  mobileMenu.hidden = true;
+}));

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clearframe pricing for product analytics teams—from first event to enterprise scale.">
+  <title>Pricing — Clearframe Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#pricing">Skip to pricing</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Clearframe home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>clearframe</a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#platform">Platform</a><a href="#proof">Customers</a><a href="#compare">Resources</a><a aria-current="page" href="#pricing">Pricing</a>
+    </nav>
+    <div class="header-actions"><a class="login" href="#">Log in</a><a class="button compact" href="#contact">Book a demo <span aria-hidden="true">↗</span></a></div>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span><b class="sr-only">Open menu</b></button>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="#platform">Platform</a><a href="#proof">Customers</a><a href="#compare">Resources</a><a href="#pricing">Pricing</a><a href="#">Log in</a><a class="button" href="#contact">Book a demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="platform">
+      <div class="eyebrow"><span>Pricing / FY 2026</span><span class="live">Transparent by default</span></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>One source of truth.<br><em>Priced to scale.</em></h1>
+          <p>Connect product, revenue, and customer data without paying a tax on every teammate who needs an answer.</p>
+        </div>
+        <div class="hero-proof" aria-label="Usage illustration">
+          <div class="proof-top"><span>EVENT VOLUME</span><strong>2.4M</strong><small>/ month</small></div>
+          <svg viewBox="0 0 500 180" role="img" aria-label="Steadily rising monthly event volume">
+            <path class="gridline" d="M0 35H500M0 90H500M0 145H500"/>
+            <path class="area" d="M0 144 C55 140 64 118 112 123 S186 103 225 106 S287 54 328 76 S397 55 432 38 S468 21 500 12 L500 180H0Z"/>
+            <path class="line" d="M0 144 C55 140 64 118 112 123 S186 103 225 106 S287 54 328 76 S397 55 432 38 S468 21 500 12"/>
+            <circle cx="500" cy="12" r="5"/>
+          </svg>
+          <div class="axis"><span>JAN</span><span>JUN</span><span>DEC</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="section-intro">
+        <div><span class="kicker">Choose your operating range</span><h2>Start lean. Keep the history.</h2></div>
+        <div class="billing-wrap">
+          <span class="saving">Save 20%</span>
+          <div class="billing" role="group" aria-label="Billing frequency">
+            <button type="button" data-period="monthly" aria-pressed="false">Monthly</button>
+            <button type="button" data-period="annual" aria-pressed="true">Annual</button>
+          </div>
+          <small>Billed annually</small>
+        </div>
+      </div>
+
+      <div class="plans" aria-label="Pricing plans">
+        <article class="plan">
+          <div class="plan-no">01</div><p class="plan-label">For teams finding signal</p><h3>Foundation</h3>
+          <div class="price"><span class="currency">$</span><strong data-monthly="49" data-annual="39">39</strong><span>/ mo</span></div><p class="terms">Up to 100k events each month</p>
+          <a class="button outline" href="#contact">Start free</a>
+          <ul><li>Unlimited teammates</li><li>12 months data history</li><li>Core funnels and cohorts</li><li>50+ native integrations</li><li>Email support</li></ul>
+        </article>
+        <article class="plan recommended">
+          <div class="plan-no">02 <span>Most selected</span></div><p class="plan-label">For teams building momentum</p><h3>Scale</h3>
+          <div class="price"><span class="currency">$</span><strong data-monthly="249" data-annual="199">199</strong><span>/ mo</span></div><p class="terms">Up to 1M events each month</p>
+          <a class="button" href="#contact">Start 14-day trial <span aria-hidden="true">→</span></a>
+          <ul><li>Everything in Foundation</li><li>Unlimited data history</li><li>Warehouse sync &amp; SQL access</li><li>Custom metrics and reports</li><li>Slack support</li></ul>
+        </article>
+        <article class="plan enterprise">
+          <div class="plan-no">03</div><p class="plan-label">For data-critical organizations</p><h3>Enterprise</h3>
+          <div class="price custom"><strong>Let’s scope it</strong></div><p class="terms">Volume pricing, shaped around you</p>
+          <a class="button dark" href="#contact">Talk to sales <span aria-hidden="true">↗</span></a>
+          <ul><li>Everything in Scale</li><li>Advanced governance &amp; SSO</li><li>Regional data residency</li><li>99.99% uptime SLA</li><li>Dedicated solutions engineer</li></ul>
+        </article>
+      </div>
+      <p class="fineprint">All plans include a 14-day trial. No credit card required. Prices exclude applicable tax.</p>
+    </section>
+
+    <section class="comparison" id="compare">
+      <div class="comparison-head"><span class="kicker">The complete picture</span><h2>Compare without the tab juggling.</h2><button class="text-button" type="button" aria-expanded="false" aria-controls="feature-table">Show full comparison <span aria-hidden="true">↓</span></button></div>
+      <div class="table-wrap" id="feature-table">
+        <table><caption class="sr-only">Plan feature comparison</caption><thead><tr><th scope="col">Capability</th><th scope="col">Foundation</th><th scope="col">Scale</th><th scope="col">Enterprise</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Monthly tracked events</th><td>100k</td><td>1 million</td><td>Custom</td></tr>
+          <tr><th scope="row">Team seats</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Data history</th><td>12 months</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Warehouse sync</th><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span class="yes">✓</span><span class="sr-only">Included</span></td><td><span class="yes">✓</span><span class="sr-only">Included</span></td></tr>
+          <tr class="extra"><th scope="row">Single sign-on (SSO)</th><td><span class="no">—</span></td><td>Add-on</td><td><span class="yes">✓</span></td></tr>
+          <tr class="extra"><th scope="row">Support response</th><td>2 business days</td><td>4 business hours</td><td>1 hour, 24/7</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <section class="proof" id="proof">
+      <div class="proof-note"><span class="kicker">What changes after week one</span><blockquote>“We stopped debating whose dashboard was right. Clearframe gave product and revenue the same operating picture.”</blockquote><div class="person"><span>AN</span><p><strong>Asha N.</strong><br>VP Data, Northstar Labs</p></div></div>
+      <div class="proof-stats"><div><strong>11h</strong><span>saved per analyst / week</span></div><div><strong>3.2×</strong><span>faster experiment reads</span></div><p>Results reported by Northstar Labs after 90 days. Individual outcomes vary.</p></div>
+    </section>
+
+    <section class="contact" id="contact"><div><span class="kicker">Need a second opinion?</span><h2>Bring us the messy stack.</h2><p>We’ll map your sources, estimate volume, and recommend the smallest plan that does the job.</p></div><a class="button light" href="mailto:sales@clearframe.example">Book a 30-minute working session <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>clearframe</a><p>Analytics for people who have to explain the number.</p><div><a href="#">Security</a><a href="#">Privacy</a><span>© 2026 Clearframe</span></div></footer>
+</body>
+</html>

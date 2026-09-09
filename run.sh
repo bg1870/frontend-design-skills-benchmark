@@ -25,6 +25,7 @@ skill_args() {
     paired-kimi) echo "--skill $AUTH/authored-kimi/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-fable) echo "--skill $AUTH/authored-fable/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-sol) echo "--skill $AUTH/authored/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
+    paired-solhigh) echo "--skill $AUTH/authored-solhigh/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     paired-astra) echo "--skill $AUTH/authored6/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     base)        echo "" ;;
     wde)         echo "--skill /home/basil/tmp/skills/wde-fixed/SKILL.md" ;;
@@ -34,6 +35,7 @@ skill_args() {
     authored-kimi) echo "--skill /home/basil/tmp/.local/skillsets/authored-kimi/beautiful-frontend/SKILL.md" ;;
     authored6)   echo "--skill /home/basil/tmp/.local/skillsets/authored6/beautiful-frontend/SKILL.md" ;;
     authored)    echo "--skill /home/basil/tmp/.local/skillsets/authored/beautiful-frontend/SKILL.md" ;;
+    authored-solhigh) echo "--skill /home/basil/tmp/.local/skillsets/authored-solhigh/beautiful-frontend/SKILL.md" ;;
     taste-solo)  echo "--skill /home/basil/tmp/.local/skillsets/taste/taste-skill/skills/taste-skill" ;;
     taste)       echo "--skill /home/basil/tmp/.local/skillsets/taste/taste-skill/skills" ;;
     discovered)  echo "--skill $ROOT/skillsets/discovered/.agents/skills/frontend-design --skill $ROOT/skillsets/discovered/.agents/skills/web-design-guidelines" ;;

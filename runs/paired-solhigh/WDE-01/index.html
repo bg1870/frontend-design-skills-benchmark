@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ridgeline brings restaurant scheduling, time tracking, and payroll into one straightforward tool.">
+  <meta name="theme-color" content="#f4f7f5">
+  <title>Ridgeline — Payroll that keeps up with service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ridgeline home">
+      <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M3 23 12 9l4 7 4-5 9 12H3Z"/><path d="M7 23h18"/></svg>
+      <span>RIDGELINE</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#payroll">Payroll</a>
+        <a href="#pricing">Pricing</a>
+        <a class="button button-small" href="#demo">Book a walkthrough</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="kicker">Built for independent restaurants</p>
+        <h1>From first clock-in to final payroll.</h1>
+        <p class="lede">Build the week’s schedule, catch labor issues early, and run payroll without copying a single timesheet.</p>
+        <div class="hero-action">
+          <a class="button" href="#demo">See Ridgeline in action</a>
+          <span>No sales script. Just a 20-minute look.</span>
+        </div>
+      </div>
+
+      <div class="shift-board" aria-label="Example of a live Ridgeline shift board">
+        <div class="board-head">
+          <div><span>Friday</span><strong>Dinner service</strong></div>
+          <div class="labor"><span>Labor</span><strong>22.8%</strong></div>
+        </div>
+        <div class="service-line" aria-hidden="true"><span style="--w:78%"></span></div>
+        <div class="shift-row">
+          <time>3:30</time><div><strong>Marisol V.</strong><span>Kitchen lead</span></div><span class="status">Clocked in</span>
+        </div>
+        <div class="shift-row">
+          <time>4:00</time><div><strong>Devon R.</strong><span>Server</span></div><span class="status">Clocked in</span>
+        </div>
+        <div class="shift-row attention">
+          <time>4:15</time><div><strong>Leo A.</strong><span>Line cook</span></div><span class="status">12 min late</span>
+        </div>
+        <div class="shift-row">
+          <time>4:30</time><div><strong>Nia C.</strong><span>Bartender</span></div><span class="status pending">Starts soon</span>
+        </div>
+        <div class="board-foot"><span>14 scheduled</span><span>2 open shifts</span><strong>$1,842 forecast</strong></div>
+      </div>
+    </section>
+
+    <section class="proof" aria-label="Product summary">
+      <p>One clean handoff from the floor to the books.</p>
+      <div><strong>Schedule</strong><span>Plan around availability and forecasted labor.</span></div>
+      <div><strong>Track</strong><span>See late arrivals, breaks, and overtime as they happen.</span></div>
+      <div><strong>Pay</strong><span>Approve hours and send payroll in a few clicks.</span></div>
+    </section>
+
+    <section class="workflow" id="how">
+      <div class="section-intro">
+        <p class="kicker">One week, one place</p>
+        <h2>The schedule is already the start of payroll.</h2>
+        <p>Ridgeline keeps the details attached to each shift, so your Sunday-night closeout is a review—not a reconstruction.</p>
+      </div>
+      <ol class="week-flow">
+        <li><span>Mon</span><div><strong>Build the rota</strong><p>Reuse last week, honor availability, and spot understaffed shifts.</p></div></li>
+        <li><span>Fri</span><div><strong>Manage service</strong><p>Clock-ins update the labor picture while the room is moving.</p></div></li>
+        <li><span>Sun</span><div><strong>Approve exceptions</strong><p>Missed punches and overtime land in one short review list.</p></div></li>
+        <li><span>Tue</span><div><strong>Pay the team</strong><p>Taxes, filings, and direct deposits go out together.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="payroll" id="payroll">
+      <div class="payroll-copy">
+        <p class="kicker">Payroll without the pileup</p>
+        <h2>Fix the odd shifts. The ordinary ones are ready.</h2>
+        <p>Ridgeline surfaces only what needs a manager’s attention—then handles tax calculations, filings, and direct deposit.</p>
+        <ul>
+          <li>Tips and multiple pay rates stay with the right shifts</li>
+          <li>Overtime is visible before it becomes a surprise</li>
+          <li>Employees access pay stubs and tax forms themselves</li>
+        </ul>
+      </div>
+      <div class="pay-slip" aria-label="Example payroll review">
+        <div class="slip-top"><span>PAY RUN 18</span><strong>May 5–18</strong></div>
+        <h3>Ready to review</h3>
+        <div class="pay-row"><span>Regular hours</span><strong>1,284.5</strong></div>
+        <div class="pay-row"><span>Overtime</span><strong>18.0</strong></div>
+        <div class="pay-row"><span>Cash tips declared</span><strong>$4,260</strong></div>
+        <div class="exception"><span>!</span><div><strong>2 items need attention</strong><small>One missed punch, one unapproved shift</small></div></div>
+        <div class="total"><span>Estimated payroll</span><strong>$31,486.20</strong></div>
+        <button type="button" disabled>Submit after review</button>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div><p class="kicker">Straightforward pricing</p><h2>One plan. The whole house.</h2></div>
+      <div class="price"><span>Starting at</span><strong>$8</strong><span>per person / month<br>plus a $49 base fee</span></div>
+      <ul><li>Scheduling and availability</li><li>Time clock and labor tracking</li><li>Full-service payroll</li><li>Onboarding with a real person</li></ul>
+      <a class="text-link" href="#demo">Get an exact quote</a>
+    </section>
+
+    <section class="demo" id="demo">
+      <div>
+        <p class="kicker">Take a look</p>
+        <h2>Bring next week’s schedule. We’ll show you the rest.</h2>
+      </div>
+      <form id="demo-form">
+        <div class="form-grid">
+          <label>Name<input name="name" autocomplete="name" required></label>
+          <label>Work email<input name="email" type="email" autocomplete="email" spellcheck="false" required></label>
+          <label>Restaurant name<input name="restaurant" autocomplete="organization" required></label>
+          <label>Team size<select name="size" required><option value="">Choose a range</option><option>1–15</option><option>16–30</option><option>31–60</option><option>61+</option></select></label>
+        </div>
+        <div class="form-submit"><button class="button" type="submit">Book my walkthrough</button><p id="form-status" role="status" aria-live="polite">We’ll reply within one business day.</p></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M3 23 12 9l4 7 4-5 9 12H3Z"/><path d="M7 23h18"/></svg><span>RIDGELINE</span></a>
+    <p>Built for the people who keep service moving.</p>
+    <div><a href="mailto:hello@ridgelinepay.com">hello@ridgelinepay.com</a><span>© <span id="year"></span> Ridgeline</span></div>
+  </footer>
+</body>
+</html>

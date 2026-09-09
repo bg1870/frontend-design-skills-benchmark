@@ -1,0 +1,15 @@
+Built the responsive plumbing dispatcher dashboard.
+
+### Delivered
+- `index.html` — dashboard structure
+- `styles.css` — responsive visual system and mobile layouts
+- `app.js` — fixture loading, search, filters, sorting, summary metrics, empty/error states
+- `ASSUMPTIONS.md` — recorded material assumptions
+- `README.md` — run instructions
+
+### Run
+```bash
+python3 -m http.server 8000
+```
+
+Open `http://localhost:8000`. JavaScript syntax and HTTP serving were validated.

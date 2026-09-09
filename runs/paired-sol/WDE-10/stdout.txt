@@ -1,11 +1,15 @@
-Implemented the Loomwork signup page with responsive layouts, validation, loading state, password visibility, keyboard focus, accessibility support, and reduced-motion handling.
+Implemented the responsive Loomwork signup page.
 
-### Deliverables
+### Delivered
+- `index.html` — accessible signup interface
+- `styles.css` — mobile, tablet, and laptop layouts
+- `app.js` — validation, password visibility, and success state
+- `README.md` — setup instructions and material assumptions
+- `evidence/acceptance-report.md` — browser acceptance results and repairs
 
-- Page: [`index.html`](index.html)
-- Acceptance report: [`evidence/acceptance-report.md`](evidence/acceptance-report.md)
-- Mobile screenshot: [`evidence/mobile-360x800.png`](evidence/mobile-360x800.png)
-- Tablet screenshot: [`evidence/tablet-768x1024.png`](evidence/tablet-768x1024.png)
-- Laptop screenshot: [`evidence/laptop-1440x1000.png`](evidence/laptop-1440x1000.png)
+### Browser evidence
+- `evidence/mobile-390x844.png`
+- `evidence/tablet-768x1024.png`
+- `evidence/laptop-1440x1000.png`
 
-All three responsive Chromium acceptance passes completed successfully. Material assumptions and post-review repairs are documented in the report.
+All three responsive acceptance passes completed successfully after accessibility and form-behavior repairs.

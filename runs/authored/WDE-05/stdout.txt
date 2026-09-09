@@ -1,8 +1,7 @@
 Implemented in `fixtures/app`:
 
-- Added responsive **Customer notes** section with a clearly labelled testimonial-pending state.
-- Added structured **In the box** packing manifest with neutral, unassigned placeholders.
-- Added navigation links and accessible section markup.
-- Added responsive styling consistent with Kettell’s existing visual system.
-- Documented sourcing attempts and unresolved content requirements in `fixtures/app/CONTENT_BLOCKERS.md`.
-- Verified HTML parsing, CSS balance, and desktop rendering in Chromium.
+- Added responsive **“In the box”** section with clearly labelled neutral product and packing-list placeholders.
+- Added **customer testimonials** section without fabricated quotes, names, or ratings.
+- Updated navigation, focus states, responsive layouts, and accessibility labels.
+- Documented sourcing attempts and unresolved content/assets in `fixtures/app/CONTENT_BLOCKERS.md`.
+- Verified the HTML parses successfully.

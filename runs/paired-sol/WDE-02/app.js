@@ -1,131 +1,23 @@
-const state = { jobs: [], filter: 'all', query: '' };
-const referenceDate = '2026-09-08';
-const initialParams = new URLSearchParams(window.location.search);
-if (['all', 'open', 'assigned', 'done'].includes(initialParams.get('status'))) state.filter = initialParams.get('status');
-state.query = initialParams.get('q') || '';
-const list = document.querySelector('#jobList');
-const emptyState = document.querySelector('#emptyState');
-const errorState = document.querySelector('#errorState');
-const queueCount = document.querySelector('#queueCount');
-const toast = document.querySelector('#toast');
-const searchInput = document.querySelector('#searchInput');
-searchInput.value = state.query;
-document.querySelector('#boardDate').textContent = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'America/Chicago' }).format(new Date(`${referenceDate}T12:00:00-05:00`));
-document.querySelectorAll('.filter').forEach(item => {
-  const active = item.dataset.filter === state.filter;
-  item.classList.toggle('active', active);
-  item.setAttribute('aria-pressed', String(active));
-});
-
-function syncUrl() {
-  const params = new URLSearchParams();
-  if (state.filter !== 'all') params.set('status', state.filter);
-  if (state.query) params.set('q', state.query);
-  history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}`);
-}
-
-const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
-const initials = (name) => name.split(/\s+/).map(part => part[0]).join('').replace('.', '').slice(0, 2);
-const dateParts = (iso) => {
-  const date = new Date(iso);
-  return {
-    day: new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'America/Chicago' }).format(date),
-    time: new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago' }).format(date),
-  };
-};
-
-function renderSummary() {
-  const counts = [
-    state.jobs.filter(job => job.scheduled_at.slice(0, 10) === referenceDate).length,
-    state.jobs.filter(job => job.status === 'open').length,
-    state.jobs.filter(job => job.status === 'assigned').length,
-    state.jobs.filter(job => job.status === 'done').length,
-  ];
-  document.querySelectorAll('#summaryMetrics dd').forEach((node, index) => { node.textContent = counts[index]; });
-}
-
-function filteredJobs() {
-  const query = state.query.toLowerCase();
-  return state.jobs.filter(job => {
-    const matchesStatus = state.filter === 'all' || job.status === state.filter;
-    const haystack = [job.id, job.title, job.technician || '', job.address].join(' ').toLowerCase();
-    return matchesStatus && haystack.includes(query);
-  });
-}
-
-function renderJobs() {
-  const jobs = filteredJobs();
-  queueCount.textContent = `${jobs.length} ${jobs.length === 1 ? 'call' : 'calls'} shown · Sorted by scheduled time`;
-  emptyState.hidden = jobs.length !== 0;
-  list.innerHTML = jobs.map(job => {
-    const date = dateParts(job.scheduled_at);
-    const tech = job.technician
-      ? `<span class="tech-mark" aria-hidden="true">${escapeHtml(initials(job.technician))}</span><span>${escapeHtml(job.technician)}</span>`
-      : '<span class="tech-mark" aria-hidden="true">?</span><span>Unassigned</span>';
-    const action = job.status === 'open' ? 'Assign' : 'Details';
-    return `<article class="job" data-status="${escapeHtml(job.status)}" aria-label="${escapeHtml(job.id)}: ${escapeHtml(job.title)}">
-      <div class="schedule"><strong>${escapeHtml(date.time)}</strong><span>${escapeHtml(date.day)}</span></div>
-      <div class="service"><p class="job-title">${escapeHtml(job.title)}</p><p class="job-address">${escapeHtml(job.id)} · ${escapeHtml(job.address)}</p></div>
-      <div class="tech${job.technician ? '' : ' unassigned'}">${tech}</div>
-      <span class="status status-${escapeHtml(job.status)}">${escapeHtml(job.status)}</span>
-      <button class="row-action" type="button" data-id="${escapeHtml(job.id)}" data-action="${action.toLowerCase()}">${action}</button>
-    </article>`;
-  }).join('');
-  list.setAttribute('aria-busy', 'false');
-}
-
-function showToast(message) {
-  toast.textContent = message;
-  toast.hidden = false;
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => { toast.hidden = true; }, 3200);
-}
-
-async function loadJobs() {
-  list.setAttribute('aria-busy', 'true');
-  errorState.hidden = true;
-  try {
-    const response = await fetch('fixtures/jobs.json');
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    state.jobs = await response.json();
-    state.jobs.sort((a, b) => new Date(a.scheduled_at) - new Date(b.scheduled_at));
-    renderSummary();
-    renderJobs();
-  } catch (error) {
-    list.innerHTML = '';
-    list.setAttribute('aria-busy', 'false');
-    queueCount.textContent = 'Queue unavailable';
-    errorState.hidden = false;
-  }
-}
-
-document.querySelector('.filters').addEventListener('click', event => {
-  const button = event.target.closest('.filter');
-  if (!button) return;
-  state.filter = button.dataset.filter;
-  document.querySelectorAll('.filter').forEach(item => {
-    const active = item === button;
-    item.classList.toggle('active', active);
-    item.setAttribute('aria-pressed', String(active));
-  });
-  syncUrl();
-  renderJobs();
-});
-
-searchInput.addEventListener('input', event => { state.query = event.target.value.trim(); syncUrl(); renderJobs(); });
-document.querySelector('#clearFilters').addEventListener('click', () => {
-  state.filter = 'all'; state.query = '';
-  searchInput.value = '';
-  syncUrl();
-  document.querySelectorAll('.filter').forEach((item, index) => { item.classList.toggle('active', index === 0); item.setAttribute('aria-pressed', String(index === 0)); });
-  renderJobs();
-});
-document.querySelector('#retryButton').addEventListener('click', loadJobs);
-list.addEventListener('click', event => {
-  const button = event.target.closest('.row-action');
-  if (!button) return;
-  const job = state.jobs.find(item => item.id === button.dataset.id);
-  showToast(button.dataset.action === 'assign' ? `${job.id} is ready for technician assignment.` : `${job.id} details selected.`);
-});
-
-loadJobs();
+const state={jobs:[],filter:'all',query:'',selected:null};
+const $=s=>document.querySelector(s);
+const els={body:$('#jobs-body'),empty:$('#empty'),dialog:$('#dispatch-dialog'),select:$('#tech-select'),toast:$('#toast')};
+const fmtDate=new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric'});
+const fmtWeekday=new Intl.DateTimeFormat('en-US',{weekday:'short'});
+const fmtTime=new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit'});
+function initials(name){return name.split(/\s+/).map(x=>x.replace('.','')[0]).join('').slice(0,2)}
+function counts(){return state.jobs.reduce((a,j)=>(a[j.status]++,a),{open:0,assigned:0,done:0})}
+function updateSummary(){const c=counts();['open','assigned','done'].forEach(k=>{$(`#${k}-count`).textContent=c[k];$(`#tab-${k}`).textContent=c[k]});$('#total-count').textContent=state.jobs.length;$('#tab-all').textContent=state.jobs.length}
+function syncUrl(){const url=new URL(location.href);state.filter==='all'?url.searchParams.delete('status'):url.searchParams.set('status',state.filter);state.query?url.searchParams.set('q',state.query):url.searchParams.delete('q');history.replaceState(null,'',url)}
+function filtered(){const q=state.query.toLowerCase();return state.jobs.filter(j=>(state.filter==='all'||j.status===state.filter)&&[j.id,j.title,j.address,j.technician||'unassigned'].some(v=>v.toLowerCase().includes(q)))}
+function render(){const jobs=filtered();$('#visible-count').textContent=`${jobs.length} shown`;els.empty.hidden=jobs.length>0;els.body.innerHTML=jobs.map(j=>{const d=new Date(j.scheduled_at);const tech=j.technician?`<span class="avatar">${initials(j.technician)}</span><span>${j.technician}</span>`:`<span class="unassigned">Unassigned</span>`;return `<tr><td><div class="schedule"><span class="date-block"><b>${d.getDate()}</b><span>${fmtDate.format(d).split(' ')[0]}</span></span><span><span class="time">${fmtTime.format(d)}</span><span class="day">${fmtWeekday.format(d)}</span></span></div></td><td><span class="job-title"><span class="job-id">${j.id}</span>${j.title}</span><span class="address">${j.address}</span></td><td><span class="tech">${tech}</span></td><td><span class="status status-${j.status}">${j.status[0].toUpperCase()+j.status.slice(1)}</span></td><td>${j.status==='open'?`<button class="row-action" data-assign="${j.id}" type="button">Assign</button>`:''}</td></tr>`}).join('');updateSummary()}
+function openDispatch(job){state.selected=job;$('#dialog-job-id').textContent=job.id;$('#dialog-job-title').textContent=`${job.title} at ${job.address}`;els.dialog.showModal();setTimeout(()=>els.select.focus(),0)}
+function dispatchNext(){const job=state.jobs.filter(j=>j.status==='open').sort((a,b)=>new Date(a.scheduled_at)-new Date(b.scheduled_at))[0];if(job)openDispatch(job);else showToast('No open jobs need dispatch.')}
+function showToast(msg){els.toast.textContent=msg;els.toast.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>els.toast.classList.remove('show'),2800)}
+async function init(){try{const params=new URLSearchParams(location.search);const requested=params.get('status');if(['open','assigned','done'].includes(requested)){state.filter=requested;document.querySelector('.filter.active').classList.remove('active');document.querySelector(`[data-status="${requested}"]`).classList.add('active')}state.query=params.get('q')||'';$('#search').value=state.query;const res=await fetch('fixtures/jobs.json');if(!res.ok)throw new Error();state.jobs=(await res.json()).sort((a,b)=>new Date(a.scheduled_at)-new Date(b.scheduled_at));const techs=[...new Set(state.jobs.map(j=>j.technician).filter(Boolean))].sort();els.select.innerHTML=techs.map(t=>`<option>${t}</option>`).join('');const dates=state.jobs.map(j=>new Date(j.scheduled_at));$('#range-label').textContent=`${fmtDate.format(dates[0])} – ${fmtDate.format(dates.at(-1))}, ${dates[0].getFullYear()}`;render()}catch(e){els.empty.hidden=false;els.empty.innerHTML='<strong>Jobs could not be loaded</strong><span>Run this dashboard from a local web server so fixtures/jobs.json is available.</span>'}}
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelector('.filter.active').classList.remove('active');btn.classList.add('active');state.filter=btn.dataset.status;syncUrl();render()}));
+$('#search').addEventListener('input',e=>{state.query=e.target.value.trim();syncUrl();render()});
+$('#dispatch-next').addEventListener('click',dispatchNext);
+els.body.addEventListener('click',e=>{const btn=e.target.closest('[data-assign]');if(btn)openDispatch(state.jobs.find(j=>j.id===btn.dataset.assign))});
+$('#confirm-assign').addEventListener('click',e=>{if(!state.selected)return;e.preventDefault();state.selected.technician=els.select.value;state.selected.status='assigned';els.dialog.close();showToast(`${state.selected.id} assigned to ${els.select.value}.`);render()});
+$('#now').textContent=new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date());
+init();

@@ -1,113 +1,95 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f4f1e8" />
-  <title>Fieldline Dispatch</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#15201e">
+  <title>Northline Plumbing — Dispatch</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Fieldline home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4v9a8 8 0 0 0 8 8h1a7 7 0 0 1 7 7"/><path d="M4 8h8M20 28h8"/></svg>
-      <span>FIELDLINE <b>PLUMBING</b></span>
+    <a class="brand" href="#main" aria-label="Northline Plumbing dispatch home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M10 4v9a6 6 0 0 0 12 0V7h5V3h-9v10a2 2 0 0 1-4 0V4h-4Z"/></svg>
+      <span>Northline <b>Plumbing</b></span>
     </a>
-    <div class="top-actions">
+    <div class="topbar-meta">
       <span class="live"><i></i> Dispatch live</span>
-      <button class="icon-button" aria-label="Notifications">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
-        <span class="notification-dot"></span>
+      <span class="date">Tuesday, Sep 8</span>
+      <button class="icon-button" id="refresh" type="button" aria-label="Refresh job data" title="Refresh job data">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6.1 8a7 7 0 0 1 11.2-1.8L20 9M4 15l2.7 2.8A7 7 0 0 0 18 16"/></svg>
       </button>
-      <button class="avatar" aria-label="Open account menu">JD</button>
     </div>
   </header>
 
-  <main>
-    <section class="summary" aria-labelledby="page-title">
-      <div class="summary-heading">
-        <p class="eyebrow">Tuesday · September 8</p>
-        <h1 id="page-title">Dispatch board</h1>
-        <p>Morning shift overview</p>
+  <main id="main">
+    <section class="summary" aria-labelledby="summary-heading">
+      <div class="summary-title">
+        <span class="eyebrow">Operations / 01</span>
+        <h1 id="summary-heading">Job queue</h1>
+        <p>Tuesday’s field schedule and upcoming work.</p>
       </div>
-      <div class="summary-stat active-stat">
-        <span>Active queue</span>
-        <strong id="active-count">—</strong>
-        <small><i></i><span id="active-note">Loading jobs</span></small>
+      <div class="metric urgent">
+        <span class="metric-label">Needs dispatch</span>
+        <strong id="openCount">—</strong>
+        <span>Unassigned jobs</span>
       </div>
-      <div class="summary-stat">
-        <span>Assigned</span>
-        <strong id="assigned-count">—</strong>
-        <small id="assigned-note">Scheduled work</small>
+      <div class="metric">
+        <span class="metric-label">Assigned</span>
+        <strong id="assignedCount">—</strong>
+        <span>Technician confirmed</span>
       </div>
-      <div class="summary-stat alert-stat">
-        <span>Unassigned</span>
-        <strong id="unassigned-count">—</strong>
-        <small id="unassigned-note">Needs attention</small>
-      </div>
-      <div class="summary-stat">
-        <span>Completed</span>
-        <strong id="done-count">—</strong>
-        <small>Since Saturday</small>
+      <div class="metric">
+        <span class="metric-label">Completed</span>
+        <strong id="doneCount">—</strong>
+        <span>Closed this period</span>
       </div>
     </section>
 
-    <section class="workspace" aria-labelledby="queue-heading">
+    <section class="queue" aria-labelledby="queue-heading">
       <div class="queue-head">
         <div>
-          <p class="section-index">01 / JOB CONTROL</p>
-          <h2 id="queue-heading">Job queue</h2>
+          <span class="section-index">02 / ACTIVE BOARD</span>
+          <h2 id="queue-heading">All scheduled work <span id="resultCount"></span></h2>
         </div>
-        <div class="queue-actions">
+        <div class="tools">
           <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
             <span class="sr-only">Search jobs</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
-            <input id="search" type="search" placeholder="Search job, address, tech…" />
+            <input id="search" type="search" placeholder="Search job, address, tech…">
           </label>
-          <button class="primary" id="new-job"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> New job</button>
+          <div class="filters" role="group" aria-label="Filter jobs by status">
+            <button type="button" class="active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="open" aria-pressed="false">Open</button>
+            <button type="button" data-filter="assigned" aria-pressed="false">Assigned</button>
+            <button type="button" data-filter="done" aria-pressed="false">Done</button>
+          </div>
         </div>
       </div>
 
-      <div class="filter-row" aria-label="Filter jobs">
-        <div class="filters" role="group">
-          <button class="filter selected" data-filter="all">All <span id="all-filter-count">0</span></button>
-          <button class="filter" data-filter="open">Open <span id="open-filter-count">0</span></button>
-          <button class="filter" data-filter="assigned">Assigned <span id="assigned-filter-count">0</span></button>
-          <button class="filter" data-filter="done">Completed <span id="done-filter-count">0</span></button>
-        </div>
-        <button class="sort" id="sort-button">Scheduled time <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></button>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Job</th><th scope="col">Schedule</th><th scope="col">Location</th><th scope="col">Technician</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+        <div id="empty" class="empty" hidden><strong>No jobs found</strong><span>Try a different search or status.</span></div>
       </div>
-
-      <div class="table-shell">
-        <div class="table-header" aria-hidden="true">
-          <span>Schedule</span><span>Job / location</span><span>Technician</span><span>Status</span><span></span>
-        </div>
-        <div id="job-list" class="job-list" aria-live="polite"></div>
-        <div id="empty-state" class="empty-state" hidden>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 7v13a10 10 0 0 0 10 10h2a8 8 0 0 1 8 8v3M8 13h12M28 41h12"/></svg>
-          <h3>No jobs on this line</h3>
-          <p>Try a different filter or search term.</p>
-        </div>
-        <div id="error-state" class="empty-state error" hidden>
-          <h3>Couldn’t load the queue</h3>
-          <p>Serve this folder over HTTP so <code>fixtures/jobs.json</code> can be read.</p>
-          <button id="retry">Try again</button>
-        </div>
-      </div>
-      <footer class="queue-footer"><span id="showing-count">Loading schedule…</span><span>Times shown in local dispatch time · CDT</span></footer>
     </section>
   </main>
 
-  <dialog id="job-dialog">
-    <form method="dialog">
-      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
-      <p class="section-index">NEW WORK ORDER</p>
-      <h2>Add a job</h2>
-      <p>This demo keeps the fixture read-only. Connect this action to your work-order system.</p>
-      <button class="primary" value="cancel">Got it</button>
+  <dialog id="assignDialog">
+    <form method="dialog" id="assignForm">
+      <div class="dialog-head"><span>Dispatch job</span><button value="cancel" class="close" aria-label="Close">×</button></div>
+      <h3 id="dialogTitle">Assign technician</h3>
+      <p id="dialogMeta"></p>
+      <label for="technician">Available technician</label>
+      <select id="technician" required>
+        <option value="">Select technician</option><option>R. Okafor</option><option>M. Duarte</option><option>T. Blanchard</option>
+      </select>
+      <button class="primary" id="confirmAssign" value="default">Assign technician</button>
     </form>
   </dialog>
-
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
 </body>
 </html>

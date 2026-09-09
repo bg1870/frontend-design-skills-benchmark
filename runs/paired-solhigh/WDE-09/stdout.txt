@@ -1,0 +1,9 @@
+Built the complete self-contained investor deck:
+
+- **File:** `index.html`
+- Eight 16:9 slides
+- Arrow keys, Page Up/Down, Home/End, and on-screen navigation
+- Responsive viewport scaling
+- Accessible keyboard controls and reduced-motion support
+- Material assumptions documented via the **info** button
+- No external assets or dependencies

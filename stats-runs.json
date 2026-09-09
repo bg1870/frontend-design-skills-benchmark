@@ -8,7 +8,8 @@
   "turns": 30,
   "tools": 45,
   "cfg": "authored-opus",
-  "secs": 998
+  "secs": 998,
+  "scenarios": 5
  },
  {
   "tin": 51278,
@@ -19,7 +20,8 @@
   "turns": 28,
   "tools": 42,
   "cfg": "base",
-  "secs": 1090
+  "secs": 1090,
+  "scenarios": 5
  },
  {
   "tin": 74215,
@@ -30,7 +32,20 @@
   "turns": 33,
   "tools": 43,
   "cfg": "authored-kimi",
-  "secs": 1180
+  "secs": 1180,
+  "scenarios": 5
+ },
+ {
+  "tin": 107817,
+  "cr": 152576,
+  "out": 28393,
+  "rea": 1118,
+  "cost": 1.4671630000000004,
+  "turns": 35,
+  "tools": 42,
+  "cfg": "authored",
+  "secs": 1070,
+  "scenarios": 5
  },
  {
   "tin": 103164,
@@ -40,8 +55,9 @@
   "cost": 1.615452,
   "turns": 43,
   "tools": 63,
-  "cfg": "authored",
-  "secs": 1248
+  "cfg": "authored-solhigh",
+  "secs": 1248,
+  "scenarios": 5
  },
  {
   "tin": 121426,
@@ -52,7 +68,8 @@
   "turns": 46,
   "tools": 63,
   "cfg": "discovered",
-  "secs": 1197
+  "secs": 1197,
+  "scenarios": 5
  },
  {
   "tin": 104735,
@@ -63,7 +80,8 @@
   "turns": 41,
   "tools": 60,
   "cfg": "authored6",
-  "secs": 1269
+  "secs": 1269,
+  "scenarios": 5
  },
  {
   "tin": 94777,
@@ -74,7 +92,8 @@
   "turns": 41,
   "tools": 56,
   "cfg": "authored-fable",
-  "secs": 1534
+  "secs": 1534,
+  "scenarios": 5
  },
  {
   "tin": 99326,
@@ -85,7 +104,8 @@
   "turns": 44,
   "tools": 81,
   "cfg": "paired-opus",
-  "secs": 1392
+  "secs": 1392,
+  "scenarios": 5
  },
  {
   "tin": 139382,
@@ -96,7 +116,8 @@
   "turns": 45,
   "tools": 80,
   "cfg": "wde",
-  "secs": 1500
+  "secs": 1500,
+  "scenarios": 5
  },
  {
   "tin": 180046,
@@ -107,7 +128,8 @@
   "turns": 64,
   "tools": 85,
   "cfg": "paired-fable",
-  "secs": 1503
+  "secs": 1503,
+  "scenarios": 5
  },
  {
   "tin": 223444,
@@ -118,7 +140,8 @@
   "turns": 55,
   "tools": 78,
   "cfg": "taste",
-  "secs": 1342
+  "secs": 1342,
+  "scenarios": 5
  },
  {
   "tin": 223557,
@@ -129,7 +152,8 @@
   "turns": 53,
   "tools": 70,
   "cfg": "taste-solo",
-  "secs": 1488
+  "secs": 1488,
+  "scenarios": 5
  },
  {
   "tin": 207222,
@@ -156,6 +180,18 @@
   "scenarios": 10
  },
  {
+  "tin": 271836,
+  "cr": 964096,
+  "out": 66799,
+  "rea": 4501,
+  "cost": 3.845198000000001,
+  "turns": 109,
+  "tools": 135,
+  "cfg": "paired-sol",
+  "secs": 2685,
+  "scenarios": 10
+ },
+ {
   "tin": 272901,
   "cr": 866688,
   "out": 68675,
@@ -163,7 +199,7 @@
   "cost": 3.8580990000000006,
   "turns": 99,
   "tools": 134,
-  "cfg": "paired-sol",
+  "cfg": "paired-solhigh",
   "secs": 2671,
   "scenarios": 10
  },
@@ -176,6 +212,7 @@
   "turns": 61,
   "tools": 141,
   "cfg": "design-list",
-  "secs": 2021
+  "secs": 2021,
+  "scenarios": 5
  }
 ]

@@ -3,112 +3,141 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Transparent, warehouse-based pricing for Northline analytics.">
-  <meta name="theme-color" content="#f4f7f3">
-  <title>Pricing — Northline</title>
+  <meta name="description" content="Clear, usage-based pricing for Meridian, a B2B analytics workspace.">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Pricing | Meridian Analytics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Newsreader:opsz,wght@6..72,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#pricing">Skip to pricing</a>
+  <a class="skip-link" href="#main">Skip to pricing</a>
   <header class="site-header">
-    <a class="brand" href="#" aria-label="Northline home" translate="no"><span class="brand-mark" aria-hidden="true"></span>Northline</a>
-    <nav aria-label="Main navigation">
-      <a href="#platform">Platform</a><a href="#pricing">Pricing</a><a href="#questions">Resources</a>
+    <a class="brand" href="#top" aria-label="Meridian home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25V7h5l7 11 7-11h5v18h-5V15l-7 10-7-10v10z"/></svg>
+      <span>Meridian</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#plans">Plans</a><a href="#compare">Compare</a><a href="#faq">FAQ</a>
     </nav>
-    <a class="header-action" href="mailto:sales@northline.example">Talk to sales</a>
+    <div class="header-actions">
+      <a class="sign-in" href="mailto:hello@meridian.example?subject=Meridian%20sign%20in">Sign in</a>
+      <a class="button button-small" href="mailto:hello@meridian.example?subject=Start%20with%20Meridian">Start free</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="#plans">Plans</a><a href="#compare">Compare</a><a href="#faq">FAQ</a><a href="mailto:hello@meridian.example?subject=Start%20with%20Meridian">Start free</a>
+    </nav>
   </header>
 
-  <main>
-    <section class="hero" id="platform" aria-labelledby="hero-title">
+  <main id="main">
+    <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="kicker">Pricing built like your data stack</p>
-        <h1 id="hero-title">Pay for the answers,<br>not every seat.</h1>
-        <p class="lede">Northline gives product, revenue, and operations teams one trusted view of the business. Every plan includes unlimited viewers. Your bill follows monthly analyzed events—nothing else.</p>
+        <p class="kicker">Pricing that follows your data</p>
+        <h1>Ask more of your data.<br>Pay only as you grow.</h1>
+        <p class="hero-intro">Every plan includes the complete analytics workspace. Choose the event volume and collaboration level that fit your team today.</p>
       </div>
-      <aside class="data-proof" aria-label="Example usage statement">
-        <div class="statement-head"><span>July usage statement</span><span>NL–0842</span></div>
-        <div class="statement-total"><span>Analyzed events</span><strong>2.4M</strong></div>
-        <dl>
-          <div><dt>Viewer seats</dt><dd>Unlimited</dd></div>
-          <div><dt>Data sources</dt><dd>8 connected</dd></div>
-          <div><dt>Usage this cycle</dt><dd><span class="meter"><i></i></span> 60%</dd></div>
-        </dl>
-        <p>One predictable unit, visible to every team.</p>
-      </aside>
+      <div class="hero-diagram" aria-label="Plan progression from Explore to Scale">
+        <div class="axis-label">Monthly events</div>
+        <div class="signal signal-one"><span>Explore</span><b>100k</b></div>
+        <div class="signal signal-two"><span>Team</span><b>1m</b></div>
+        <div class="signal signal-three"><span>Scale</span><b>Custom</b></div>
+      </div>
     </section>
 
-    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
-      <div class="section-intro">
-        <div><p class="kicker">Choose your operating range</p><h2 id="pricing-title">Start at today’s volume.<br>Move up when the data does.</h2></div>
-        <div class="billing-control" role="group" aria-label="Billing frequency">
-          <button type="button" class="billing-option active" data-period="monthly" aria-pressed="true">Monthly</button>
-          <button type="button" class="billing-option" data-period="annual" aria-pressed="false">Annual <span>save 20%</span></button>
-        </div>
+    <section class="pricing" id="plans" aria-labelledby="plans-heading">
+      <div class="section-head">
+        <div><p class="section-index">Choose your capacity</p><h2 id="plans-heading">One product. Three ways to run it.</h2></div>
+        <fieldset class="billing-toggle">
+          <legend class="sr-only">Billing frequency</legend>
+          <button type="button" data-cycle="monthly" aria-pressed="true">Monthly</button>
+          <button type="button" data-cycle="annual" aria-pressed="false">Annual <span>Save 20%</span></button>
+        </fieldset>
       </div>
 
-      <div class="plan-grid">
+      <div class="plans-grid">
         <article class="plan">
-          <div class="plan-head"><h3>Observe</h3><p>For a small team establishing a shared source of truth.</p></div>
-          <p class="price"><span class="currency">$</span><strong data-monthly="49" data-annual="39">49</strong><span>/ month</span></p>
-          <a class="button secondary" href="mailto:start@northline.example?subject=Start%20Observe">Start 14-day trial</a>
-          <p class="capacity">Up to <strong>500K</strong> events / month</p>
-          <ul><li>Unlimited viewers</li><li>5 data sources</li><li>Core dashboards and reports</li><li>12-month data history</li><li>Email support</li></ul>
+          <div class="plan-top"><h3>Explore</h3><p>For small teams proving where data can help.</p></div>
+          <div class="price"><span class="currency">$</span><strong data-monthly="0" data-annual="0">0</strong><span class="period">/ month</span></div>
+          <p class="billing-note">No credit card required</p>
+          <a class="button button-secondary" href="mailto:hello@meridian.example?subject=Start%20Explore">Start with Explore</a>
+          <ul>
+            <li>100,000 events per month</li><li>3 workspace members</li><li>Unlimited reports and dashboards</li><li>30-day data history</li><li>Community support</li>
+          </ul>
         </article>
 
-        <article class="plan recommended">
-          <div class="plan-head"><h3>Analyze <span>Most selected</span></h3><p>For cross-functional teams making weekly decisions in data.</p></div>
-          <p class="price"><span class="currency">$</span><strong data-monthly="149" data-annual="119">149</strong><span>/ month</span></p>
-          <a class="button primary" href="mailto:start@northline.example?subject=Start%20Analyze">Start 14-day trial</a>
-          <p class="capacity">Up to <strong>5M</strong> events / month</p>
-          <ul><li>Everything in Observe</li><li>Unlimited data sources</li><li>Funnels, cohorts, and journeys</li><li>3-year data history</li><li>Slack and email alerts</li><li>Priority support</li></ul>
+        <article class="plan featured">
+          <div class="recommendation">Best for growing data teams</div>
+          <div class="plan-top"><h3>Team</h3><p>For teams turning shared analysis into decisions.</p></div>
+          <div class="price" aria-live="polite"><span class="currency">$</span><strong data-monthly="149" data-annual="119">149</strong><span class="period">/ month</span></div>
+          <p class="billing-note" data-billing-note>Paid monthly</p>
+          <a class="button" href="mailto:hello@meridian.example?subject=Start%20Team%20trial">Start Team trial</a>
+          <ul>
+            <li>1 million events per month</li><li>15 workspace members</li><li>Advanced cohorts and funnels</li><li>1-year data history</li><li>Email and chat support</li>
+          </ul>
         </article>
 
         <article class="plan">
-          <div class="plan-head"><h3>Operate</h3><p>For organizations that need governance, scale, and control.</p></div>
-          <p class="price custom"><strong>Custom</strong><span>annual agreement</span></p>
-          <a class="button secondary" href="mailto:sales@northline.example?subject=Northline%20Operate">Plan with sales</a>
-          <p class="capacity"><strong>Volume-based</strong> event pricing</p>
-          <ul><li>Everything in Analyze</li><li>Warehouse-direct queries</li><li>SAML SSO and SCIM</li><li>Granular data permissions</li><li>Regional data hosting</li><li>Named success manager</li></ul>
+          <div class="plan-top"><h3>Scale</h3><p>For organizations with complex data operations.</p></div>
+          <div class="price custom"><strong>Let’s talk</strong></div>
+          <p class="billing-note">Volume-based agreement</p>
+          <a class="button button-secondary" href="mailto:hello@meridian.example?subject=Discuss%20Scale">Discuss Scale</a>
+          <ul>
+            <li>Custom event volume</li><li>Unlimited workspace members</li><li>SSO, SCIM and audit logs</li><li>Custom data retention</li><li>Dedicated success manager</li>
+          </ul>
         </article>
       </div>
-      <p class="terms" id="billing-note">Prices exclude tax. Annual plans are billed once per year. No setup fees.</p>
+      <p class="tax-note">Prices in USD. Taxes may apply. Annual pricing is billed as one payment.</p>
     </section>
 
-    <section class="comparison" aria-labelledby="compare-title">
-      <div class="comparison-heading"><p class="kicker">Plan detail</p><h2 id="compare-title">Compare without guesswork</h2><p>Every plan includes live dashboards, scheduled reports, CSV export, and unlimited viewer seats.</p></div>
+    <section class="included" aria-labelledby="included-heading">
+      <div><p class="section-index">Included in every plan</p><h2 id="included-heading">The whole picture,<br>from first question to shared answer.</h2></div>
+      <div class="included-list">
+        <div><span>01</span><h3>Connect</h3><p>Bring product, revenue and customer data together with warehouses, SDKs and direct sources.</p></div>
+        <div><span>02</span><h3>Understand</h3><p>Explore trends, funnels, retention and cohorts without waiting on a queue of data requests.</p></div>
+        <div><span>03</span><h3>Act</h3><p>Share live dashboards, schedule reports and bring the right signals into daily workflows.</p></div>
+      </div>
+    </section>
+
+    <section class="comparison" id="compare" aria-labelledby="comparison-heading">
+      <div class="section-head"><div><p class="section-index">Plan comparison</p><h2 id="comparison-heading">Details, without the fine print.</h2></div><p>Need help choosing? <a href="mailto:hello@meridian.example?subject=Pricing%20help">Talk to our team</a>.</p></div>
       <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable plan comparison">
         <table>
-          <thead><tr><th scope="col">Capability</th><th scope="col">Observe</th><th scope="col">Analyze</th><th scope="col">Operate</th></tr></thead>
+          <thead><tr><th scope="col">Capability</th><th scope="col">Explore</th><th scope="col">Team</th><th scope="col">Scale</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Monthly events</th><td>500K</td><td>5M</td><td>Custom</td></tr>
-            <tr><th scope="row">Data history</th><td>12 months</td><td>3 years</td><td>Custom</td></tr>
-            <tr><th scope="row">Behavioral cohorts</th><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td><td><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
-            <tr><th scope="row">Custom metrics</th><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
-            <tr><th scope="row">Warehouse direct</th><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span class="no">—</span><span class="sr-only">Not included</span></td><td><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
-            <tr><th scope="row">Single sign-on</th><td><span class="no">—</span><span class="sr-only">Not included</span></td><td>Google</td><td>SAML + SCIM</td></tr>
-            <tr><th scope="row">Support response</th><td>2 business days</td><td>1 business day</td><td>4 hours</td></tr>
+            <tr><th scope="row">Monthly events</th><td>100k</td><td>1m</td><td>Custom</td></tr>
+            <tr><th scope="row">Data history</th><td>30 days</td><td>1 year</td><td>Custom</td></tr>
+            <tr><th scope="row">Dashboards</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Cohorts and funnels</th><td>Basic</td><td>Advanced</td><td>Advanced</td></tr>
+            <tr><th scope="row">Warehouse sync</th><td>—<span class="sr-only">Not included</span></td><td>Daily</td><td>Near real-time</td></tr>
+            <tr><th scope="row">Single sign-on</th><td>—<span class="sr-only">Not included</span></td><td>—<span class="sr-only">Not included</span></td><td>Included</td></tr>
+            <tr><th scope="row">Support</th><td>Community</td><td>Email + chat</td><td>Dedicated manager</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <section class="questions" id="questions" aria-labelledby="questions-title">
-      <div><p class="kicker">The fine print, in plain English</p><h2 id="questions-title">Before you decide</h2></div>
-      <div class="faq-list">
-        <details><summary>What counts as an analyzed event?</summary><p>An event counts when Northline processes it for a report, cohort, or alert. Duplicate and rejected events do not count.</p></details>
-        <details><summary>What happens if we exceed our limit?</summary><p>We notify admins at 80% and 100%. Data keeps flowing for seven days, giving you time to upgrade or reduce tracked events.</p></details>
-        <details><summary>Can we change plans later?</summary><p>Yes. Upgrade at any time; the difference is prorated. Downgrades take effect at the next billing date.</p></details>
-        <details><summary>Do you offer startup or nonprofit pricing?</summary><p>Eligible early-stage companies and registered nonprofits receive 30% off for their first year. Contact sales to apply.</p></details>
+    <section class="faq" id="faq" aria-labelledby="faq-heading">
+      <div class="faq-title"><p class="section-index">Questions</p><h2 id="faq-heading">Useful answers before you decide.</h2><p>Still comparing options? Write to <a href="mailto:hello@meridian.example">hello@meridian.example</a>.</p></div>
+      <div class="accordions">
+        <details><summary>What counts as an event?<span aria-hidden="true"></span></summary><p>An event is a tracked action sent to Meridian, such as a page view, signup or purchase. Repeated properties on the same event do not increase usage.</p></details>
+        <details><summary>What happens if we exceed our limit?<span aria-hidden="true"></span></summary><p>We notify workspace admins before the limit is reached. Your data keeps flowing while you choose a higher plan or discuss a volume agreement.</p></details>
+        <details><summary>Can we change plans later?<span aria-hidden="true"></span></summary><p>Yes. Upgrade whenever your team needs more capacity. Monthly plans can be downgraded at the next billing date.</p></details>
+        <details><summary>Is there a discount for annual billing?<span aria-hidden="true"></span></summary><p>Yes. Annual Team billing saves 20% compared with paying month to month. The annual amount is collected in one payment.</p></details>
       </div>
     </section>
 
-    <section class="closing" aria-labelledby="closing-title"><div><p class="kicker">See your data clearly</p><h2 id="closing-title">Your first dashboard can be live this afternoon.</h2></div><a class="button light" href="mailto:start@northline.example?subject=Start%20Northline%20trial">Start 14-day trial</a></section>
+    <section class="closing">
+      <p>Start with your next question.</p>
+      <h2>Your data is already telling a story.</h2>
+      <a class="button button-light" href="mailto:hello@meridian.example?subject=Start%20with%20Meridian">Start free</a>
+    </section>
   </main>
 
-  <footer><a class="brand" href="#" translate="no"><span class="brand-mark" aria-hidden="true"></span>Northline</a><p>Analytics for teams that run on evidence.</p><p>© 2026 Northline Labs</p></footer>
+  <footer><a class="brand footer-brand" href="#top">Meridian</a><p>Analytics for teams that make decisions together.</p><div><a href="#plans">Pricing</a><a href="#faq">FAQ</a><a href="mailto:hello@meridian.example">Contact</a></div><small>© 2026 Meridian Analytics</small></footer>
+  <script src="script.js"></script>
 </body>
 </html>

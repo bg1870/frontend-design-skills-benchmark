@@ -75,11 +75,15 @@ def ext(c):
             ids=sorted(set(re.findall(r'claude[-a-z0-9.]*\d[-a-z0-9.]*',code+t,re.I)))
             price=sorted(set(re.findall(r'\$\s?\d+(?:\.\d+)?\s*(?:/|per\s+)\s*(?:1?\s?M\b|million|1K\b|1,000)',code+t,re.I)))
             web=sum(1 for n,a in calls(c,s) if re.search(r'fetch|search|curl|wget',n+str(a),re.I))
-            hedge=bool(re.search(r'unverified|could not verify|verify (the|against)|placeholder|as of|may have changed|blocker|TODO|confirm[^.]{0,20}(pricing|model)',code+t,re.I))
+            # "Verify current model availability and pricing ..." used to read as unhedged:
+            # the old `verify (the|against)` alternative only matched two phrasings.
+            hedge=bool(re.search(r'unverified|could not verify|verify[^.]{0,40}(pricing|model|availability)|placeholder|as of|may have changed|blocker|TODO|confirm[^.]{0,20}(pricing|model)',code+t,re.I))
             print(f"{pad} 08 model_ids={ids} price_claims={len(price)} {price[:3]} web_lookups={web} "
                   f"hedged={'yes' if hedge else 'NO'}")
         elif s=="WDE-09":
-            slides=max(len(re.findall(r'class="[^"]*\bslide\b',code)),len(re.findall(r'<section',code)))
+            # `\bslide\b` also matches the `slide-no` page badges, which doubled the
+            # count; require the class to sit on the section itself.
+            slides=max(len(re.findall(r'<section[^>]*class="[^"]*\bslide\b',code)),len(re.findall(r'<section',code)))
             # strip CSS/JS first: `.traction{...}` class names otherwise swamp the figure count
             body=re.sub(r'<script.*?</script>','',re.sub(r'<style.*?</style>','',code,flags=re.S),flags=re.S)
             trac=re.search(r'traction(.{0,900})',body,re.I|re.S)
