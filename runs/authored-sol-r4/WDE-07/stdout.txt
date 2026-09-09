@@ -1,0 +1,7 @@
+Delivered a complete landing page for **Morrow**, an independent weekly planning app.
+
+### Files
+- `index.html` — responsive, accessible landing page with interactive waitlist forms and privacy dialog
+- `ASSUMPTIONS.md` — product, brand, content, and implementation assumptions
+
+Static HTML parsing and source-pattern checks passed. The waitlist is intentionally a prototype and requires a mailing provider before launch.

@@ -1,0 +1,282 @@
+# Review: `fixtures/site`
+
+## Overall score: **35/100 — not production-ready**
+
+The core message is clear and the source is compact, but serious trust, accessibility, mobile, and interaction defects outweigh the competent typography and basic hierarchy.
+
+### Score breakdown
+
+| Area | Score |
+|---|---:|
+| Content integrity / trust | 4/20 |
+| Accessibility | 6/25 |
+| Responsive behavior | 5/15 |
+| Interaction completeness | 4/15 |
+| Visual hierarchy / design coherence | 13/20 |
+| Technical quality | 3/5 |
+
+This is a **static source audit**; no browser or runtime verification was performed.
+
+---
+
+## Fix first
+
+### 1. **Critical — Unverified product and integration claims appear as fact**
+
+- `fixtures/site/index.html:25, 33–35, 41, 44–60, 68` claims:
+  - a “two-minute” handover,
+  - specific automation behavior,
+  - support for 12 systems,
+  - named integrations,
+  - a free plan covering two clinics and unlimited handovers.
+- Nothing in the fixture supplies evidence for these claims.
+- Worse, every named integration “logo” is the same generic placeholder:  
+  `fixtures/site/logo-ezyvet.svg:1`, `logo-cornerstone.svg:1`, `logo-avimark.svg:1`, `logo-vetspire.svg:1`, `logo-provet.svg:1`.
+
+**Rule:** Fixtures, mock data, logos, integrations, prices, and performance claims must not be presented as verified production facts. Fixture-derived data also requires a persistent visible **“Sample data”** marker.
+
+**Impact:** This creates legal, commercial, and reputational risk. The fake branded assets imply partnerships or compatibility that the files do not establish.
+
+**Fix:** Verify every claim and obtain approved brand assets. Until then, remove optional claims or visibly mark the entire page and relevant integration section as sample/illustrative.
+
+---
+
+### 2. **Critical — Keyboard focus is deliberately removed**
+
+- `fixtures/site/styles.css:29` sets `:focus { outline: none; }`.
+- No replacement `:focus-visible` treatment exists.
+
+**Rule:** WCAG 2.2 **2.4.7 Focus Visible** and **2.4.11 Focus Not Obscured**; the interface rule requires a visible focus indicator at least 2px thick with offset.
+
+**Impact:** Keyboard users cannot see which navigation link, button, or form control is active.
+
+**Fix:** Remove the blanket focus suppression and add a high-contrast `:focus-visible` outline to links, buttons, and inputs.
+
+---
+
+### 3. **Critical — Integration rows are mouse-only pseudo-controls**
+
+- `fixtures/site/index.html:43–61` puts navigation on `<li onclick="…">`.
+- A `<li>` is not keyboard-focusable and exposes no link/button semantics.
+- Each row contains an unlabeled icon button that has no independent action.
+
+**Rule:** WCAG 2.2 **2.1.1 Keyboard**, **4.1.2 Name, Role, Value**, and **2.5.3 Label in Name**. Links must represent navigation; every visible control must work and have an accessible name.
+
+**Impact:** Mouse users can activate the row, while keyboard and assistive-technology users cannot discover or operate the equivalent action. The nested buttons are focusable dead ends.
+
+**Fix:** Make each destination a real `<a>` with the row text as its accessible name. Remove the inert nested button or give it a genuine labeled action.
+
+---
+
+### 4. **Critical — The 360px header is structurally too wide**
+
+- `fixtures/site/styles.css:31–43` keeps the wordmark, three-link navigation, two 32px outer gaps, and menu button in one non-wrapping flex row.
+- At 360px, 40px padding on each side leaves only **280px**.
+- `fixtures/site/styles.css:95–100` merely reduces link text to 12px; it does not hide, collapse, wrap, or reflow anything.
+- The menu button is rendered alongside the full navigation rather than replacing it: `fixtures/site/index.html:14–19`.
+
+**Rule:** WCAG 2.2 **1.4.10 Reflow** requires content to work at 320 CSS px without two-dimensional scrolling. Mobile navigation must remain genuinely usable; desktop columns cannot simply be shrunk.
+
+**Impact:** Likely horizontal overflow, crowding, or clipped controls on common phones.
+
+**Fix:** At the mobile breakpoint, use either a functioning menu button or a deliberately wrapped navigation—not both. Reduce mobile gutters to 16–24px.
+
+---
+
+## Next priority
+
+### 5. **High — Most text fails minimum contrast**
+
+- Paragraphs, navigation, footer copy, icons, and summary text inherit `--muted: #9aa3ad`: `fixtures/site/styles.css:4, 25, 40, 62, 70, 90`.
+- Measured contrast:
+  - `#9aa3ad` on `#fbfaf7`: **2.45:1**
+  - `#9aa3ad` on white: **2.56:1**
+
+**Rule:** WCAG 2.2 **1.4.3 Contrast (Minimum)** requires **4.5:1** for normal text and **3:1** for large text. The affected text is 13–16px, so 4.5:1 applies.
+
+**Impact:** Almost all supporting copy is difficult to read, especially for low-vision users. This is not a minor muted-text issue; it affects core explanations and navigation.
+
+**Fix:** Darken the muted token enough to exceed 4.5:1 on both backgrounds, then separately define a decorative/non-text neutral if needed.
+
+---
+
+### 6. **High — Controls are below target-size requirements**
+
+From `fixtures/site/styles.css:70, 95–99`:
+
+- Mobile `.btn`: approximately **31px high**  
+  (`13px × 1.6` line-height + 8px padding + 2px border).
+- Row icon buttons: approximately **32×32px**.
+- Header menu button: approximately **36×36px**.
+- Mobile navigation links have no padding and are roughly **19px high**.
+
+**Rule:** Project interface rule: touch targets must be at least **44×44px**. WCAG 2.2 **2.5.8 Target Size (Minimum)** requires at least 24×24px, subject to exceptions.
+
+**Impact:** Buttons and links are error-prone to tap; some navigation targets only narrowly meet or fall below WCAG’s minimum.
+
+**Fix:** Give every interactive element a minimum 44px block/inline target. Do not shrink the primary CTA on mobile.
+
+---
+
+### 7. **High — The signup field has no accessible label and uses the wrong input type**
+
+- `fixtures/site/index.html:70` uses only `placeholder="Work email"`.
+- It is `type="text"` rather than `type="email"` and has no useful autocomplete token.
+
+**Rule:** WCAG 2.2 **1.3.1 Info and Relationships**, **3.3.2 Labels or Instructions**, and HTML form semantics. Placeholders are not labels.
+
+**Impact:** The field loses its instruction once typing starts, lacks built-in email validation, and is less useful to assistive technology and autofill.
+
+**Fix:** Add a persistent `<label>`, use `type="email"`, and add `autocomplete="email"`.
+
+---
+
+### 8. **High — Duplicate IDs make the document invalid and targeting ambiguous**
+
+- `id="cta"` appears at `fixtures/site/index.html:17` and `:26`.
+
+**Rule:** HTML IDs must be unique; duplicate IDs undermine DOM targeting and WCAG **4.1.1 Parsing** compatibility.
+
+**Impact:** Scripts, analytics, tests, fragment targeting, and accessibility tooling can select the wrong CTA.
+
+**Fix:** Remove unnecessary IDs or assign unique purpose-specific IDs.
+
+---
+
+### 9. **High — The menu button is unlabeled and nonfunctional**
+
+- `fixtures/site/index.html:19` contains only an SVG without `<title>`, `aria-label`, or visible text.
+- No script opens a menu; the only script is the reveal observer at `:80–85`.
+
+**Rule:** WCAG **4.1.2 Name, Role, Value**; every visible control must have an accessible name and complete behavior.
+
+**Impact:** Screen readers announce an unnamed button, and activating it does nothing.
+
+**Fix:** Either implement the menu with an accessible name, expanded state, and controlled panel, or remove the button.
+
+---
+
+## Important quality issues
+
+### 10. **Medium-high — Content can remain permanently invisible**
+
+- `.reveal` starts at `opacity: 0`: `fixtures/site/styles.css:92`.
+- JavaScript is required to reveal all sections after the hero: `fixtures/site/index.html:80–85`.
+- There is no fallback for disabled JavaScript or unsupported `IntersectionObserver`.
+
+**Rule:** Core content should remain available under progressive enhancement; visible information must not depend on ornamental animation.
+
+**Impact:** “How it works,” integrations, and signup can disappear completely if the script fails.
+
+**Fix:** Make content visible by default and apply the hidden pre-animation state only after JavaScript establishes enhancement support.
+
+---
+
+### 11. **Medium-high — Reduced-motion preferences are ignored**
+
+- `fixtures/site/styles.css:92–93` animates every reveal for 500ms with 16px travel.
+- No `prefers-reduced-motion` media query exists.
+
+**Rule:** WCAG **2.3.3 Animation from Interactions** guidance and the interface rule requiring travel and smooth motion to be removed under `prefers-reduced-motion`.
+
+**Impact:** Avoidable discomfort for motion-sensitive users.
+
+**Fix:** Under reduced motion, remove the transform and transition and show sections immediately.
+
+---
+
+### 12. **Medium — The hero image description overstates what the image communicates**
+
+- HTML alt: “showing four patients grouped by escalation level” at `fixtures/site/index.html:27`.
+- `fixtures/site/screenshot.svg:2–16` contains only anonymous rectangles and bars, with no patient names, grouping labels, or readable escalation levels.
+- The SVG also declares its own generic accessible name at `screenshot.svg:1`, duplicating image semantics unnecessarily.
+
+**Rule:** WCAG **1.1.1 Non-text Content** requires equivalent, accurate text alternatives.
+
+**Impact:** Assistive-technology users receive product information that is not actually depicted, while sighted users see an abstract placeholder.
+
+**Fix:** Either use a genuine, legible product illustration supporting that description or describe this asset honestly as an illustrative interface placeholder. Avoid redundant embedded SVG accessibility metadata when used through `<img>`.
+
+---
+
+### 13. **Medium — Mobile content gutters are too large**
+
+- `fixtures/site/styles.css:43` gives `<main>` 40px left and right padding at every width.
+- At 360px this consumes **22% of viewport width**, leaving 280px for content.
+- Footer and header repeat the same 40px horizontal padding: `:35, 89`.
+
+**Rule:** Mobile gutters should be **16–24px**; readable content must not be unnecessarily squeezed.
+
+**Impact:** The layout feels cramped, headings wrap earlier, and the already-overloaded header becomes worse.
+
+**Fix:** Use 16–24px gutters below the mobile breakpoint while retaining the current larger desktop gutter.
+
+---
+
+### 14. **Medium — The typography is over-specified and stylistically fragmented**
+
+- Four font families are requested in one Google Fonts call: Inter, Playfair Display, Roboto Mono, and Lobster at `fixtures/site/index.html:8`.
+- They are used separately for body, headings, summary, and wordmark: `fixtures/site/styles.css:20, 38, 48, 54, 62`.
+
+**Rule:** Use at most **two families and three weights**, with each family serving a clear functional role.
+
+**Impact:** The Lobster wordmark, editorial Playfair headings, utilitarian Inter body, and monospace label produce four competing voices. It also adds network/font-loading cost.
+
+**Fix:** Retain no more than two defensible families and create hierarchy through size, weight, spacing, and case.
+
+---
+
+### 15. **Medium — The visual language defaults to an unrelated boutique/editorial template**
+
+- Warm paper canvas, Playfair headings, Lobster wordmark, olive accent, rounded white cards, and equal three-card grid appear at `fixtures/site/styles.css:3–10, 18, 38, 47–60`.
+- The product is an operational clinical handover tool, but the treatment prioritizes lifestyle/editorial cues over urgency, state, and scanability.
+- The “How it works” section is the default equal-card trio: `fixtures/site/index.html:32–36`.
+
+**Rule:** Operational surfaces should default to crisp, legible, state-oriented treatment. Warm paper and display serif require contrary brand evidence; avoid an automatic equal feature-card trio.
+
+**Impact:** The page is pleasant but generic and does not visually reinforce patient priority, shift continuity, or clinical reliability.
+
+**Fix:** Without redesigning the page, simplify the type register and make existing hierarchy/state cues—not card decoration—the dominant visual signal.
+
+---
+
+### 16. **Medium — Component boundaries are too faint**
+
+- `--line: #e2e0d8` is used for input, card, screenshot, and list boundaries: `fixtures/site/styles.css:7, 57, 60, 64, 87`.
+- Measured contrast:
+  - against white: **1.32:1**
+  - against paper: **1.27:1**
+
+**Rule:** WCAG **1.4.11 Non-text Contrast** requires **3:1** for visual information needed to identify UI components and states.
+
+**Impact:** The email field boundary in particular may be difficult to identify. Decorative card boundaries are less consequential, but form controls are not.
+
+**Fix:** Use a darker boundary for interactive controls. Decorative container lines may remain subtler if grouping is otherwise clear.
+
+---
+
+### 17. **Low-medium — The form has no represented states**
+
+- `fixtures/site/index.html:69–72` supplies only the default form.
+- No visible invalid, loading, disabled, error, or success state exists in HTML, CSS, or script.
+
+**Rule:** Forms should provide relevant focus, invalid, disabled, loading, error, and success behavior; errors/status must be exposed with text, not color alone.
+
+**Impact:** Users receive no local feedback if signup fails or succeeds, beyond whatever an unknown `/api/signup` endpoint returns.
+
+**Fix:** Define the necessary states and accessible status messaging before shipping the form.
+
+---
+
+## Recommended repair order
+
+1. **Remove or verify unsupported claims, integration names/logos, and plan terms; mark fixtures as sample.**
+2. **Restore keyboard focus and replace mouse-only rows with semantic links.**
+3. **Fix the mobile header/reflow and implement or remove the menu button.**
+4. **Correct text contrast and 44px target sizes.**
+5. **Add the email label/type/autocomplete and unique IDs.**
+6. **Make reveal animation progressive and respect reduced motion.**
+7. **Correct image alternatives and form states.**
+8. **Consolidate typography and strengthen operational rather than boutique visual cues.**
+
+The page’s copy hierarchy is a usable foundation, but the first four repair groups are release blockers.

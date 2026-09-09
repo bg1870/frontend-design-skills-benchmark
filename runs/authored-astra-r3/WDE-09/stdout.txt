@@ -1,0 +1,9 @@
+Created the finished eight-slide Tessellate investor pitch deck:
+
+- **File:** `index.html`
+- Self-contained HTML/CSS/JavaScript
+- Responsive 16:9 presentation
+- Arrow-key, button, swipe, Home/End, and dot navigation
+- Print-friendly slide formatting
+- Material assumptions explicitly disclosed
+- Static source audit completed; browser rendering was not performed

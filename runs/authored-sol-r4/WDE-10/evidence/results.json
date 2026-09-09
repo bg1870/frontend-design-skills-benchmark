@@ -1,0 +1,53 @@
+[
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 360,
+      "height": 800
+    },
+    "documentWidth": 360,
+    "viewportWidth": 360,
+    "title": "Create your clinic workspace — Loomwork",
+    "h1": "Make time for better care.",
+    "labels": 6,
+    "noHorizontalOverflow": true,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (File not found)"
+    ]
+  },
+  {
+    "viewport": {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    "documentWidth": 768,
+    "viewportWidth": 768,
+    "title": "Create your clinic workspace — Loomwork",
+    "h1": "Make time for better care.",
+    "labels": 6,
+    "noHorizontalOverflow": true,
+    "consoleErrors": []
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1440,
+      "height": 1000
+    },
+    "documentWidth": 1440,
+    "viewportWidth": 1440,
+    "title": "Create your clinic workspace — Loomwork",
+    "h1": "Make time for better care.",
+    "labels": 6,
+    "noHorizontalOverflow": true,
+    "consoleErrors": []
+  },
+  {
+    "interaction": {
+      "emptyFormValidation": "Enter your first name.",
+      "passwordVisible": true,
+      "success": "Your details look good. Connect this form to your account service to complete signup."
+    }
+  }
+]

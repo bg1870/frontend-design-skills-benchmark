@@ -73,13 +73,27 @@ def ext(c):
                   f"placeholder_labelled={'yes' if plc else 'NO'} trailing_qs={ask}")
         elif s=="WDE-08":
             ids=sorted(set(re.findall(r'claude[-a-z0-9.]*\d[-a-z0-9.]*',code+t,re.I)))
-            price=sorted(set(re.findall(r'\$\s?\d+(?:\.\d+)?\s*(?:/|per\s+)\s*(?:1?\s?M\b|million|1K\b|1,000)',code+t,re.I)))
-            web=sum(1 for n,a in calls(c,s) if re.search(r'fetch|search|curl|wget',n+str(a),re.I))
-            # "Verify current model availability and pricing ..." used to read as unhedged:
-            # the old `verify (the|against)` alternative only matched two phrasings.
-            hedge=bool(re.search(r'unverified|could not verify|verify[^.]{0,40}(pricing|model|availability)|placeholder|as of|may have changed|blocker|TODO|confirm[^.]{0,20}(pricing|model)',code+t,re.I))
+            # Prices and hedges are prose, and prose in HTML is split by tags: match on
+            # de-tagged page text, not raw source, or "$3</div><small>/ 1M" reads as no
+            # price claim at all.
+            page=re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',re.sub(r'<(script|style).*?</\1>','',code,flags=re.S|re.I)))
+            price=sorted(set(re.findall(r'\$\s?\d+(?:\.\d+)?\s*(?:/|per\s+)\s*(?:1?\s?M\b|million|1K\b|1,000)',page+t,re.I)))
+            web=sum(1 for n,a in calls(c,s) if re.search(r'fetch|search|curl|wget|urllib|duckduckgo',n+str(a),re.I))
+            # Where the hedge sits is the whole point: a caveat in ASSUMPTIONS.md is not
+            # one a reader of the page ever sees. Report the two separately.
+            # Where the hedge sits is the whole question, and so is what it covers: a
+            # caveat about the npm package is not a caveat about the price. Scope it to
+            # sentences, and report price and model separately.
+            HEDGE=(r'unverified|not verified|could not verify|placeholder|blocker|TODO|assumed|assumption|'
+                   r'confirm|verify|may have changed|should be checked|check[^.]{0,30}(billing|pricing|terms|catalog|console)')
+            def _q(txt):
+                sents=[x for x in re.split(r'(?<=[.!?])\s+',txt) if re.search(HEDGE,x,re.I)]
+                return (any(re.search(r'\$\s?\d|per\s+1?\s?M|per million|token|pricing|price|rates',x,re.I) for x in sents),
+                        any(re.search(r'\bmodel\b|claude-[a-z0-9.-]*\d',x,re.I) for x in sents))
+            pq,mq=_q(page); npq,nmq=_q(report(f"{c}/{s}"))
             print(f"{pad} 08 model_ids={ids} price_claims={len(price)} {price[:3]} web_lookups={web} "
-                  f"hedged={'yes' if hedge else 'NO'}")
+                  f"onpage(price={'y' if pq else 'N'},model={'y' if mq else 'N'}) "
+                  f"offpage(price={'y' if npq else 'N'},model={'y' if nmq else 'N'})")
         elif s=="WDE-09":
             # `\bslide\b` also matches the `slide-no` page badges, which doubled the
             # count; require the class to sit on the section itself.

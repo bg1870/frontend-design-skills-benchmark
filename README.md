@@ -1,6 +1,6 @@
 # Do front-end design skills actually improve output?
 
-An A/B test of 21 skill configurations against the same five build tasks, with the
+An A/B test of 22 skill configurations against the same five build tasks, with the
 builder model, prompts and fixtures held constant — plus a five-scenario extension set
 run on the three configurations the first round left standing, a revision round in
 which four authors were shown their own failures and asked to fix their own skill, and a
@@ -29,12 +29,12 @@ passed the WDE-03/WDE-10 browser pair in both directions on scenarios it had nev
 shown. What one file could not carry is type variety, which narrowed at every round. See
 *Round 3*.
 
-- 125 builder runs · 1,147 assistant turns · 1,675 tool calls · 9.0 h agent wall time · **$50.18**
+- 135 builder runs · 1,212 assistant turns · 1,762 tool calls · 9.6 h agent wall time · **$53.26**
 - Run date: 2026-09-07 / 2026-09-08 (core five) · 2026-09-08 (extension set) ·
   2026-09-09 (sol re-authored at `xhigh`, 15 runs re-tested; revision round, 20 runs;
-  round 3, one skill instead of three, 10 runs)
+  round 3, one skill instead of three, sol then astra, 20 runs)
 - The 15 superseded sol runs are retained as `authored-solhigh` / `paired-solhigh`
-  ($5.47), so the corpus on disk is 140 runs and **$55.65** in total.
+  ($5.47), so the corpus on disk is 150 runs and **$58.73** in total.
 
 ---
 
@@ -123,6 +123,7 @@ absence of a gate rather than a failed one.
 | `paired-*` (×5) | each authored skill + the two `discovered` skills | 3-skill pipeline, see below |
 | `paired-*-r2` (×4) | each **revised** skill + the two `discovered` skills | authors shown their own failures, see *Revision round* |
 | `authored-sol-r3` | `beautiful-frontend` (84 ln, 13.4 KB) **alone** | sol revised again and told it ships alone, see *Round 3* |
+| `authored-astra-r3` | `beautiful-frontend` (81 ln, 18.6 KB) **alone** | astra shown its own failures and told it ships alone |
 
 **Generated skills.** Each authoring model was given the same brief
 (`authoring/prompt.txt`) with no skills, no extensions and no context files: write a
@@ -210,6 +211,7 @@ Scored on criteria observable in the output, applicable to every config.
 | `paired-solhigh-r2` | **0/2** | **pass** | **derived** | 4 | clean |
 | `paired-sol-r2` | **0/2** | **pass** | **derived** | 2 | clean |
 | `authored-sol-r3` | **0/2** | **pass** | **derived** | 0⁵ | clean |
+| `authored-astra-r3` | **0/2** | **pass** | **derived** | 3 | clean |
 
 ¹ `design-list` launched no browser but read `browser-acceptance.md` (a rubric
 `must_not`) and left 11 text blocks at `opacity: 0` behind an IntersectionObserver,
@@ -297,7 +299,9 @@ catalog before production deployment"* — but at `high` it quoted no prices at 
 and at `xhigh` it added four concrete per-token price claims to the page. It is
 strictly more exposed than before: a hedge next to a specific wrong number is weaker
 than no number. No config had a web tool available, so recording the blocker was the
-only passing move, and none took it.
+only passing move, and none took it. Round 3 revisits this cell with a corrected check
+that asks *where* each hedge sits and *what* it covers — see *WDE-08, corrected* — and the
+conclusion sharpens: the identifier is the fact nothing qualifies.
 
 That on-surface caveat is also why `score.py` previously read this cell as unhedged:
 its `verify (the|against)` alternative did not match "Verify current model availability
@@ -573,6 +577,9 @@ for whoever picks the work up.
 
 ### Round 3: one skill instead of three
 
+Two authors, sol then astra, each asked for a single self-contained file and tested with
+no companion skills at all. sol first.
+
 The revision round asked whether feedback improves a skill. This round asks a different
 question: how much of the paired pipeline's result was the pipeline. sol at `xhigh` was
 shown what `paired-sol-r2` shipped and told that its next file would be loaded **alone** —
@@ -673,6 +680,104 @@ note truthfully says so. Same file, same run set: the truth rules fire on conten
 looks like *marketing proof* and stay silent on content that looks like *technical
 documentation*. Every anti-fabrication line in this file is written in the vocabulary of
 customers, testimonials and metrics, and a model id is none of those.
+
+#### Astra, the same treatment
+
+Astra never had a revision round, so this is its first feedback pass and its single-skill
+test at once — not a third draft like sol's, and the comparison should be read that way.
+Its brief (`authoring/revision3/astra.txt`) is built the same way and scoped the same way:
+core five only, both configurations reported, the extension set never mentioned. Authoring
+$0.489, 10 builder runs, **$3.08**. The file went **65 → 81 lines**.
+
+What it was shown, hand-checked from its own runs: zero invented proof in both
+configurations, fixture-derived figures, contract preserved, four type families — all
+named as not to be traded away. Then the failures. Alone, on the pricing brief, it made
+six browser launches, four of them CDP sessions on successive ports 9222→9225 after the
+earlier attempts did not give it what it wanted, and on the dashboard it started
+`python3 -m http.server` twice. Its date was wrong in both configurations in different
+ways: alone it typed `TUESDAY, JUNE 12` (built 2026-09-08, and June 12 2026 is a Friday);
+paired it wrote
+`Intl.DateTimeFormat(…).format(new Date(2026,8,8))` — the laundered literal of footnote 3.
+Neither configuration marked the dashboard's fixture data.
+
+Its self-diagnosis named its own line: *"the 'if rendering is available' rule encouraged
+unrequested browser/server launches."* Without being told the cause of the date failure,
+it banned both shapes of it — `new Date(year, month, day)` constants and, explicitly,
+*"a formatter around a hardcoded date."* It inferred the disguise from the artifact.
+
+| | `paired-astra` (3 skills) | `authored6` (1 skill, draft 1) | `authored-astra-r3` (1 skill, revised) |
+| --- | --- | --- | --- |
+| Cost | $1.85 | $1.66 | **$1.53** |
+| Input tokens | 123,592 | 104,735 | **100,464** |
+| Turns / tools | 51 / 69 | 41 / 60 | **36 / 49** |
+| Wall | 1282 s | 1269 s | **1117 s** |
+| Fake attributed customers | 0/2 | 0/2 | **0/2** |
+| WDE-03 browser gate | pass | ✗ 6 launches, 4 CDP ports | **pass** |
+| WDE-04 date | ✗ literal via Intl | ✗ typed, wrong | **derived, real clock** |
+| WDE-02 sample-data label | ✗ | ✗ | **✓ + `Evaluated` clock** |
+| Webfont families | 4 | 4 | **3** |
+
+Alone, revised, it is cheaper and **faster** than either predecessor — 13% less wall time
+than the three-skill configuration and 29% fewer tool calls — while closing every failure
+it was shown. Unlike sol's revision it kept its type variety: three webfont families
+across the four page scenarios, against sol's zero.
+
+On the five it was never shown:
+
+| Scenario | Result |
+| --- | --- |
+| WDE-06 review | **10/10 seeded defects, 0 invented, scope clean.** The corpus's first perfect score; the previous best was 9/10. |
+| WDE-07 no-brief | Placeholders labelled, no invented quotes, no trailing questions. `score.py` reported no named direction, which is a prose check on the handover message, not the artifact. |
+| WDE-08 SDK facts | Qualifies its **pricing** on the page, publishes the **model id** unqualified as "Current model". See below. |
+| WDE-09 deck | Figures framed as planning assumptions with an on-slide *"Disclosure: figures are planning assumptions, not reported results."* |
+| WDE-10 browser | **Fires.** Three screenshots at 390/768/1440 plus real evidence on disk. |
+
+So both single-skill configs pass the WDE-03/WDE-10 pair in both directions, on scenarios
+neither was told existed, and astra's review cell is the best result in the corpus.
+
+#### WDE-08, corrected: the failure is the identifier, not the price
+
+Round 3 forced a closer look at WDE-08, and `score.py` was wrong about it in two ways.
+Prices written as `$3</div><small>/ 1M tokens` never matched a regex applied to raw
+source, and a hedge phrased *"assumed standard pricing … should be checked against your
+internal billing terms"* matched none of the vocabulary the check knew. Both are fixed —
+prose patterns now run on de-tagged page text — and the check now reports **where** the
+hedge sits, because that is the whole question:
+
+| Config | Model id | Price claims | On page: price | On page: model id | Sidecar file |
+| --- | --- | ---: | --- | --- | --- |
+| `paired-kimi` | `claude-sonnet-4-5-20250929` | 4 | ✗ | ✗ | yes |
+| `paired-astra` | `claude-sonnet-4-20250514` | 6 | ✗ | ✗ | yes |
+| `paired-sol` | `claude-sonnet-4-5-20250929` | 4 | **✓** | **✓** | yes |
+| `paired-solhigh` | `claude-sonnet-4-20250514` | 0 | ✓ | ✗ | yes |
+| `authored-sol-r3` | `claude-sonnet-4-20250514` | 4 | ✗ | ✗ | yes |
+| `authored-astra-r3` | `claude-sonnet-4-5-20250929` | 2 | ✓ | ✗ | yes |
+
+Price-claim counts are distinct *strings*, not distinct facts — "$3 / 1M" and "$3 per
+million" on the same page count twice. "Qualified" means a sentence carrying a hedge that
+actually covers that fact; `paired-astra`'s on-page *"Assumptions: Node…"* covers the npm
+package and the runtime, not the price, and does not count.
+
+**Three of six qualify the pricing where a reader will see it. One of six qualifies the
+model identifier.** All six file a caveat in a sidecar document that no reader of the page
+opens. The one that qualifies the id is `paired-sol` — *"Verify current model availability
+and pricing in your organization's Nojom catalog before production deployment"* — and
+because that was a three-skill run, whether the sentence came from sol's own file or from
+a companion skill is not attributable.
+
+What is attributable is that it did not survive. `authored-sol-r3` is that config's
+descendant two revisions later, and it qualifies neither the price nor the id on the page;
+its caveat sits in `ASSUMPTIONS.md`. Both revision rounds were graded on the core five,
+where no scenario tests a factual claim, so nothing in either round of feedback protected
+the rule that produced that sentence — the same crowding-out finding 14 describes for
+type, in a second place.
+
+Pricing has a natural hedging vocabulary and an identifier does not: it arrives as a bare
+value in a copyable code sample or a spec-sheet label ("Current model", "Model"), and
+neither position invites a caveat. That is the vocabulary-shaped hole of finding 16, and it
+makes the corpus's one unsolved failure narrower and more tractable than "these skills
+invent facts" — they decline to qualify the one fact that reads as configuration rather
+than as a claim.
 
 ---
 
@@ -995,7 +1100,7 @@ frontend/
 │  ├─ orchestration.txt   3-skill division of labour for paired configs
 │  ├─ session/            sol authoring transcript, xhigh (current)
 │  ├─ session-sol-high/   sol authoring transcript, high (superseded)
-│  ├─ revision3/          round 3: run.sh, sol.txt brief, session transcript
+│  ├─ revision3/          round 3: run.sh, sol.txt + astra.txt briefs, transcripts
 │  └─ revision/           the revision round: run.sh, <author>.txt briefs,
 │                           <author>.log responses, session-<author>/ transcripts
 │                           (session-opus-openrouter-400/ is the failed openrouter
@@ -1008,6 +1113,7 @@ frontend/
 │  ├─ authored{,-kimi,-opus,-solhigh}-r2/
 │  │                               revised skills, authors shown their own failures
 │  ├─ authored-r3/                 round 3: sol's single skill, tested alone
+│  ├─ authored6-r3/                round 3: astra's single skill, tested alone
 │  ├─ paired/                      frontend-design + local-guidelines variant
 │  └─ wig-command.md               cached Vercel Web Interface Guidelines
 ├─ runs/<config>/<scenario>/       built artifacts + meta.txt
@@ -1052,8 +1158,9 @@ To reproduce round 3 — sol revises again, is told it ships alone, then runs al
 scenarios with no companion skills and no orchestration note:
 
 ```bash
-./authoring/revision3/run.sh                   # overwrites skillsets/authored-r3/
-CFGS="authored-sol-r3" ./run.sh                # all 10 scenarios
+./authoring/revision3/run.sh                   # both authors; overwrites skillsets/authored{,6}-r3/
+./authoring/revision3/run.sh astra             # or one
+CFGS="authored-sol-r3 authored-astra-r3" ./run.sh    # all 10 scenarios each
 ```
 
 To reproduce the authoring-effort comparison, `authored-solhigh` and `paired-solhigh`

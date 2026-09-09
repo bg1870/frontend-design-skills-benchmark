@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Install Nojom, authenticate, and make your first Claude API request." />
+  <title>Nojom SDK — TypeScript quickstart</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Nojom SDK home"><span class="brand-mark" aria-hidden="true">N</span><span>Nojom <em>SDK</em></span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#install">Install</a><a href="#authenticate">Authenticate</a><a href="#request">First request</a><a href="#cost">Cost</a>
+    </nav>
+    <a class="header-link" href="#request">View example <span aria-hidden="true">↘</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker"><span>QUICKSTART</span><span>≈ 5 MINUTES</span></p>
+        <h1 id="hero-title">Claude, typed<br />and ready.</h1>
+        <p class="lede">Ship your first request with Nojom—our TypeScript wrapper around the Claude API. One install, one environment variable, one call.</p>
+        <a class="primary-action" href="#install">Start building <span aria-hidden="true">↓</span></a>
+      </div>
+      <aside class="route-map" aria-label="Quickstart overview">
+        <div class="route-head"><span>START</span><span>RESPONSE</span></div>
+        <ol>
+          <li><span class="node">01</span><div><b>Install the package</b><code>@nojom/sdk</code></div></li>
+          <li><span class="node">02</span><div><b>Set your API key</b><code>ANTHROPIC_API_KEY</code></div></li>
+          <li><span class="node hot">03</span><div><b>Send a message</b><code>claude-sonnet-5</code></div></li>
+        </ol>
+        <div class="response-line"><span aria-hidden="true">✓</span> Typed response</div>
+      </aside>
+    </section>
+
+    <section class="guide" aria-label="Quickstart steps">
+      <div class="step" id="install">
+        <div class="step-meta"><span class="step-no">01</span><span>INSTALL</span></div>
+        <div class="step-body">
+          <h2>Add Nojom to your project</h2>
+          <p>Use your project’s package manager. Node.js 18 or later is assumed.</p>
+          <div class="code-shell compact">
+            <div class="code-top"><span>TERMINAL</span><button class="copy" data-copy="npm install @nojom/sdk">Copy</button></div>
+            <pre><code><span class="prompt">$</span> npm install @nojom/sdk</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="authenticate">
+        <div class="step-meta"><span class="step-no">02</span><span>AUTHENTICATE</span></div>
+        <div class="step-body">
+          <h2>Keep the key server-side</h2>
+          <p>Store your Anthropic API key as an environment variable. Never expose it in browser code or commit it to source control.</p>
+          <div class="code-shell compact">
+            <div class="code-top"><span>.ENV</span><button class="copy" data-copy="ANTHROPIC_API_KEY=your_api_key_here">Copy</button></div>
+            <pre><code><span class="property">ANTHROPIC_API_KEY</span>=<span class="string">your_api_key_here</span></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="step feature-step" id="request">
+        <div class="step-meta"><span class="step-no">03</span><span>FIRST REQUEST</span></div>
+        <div class="step-body">
+          <div class="section-heading">
+            <div><h2>Send your first message</h2><p>Nojom reads the key from your environment and returns a typed Claude response.</p></div>
+            <span class="model-tag">CURRENT MODEL · SONNET 5</span>
+          </div>
+          <div class="code-shell large">
+            <div class="code-top"><span>index.ts</span><button class="copy" data-copy-target="first-code">Copy code</button></div>
+            <pre id="first-code"><code><span class="keyword">import</span> { Nojom } <span class="keyword">from</span> <span class="string">"@nojom/sdk"</span>;
+
+<span class="keyword">const</span> nojom = <span class="keyword">new</span> <span class="function">Nojom</span>();
+
+<span class="keyword">const</span> response = <span class="keyword">await</span> nojom.messages.<span class="function">create</span>({
+  model: <span class="string">"claude-sonnet-5"</span>,
+  maxTokens: <span class="number">1024</span>,
+  messages: [
+    { role: <span class="string">"user"</span>, content: <span class="string">"Explain type narrowing in one sentence."</span> }
+  ]
+});
+
+console.<span class="function">log</span>(response.content[<span class="number">0</span>].text);</code></pre>
+          </div>
+          <div class="run-note"><span class="run-icon" aria-hidden="true">→</span><p><b>Run it</b><code>npx tsx index.ts</code></p><span>Returns text content and token usage.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cost" id="cost" aria-labelledby="cost-title">
+      <div class="cost-intro">
+        <p class="kicker"><span>BEFORE YOU SHIP</span></p>
+        <h2 id="cost-title">Estimate the call,<br />not the guess.</h2>
+        <p>Claude Sonnet 5 standard API pricing is usage-based. Adjust the tokens below for a quick per-request estimate.</p>
+        <p class="fine">USD, standard input/output tokens. Prompt caching, batch processing, and platform-specific pricing are not included.</p>
+      </div>
+      <div class="calculator">
+        <div class="rate-row"><span>INPUT</span><b>$2.00</b><small>per 1M tokens</small></div>
+        <label for="inputTokens"><span>Estimated input tokens</span><output id="inputValue">1,000</output></label>
+        <input id="inputTokens" type="range" min="0" max="20000" step="100" value="1000" />
+        <div class="rate-row output-rate"><span>OUTPUT</span><b>$10.00</b><small>per 1M tokens</small></div>
+        <label for="outputTokens"><span>Estimated output tokens</span><output id="outputValue">500</output></label>
+        <input id="outputTokens" type="range" min="0" max="10000" step="100" value="500" />
+        <div class="total"><span>ESTIMATED REQUEST</span><strong id="estimatedCost">$0.0070</strong></div>
+        <p class="formula" id="formula">1,000 × $2/M + 500 × $10/M</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><span class="brand-mark" aria-hidden="true">N</span><p><b>Nojom SDK</b><br /><span>Internal developer tooling</span></p></div>
+    <p class="source">Model ID and pricing checked against <a href="https://platform.claude.com/docs/en/models/overview">Anthropic model docs</a> and <a href="https://platform.claude.com/docs/en/about-claude/pricing">pricing docs</a> on Sep 9, 2026 (UTC). Verify before production launch.</p>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

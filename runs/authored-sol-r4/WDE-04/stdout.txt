@@ -1,0 +1,19 @@
+Implemented a clickable React habit-tracking prototype featuring:
+
+- Today view with completion toggles and progress
+- Interactive streak detail and consistency history
+- Add-habit bottom sheet with validation, frequency, and color selection
+- Responsive mobile and desktop presentation
+- Accessible controls, focus states, reduced-motion support
+- Sample-data labeling and documented assumptions
+
+Key files:
+- `src/main.jsx`
+- `src/styles.css`
+- `ASSUMPTIONS.md`
+
+Static verification completed successfully with `npm run build`. Run locally using:
+
+```bash
+npm run dev
+```

@@ -34,6 +34,8 @@ skill_args() {
     paired-sol-r2) echo "--skill $AUTH/authored-r2/beautiful-frontend/SKILL.md --skill $PAIR/frontend-design --skill $PAIR/web-design-guidelines" ;;
     # round 3: sol re-authored as a single self-contained skill, tested alone
     authored-sol-r3) echo "--skill $AUTH/authored-r3/beautiful-frontend/SKILL.md" ;;
+    authored-astra-r3) echo "--skill $AUTH/authored6-r3/beautiful-frontend/SKILL.md" ;;
+    authored-sol-r4) echo "--skill $AUTH/authored-r4/beautiful-frontend/SKILL.md" ;;
     base)        echo "" ;;
     wde)         echo "--skill /home/basil/tmp/skills/wde-fixed/SKILL.md" ;;
     design-list) for d in $ROOT/skillsets/design-list/*/; do printf -- "--skill %s " "$d"; done ;;

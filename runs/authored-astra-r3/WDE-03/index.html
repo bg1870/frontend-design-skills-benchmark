@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clearpath pricing for product analytics teams. Compare plans and estimate your monthly cost.">
+  <title>Pricing — Clearpath Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Clearpath home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>clearpath</a>
+    <nav aria-label="Primary navigation">
+      <a href="#platform">Platform</a><a href="#compare">Solutions</a><a href="#faq">Resources</a>
+    </nav>
+    <div class="header-actions"><a href="#faq">Pricing FAQ</a><a class="button button-small" href="#contact">Book a demo</a></div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow"><span>Pricing</span><span class="eyebrow-line"></span><span>Scale without surprises</span></div>
+      <div class="hero-grid">
+        <h1 id="page-title">Answers for every team.<br><em>Costs you can predict.</em></h1>
+        <div class="hero-copy"><p>Give everyone a shared view of the business—from first event to board report. Start with self-serve analytics, then add governance when you need it.</p><a href="#plans" class="text-link">Compare plans <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>
+
+    <section class="pricing" id="plans" aria-labelledby="plans-title">
+      <div class="section-intro">
+        <div><span class="section-index">01</span><h2 id="plans-title">Choose your operating range</h2></div>
+        <div class="billing-control" role="group" aria-label="Billing period">
+          <button type="button" data-billing="monthly" aria-pressed="false">Monthly</button>
+          <button type="button" data-billing="annual" aria-pressed="true">Annual <span>save 20%</span></button>
+        </div>
+      </div>
+
+      <div class="plan-grid">
+        <article class="plan">
+          <div class="plan-top"><p class="plan-number">A / 01</p><h3>Explore</h3><p>For small teams finding the signals that matter.</p></div>
+          <div class="price"><span class="currency">$</span><strong data-monthly="39" data-annual="31">31</strong><span>/ user<br>per month</span></div>
+          <p class="billing-note">Billed annually</p>
+          <a class="button button-outline" href="mailto:sales@clearpath.example?subject=Explore%20plan">Start with Explore</a>
+          <ul><li>5 workspace members included</li><li>Unlimited dashboards</li><li>10 million events / month</li><li>Core integrations</li><li>Email support</li></ul>
+        </article>
+
+        <article class="plan plan-featured">
+          <div class="featured-label">Most selected</div>
+          <div class="plan-top"><p class="plan-number">A / 02</p><h3>Operate</h3><p>For growing companies running decisions on shared data.</p></div>
+          <div class="price"><span class="currency">$</span><strong data-monthly="79" data-annual="63">63</strong><span>/ user<br>per month</span></div>
+          <p class="billing-note">Billed annually</p>
+          <a class="button" href="mailto:sales@clearpath.example?subject=Operate%20plan">Choose Operate</a>
+          <ul><li>Everything in Explore</li><li>50 million events / month</li><li>Custom metrics &amp; cohorts</li><li>Data quality monitoring</li><li>Role-based access</li><li>Priority support</li></ul>
+        </article>
+
+        <article class="plan">
+          <div class="plan-top"><p class="plan-number">A / 03</p><h3>Enterprise</h3><p>For data organizations with complex scale and controls.</p></div>
+          <div class="price price-custom"><strong>Custom</strong><span>volume-based<br>agreement</span></div>
+          <p class="billing-note">Annual agreement</p>
+          <a class="button button-outline" href="#contact">Talk to an analyst</a>
+          <ul><li>Everything in Operate</li><li>Negotiated event volume</li><li>Single sign-on &amp; SCIM</li><li>Regional data hosting</li><li>Audit logs &amp; SLAs</li><li>Dedicated success lead</li></ul>
+        </article>
+      </div>
+      <p class="terms-note">Prices shown in USD, before applicable taxes. User pricing is illustrative and subject to a final commercial agreement.</p>
+    </section>
+
+    <section class="estimator" id="platform" aria-labelledby="estimator-title">
+      <div class="estimator-copy"><span class="section-index">02</span><h2 id="estimator-title">Put a number on it.</h2><p>Estimate Operate for your analytics team. Every member can build, annotate, and share—no viewer licenses to manage.</p></div>
+      <div class="estimator-tool">
+        <div class="estimate-head"><label for="seats">Workspace members</label><output id="seat-output" for="seats">20</output></div>
+        <input id="seats" type="range" min="5" max="100" step="5" value="20">
+        <div class="range-labels" aria-hidden="true"><span>5</span><span>100</span></div>
+        <div class="estimate-total"><span>Estimated monthly total <small>Annual billing</small></span><strong id="estimate-price">$1,260</strong></div>
+        <p>Need more than 100 members? <a href="#contact">Let’s model it together.</a></p>
+      </div>
+    </section>
+
+    <section class="comparison" id="compare" aria-labelledby="compare-title">
+      <div class="comparison-heading"><span class="section-index">03</span><h2 id="compare-title">Compare the details</h2><p>No feature fog. See exactly where advanced governance and scale enter the picture.</p></div>
+      <div class="table-wrap" tabindex="0" aria-label="Plan feature comparison, horizontally scrollable">
+        <table><thead><tr><th scope="col">Capability</th><th scope="col">Explore</th><th scope="col">Operate</th><th scope="col">Enterprise</th></tr></thead>
+        <tbody>
+          <tr class="group"><th colspan="4" scope="colgroup">Analyze</th></tr>
+          <tr><th scope="row">Dashboards &amp; reports</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Custom metrics</th><td>—</td><td>Included</td><td>Included</td></tr>
+          <tr><th scope="row">Event allowance / month</th><td>10M</td><td>50M</td><td>Negotiated</td></tr>
+          <tr class="group"><th colspan="4" scope="colgroup">Govern</th></tr>
+          <tr><th scope="row">Roles &amp; permissions</th><td>Basic</td><td>Advanced</td><td>Advanced</td></tr>
+          <tr><th scope="row">Single sign-on / SCIM</th><td>—</td><td>—</td><td>Included</td></tr>
+          <tr><th scope="row">Audit logs</th><td>—</td><td>90 days</td><td>Custom retention</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div><span class="section-index">04</span><h2 id="faq-title">Straight answers</h2></div>
+      <div class="faq-list">
+        <details><summary>What counts as a workspace member?<span></span></summary><p>Anyone who can sign in to build, edit, or view analysis counts as a member. Service accounts and report recipients do not.</p></details>
+        <details><summary>Can we change plans later?<span></span></summary><p>Yes. You can upgrade at any time. Annual plan changes are prorated for the remaining term.</p></details>
+        <details><summary>What happens if we exceed our event allowance?<span></span></summary><p>We notify workspace owners before the limit. You can raise the allowance or move to a volume agreement; data is not silently discarded.</p></details>
+        <details><summary>Is implementation included?<span></span></summary><p>Guided onboarding is included with Enterprise. Explore and Operate include documentation, templates, and email support.</p></details>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title"><p>Not sure where you fit?</p><h2 id="contact-title">Bring us your data stack.<br>We’ll map the right plan.</h2><a class="button button-light" href="mailto:sales@clearpath.example?subject=Clearpath%20pricing%20consultation">Book a pricing consultation <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer><a class="brand brand-footer" href="#">clearpath</a><p>Product analytics for teams that act on evidence.</p><div><a href="#plans">Pricing</a><a href="#faq">FAQ</a><a href="mailto:sales@clearpath.example">Contact</a></div><p>© <span id="year"></span> Clearpath</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

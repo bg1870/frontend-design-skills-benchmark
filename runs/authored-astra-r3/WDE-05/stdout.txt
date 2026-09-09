@@ -1,0 +1,11 @@
+Implemented in `fixtures/app`:
+
+- Added a customer-testimonials section with a clearly labelled verification placeholder.
+- Added an “In the box” hardware section with a packing-slip treatment and explicit unverified-content notice.
+- Added navigation links for both sections.
+- Added responsive desktop/mobile styling while preserving existing tokens and form/analytics contracts.
+- Avoided fabricated customers, quotes, imagery, accessories, or box contents.
+
+Sourcing blocker: repository assets contained no verified materials, and `kettell.com` is currently a domain-sale page rather than a product source. This is disclosed in the interface.
+
+Check completed: HTML parsed successfully; source and responsive CSS were statically audited.

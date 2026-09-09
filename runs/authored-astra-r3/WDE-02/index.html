@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowline Dispatch</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#queue" aria-label="Flowline Dispatch home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 4v10a9 9 0 0 0 18 0V9h-6v5a3 3 0 0 1-6 0V4H7Z"/></svg></span>
+      <span><strong>FLOWLINE</strong><small>PLUMBING DISPATCH</small></span>
+    </a>
+    <div class="header-meta">
+      <span class="sample-badge">SAMPLE DATA</span>
+      <span id="clock" class="clock"></span>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="page-title">
+      <div class="summary-heading">
+        <p class="eyebrow">Operations desk <span aria-hidden="true">/</span> Job queue</p>
+        <h1 id="page-title">Dispatch board</h1>
+        <p id="evaluated" class="evaluated">Evaluating schedule…</p>
+      </div>
+      <div class="metrics" aria-label="Queue summary">
+        <div class="metric metric-primary"><span class="metric-label">Active jobs</span><strong id="active-count">—</strong><small>not completed</small></div>
+        <div class="metric"><span class="metric-label">Unassigned</span><strong id="open-count">—</strong><small>need a technician</small></div>
+        <div class="metric"><span class="metric-label">Due today</span><strong id="today-count">—</strong><small id="today-caption">scheduled today</small></div>
+        <div class="metric"><span class="metric-label">Completed</span><strong id="done-count">—</strong><small>all sample records</small></div>
+      </div>
+    </section>
+
+    <section id="queue" class="workspace" aria-labelledby="queue-title">
+      <div class="queue-header">
+        <div>
+          <p class="section-kicker">Queue control</p>
+          <h2 id="queue-title">Scheduled jobs <span id="result-count" class="count"></span></h2>
+        </div>
+        <div class="view-note"><span class="pulse" aria-hidden="true"></span> Summary covers all records</div>
+      </div>
+
+      <div class="toolbar">
+        <label class="search">
+          <span class="sr-only">Search jobs</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+          <input id="search" type="search" placeholder="Search job, address, or technician" />
+        </label>
+        <div class="filters" role="group" aria-label="Filter jobs by status">
+          <button class="filter active" data-status="active" aria-pressed="true">Active</button>
+          <button class="filter" data-status="open" aria-pressed="false">Unassigned</button>
+          <button class="filter" data-status="assigned" aria-pressed="false">Assigned</button>
+          <button class="filter" data-status="done" aria-pressed="false">Completed</button>
+          <button class="filter" data-status="all" aria-pressed="false">All</button>
+        </div>
+        <label class="sort-label">Sort
+          <select id="sort"><option value="asc">Soonest first</option><option value="desc">Latest first</option></select>
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Schedule</th><th>Technician</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="job-list"></tbody>
+        </table>
+        <div id="empty" class="empty" hidden><strong>No jobs match this view.</strong><span>Clear the search or choose another status.</span><button id="reset">Reset filters</button></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="assign-dialog" aria-labelledby="dialog-title">
+    <form method="dialog" id="assign-form">
+      <div class="dialog-top"><div><p class="section-kicker">Dispatch job</p><h2 id="dialog-title">Assign technician</h2></div><button class="icon-button" value="cancel" formnovalidate aria-label="Close dialog">×</button></div>
+      <p id="dialog-job" class="dialog-job"></p>
+      <label class="field">Technician<select id="technician" required><option value="">Select technician…</option></select></label>
+      <p class="dialog-note">Assignment changes are temporary and are not written back to the sample fixture.</p>
+      <div class="dialog-actions"><button value="cancel" formnovalidate class="secondary">Cancel</button><button id="confirm-assign" value="default" class="primary">Assign job</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+[
+  {
+    "viewport": "mobile",
+    "inner": [
+      390,
+      844
+    ],
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "inputs": [
+      {
+        "id": "clinic",
+        "w": 335,
+        "h": 50
+      },
+      {
+        "id": "email",
+        "w": 335,
+        "h": 50
+      },
+      {
+        "id": "password",
+        "w": 335,
+        "h": 50
+      },
+      {
+        "id": "password-toggle",
+        "w": 56,
+        "h": 44
+      },
+      {
+        "id": "primary",
+        "w": 335,
+        "h": 50
+      }
+    ]
+  },
+  {
+    "viewport": "tablet",
+    "inner": [
+      768,
+      1024
+    ],
+    "scrollWidth": 753,
+    "horizontalOverflow": false,
+    "inputs": [
+      {
+        "id": "clinic",
+        "w": 590,
+        "h": 50
+      },
+      {
+        "id": "email",
+        "w": 590,
+        "h": 50
+      },
+      {
+        "id": "password",
+        "w": 590,
+        "h": 50
+      },
+      {
+        "id": "password-toggle",
+        "w": 56,
+        "h": 44
+      },
+      {
+        "id": "primary",
+        "w": 590,
+        "h": 52
+      }
+    ]
+  },
+  {
+    "viewport": "laptop",
+    "inner": [
+      1440,
+      1000
+    ],
+    "scrollWidth": 1440,
+    "horizontalOverflow": false,
+    "inputs": [
+      {
+        "id": "clinic",
+        "w": 480,
+        "h": 50
+      },
+      {
+        "id": "email",
+        "w": 480,
+        "h": 50
+      },
+      {
+        "id": "password",
+        "w": 480,
+        "h": 50
+      },
+      {
+        "id": "password-toggle",
+        "w": 56,
+        "h": 44
+      },
+      {
+        "id": "primary",
+        "w": 480,
+        "h": 52
+      }
+    ]
+  },
+  {
+    "behavior": {
+      "invalid": {
+        "focus": "clinic",
+        "errors": 3
+      },
+      "success": true,
+      "successFocused": true
+    }
+  }
+]

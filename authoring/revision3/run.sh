@@ -1,18 +1,35 @@
 #!/usr/bin/env bash
-# Round 3: sol at xhigh is shown what paired-sol-r2 shipped and asked for a SINGLE
-# self-contained skill — the round-3 config loads it alone, with no companion skills
-# and no orchestration note. Same brief constraints, same thinking level as before.
-#   ./run.sh
+# Round 3: each author is shown what its own skill shipped and asked for a SINGLE
+# self-contained skill — the round-3 configs load it alone, with no companion skills
+# and no orchestration note. Same brief constraints, same thinking level as the
+# original authoring pass.
+#   ./run.sh              — both authors
+#   ./run.sh sol          — one
 set -u
 REV=/home/basil/tmp/frontend/authoring/revision3
 SETS=/home/basil/tmp/frontend/skillsets
-OUT=authored-r3
 
-dir=$SETS/$OUT/beautiful-frontend
-rm -rf "$SETS/$OUT"; mkdir -p "$dir"
-start=$(date +%s)
-( cd "$dir" && timeout 3600 pi -p --provider openai-codex --model gpt-5.6-sol --thinking xhigh \
-    --no-extensions --no-context-files --no-skills \
-    --session-dir "$REV/session-sol" --name "revision3-sol" \
-    -- "$(cat $REV/sol.txt)" ) > "$REV/sol.log" 2> "$REV/sol.err"
-echo "[done] sol exit=$? seconds=$(( $(date +%s) - start )) lines=$(wc -l < "$dir/SKILL.md" 2>/dev/null || echo MISSING)"
+# author | provider | model | thinking | output skillset dir
+spec() {
+  case "$1" in
+    sol)   echo "openai-codex|gpt-5.6-sol|xhigh|authored-r3" ;;
+    astra) echo "openai-codex|gpt-6-astra|xhigh|authored6-r3" ;;
+  esac
+}
+
+run_one() {
+  local a=$1 IFS='|'
+  read -r prov model think out <<< "$(spec "$a")"
+  local dir=$SETS/$out/beautiful-frontend
+  rm -rf "$SETS/$out"; mkdir -p "$dir"
+  local start=$(date +%s)
+  ( cd "$dir" && timeout 3600 pi -p --provider "$prov" --model "$model" --thinking "$think" \
+      --no-extensions --no-context-files --no-skills \
+      --session-dir "$REV/session-$a" --name "revision3-$a" \
+      -- "$(cat $REV/$a.txt)" ) > "$REV/$a.log" 2> "$REV/$a.err"
+  echo "[done] $a exit=$? seconds=$(( $(date +%s) - start )) lines=$(wc -l < "$dir/SKILL.md" 2>/dev/null || echo MISSING)"
+}
+
+for a in ${@:-sol astra}; do run_one "$a" & done
+wait
+echo "ROUND-3 AUTHORING DONE"

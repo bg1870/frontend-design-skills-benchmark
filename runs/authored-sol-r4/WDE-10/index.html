@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create a Loomwork account for your physiotherapy clinic.">
+  <title>Create your clinic workspace — Loomwork</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <section class="signup" aria-labelledby="page-title">
+      <header class="brand-bar">
+        <a class="brand" href="./" aria-label="Loomwork home">
+          <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M7 5v22M13 5v22M19 5v22M25 5v22M5 9h22M5 16h22M5 23h22"/></svg>
+          <span>Loomwork</span>
+        </a>
+        <p>Already have an account? <a href="#signin">Sign in</a></p>
+      </header>
+
+      <div class="form-wrap">
+        <div class="intro">
+          <p class="step">Workspace setup <span>01 / 02</span></p>
+          <h1 id="page-title">Make time for better care.</h1>
+          <p>Create your clinic workspace and start shaping a schedule that works around practitioners, rooms and patients.</p>
+        </div>
+
+        <form id="signup-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="first-name">First name</label>
+              <input id="first-name" name="firstName" autocomplete="given-name" required>
+              <span class="error" id="first-name-error"></span>
+            </div>
+            <div class="field">
+              <label for="last-name">Last name</label>
+              <input id="last-name" name="lastName" autocomplete="family-name" required>
+              <span class="error" id="last-name-error"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="clinic-name">Clinic name</label>
+            <input id="clinic-name" name="clinicName" autocomplete="organization" required>
+            <span class="error" id="clinic-name-error"></span>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
+            <span class="error" id="email-error"></span>
+          </div>
+          <div class="field">
+            <div class="label-line">
+              <label for="password">Password</label>
+              <span>8+ characters</span>
+            </div>
+            <div class="password-control">
+              <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+              <button type="button" id="toggle-password" aria-label="Show password" aria-pressed="false">Show</button>
+            </div>
+            <span class="error" id="password-error"></span>
+          </div>
+          <label class="check" for="terms">
+            <input id="terms" name="terms" type="checkbox" required>
+            <span>I agree to the <a href="#terms">Terms</a> and <a href="#privacy">Privacy Policy</a>.</span>
+          </label>
+          <span class="error terms-error" id="terms-error"></span>
+          <button class="submit" type="submit">Create clinic workspace <span aria-hidden="true">→</span></button>
+          <p class="secure-note"><svg aria-hidden="true" viewBox="0 0 20 20"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V6a3 3 0 0 1 6 0v2"/></svg> Your details are encrypted in transit.</p>
+          <div id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <aside class="schedule" aria-label="Illustrative clinic schedule">
+      <div class="schedule-head">
+        <p>Built around the clinic day</p>
+        <span>Illustrative schedule</span>
+      </div>
+      <div class="date-block">
+        <span>TUE</span><strong>14</strong>
+        <div><b>Today’s rhythm</b><small>Practitioners · rooms · care</small></div>
+      </div>
+      <div class="timeline" aria-hidden="true">
+        <div class="time">08:00</div><div class="line"><span></span></div>
+        <div class="time">09:00</div><div class="line appointment"><i></i><div><b>Morning appointments</b><small>Room 1 · 3 bookings</small></div></div>
+        <div class="time">11:00</div><div class="line"><span></span></div>
+        <div class="time">12:00</div><div class="line break"><div><b>Clinic reset</b><small>Rooms available</small></div></div>
+        <div class="time">14:00</div><div class="line"><span></span></div>
+        <div class="time">15:00</div><div class="line appointment second"><i></i><div><b>Afternoon appointments</b><small>Room 2 · 2 bookings</small></div></div>
+        <div class="time">17:00</div><div class="line"><span></span></div>
+      </div>
+      <p class="aside-copy">One clear view of the moving parts behind every appointment.</p>
+    </aside>
+  </main>
+</body>
+</html>

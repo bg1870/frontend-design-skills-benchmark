@@ -216,6 +216,18 @@
   "scenarios": 10
  },
  {
+  "tin": 224327,
+  "cr": 334080,
+  "out": 59628,
+  "rea": 3771,
+  "cost": 3.077515000000001,
+  "turns": 65,
+  "tools": 87,
+  "cfg": "authored-astra-r3",
+  "secs": 2157,
+  "scenarios": 10
+ },
+ {
   "tin": 207222,
   "cr": 837504,
   "out": 65747,
